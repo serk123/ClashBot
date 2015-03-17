@@ -275,17 +275,33 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
 		;Activate KQ's power
 		If $checkKPower Or $checkQPower Then
-			SetLog("Waiting " & $delayActivateKQ / 1000 & " seconds before activating Hero abilities", $COLOR_ORANGE)
-			_Sleep($delayActivateKQ)
-			If $checkKPower Then
-				SetLog("Activate King's power", $COLOR_BLUE)
-				SelectDropTroupe($King)
+			If $itxtKingSkill <= $itxtQueenSkill Then
+			SetLog("Waiting " & $itxtKingSkill & " seconds before activating Heroes abilities", $COLOR_ORANGE)
+			   If $checkKPower Then
+			   _Sleep($itxtKingSkill * 1000)
+				  SetLog("Activate King's power", $COLOR_BLUE)
+				  SelectDropTroupe($King)
+			   EndIf
+			   If $checkQPower Then
+			   _Sleep(($itxtQueenSkill - $itxtKingSkill) * 1000)
+				  SetLog("Activate Queen's power", $COLOR_BLUE)
+				  SelectDropTroupe($Queen)
+			   EndIf
 			EndIf
-			If $checkQPower Then
-				SetLog("Activate Queen's power", $COLOR_BLUE)
-				SelectDropTroupe($Queen)
+
+			If $itxtQueenSkill < $itxtKingSkill Then
+			SetLog("Waiting " & $itxtQueenSkill & " seconds before activating Heroes abilities", $COLOR_ORANGE)
+			   If $checkQPower Then
+			   _Sleep($itxtQueenSkill * 1000)
+				  SetLog("Activate Queen's power", $COLOR_BLUE)
+				  SelectDropTroupe($Queen)
+			   EndIf
+			   If $checkKPower Then
+			   _Sleep(($itxtKingSkill - $itxtQueenSkill) * 1000)
+				  SetLog("Activate King's power", $COLOR_BLUE)
+				  SelectDropTroupe($King)
+			   EndIf
 			EndIf
 		EndIf
-
 		SetLog("~Finished Attacking, waiting to finish", $COLOR_GREEN)
  EndFunc   ;==>algorithm_AllTroops

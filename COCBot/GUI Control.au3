@@ -36,6 +36,8 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					chkRequest()
 				Case $tabMain
 					tabMain()
+				Case $Randomspeedatk
+					Randomspeedatk()
 				;GB
 				;Case $chkMeetGorE
 				;	If GUICtrlRead($chkMeetGorE) = $GUI_CHECKED Then
@@ -65,6 +67,11 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 	EndSwitch
 	Return $GUI_RUNDEFMSG
 EndFunc   ;==>GUIControl
+
+Func SetTime()
+    Local $time = _TicksToTime(Int(TimerDiff($sTimer)), $hour, $min, $sec)
+	If _GUICtrlTab_GetCurSel($tabMain) = 7 Then GUICtrlSetData($lblresultruntime, StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
+	EndFunc   ;==>SetTime
 
 Func Initiate()
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
@@ -105,11 +112,16 @@ Func Initiate()
 			GUICtrlSetState($txtCapacity, $GUI_DISABLE)
 			GUICtrlSetState($cmbRaidcap, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateClanCastle, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateTrap, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
+;			GUICtrlSetState($btnLocateTrap, $GUI_DISABLE)
 			;GB - New buttons
-			GUICtrlSetState($btnLocateXbow, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateInferno, $GUI_DISABLE)
+;			GUICtrlSetState($btnLocateXbow, $GUI_DISABLE)
+;			GUICtrlSetState($btnLocateInferno, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
+			$sTimer = TimerInit()
+			AdlibRegister("SetTime", 1000)
 			;GB - Move to btStart function
 			;GUICtrlSetState($btnStart, $GUI_HIDE)
 			;GUICtrlSetState($btnStop, $GUI_SHOW)
@@ -185,7 +197,10 @@ Func btnStop()
 		GUICtrlSetState($cmbTroopComp, $GUI_ENABLE)
 		;GUICtrlSetState($btnLocateCollectors, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateClanCastle, $GUI_ENABLE)
-		GUICtrlSetState($btnLocateTrap, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateTownHall, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateKingAltar, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateQueenAltar, $GUI_ENABLE)
+;		GUICtrlSetState($btnLocateTrap, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateCamp, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 		GUICtrlSetState($chkNoAttack, $GUI_ENABLE)
@@ -194,14 +209,17 @@ Func btnStop()
 	    GUICtrlSetState($txtCapacity, $GUI_ENABLE)
 		GUICtrlSetState($cmbRaidcap, $GUI_ENABLE)
 		;GB - New Buttons
-		GUICtrlSetState($btnLocateXbow, $GUI_ENABLE)
-		GUICtrlSetState($btnLocateInferno, $GUI_ENABLE)
+		;GUICtrlSetState($btnLocateXbow, $GUI_ENABLE)
+		;GUICtrlSetState($btnLocateInferno, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateClanCastle2, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 	    GUICtrlSetState($cmbBoostBarracks, $GUI_ENABLE)
 		GUICtrlSetState($btnAtkNow, $GUI_DISABLE) ;GB
 		GUICtrlSetState($btnStart, $GUI_SHOW)
 		GUICtrlSetState($btnStop, $GUI_HIDE)
+
+		AdlibUnRegister("SetTime")
+		_BlockInputEx(0, "", "", $HWnD)
 
 		FileClose($hLogFileHandle)
 		SetLog("ClashBot has stopped", $COLOR_ORANGE)
@@ -231,8 +249,39 @@ Func btnLocateClanCastle()
 		ExitLoop
 	WEnd
 	$RunState = False
-EndFunc   ;==>btnLocateClanCastle
+ EndFunc   ;==>btnLocateClanCastle
 
+ Func btnLocateTownHall()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateTownHall()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc   ;==>btnLocateTownHall
+
+ Func btnLocateKingAltar()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateKingAltar()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc   ;==>btnLocateKingAltar
+
+  Func btnLocateQueenAltar()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateQueenAltar()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc   ;==>btnLocateQueenAltar
+
+#cs
 Func btnLocateTrap()
 	$RunState = True
 	While 1
@@ -262,6 +311,7 @@ Func btnLocateInferno()
 	WEnd
 	$RunState = False
 EndFunc   ;==>btnLocateInferno
+#ce
 
 Func btnLocateCamp()
 	$RunState = True
@@ -526,21 +576,25 @@ EndFunc   ;==>chkBackground
 Func chkNoAttack()
 	If GUICtrlRead($chkNoAttack) = $GUI_CHECKED Then
 		$CommandStop = 0
-		SetLog("~~~Attack Mode Deactivated~~~", $COLOR_PURPLE)
+		SetLog("~~~Donate / Train Only Activated~~~", $COLOR_PURPLE)
 	Else
 		$CommandStop = -1
-		SetLog("~~~Attack Mode Activated~~~", $COLOR_PURPLE)
-	EndIf
+		If GUICtrlRead($chkDonateOnly) = 0 Then
+		SetLog("~~~Stay Online Mode Deactivated~~~", $COLOR_PURPLE)
+		EndIf
+    EndIf
 EndFunc   ;==>chkNoAttack
 
  Func chkDonateOnly()
 	If GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
 		$CommandStop = 3
-		SetLog("~~~Attack Mode Deactivated~~~", $COLOR_PURPLE)
+		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
 	Else
 		$CommandStop = -1
-		SetLog("~~~Attack Mode Activated~~~", $COLOR_PURPLE)
-	EndIf
+		If GUICtrlRead($chkNoAttack) = 0 Then
+		SetLog("~~~Stay Online Mode Deactivated~~~", $COLOR_PURPLE)
+	 EndIf
+    EndIf
 EndFunc   ;==>chkDonateOnly
 
 ;Func btnLocateCollectors()
@@ -562,6 +616,18 @@ Func chkRequest()
 		GUICtrlSetState($txtRequest, $GUI_DISABLE)
 	EndIf
 EndFunc
+
+Func Randomspeedatk()
+   If GUICtrlRead($Randomspeedatk) = $GUI_CHECKED Then
+	  $iRandomspeedatk = 1
+	  GUICtrlSetState($cmbUnitDelay, $GUI_DISABLE)
+	  GUICtrlSetState($cmbWaveDelay, $GUI_DISABLE)
+   Else
+	  $iRandomspeedatk = 0
+	  GUICtrlSetState($cmbUnitDelay, $GUI_ENABLE)
+	  GUICtrlSetState($cmbWaveDelay, $GUI_ENABLE)
+   EndIf
+EndFunc   ;==>Randomspeedatk
 
 Func tabMain()
 	If _GUICtrlTab_GetCurSel($tabMain) = 0 Then

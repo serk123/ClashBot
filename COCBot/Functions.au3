@@ -7,7 +7,6 @@
 #include "functions\Attack\Attack Algorithms\algorithmTH.au3"
 #include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3"
 #include "functions\Attack\Attack Algorithms\algorithm_Barch.au3"
-#include "functions\Attack\Attack Algorithms\algorithm_Troops.au3"
 
 #include "functions\Config\applyConfig.au3"
 #include "functions\Config\readConfig.au3"
@@ -32,6 +31,7 @@
 #include "functions\Other\SetLog.au3"
 #include "functions\Other\Tab.au3"
 #include "functions\Other\Time.au3"
+#include "functions\Other\BlockInputEx.au3"
 
 #include "functions\Pixels\_CaptureRegion.au3"
 #include "functions\Pixels\_ColorCheck.au3"
@@ -58,7 +58,7 @@
 #include "functions\Search\PrepareSearch.au3"
 #include "functions\Search\VillageSearch.au3"
 
-#include "functions\Village\BoostBarracks.au3"
+#include "functions\Village\BoostAllBuilding.au3"
 #include "functions\Village\CheckFullArmy.au3"
 #include "functions\Village\CheckArmyCamp.au3"
 #include "functions\Village\Collect.au3"
@@ -78,3 +78,4 @@
 #include "functions\Village\Train.au3"
 #include "functions\Village\BotCommand.au3"
 #include "functions\Village\UpgradeWall.au3"
+#include "functions\Village\VillageReport.au3"

@@ -73,25 +73,18 @@ Func readConfig() ;Reads config and sets it to the variables
 		$GiantsComp = IniRead($config, "troop", "giant", "0")
 		$GoblinsComp = IniRead($config, "troop", "goblin", "0")
 		$WBComp = IniRead($config, "troop", "WB", "0")
+		$icmbUnitDelay = IniRead($config, "other", "UnitD", "0")
+	    $icmbWaveDelay = IniRead($config, "other", "WaveD", "0")
+		$iRandomspeedatk = IniRead($config, "other", "randomatk", "0")
 
-		;GB - New functions
-		$TrapPos[0] = IniRead($config, "troop", "xTrap", "-1")
-		$TrapPos[1] = IniRead($config, "troop", "yTrap", "-1")
-		$XbowPos[0] = IniRead($config, "troop", "xXbow", "-1")
-		$XbowPos[1] = IniRead($config, "troop", "yXbow", "-1")
-		$InfernoPos[0] = IniRead($config, "troop", "xInferno", "-1")
-		$InfernoPos[1] = IniRead($config, "troop", "yInferno", "-1")
-		$ArmyPos[0] = IniRead($config, "troop", "xArmy", "0")
-		$ArmyPos[1] = IniRead($config, "troop", "yArmy", "0")
+	;Other Settings--------------------------------------------------------------------------
+	;Walls
+	$ichkWalls = IniRead($config, "other", "auto-wall", "0")
+	$icmbWalls = IniRead($config, "other", "walllvl", "0")
+	$iUseStorage = IniRead($config, "other", "use-storage", "0")
+	$itxtWallMinGold = IniRead($config, "other", "minwallgold", "0")
+	$itxtWallMinElixir = IniRead($config, "other", "minwallelixir", "0")
 
-		For $i = 0 To 3 ;Covers all 4 Barracks
-			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")
-			$barrackPos[$i][1] = IniRead($config, "troop", "yBarrack" & $i + 1, "0")
-			$barrackTroop[$i] = IniRead($config, "troop", "troop" & $i + 1, "0")
-		Next
-	Else
-		Return False
-	EndIf
 	;General Settings--------------------------------------------------------------------------
 	$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")
 	$frmBotPosY = IniRead($config, "general", "frmBotPosY", "158")
@@ -107,8 +100,36 @@ Func readConfig() ;Reads config and sets it to the variables
 	;Misc Settings--------------------------------------------------------------------------
 	$itxtReconnect = IniRead($config, "misc", "reconnectdelay", "0")
 	$itxtReturnh = IniRead($config, "misc", "returnhomedelay", "0")
-	$attackpattern = IniRead($config, "misc", "apattern", "0")
+	$itxtKingSkill = IniRead($config, "misc", "kingskilldelay", "0")
+	$itxtQueenSkill = IniRead($config, "misc", "queenskilldelay", "0")
 	$icmbSearchsp = IniRead($config, "misc", "searchspd", "0")
+	$ichkTrap = IniRead($config, "misc", "chkTrap", "0")
+	$TownHallPos[0] = IniRead($config, "misc", "xTownHall", "-1")
+	$TownHallPos[1] = IniRead($config, "misc", "yTownHall", "-1")
+#cs
+	;GB - New functions
+	$TrapPos[0] = IniRead($config, "misc", "xTrap", "-1")
+	$TrapPos[1] = IniRead($config, "misc", "yTrap", "-1")
+	$XbowPos[0] = IniRead($config, "misc", "xXbow", "-1")
+	$XbowPos[1] = IniRead($config, "misc", "yXbow", "-1")
+	$InfernoPos[0] = IniRead($config, "misc", "xInferno", "-1")
+	$InfernoPos[1] = IniRead($config, "misc", "yInferno", "-1")
+#ce
+    $ArmyPos[0] = IniRead($config, "misc", "xArmy", "0")
+	$ArmyPos[1] = IniRead($config, "misc", "yArmy", "0")
+    $KingPos[0] = IniRead($config, "misc", "xKing", "0")
+	$KingPos[1] = IniRead($config, "misc", "yKing", "0")
+	$QueenPos[0] = IniRead($config, "misc", "xQueen", "0")
+	$QueenPos[1] = IniRead($config, "misc", "yQueen", "0")
+
+		For $i = 0 To 3 ;Covers all 4 Barracks
+			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")
+			$barrackPos[$i][1] = IniRead($config, "troop", "yBarrack" & $i + 1, "0")
+			$barrackTroop[$i] = IniRead($config, "troop", "troop" & $i + 1, "0")
+		Next
+	Else
+		Return False
+	EndIf
 
 	For $i = 0 To 16 ;Covers all Collectors
 		$collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")

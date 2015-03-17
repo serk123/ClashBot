@@ -99,10 +99,11 @@ Global $checkUseKing ;King attack settings
 Global $checkUseQueen ;Queen attack settings
 Global $checkUseClanCastle ; Use Clan Castle settings
 Global $checkAttackTH ; Attack Outside Townhall settings
+Global $icmbUnitDelay, $icmbWaveDelay, $iRandomspeedatk
 
 Global $checkKPower = False ; Check for King activate power
 Global $checkQPower = False ; Check for Queen activate power
-Global $delayActivateKQ = 10000 ;Delay before activating KQ
+;Global $delayActivateKQ = 10000 ;Delay before activating KQ
 
 Global $THLoc
 
@@ -112,15 +113,22 @@ Global $AtkTroopTH
 Global $GetTHLoc
 
 ;Misc Settings
-Global $icmbUnitDelay, $icmbWaveDelay, $iRandomspeedatk = 1
 Global $itxtReconnect
 Global $itxtReturnh
-Global $attackpattern
 Global $icmbSearchsp
+Global $ichkTrap
+Global $itxtKingSkill 	;Delay before activating King Skill
+Global $itxtQueenSkill	;Delay before activating Queen Skill
 
 ;Boosts Settings
 Global $remainingBoosts = 0 ;  remaining boost to active during session
 Global $boostsEnabled = 1 ; is this function enabled
+Global $chkBoostKing
+Global $chkBoostQueen
+Global $chkBoostRax1
+Global $chkBoostRax2
+Global $chkBoostRax3
+Global $chkBoostRax4
 
 ;Donate Settings
 Global $CCPos[2] = [-1, -1] ;Position of clan castle
@@ -156,13 +164,17 @@ Global $CurGoblin
 Global $CurWB
 Global $ArmyComp
 
-Global $TrapPos[2] = [-1, -1] ;Position of trap
-Global $XbowPos[2] = [-1, -1] ;Position of xbow
 ;GB - Add new buttons
+Global $XbowPos[2] = [-1, -1] ;Position of xbow
 Global $InfernoPos[2] = [-1, -1] ;Position of inferno tower
+
+Global $TrapPos[2] = [-1, -1] ;Position of trap
+Global $TownHallPos[2] = [-1, -1] ;Position of TownHall
 Global $barrackPos[4][2] ;Positions of each barracks
-Global $barrackTroop[4] ;Barrack troop set
+Global $barrackTroop[10] ;Barrack troop set
 Global $ArmyPos[2]
+Global $KingPos[2]
+Global $QueenPos[2]
 
 ;Other Settings
 Global $ichkWalls
@@ -208,3 +220,4 @@ Global $CurCamp, $TotalCamp = 0
 Global $NoLeague
 Global $FirstStart = true
 Global $DCattack = 0
+Global $checkrearm = true

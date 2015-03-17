@@ -13,22 +13,26 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 	    ZoomOut()
 	    Return True
 	Endif
+
     If _ImageSearch($break, 0, $x, $y, 80) Then
         SetLog("Village must take a break, wait ...", $COLOR_RED)
         If _Sleep(120000) Then Return ; 2 Minutes
         Click(416, 399);Check for "Take a break" message
         Return True
 	 EndIf
+
 	$Message = _PixelSearch(457, 300, 458, 330, Hex(0x33B5E5, 6), 10)
 	If IsArray($Message) Then
 		Click(416, 399);Check for out of sync or inactivity
 		If _Sleep(6000) Then Return
 	    ZoomOut()
 		Return True
-	EndIf
+	 EndIf
+
 	_CaptureRegion()
 	If _ColorCheck(_GetPixelColor(235, 209), Hex(0x9E3826, 6), 20) Then
 		Click(429, 493);See if village was attacked, clicks Okay
+	    $checkrearm = true
 		Return True
 	EndIf
 

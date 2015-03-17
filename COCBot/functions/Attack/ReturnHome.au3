@@ -2,11 +2,11 @@
 
 Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 		If $GoldChangeCheck = True Then
-			If $checkKPower Or $checkQPower Then
-				If _Sleep(25000 - $delayActivateKQ) Then Return
-			Else
-				If _Sleep(25000) Then Return
-			EndIf
+;			If $checkKPower Or $checkQPower Then
+;				If _Sleep(15000 - $delayActivateKQ) Then Return
+;			Else
+				If _Sleep(10000) Then Return
+;			EndIf
 			While GoldElixirChange()
 				If _Sleep(1000) Then Return
 			WEnd

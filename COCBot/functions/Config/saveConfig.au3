@@ -97,7 +97,10 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 
 	;Attack Settings-------------------------------------------------------------------------
-	;GB - redo attack configs
+    IniWrite($config, "other", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
+	IniWrite($config, "other", "WaveD", _GUICtrlComboBox_GetCurSel($cmbWaveDelay))
+	IniWrite($config, "other", "randomatk", GUICtrlRead($Randomspeedatk))
+    ;GB - redo attack configs
 	IniWrite($config, "attack", "deploy-dead", _GUICtrlComboBox_GetCurSel($cmbDeadDeploy))
 	IniWrite($config, "attack", "algorithm-dead", _GUICtrlComboBox_GetCurSel($cmbDeadAlgorithm))
 
@@ -217,19 +220,25 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "troop", "troop2", _GUICtrlComboBox_GetCurSel($cmbBarrack2))
 	IniWrite($config, "troop", "troop3", _GUICtrlComboBox_GetCurSel($cmbBarrack3))
 	IniWrite($config, "troop", "troop4", _GUICtrlComboBox_GetCurSel($cmbBarrack4))
-	;GB - Add buttons
-	IniWrite($config, "troop", "xTrap", $TrapPos[0])
-	IniWrite($config, "troop", "yTrap", $TrapPos[1])
-	IniWrite($config, "troop", "xXbow", $XbowPos[0])
-	IniWrite($config, "troop", "yXbow", $XbowPos[1])
-	IniWrite($config, "troop", "xInferno", $InfernoPos[0])
-	IniWrite($config, "troop", "yInferno", $InfernoPos[1])
-	IniWrite($config, "troop", "xArmy", $ArmyPos[0])
-	IniWrite($config, "troop", "yArmy", $ArmyPos[1])
-	For $i = 0 To 3 ;Covers all 4 Barracks
-		IniWrite($config, "troop", "xBarrack" & $i + 1, $barrackPos[$i][0])
-		IniWrite($config, "troop", "yBarrack" & $i + 1, $barrackPos[$i][1])
-	Next
+
+   ;Other Settings--------------------------------------------------------------------------
+	If GUICtrlRead($chkWalls) = $GUI_CHECKED Then
+		IniWrite($config, "other", "auto-wall", 1)
+	Else
+		IniWrite($config, "other", "auto-wall", 0)
+	EndIf
+	IniWrite($config, "other", "walllvl", _GUICtrlComboBox_GetCurSel($cmbWalls))
+
+	If GUICtrlRead($UseGold) = $GUI_CHECKED Then
+		IniWrite($config, "other", "use-storage", 0)
+	ElseIf GUICtrlRead($UseElixir) = $GUI_CHECKED Then
+		IniWrite($config, "other", "use-storage", 1)
+	ElseIf GUICtrlRead($UseGoldElix) = $GUI_CHECKED Then
+		IniWrite($config, "other", "use-storage", 2)
+	EndIf
+
+	IniWrite($config, "other", "minwallgold", GUICtrlRead($txtWallMinGold))
+	IniWrite($config, "other", "minwallelixir", GUICtrlRead($txtWallMinElixir))
 	;General Settings--------------------------------------------------------------------------
 	Local $frmBotPos = WinGetPos($sBotTitle)
 	IniWrite($config, "general", "frmBotPosX", $frmBotPos[0])
@@ -239,8 +248,33 @@ Func saveConfig() ;Saves the controls settings to the config
 	;Misc Settings--------------------------------------------------------------------------
 	IniWrite($config, "misc", "reconnectdelay", GUICtrlRead($txtReconnect))
 	IniWrite($config, "misc", "returnhomedelay", GUICtrlRead($txtReturnh))
-	IniWrite($config, "misc", "apattern", _GUICtrlComboBox_GetCurSel($cmbAttackp))
+	IniWrite($config, "misc", "kingskilldelay", GUICtrlRead($txtKingSkill))
+	IniWrite($config, "misc", "queenskilldelay", GUICtrlRead($txtQueenSkill))
 	IniWrite($config, "misc", "searchspd", _GUICtrlComboBox_GetCurSel($cmbSearchsp))
+	IniWrite($config, "misc", "chkTrap", GUICtrlRead($chkTrap))
+	IniWrite($config, "misc", "xTownHall", $TownHallPos[0])
+	IniWrite($config, "misc", "yTownHall", $TownHallPos[1])
+#cs
+	;GB - Add buttons
+	IniWrite($config, "misc", "xTrap", $TrapPos[0])
+	IniWrite($config, "misc", "yTrap", $TrapPos[1])
+	IniWrite($config, "misc", "xXbow", $XbowPos[0])
+	IniWrite($config, "misc", "yXbow", $XbowPos[1])
+	IniWrite($config, "misc", "xInferno", $InfernoPos[0])
+	IniWrite($config, "misc", "yInferno", $InfernoPos[1])
+#ce
+    IniWrite($config, "misc", "xArmy", $ArmyPos[0])
+	IniWrite($config, "misc", "yArmy", $ArmyPos[1])
+    IniWrite($config, "misc", "xKing", $KingPos[0])
+	IniWrite($config, "misc", "yKing", $KingPos[1])
+    IniWrite($config, "misc", "xQueen", $QueenPos[0])
+	IniWrite($config, "misc", "yQueen", $QueenPos[1])
+
+
+	For $i = 0 To 3 ;Covers all 4 Barracks
+		IniWrite($config, "troop", "xBarrack" & $i + 1, $barrackPos[$i][0])
+		IniWrite($config, "troop", "yBarrack" & $i + 1, $barrackPos[$i][1])
+	Next
 
 	If GUICtrlRead($chkBackground) = $GUI_CHECKED Then
 		IniWrite($config, "general", "Background", 1)

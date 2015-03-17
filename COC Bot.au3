@@ -7,7 +7,7 @@
 #pragma compile(FileVersion, 5.7)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "5.7.3.2"
+$sBotVersion = "5.7.4"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -52,7 +52,8 @@ Func runBot() ;Bot that runs everything in order
 		SaveConfig()
 		readConfig()
 		applyConfig()
-		chkNoAttack() ;GB - check current state of config on startup
+		chkNoAttack()
+		chkDonateOnly()
 		$Restart = False
 		$fullArmy = False
 			If (GUICtrlRead($chkNoAttack) + GUICtrlRead($chkDonateOnly)) = 0 Then
@@ -69,10 +70,13 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 	    If $Restart = True Then ContinueLoop
-		ReArm()
-		If _Sleep(1000) Then Return
+	    If $checkrearm = true Then
+	    ReArm()
+		If _Sleep(2000) Then Return
 		checkMainScreen(False)
 		If $Restart = True Then ContinueLoop
+        $checkrearm = False
+		EndIf
 		DonateCC()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
@@ -84,6 +88,8 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep(1000) Then Return
 			ZoomOut()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			If _Sleep(1000) Then Return
 			AttackMain()
 			If _Sleep(1000) Then Return
 			$fullArmy = False
@@ -94,7 +100,7 @@ Func runBot() ;Bot that runs everything in order
 		EndIf
 		checkMainScreen(False)
 		If $Restart = True Then ContinueLoop
-		BoostBarracks()
+		BoostAllBuilding()
 		If _Sleep(1000) Then Return
 		RequestCC()
 		If _Sleep(1000) Then Return
@@ -104,8 +110,8 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		If $Restart = True Then ContinueLoop
-		;UpgradeWall()
-		;If _Sleep(1000) Then Return
+		UpgradeWall()
+		If _Sleep(1000) Then Return
 		Idle()
 		If _Sleep(1000) Then Return
 	    If $Restart = True Then ContinueLoop
@@ -113,6 +119,8 @@ Func runBot() ;Bot that runs everything in order
 			checkMainScreen()
 			If _Sleep(1000) Then Return
 			ZoomOut()
+			If _Sleep(1000) Then Return
+			checkMainScreen(False)
 			If _Sleep(1000) Then Return
 			AttackMain()
 			If _Sleep(1000) Then Return
@@ -123,7 +131,7 @@ EndFunc   ;==>runBot
 Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
 		While $fullArmy = False
-			If $CommandStop = -1 Then SetLog("Waiting for troops to train...", $COLOR_PURPLE)
+			If $CommandStop = -1 Then SetLog("~~~Waiting for full army~~~", $COLOR_PURPLE)
 			Local $hTimer = TimerInit(), $x = 30000
 			If $CommandStop = 3 Then $x = 15000
 			If _Sleep($x) Then ExitLoop
@@ -144,7 +152,7 @@ Func Idle() ;Sequence that runs until Full Army
 				If _Sleep(1000) Then ExitLoop
 			EndIf
 			If $CommandStop = 0 And $fullArmy Then
-				SetLog("Stopping Training, Army Camp Full", $COLOR_ORANGE)
+				SetLog("Army Camp is Full, Stop Training...", $COLOR_ORANGE)
 				$CommandStop = 3
 				$fullArmy = False
 			EndIf
@@ -176,14 +184,14 @@ Func AttackMain() ;Main control for attack functions
 EndFunc   ;==>AttackMain
 
 Func Attack() ;Selects which algorithm
-	SetLog("-----Starting Attack-----")
-	Switch $attackpattern
-		Case 0 ; v5.5
-			SetLog("Attacking with v5.5 attacking Algorithm")
-			algorithm_Troops()
-		Case 1 ; v5.6
-			SetLog("Attacking with v5.6 attacking Algorithm")
+	SetLog("======Beginning Attack======")
+;	Switch $attackpattern
+;		Case 0 ; v5.5
+;			SetLog("Attacking with v5.5 attacking Algorithm")
+;			algorithm_Troops()
+;		Case 1 ; v5.6
+;			SetLog("Attacking with v5.6 attacking Algorithm")
 			algorithm_AllTroops()
-	EndSwitch
+;	EndSwitch
 EndFunc   ;==>Attack
 

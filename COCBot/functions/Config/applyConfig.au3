@@ -158,6 +158,16 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkAttackTH, $GUI_UNCHECKED)
 	EndIf
 
+	_GUICtrlComboBox_SetCurSel($cmbUnitDelay, $icmbUnitDelay)
+	_GUICtrlComboBox_SetCurSel($cmbWaveDelay, $icmbWaveDelay)
+
+	If $iRandomspeedatk = 1 Then
+		GUICtrlSetState($Randomspeedatk, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($Randomspeedatk, $GUI_UNCHECKED)
+	 EndIf
+	Randomspeedatk()
+
 	;Donate Settings-------------------------------------------------------------------------
 	If $ichkRequest = 1 Then
 		GUICtrlSetState($chkRequest, $GUI_CHECKED)
@@ -220,6 +230,25 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbBarrack2, $barrackTroop[1])
 	_GUICtrlComboBox_SetCurSel($cmbBarrack3, $barrackTroop[2])
 	_GUICtrlComboBox_SetCurSel($cmbBarrack4, $barrackTroop[3])
+	;Other Settings--------------------------------------------------------------------------
+	If $ichkWalls = 1 Then
+		GUICtrlSetState($chkWalls, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkWalls, $GUI_UNCHECKED)
+	EndIf
+	_GUICtrlComboBox_SetCurSel($cmbWalls, $icmbWalls)
+
+	Switch $iUseStorage
+		Case 0
+			GUICtrlSetState($UseGold, $GUI_CHECKED)
+		Case 1
+			GUICtrlSetState($UseElixir, $GUI_CHECKED)
+		Case 2
+			GUICtrlSetState($UseGoldElix, $GUI_CHECKED)
+    EndSwitch
+
+	GUICtrlSetData($txtWallMinGold, $itxtWallMinGold)
+	GUICtrlSetData($txtWallMinElixir, $itxtWallMinElixir)
 	;General Settings--------------------------------------------------------------------------
 	If $frmBotPosX <> -32000 Then WinMove($sBotTitle, "", $frmBotPosX, $frmBotPosY)
 	GUICtrlSetData($txtMaxTrophy, $itxtMaxTrophy)
@@ -227,8 +256,14 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	;Misc Settings--------------------------------------------------------------------------
 	GUICtrlSetData($txtReconnect, $itxtReconnect)
 	GUICtrlSetData($txtReturnh, $itxtReturnh)
-	_GUICtrlComboBox_SetCurSel($cmbAttackp, $attackpattern)
+	GUICtrlSetData($txtKingSkill, $itxtKingSkill)
+	GUICtrlSetData($txtQueenSkill, $itxtQueenSkill)
 	_GUICtrlComboBox_SetCurSel($cmbSearchsp, $icmbSearchsp)
+	If $ichkTrap = 1 Then
+		GUICtrlSetState($chkTrap, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkTrap, $GUI_UNCHECKED)
+	EndIf
 
 	If $ichkBackground = 1 Then
 		GUICtrlSetState($chkBackground, $GUI_CHECKED)

@@ -2,7 +2,6 @@
 
 Func applyConfig() ;Applies the data from config to the controls in GUI
 	;Search Settings------------------------------------------------------------------------
-	;GB - New defaults
 	GUICtrlSetData($txtDeadMinGold, $MinDeadGold)
 	GUICtrlSetData($txtDeadMinElixir, $MinDeadElixir)
 	GUICtrlSetData($txtDeadMinDarkElixir, $MinDeadDark)
@@ -20,7 +19,6 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	   If $icmbDeadTH = $i Then $MaxDeadTH = $THText[$i]
     Next
 
-	;GB - New conditions
 	If $chkConditions[0] = 1 Then
 		GUICtrlSetState($chkDeadGE, $GUI_CHECKED)
 	Else
@@ -81,7 +79,6 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkMeetTHO, $GUI_UNCHECKED)
 	EndIf
 
-	;GB - missing config
 	If $AlertBaseFound = 1 Then
 		GUICtrlSetState($chkAlertSearch, $GUI_CHECKED)
 	Else
@@ -103,7 +100,6 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbTH, $icmbTH)
 
 	;Attack Settings-------------------------------------------------------------------------
-	;GB - redo attack configs
 	_GUICtrlComboBox_SetCurSel($cmbDeadDeploy, $deployDeadSettings)
 	_GUICtrlComboBox_SetCurSel($cmbDeadAlgorithm, $icmbDeadAlgorithm)
 
@@ -286,14 +282,12 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkForceBS, $GUI_UNCHECKED)
 	EndIf
 
-	;GB - missing config
 	If $ichkNoAttack = 1 Then
 		GUICtrlSetState($chkNoAttack, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($chkNoAttack, $GUI_UNCHECKED)
 	EndIf
 
-	;GB - missing config
 	If $ichkDonateOnly = 1 Then
 		GUICtrlSetState($chkDonateOnly, $GUI_CHECKED)
 	Else

@@ -32,7 +32,7 @@ Func ReArm()
 		ExitLoop
 	 WEnd
 
-	;GB - reload X-Bows
+	; Reload X-Bows
 	While 1
 		If $XbowPos[0] = -1 Then
 			SetLog("X-Bow position not set: reloading disabled", $COLOR_RED)
@@ -64,7 +64,7 @@ Func ReArm()
 		ExitLoop
 	WEnd
 
-	;GB - reload Inferno Towers
+	; Reload Inferno Towers
 	While 1
 		If $InfernoPos[0] = -1 Then
 			SetLog("Inferno Tower position not set: reloading disabled", $COLOR_RED)
@@ -96,6 +96,6 @@ Func ReArm()
 		ExitLoop
 	WEnd
 
-	;GB - added to avoid text across army camps when checking troop capacity
+	; Added to avoid text across army camps when checking troop capacity
 	If _Sleep(500) Then Return
 EndFunc   ;==>ReArm

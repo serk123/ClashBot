@@ -44,8 +44,8 @@ Global $sLogPath ; `Will create a new log file every time the start button is pr
 Global $hLogFileHandle
 Global $Restart = False
 Global $RunState = False
-Global $AttackNow = False ;GB
-Global $AlertBaseFound = False ;GB - missing config
+Global $AttackNow = False
+Global $AlertBaseFound = False
 Global $TakeLootSnapShot = True
 Global $TakeAllTownSnapShot = False
 Global $ReqText
@@ -57,10 +57,10 @@ Global $COLLECTATCOUNT = 8 ; Run Collect() after this amount of times before act
 Global $BSpos[2] ; Inside BlueStacks positions relative to the screen
 ;---------------------------------------------------------------------------------------------------
 ;Search Settings
-Global $searchGold, $searchElixir, $searchDark, $searchTrophy, $searchDead, $searchTH ; Resources of bases when searching ;GB - Add dead state
-Global $MinDeadGold, $MinDeadElixir, $MinDeadDark, $MinDeadTrophy, $MaxDeadTH, $MinGold, $MinElixir, $MinDark, $MinTrophy, $MaxTH ; Minimum Resources conditions ;GB - add dead options
-Global $chkConditions[10]  ;Conditions (meet gold...) ;GB
-Global $icmbTH, $icmbDeadTH, $icmbAny, $icmbDead ;GB
+Global $searchGold, $searchElixir, $searchDark, $searchTrophy, $searchDead, $searchTH ; Resources of bases when searching
+Global $MinDeadGold, $MinDeadElixir, $MinDeadDark, $MinDeadTrophy, $MaxDeadTH, $MinGold, $MinElixir, $MinDark, $MinTrophy, $MaxTH ; Minimum Resources conditions
+Global $chkConditions[10]  ;Conditions (meet gold...)
+Global $icmbTH, $icmbDeadTH, $icmbAny, $icmbDead
 Global $THLocation
 Global $THx = 0, $THy = 0
 Global $THText[5] ; Text of each Townhall level
@@ -85,7 +85,6 @@ Global $Edges[4] = [$BottomRight, $TopLeft, $BottomLeft, $TopRight]
 Global $atkTroops[9][2] ;9 Slots of troops -  Name, Amount
 Global $fullArmy ;Check for full army or not
 
-;GB - new attack settings
 Global $deployDeadSettings ;Method of deploy found in attack settings
 Global $icmbDeadAlgorithm ;Algorithm to use when attacking
 Global $checkDeadUseKing ;King attack settings
@@ -164,11 +163,12 @@ Global $CurGoblin
 Global $CurWB
 Global $ArmyComp
 
+#cs
 ;GB - Add new buttons
 Global $XbowPos[2] = [-1, -1] ;Position of xbow
 Global $InfernoPos[2] = [-1, -1] ;Position of inferno tower
-
 Global $TrapPos[2] = [-1, -1] ;Position of trap
+#ce
 Global $TownHallPos[2] = [-1, -1] ;Position of TownHall
 Global $barrackPos[4][2] ;Positions of each barracks
 Global $barrackTroop[10] ;Barrack troop set
@@ -205,7 +205,7 @@ Global $TimeToStop = -1
 Global $itxtMaxTrophy ; Max trophy before drop trophy
 Global $ichkBackground ; Background mode enabled disabled
 Global $ichkForceBS = 0
-Global $ichkNoAttack = 0, $ichkDonateOnly = 0 ;GB - missing configs
+Global $ichkNoAttack = 0, $ichkDonateOnly = 0
 Global $collectorPos[17][2] ;Positions of each collectors
 
 Global $break = @ScriptDir & "\images\break.bmp"

@@ -38,15 +38,6 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					tabMain()
 				Case $Randomspeedatk
 					Randomspeedatk()
-				;GB
-				;Case $chkMeetGorE
-				;	If GUICtrlRead($chkMeetGorE) = $GUI_CHECKED Then
-				;		GUICtrlSetState($chkMeetGxE, $GUI_UNCHECKED)
-				;	EndIf
-				;Case $chkMeetGxE
-				;	If GUICtrlRead($chkMeetGxE) = $GUI_CHECKED Then
-				;		GUICtrlSetState($chkMeetGorE, $GUI_UNCHECKED)
-				;	EndIf
 				Case $chkNoAttack
 					If GUICtrlRead($chkNoAttack) = $GUI_CHECKED Then
 						GUICtrlSetState($chkDonateOnly, $GUI_UNCHECKED)
@@ -115,20 +106,15 @@ Func Initiate()
 			GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
-;			GUICtrlSetState($btnLocateTrap, $GUI_DISABLE)
+		#cs
 			;GB - New buttons
-;			GUICtrlSetState($btnLocateXbow, $GUI_DISABLE)
-;			GUICtrlSetState($btnLocateInferno, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateXbow, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateInferno, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateTrap, $GUI_DISABLE)
+		#ce
 			GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
 			$sTimer = TimerInit()
 			AdlibRegister("SetTime", 1000)
-			;GB - Move to btStart function
-			;GUICtrlSetState($btnStart, $GUI_HIDE)
-			;GUICtrlSetState($btnStop, $GUI_SHOW)
-;			If GUICtrlRead($txtCapacity) = 0 And $icmbTroopComp <> 8 Then
-;				MsgBox(0, "", "Don't Forget to Set Your Troops Capacity in Troop Settings!!")
-;				btnStop()
-;			EndIf
 			runBot()
 		EndIf
 	Else
@@ -165,7 +151,6 @@ Func Check()
 EndFunc
 
 Func btnStart()
-	;GB - Change buttons instantly
 	GUICtrlSetState($btnStart, $GUI_HIDE)
 	GUICtrlSetState($btnStop, $GUI_SHOW)
 
@@ -200,7 +185,6 @@ Func btnStop()
 		GUICtrlSetState($btnLocateTownHall, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateKingAltar, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateQueenAltar, $GUI_ENABLE)
-;		GUICtrlSetState($btnLocateTrap, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateCamp, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 		GUICtrlSetState($chkNoAttack, $GUI_ENABLE)
@@ -208,13 +192,16 @@ Func btnStop()
 		GUICtrlSetState($chkForceBS, $GUI_ENABLE)
 	    GUICtrlSetState($txtCapacity, $GUI_ENABLE)
 		GUICtrlSetState($cmbRaidcap, $GUI_ENABLE)
+	#cs
 		;GB - New Buttons
-		;GUICtrlSetState($btnLocateXbow, $GUI_ENABLE)
-		;GUICtrlSetState($btnLocateInferno, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateXbow, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateInferno, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateTrap, $GUI_ENABLE)
+	#ce
 		GUICtrlSetState($btnLocateClanCastle2, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 	    GUICtrlSetState($cmbBoostBarracks, $GUI_ENABLE)
-		GUICtrlSetState($btnAtkNow, $GUI_DISABLE) ;GB
+		GUICtrlSetState($btnAtkNow, $GUI_DISABLE)
 		GUICtrlSetState($btnStart, $GUI_SHOW)
 		GUICtrlSetState($btnStop, $GUI_HIDE)
 
@@ -226,7 +213,7 @@ Func btnStop()
 	EndIf
 EndFunc   ;==>btnStop
 
-Func btnAtkNow() ;GB - Add function for Attack Now button
+Func btnAtkNow()
 	$AttackNow = True
 	GUICtrlSetState($btnAtkNow, $GUI_DISABLE)
 EndFunc   ;==>btnAtkNow
@@ -381,7 +368,7 @@ Func cmbTroopComp()
 		$CurWB = 1
 		SetComboTroopComp()
 	    _GUICtrlComboBox_SetCurSel($cmbAlgorithm, $icmbTroopComp)
-	    _GUICtrlComboBox_SetCurSel($cmbDeadAlgorithm, $icmbTroopComp) ;GB
+	    _GUICtrlComboBox_SetCurSel($cmbDeadAlgorithm, $icmbTroopComp)
 	EndIf
 EndFunc   ;==>cmbTroopComp
 

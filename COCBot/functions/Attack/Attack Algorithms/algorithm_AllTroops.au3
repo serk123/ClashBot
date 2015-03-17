@@ -166,7 +166,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
 		If _Sleep(2000) Then Return
 	    Local $nbSides = 0
-		;GB - Change selection method
+
 		If $searchDead Then
 			Switch $deployDeadSettings
 				Case 0 ;Single sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -225,17 +225,12 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
             If _Sleep(SetSleep(1)) Then Return
                EndIf
 
-		;GB - Change CC to deploy behind troops
+		; Deploy CC behind troops
 		If $nbSides = 1 Then
 			dropCC($BottomRight[3][0], $BottomRight[3][1], $CC)
 		Else
 			dropCC($TopLeft[3][0], $TopLeft[3][1], $CC)
 		EndIf
-
-		;$RandomEdge = $Edges[Round(Random(0, 3))]
-		;$RandomXY = Round(Random(0, 4))
-		;dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $CC)
-
 
         If LauchTroop($eArcher, $nbSides, 2, 2) Then
             If _Sleep(SetSleep(1)) Then Return
@@ -246,16 +241,12 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
         ; ================================================================================?
 
 
-		;GB - Change Heroes to deploy behind troops
+		; Deploy Heroes behind troops
 		If $nbSides = 1 Then
 			dropHeroes($BottomRight[3][0], $BottomRight[3][1], $King, $Queen)
 		Else
 			dropHeroes($TopLeft[3][0], $TopLeft[3][1], $King, $Queen)
 		EndIf
-
-		;Local $RandomEdge = $Edges[Round(Random(0, 3))]
-		;Local $RandomXY = Round(Random(0, 4))
-		;dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen)
 
 		If _Sleep(SetSleep(1)) Then Return
 

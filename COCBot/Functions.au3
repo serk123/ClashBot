@@ -66,12 +66,6 @@
 #include "functions\Village\DropTrophy.au3"
 #include "functions\Village\isGoldFull.au3"
 #include "functions\Village\isElixirFull.au3"
-;GB - Move all to one File
-;#include "functions\Village\LocateBarrack.au3"
-;#include "functions\Village\LocateClanCastle.au3"
-;#include "functions\Village\LocateCollectors.au3"
-;#include "functions\Village\LocateTrap.au3"
-#include "functions\Village\LocateCamp.au3"
 #include "functions\Village\LocateBuildings.au3"
 #include "functions\Village\ReArm.au3"
 #include "functions\Village\RequestCC.au3"

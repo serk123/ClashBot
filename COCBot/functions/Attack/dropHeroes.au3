@@ -5,7 +5,6 @@ Func dropHeroes($x, $y, $KingSlot = -1, $QueenSlot = -1) ;Drops for king and que
 	While 1
 		If _Sleep(2000) Then ExitLoop
 
-		;GB - Change selection method
 		Local $useKing = ($searchDead) ? $checkDeadUseKing : $checkUseKing
 		Local $useQueen = ($searchDead) ? $checkDeadUseQueen : $checkUseQueen
 

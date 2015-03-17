@@ -3,7 +3,6 @@
 
 Func CompareResources() ;Compares resources and returns true if conditions meet, otherwise returns false
 	If $SearchCount <> 0 And Mod($SearchCount, 20) = 0 Then
-		;GB - Add dead resources
 		If $MinDeadGold - 5000 >= 0 Then $MinDeadGold -= 5000
 		If $MinDeadElixir - 5000 >= 0 Then $MinDeadElixir -= 5000
 		If $MinDeadDark - 100 >= 0 Then $MinDeadDark -= 100
@@ -12,10 +11,10 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		If $MinElixir - 5000 >= 0 Then $MinElixir -= 5000
 		If $MinDark - 100 >= 0 Then $MinDark -= 100
 		If $MinTrophy - 2 >= 0 Then $MinTrophy -= 2
-	    If GUICtrlRead($chkDeadGE) = 1 Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN) ;GB
+	    If GUICtrlRead($chkDeadGE) = 1 Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
   		If GUICtrlRead($chkMeetGE) = 1 Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
 	EndIf
-	;GB - Add Dead checks
+
 	Local $DG = (Number($searchGold) >= Number($MinDeadGold)), $DE = (Number($searchElixir) >= Number($MinDeadElixir)), $DD = (Number($searchDark) >= Number($MinDeadDark)), $DT = (Number($searchTrophy) >= Number($MinDeadTrophy))
 	Local $G = (Number($searchGold) >= Number($MinGold)), $E = (Number($searchElixir) >= Number($MinElixir)), $D = (Number($searchDark) >= Number($MinDark)), $T = (Number($searchTrophy) >= Number($MinTrophy))
 	Local $THL = -1, $THLO = -1
@@ -31,13 +30,12 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		$THLO = 1
 	EndSwitch
 
-	;GB - Move outside TH check here
 	If $THLoc = "Out" And ($checkAttackTH = 1 Or ($searchDead And $checkDeadAttackTH = 1)) Then
 		SetLog("~~~~~~~Outside Townhall Found!~~~~~~~", $COLOR_PURPLE)
 		Return True
 	EndIf
 
-	;GB - variables to check for attacking dead bases
+	; Variables to check whether to attack dead bases
 	Local $deadEnabled = False, $conditionPass = True
 
 	If $searchDead Then
@@ -78,10 +76,9 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		$deadEnabled = True
 	EndIf
 
-	;GB - variables to check for attacking non-dead bases
+	; Variables to check whether to attack non-dead bases
 	Local $anyEnabled = False
 
-	; Check for attack any base
 	If GUICtrlRead($chkMeetGE) = $GUI_CHECKED Then
 		$anyEnabled = True
 		If $icmbAny = 0 Then ; And

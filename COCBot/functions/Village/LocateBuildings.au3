@@ -1,4 +1,3 @@
-;GB - New file including all locate functions plus new ones
 
 Func LocateBarrack()
 	SetLog("Locating Barracks...", $COLOR_BLUE)
@@ -13,8 +12,8 @@ Func LocateBarrack()
 				ExitLoop
 			Else
 				For $i=0 To 3
-				   $barrackPos[$i][0] = ""
-				   $barrackPos[$i][1] = ""
+					$barrackPos[$i][0] = ""
+					$barrackPos[$i][1] = ""
 			    Next
 				ExitLoop (2)
 			EndIf
@@ -27,8 +26,8 @@ Func LocateBarrack()
 				ExitLoop
 			Else
 				For $i=1 To 3
-				   $barrackPos[$i][0] = ""
-				   $barrackPos[$i][1] = ""
+					$barrackPos[$i][0] = ""
+					$barrackPos[$i][1] = ""
 			    Next
 				ExitLoop (2)
 			EndIf
@@ -41,8 +40,8 @@ Func LocateBarrack()
 				ExitLoop
 			Else
 				For $i=2 To 3
-				   $barrackPos[$i][0] = ""
-				   $barrackPos[$i][1] = ""
+					$barrackPos[$i][0] = ""
+					$barrackPos[$i][1] = ""
 			    Next
 				ExitLoop (2)
 			EndIf
@@ -69,7 +68,27 @@ Func LocateBarrack()
 	SetLog("-Barrack 4 = " & "(" & $barrackPos[3][0] & "," & $barrackPos[3][1] & ")", $COLOR_GREEN)
  EndFunc   ;==>LocateBarrack
 
- Func LocateClanCastle()
+
+Func LocateCamp()
+	While 1
+		$MsgBox = MsgBox(1 + 262144, "Locate Camp", "Click OK then click on one of your camps", 0, $frmBot)
+	    If $MsgBox = 1 Then
+			$ArmyPos[0] = FindPos()[0]
+			$ArmyPos[1] = FindPos()[1]
+			SetLog("-ArmyCamp =  " & "(" & $ArmyPos[0] & "," & $ArmyPos[1] & ")", $COLOR_GREEN)
+		EndIf
+		ExitLoop
+	WEnd
+
+	$itxtcampCap = InputBox("Total Camp Capacity", "Enter Your Total Troop Capacity", "200", " M3")
+	If $itxtcampCap >= 25 And $itxtcampCap <= 240 Then
+		GUICtrlSetData($txtCapacity, $itxtcampCap)
+	Else
+		MsgBox(4096, "Error", "Please input the correct value")
+	EndIf
+EndFunc   ;==>LocateCamp
+
+Func LocateClanCastle()
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Clan Castle", "Click OK then click on your Clan Castle", 0, $frmBot)
 		If $MsgBox = 1 Then
@@ -79,9 +98,9 @@ Func LocateBarrack()
 		EndIf
 		ExitLoop
 	WEnd
- EndFunc   ;==>LocateClanCastle
+EndFunc   ;==>LocateClanCastle
 
- Func LocateTownHall()
+Func LocateTownHall()
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Townhall", "Click OK then click on your Townhall", 0, $frmBot)
 		If $MsgBox = 1 Then
@@ -92,9 +111,9 @@ Func LocateBarrack()
 		EndIf
 		ExitLoop
 	WEnd
- EndFunc   ;==>LocateTownHall
+EndFunc   ;==>LocateTownHall
 
- Func LocateKingAltar()
+Func LocateKingAltar()
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate King Altar", "Click OK then click on your King Altar", 0, $frmBot)
 		If $MsgBox = 1 Then
@@ -104,9 +123,9 @@ Func LocateBarrack()
 		EndIf
 		ExitLoop
 	WEnd
- EndFunc   ;==>LocateKingAltar
+EndFunc   ;==>LocateKingAltar
 
-  Func LocateQueenAltar()
+Func LocateQueenAltar()
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Queen Altar", "Click OK then click on your Queen Altar", 0, $frmBot)
 		If $MsgBox = 1 Then
@@ -116,4 +135,4 @@ Func LocateBarrack()
 		EndIf
 		ExitLoop
 	WEnd
- EndFunc   ;==>LocateKingAltar
+EndFunc   ;==>LocateKingAltar

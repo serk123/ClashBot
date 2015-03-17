@@ -2,7 +2,6 @@
 
 Func saveConfig() ;Saves the controls settings to the config
 	;Search Settings------------------------------------------------------------------------
-	;GB - Alter config options
 	IniWrite($config, "search", "searchDeadGold", GUICtrlRead($txtDeadMinGold))
 	IniWrite($config, "search", "searchDeadElixir", GUICtrlRead($txtDeadMinElixir))
 	IniWrite($config, "search", "searchDeadDark", GUICtrlRead($txtDeadMinDarkElixir))
@@ -16,7 +15,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "search", "THLevel", _GUICtrlComboBox_GetCurSel($cmbTH))
 	IniWrite($config, "search", "DeadTHLevel", _GUICtrlComboBox_GetCurSel($cmbDeadTH))
 
-	;GB - Alter conditions
 	If GUICtrlRead($chkDeadGE) = $GUI_CHECKED Then
 		IniWrite($config, "search", "conditionDeadGoldElixir", 1)
 	Else
@@ -77,7 +75,6 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "search", "conditionTHOutside", 0)
 	EndIf
 
-	;GB - missing config
 	If GUICtrlRead($chkAlertSearch) = $GUI_CHECKED Then
 		IniWrite($config, "search", "AlertBaseFound", 1)
 	Else
@@ -100,7 +97,6 @@ Func saveConfig() ;Saves the controls settings to the config
     IniWrite($config, "other", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
 	IniWrite($config, "other", "WaveD", _GUICtrlComboBox_GetCurSel($cmbWaveDelay))
 	IniWrite($config, "other", "randomatk", GUICtrlRead($Randomspeedatk))
-    ;GB - redo attack configs
 	IniWrite($config, "attack", "deploy-dead", _GUICtrlComboBox_GetCurSel($cmbDeadDeploy))
 	IniWrite($config, "attack", "algorithm-dead", _GUICtrlComboBox_GetCurSel($cmbDeadAlgorithm))
 
@@ -294,14 +290,12 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "general", "ForceBS", 0)
 	EndIf
 
-	;GB - Missing config
 	If GUICtrlRead($chkNoAttack) = $GUI_CHECKED Then
 		IniWrite($config, "general", "NoAttack", 1)
 	Else
 		IniWrite($config, "general", "NoAttack", 0)
 	EndIf
 
-	;GB - Missing config
 	If GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
 		IniWrite($config, "general", "DonateOnly", 1)
 	Else

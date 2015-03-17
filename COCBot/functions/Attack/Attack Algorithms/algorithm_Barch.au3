@@ -17,7 +17,7 @@ Func Barch() ;Attack Algorithm for Barch
 		Next
 
 		If _Sleep(500) Then ExitLoop
-	    ;GB - Change selection method
+
 		Local $nbSides = ($searchDead) ? $deployDeadSettings : $deploySettings
 		Switch $nbSides
 			Case 0 ;Two sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

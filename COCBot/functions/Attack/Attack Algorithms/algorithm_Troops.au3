@@ -121,7 +121,7 @@ Func algorithm_Troops() ;Attack Algorithm for all existing troops
 
 		If _Sleep(2000) Then Return
 	    Local $nbSides = 0
-		;GB - Change selection method
+
 		If $searchDead Then
 			Switch $deployDeadSettings
 				Case 0 ;Single sides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -188,16 +188,14 @@ Func algorithm_Troops() ;Attack Algorithm for all existing troops
          ; ================================================================================?
 
 
-		;GB - Change Heroes to deploy behind troops
+		; Deploy Heroes behind troops
 		If $nbSides = 1 Then
 			dropHeroes($BottomRight[3][0], $BottomRight[3][1], $King, $Queen)
 		Else
 			dropHeroes($TopLeft[3][0], $TopLeft[3][1], $King, $Queen)
 		EndIf
 
-		 ;dropHeroes($BottomRight[3][0], $BottomRight[3][1], $King, $Queen)
-
-		;GB - Change CC to deploy behind troops
+		; Deploy CC behind troops
 		If $nbSides = 1 Then
 			dropCC($BottomRight[3][0], $BottomRight[3][1], $CC)
 		Else
@@ -205,8 +203,6 @@ Func algorithm_Troops() ;Attack Algorithm for all existing troops
 		EndIf
 
 		 If _Sleep(1000) Then Return
-
-		 ;dropCC($BottomRight[3][0], $BottomRight[3][1], $CC)
 
 		If _Sleep(100) Then Return
 		SetLog("Dropping left over troops", $COLOR_BLUE)

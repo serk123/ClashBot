@@ -161,7 +161,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($Randomspeedatk, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($Randomspeedatk, $GUI_UNCHECKED)
-	 EndIf
+	EndIf
 	Randomspeedatk()
 
 	;Donate Settings-------------------------------------------------------------------------

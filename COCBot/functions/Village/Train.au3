@@ -107,60 +107,66 @@ Func Train()
 				_CaptureRegion()
 				Switch $barrackTroop[$i]
 					Case 0
-						While _ColorCheck(_GetPixelColor(329, 297), Hex(0xDC3F70, 6), 20)
-							Click(220, 320, 30) ;Barbarian
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(220, 320), Hex(0xF89683, 6), 20)
+							Click(220, 320, 20) ;Barbarian
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 1
-						While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
-							Click(331, 320, 30) ;Archer
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(325, 330), Hex(0xF8C3B0, 6), 20)
+							Click(325, 320, 20) ;Archer
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 2
-						While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
-							Click(432, 320, 20) ;Giant
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(430, 320), Hex(0xE68358, 6), 20)
+							Click(430, 320, 10) ;Giant
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 3
-						While _ColorCheck(_GetPixelColor(217, 297), Hex(0xF8AD20, 6), 20)
-							Click(546, 320, 30) ;Goblin
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(535, 310), Hex(0x7AA440, 6), 20)
+							Click(535, 320, 20) ;Goblin
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 4
-						While _ColorCheck(_GetPixelColor(648, 289), Hex(0x62C8D8, 6), 20)
-							Click(647, 320, 30) ;Wall Breaker
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(640, 290), Hex(0x5FC6D6, 6), 20)
+							Click(640, 320, 10) ;Wall Breaker
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 5
-						While _ColorCheck(_GetPixelColor(182, 422), Hex(0x48B3CB, 6), 20)
-							Click(220, 430, 20) ;Balloon
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(220, 410), Hex(0x58C0D8, 6), 20)
+							Click(220, 425, 10) ;Balloon
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 6
-						While _ColorCheck(_GetPixelColor(289, 407), Hex(0x58C4D8, 6), 20)
-							Click(331, 430, 20) ;Wizard
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(325, 425), Hex(0xA46052, 6), 20)
+							Click(325, 425, 10) ;Wizard
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 7
-						While _ColorCheck(_GetPixelColor(395, 403), Hex(0x60C6D8, 6), 20)
-							Click(432, 430, 20) ;Healer
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(430, 425), Hex(0xEFBB96, 6), 20)
+							Click(430, 425, 5) ;Healer
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 8
-						While _ColorCheck(_GetPixelColor(508, 403), Hex(0x60C4D8, 6), 20)
-							Click(546, 430, 20) ;Dragon
-							If _Sleep(50) Then ExitLoop
+						While _ColorCheck(_GetPixelColor(535, 410), Hex(0x8B7CA8, 6), 20)
+							Click(535, 425, 5) ;Dragon
+							If _Sleep(150) Then ExitLoop
 							_CaptureRegion()
 						WEnd
 					Case 9
+						While _ColorCheck(_GetPixelColor(640, 410), Hex(0x7092AC, 6), 20)
+							Click(640, 425, 5) ;PEKKA
+							If _Sleep(150) Then ExitLoop
+							_CaptureRegion()
+						WEnd
+					Case Else
 						If _Sleep(50) Then ExitLoop
 						_CaptureRegion()
 				EndSwitch

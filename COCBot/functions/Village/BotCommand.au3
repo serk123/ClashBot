@@ -2,7 +2,7 @@
 
 Func BotCommand()
 	If GUICtrlRead($chkBotStop) = $GUI_CHECKED Then
-
+		$MeetCondStop = False
 		Local $TrophyCount = getOther(50, 74, "Trophy")
 		Local $TrophyMax = Number($TrophyCount) > Number($itxtMaxTrophy)
 		If $TrophyMax Then

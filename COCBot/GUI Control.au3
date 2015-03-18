@@ -583,7 +583,7 @@ Func chkNoAttack()
 		$CommandStop = 3
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
 	Else
-			$CommandStop = -1
+		$CommandStop = -1
 	EndIf
 EndFunc   ;==>chkNoAttack
 

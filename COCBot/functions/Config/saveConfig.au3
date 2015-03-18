@@ -248,7 +248,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "misc", "kingskilldelay", GUICtrlRead($txtKingSkill))
 	IniWrite($config, "misc", "queenskilldelay", GUICtrlRead($txtQueenSkill))
 	IniWrite($config, "misc", "searchspd", _GUICtrlComboBox_GetCurSel($cmbSearchsp))
-	IniWrite($config, "misc", "chkTrap", GUICtrlRead($chkTrap))
 	IniWrite($config, "misc", "xTownHall", $TownHallPos[0])
 	IniWrite($config, "misc", "yTownHall", $TownHallPos[1])
     IniWrite($config, "misc", "xArmy", $ArmyPos[0])
@@ -262,6 +261,12 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "troop", "xBarrack" & $i + 1, $barrackPos[$i][0])
 		IniWrite($config, "troop", "yBarrack" & $i + 1, $barrackPos[$i][1])
 	Next
+
+	If GUICtrlRead($chkTrap) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "chkTrap", 1)
+	Else
+		IniWrite($config, "misc", "chkTrap", 0)
+	EndIf
 
 	If GUICtrlRead($chkBackground) = $GUI_CHECKED Then
 		IniWrite($config, "general", "Background", 1)

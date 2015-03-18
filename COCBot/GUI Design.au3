@@ -388,7 +388,7 @@ GUICtrlSetData(-1, "4|5|6|7|8|9|10", "4")
 
 $lblTolerance = GUICtrlCreateLabel("Tolerance Level:", 220, 142, 80, 17)
 $cmbTolerance = GUICtrlCreateCombo("", 325, 137, 60, 17, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Default|Low|Lowest", "Default")
+GUICtrlSetData(-1, "Default|Lower|Higher", "Default")
 $btnFindWall = GUICtrlCreateButton("Find Wall", 145, 60, 63, 21)
 GUICtrlSetOnEvent(-1, "btnFindWall")
 GUICtrlCreateGroup("", -99, -99, 1, 1)

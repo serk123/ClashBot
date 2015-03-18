@@ -15,7 +15,7 @@ Func checkWall()
 		Case 1
 			$Tolerance2 = 35
 		Case 2
-			$Tolerance2 = 20
+			$Tolerance2 = 75
 	EndSwitch
 
     If _Sleep(500) Then Return
@@ -43,7 +43,7 @@ Func FindWall()
 		Case 1
 			$Tolerance2 = 35
 		Case 2
-			$Tolerance2 = 20
+			$Tolerance2 = 75
 	EndSwitch
 
     If _Sleep(500) Then Return
@@ -54,7 +54,9 @@ Func FindWall()
 			If $WallLoc = 0 Then $WallLoc = _ImageSearch($Wall[$icmbWalls+1], 1, $WallX, $WallY, $Tolerance2) ; Getting Wall lvl 10 Location
 		EndIf
 		If $WallLoc = 1 Then
-			SetLog("Found Walls level " & $icmbWalls+4 & " successfully...", $COLOR_GREEN)
+		    WinActivate($HWnD)
+		    Click($WallX, $WallY)
+			SetLog("Found Walls level " & $icmbWalls+4 & " at PosX: " & $WallX & ", PosY: " & $WallY & "...", $COLOR_GREEN)
 			Return True
 		EndIf
 	Next

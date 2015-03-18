@@ -98,6 +98,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	EndIf
 
 	_GUICtrlComboBox_SetCurSel($cmbTH, $icmbTH)
+	_GUICtrlComboBox_SetCurSel($cmbDeadTH, $icmbDeadTH)
 
 	;Attack Settings-------------------------------------------------------------------------
 	_GUICtrlComboBox_SetCurSel($cmbDeadDeploy, $deployDeadSettings)

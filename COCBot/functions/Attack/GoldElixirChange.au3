@@ -32,8 +32,7 @@ Func GoldElixirChange()
 				$ElixirChange = $Elixir2
 				If $searchDark <> 0 Then $Dark1 = getDarkElixir(51, 66 + 57)
 			EndIf
-		_CaptureRegion()
-		If ($Gold2 = "" And $Elixir2 = "") And _PixelSearch(353, 584, 490, 624, Hex(0x000000,6), 5) Then
+		If ($Gold2 = "" And $Elixir2 = "") Then
 			SetLog("Battle has finished", $COLOR_GREEN)
 		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)
 		Return False
@@ -47,7 +46,7 @@ Func GoldElixirChange()
 			If _Sleep($itxtReturnh * 1000) Then Return
 		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)
 		Return False
-		ElseIf ($Gold1 <> $Gold2 Or $Elixir1 <> $Elixir2) Then
+		Else
 			SetLog("Gold & Elixir change detected, waiting...", $COLOR_GREEN)
 			Return True
 		 EndIf

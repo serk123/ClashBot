@@ -48,7 +48,7 @@ GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Disable attacking, only do collections/training/donating")
 $chkDonateOnly = GUICtrlCreateCheckbox("Donate Only", 162, 330, 80, 17)
 GUICtrlSetBkColor($chkDonateOnly, $COLOR_WHITE)
-GUICtrlSetOnEvent(-1, "chkDonateOnly")
+GUICtrlSetOnEvent(-1, "chkNoAttack")
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Disable attacking & training, only do collections/donating")
 

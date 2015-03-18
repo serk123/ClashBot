@@ -53,10 +53,8 @@ Func runBot() ;Bot that runs everything in order
 		readConfig()
 		applyConfig()
 		chkNoAttack()
-		chkDonateOnly()
 		$Restart = False
 		$fullArmy = False
-		If (GUICtrlRead($chkNoAttack) + GUICtrlRead($chkDonateOnly)) = 0 Then $CommandStop = -1
 		If _Sleep(1000) Then Return
 		checkMainScreen()
 		If _Sleep(1000) Then Return

@@ -579,19 +579,13 @@ Func chkNoAttack()
 	If GUICtrlRead($chkNoAttack) = $GUI_CHECKED Then
 		$CommandStop = 0
 		SetLog("~~~Donate / Train Only Activated~~~", $COLOR_PURPLE)
-	Else
-			$CommandStop = -1
-    EndIf
-EndFunc   ;==>chkNoAttack
-
-Func chkDonateOnly()
-	If GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
+	ElseIf GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
 		$CommandStop = 3
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
 	Else
 			$CommandStop = -1
 	EndIf
-EndFunc   ;==>chkDonateOnly
+EndFunc   ;==>chkNoAttack
 
 ;Func btnLocateCollectors()
 ;	$RunState = True

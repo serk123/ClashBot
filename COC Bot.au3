@@ -5,9 +5,9 @@
 #pragma compile(ProductName, Clash of Clans Bot)
 #pragma compile(ProductVersion, 5.7)
 #pragma compile(FileVersion, 5.7)
-#pragma compile(LegalCopyright, ?The Bytecode Club)
+#pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "5.7.4 Beta Test"
+$sBotVersion = "5.7.4"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -70,13 +70,13 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 	    If $Restart = True Then ContinueLoop
-	    If $checkrearm = true Then
+	    If $Checkrearm = True Then
 	    ReArm()
 		If _Sleep(2000) Then Return
 		checkMainScreen(False)
 		If $Restart = True Then ContinueLoop
-        $checkrearm = False
-	    EndIf
+        $Checkrearm = False
+		EndIf
 		DonateCC()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
@@ -100,7 +100,7 @@ Func runBot() ;Bot that runs everything in order
 		EndIf
 		checkMainScreen(False)
 		If $Restart = True Then ContinueLoop
-		BoostBarracks()
+		BoostAllBuilding()
 		If _Sleep(1000) Then Return
 		RequestCC()
 		If _Sleep(1000) Then Return

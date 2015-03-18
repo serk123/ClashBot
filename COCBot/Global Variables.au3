@@ -121,6 +121,7 @@ Global $itxtKingSkill 	;Delay before activating King Skill
 Global $itxtQueenSkill	;Delay before activating Queen Skill
 
 ;Boosts Settings
+Global $BoostAll
 Global $remainingBoosts = 0 ;  remaining boost to active during session
 Global $boostsEnabled = 1 ; is this function enabled
 Global $chkBoostKing
@@ -175,6 +176,9 @@ Global $barrackTroop[10] ;Barrack troop set
 Global $ArmyPos[2]
 Global $KingPos[2]
 Global $QueenPos[2]
+Global $BuildPos1[2]
+Global $BuildPos2[2]
+Global $BuildPos3[2]
 
 ;Other Settings
 Global $ichkWalls
@@ -182,6 +186,7 @@ Global $icmbWalls
 Global $iUseStorage
 Global $itxtWallMinGold
 Global $itxtWallMinElixir
+Global $icmbTolerance
 Global $itxtReconnect
 Global $iTimeTroops = 0
 Global $iTimeGiant = 120
@@ -205,7 +210,7 @@ Global $TimeToStop = -1
 Global $itxtMaxTrophy ; Max trophy before drop trophy
 Global $ichkBackground ; Background mode enabled disabled
 Global $ichkForceBS = 0
-Global $ichkNoAttack = 0, $ichkDonateOnly = 0 ;GB - missing configs
+Global $ichkNoAttack, $ichkDonateOnly ;GB - missing configs
 Global $collectorPos[17][2] ;Positions of each collectors
 
 Global $break = @ScriptDir & "\images\break.bmp"
@@ -220,4 +225,4 @@ Global $CurCamp, $TotalCamp = 0
 Global $NoLeague
 Global $FirstStart = true
 Global $DCattack = 0
-Global $checkrearm = true
+Global $Checkrearm = True

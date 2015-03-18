@@ -101,7 +101,7 @@ Func Train()
 		Else
 			Click($TrainPos[0], $TrainPos[1]) ;Click Train Troops button
 			;SetLog("Barrack " & $i + 1 & " ...", $COLOR_GREEN)
-			If _Sleep(800) Then ExitLoop
+			If _Sleep(1000) Then ExitLoop
 
 			If _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 8 Then
 				_CaptureRegion()
@@ -132,31 +132,31 @@ Func Train()
 						WEnd
 					Case 4
 						While _ColorCheck(_GetPixelColor(648, 289), Hex(0x62C8D8, 6), 20)
-							Click(647, 320, 30) ;Wall Breaker
+							Click(647, 320, 15) ;Wall Breaker
 							If _Sleep(50) Then ExitLoop
 							_CaptureRegion()
 						 WEnd
 					Case 5
 						While _ColorCheck(_GetPixelColor(182, 422), Hex(0x48B3CB, 6), 20)
-							Click(220, 430, 20) ;Balloon
+							Click(220, 430, 15) ;Balloon
 							If _Sleep(50) Then ExitLoop
 							_CaptureRegion()
 						 WEnd
 					Case 6
 						While _ColorCheck(_GetPixelColor(289, 407), Hex(0x58C4D8, 6), 20)
-							Click(331, 430, 20) ;Wizard
+							Click(331, 430, 15) ;Wizard
 							If _Sleep(50) Then ExitLoop
 							_CaptureRegion()
 						 WEnd
 					Case 7
 						While _ColorCheck(_GetPixelColor(395, 403), Hex(0x60C6D8, 6), 20)
-							Click(432, 430, 20) ;Healer
+							Click(432, 430, 15) ;Healer
 							If _Sleep(50) Then ExitLoop
 							_CaptureRegion()
 						 WEnd
 					Case 8
 						While _ColorCheck(_GetPixelColor(508, 403), Hex(0x60C4D8, 6), 20)
-							Click(546, 430, 20) ;Dragon
+							Click(546, 430, 15) ;Dragon
 							If _Sleep(50) Then ExitLoop
 							_CaptureRegion()
 						 WEnd

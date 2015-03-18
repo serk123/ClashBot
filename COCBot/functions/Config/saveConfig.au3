@@ -228,6 +228,7 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "other", "auto-wall", 0)
 	EndIf
 	IniWrite($config, "other", "walllvl", _GUICtrlComboBox_GetCurSel($cmbWalls))
+	IniWrite($config, "other", "walltolerance", _GUICtrlComboBox_GetCurSel($cmbTolerance))
 
 	If GUICtrlRead($UseGold) = $GUI_CHECKED Then
 		IniWrite($config, "other", "use-storage", 0)

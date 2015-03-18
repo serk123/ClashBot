@@ -1,6 +1,6 @@
 ;==>BoostBarracks
 Func BoostAllBuilding()
-Local $BoostAll = 0
+$BoostAll = 0
  If (GUICtrlRead($cmbBoostBarracks) > 0) And ($boostsEnabled = 1)  Then
 
 	If $barrackPos[0][0] = "" Then
@@ -67,38 +67,38 @@ Local $BoostAll = 0
 			BoostBuilding()
 			EndIf
 
-
-   If $BoostAll = 1 Then
+	If $BoostAll >= 1 Then
 	_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, (GUICtrlRead($cmbBoostBarracks)-1))
-	SetLog('Boost completed. Remaining :' & (GUICtrlRead($cmbBoostBarracks)), $COLOR_GREEN)
- Else
-	SetLog("Building is already Boosted...", $COLOR_ORANGE)
-   EndIf
+    SetLog("Boost remaining : " & GUICtrlRead($cmbBoostBarracks), $COLOR_GREEN)
+	EndIf
  EndIf
-EndFunc ;==>BoostBarracks
+EndFunc ;==>BoostAllBuilding
 
 Func BoostBuilding()
 			_CaptureRegion()
-			Local $Boost = _PixelSearch(355, 608, 362, 610, Hex(0xA1A084, 6), 10)
+			Local $Boost = _PixelSearch(355, 608, 362, 610, Hex(0xA1A084, 6), 10) ;Check Boost
 				 If IsArray($Boost) Then
-			     Click(355, 608)
+			     Click(355, 608)			;Click Boost
 					 If _Sleep(1000) Then Return
 					 _CaptureRegion()
-					 If _ColorCheck(_GetPixelColor(420, 375), Hex(0xd2ec78, 6), 20) Then
+					 If _ColorCheck(_GetPixelColor(420, 375), Hex(0xd2ec78, 6), 20) Then  ;Confirm Message
 						 Click(420, 375)
 						 If _Sleep(2000) Then Return
 							_CaptureRegion()
-						   If _ColorCheck(_GetPixelColor(586, 267), Hex(0xd80405, 6), 20) Then
+						   If _ColorCheck(_GetPixelColor(586, 267), Hex(0xd80405, 6), 20) Then ;Not enough Gem
 							  _GUICtrlComboBox_SetCurSel($cmbBoostBarracks, 0)
 							  SetLog("Not Enough GEMS...", $COLOR_RED)
 						   Else
-							  SetLog("Boost Completed..."), $COLOR_GREEN)
-							  $BoostAll = 1
+							  SetLog("Boost Completed...", $COLOR_GREEN)
+							  $BoostAll += 1
 						   EndIf
 					 Else
-						 SetLog("Building is already Boosted...", $COLOR_ORANGE)
+						 SetLog("Building is already Boosted", $COLOR_ORANGE)
 					 EndIf
 					 If _Sleep(500) Then Return
 					 ClickP($TopLeftClient) ;Click Away
-					 EndIf
-EndFunc
+				 Else
+					 SetLog("Building is already Boosted", $COLOR_ORANGE)
+					 If _Sleep(1000) Then Return
+				 EndIf
+EndFunc ;==>BoostBuilding

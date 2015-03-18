@@ -100,9 +100,11 @@ Func Initiate()
 			$RunState = True
 			$AttackNow = False
 			$FirstStart = True
+			$Checkrearm = True
 			GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
+			GUICtrlSetState($btnFindWall, $GUI_DISABLE)
 			GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
 			GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
 			GUICtrlSetState($chkBackground, $GUI_DISABLE)
@@ -125,14 +127,11 @@ Func Initiate()
 			;GB - Move to btStart function
 			;GUICtrlSetState($btnStart, $GUI_HIDE)
 			;GUICtrlSetState($btnStop, $GUI_SHOW)
-;			If GUICtrlRead($txtCapacity) = 0 And $icmbTroopComp <> 8 Then
-;				MsgBox(0, "", "Don't Forget to Set Your Troops Capacity in Troop Settings!!")
-;				btnStop()
-;			EndIf
 			runBot()
 		EndIf
 	Else
 		SetLog("Not in Game!", $COLOR_RED)
+		btnStop()
 	EndIf
 EndFunc
 
@@ -202,6 +201,7 @@ Func btnStop()
 		GUICtrlSetState($btnLocateQueenAltar, $GUI_ENABLE)
 ;		GUICtrlSetState($btnLocateTrap, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateCamp, $GUI_ENABLE)
+		GUICtrlSetState($btnFindWall, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 		GUICtrlSetState($chkNoAttack, $GUI_ENABLE)
 		GUICtrlSetState($chkDonateOnly, $GUI_ENABLE)
@@ -281,6 +281,49 @@ Func btnLocateClanCastle()
 	$RunState = False
  EndFunc   ;==>btnLocateQueenAltar
 
+Func btnLocateUp1()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateUpgrade1()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc    ;==>btnLocateUp1
+
+ Func btnLocateUp2()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateUpgrade2()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc    ;==>btnLocateUp2
+
+ Func btnLocateUp3()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateUpgrade3()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc    ;==>btnLocateUp3
+
+  Func btnFindWall()
+	$RunState = True
+	While 1
+		SaveConfig()
+		readConfig()
+		applyConfig()
+		ZoomOut()
+		FindWall()
+		ExitLoop
+	WEnd
+	$RunState = False
+ EndFunc    ;==>btnFindWall
+
 #cs
 Func btnLocateTrap()
 	$RunState = True
@@ -321,7 +364,11 @@ Func btnLocateCamp()
 		ExitLoop
 	WEnd
 	$RunState = False
-EndFunc   ;==>btnLocateArmyCamp
+ EndFunc   ;==>btnLocateArmyCamp
+
+Func btnDeletelist()
+   DeleteList()
+EndFunc   ;==>btnLocatelist
 
 Func btnSearchMode()
 	While 1
@@ -579,9 +626,7 @@ Func chkNoAttack()
 		SetLog("~~~Donate / Train Only Activated~~~", $COLOR_PURPLE)
 	Else
 		$CommandStop = -1
-		If GUICtrlRead($chkDonateOnly) = 0 Then
-		SetLog("~~~Stay Online Mode Deactivated~~~", $COLOR_PURPLE)
-		EndIf
+		SetLog("~~~Donate / Train Only Deactivated~~~", $COLOR_PURPLE)
     EndIf
 EndFunc   ;==>chkNoAttack
 
@@ -591,9 +636,7 @@ EndFunc   ;==>chkNoAttack
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
 	Else
 		$CommandStop = -1
-		If GUICtrlRead($chkNoAttack) = 0 Then
-		SetLog("~~~Stay Online Mode Deactivated~~~", $COLOR_PURPLE)
-	 EndIf
+		SetLog("~~~Donate Only Deactivated~~~", $COLOR_PURPLE)
     EndIf
 EndFunc   ;==>chkDonateOnly
 

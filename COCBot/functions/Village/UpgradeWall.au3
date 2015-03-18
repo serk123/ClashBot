@@ -2,7 +2,7 @@ Global $wallbuild
 Global $walllowlevel
 Func UpgradeWall ()
     VillageReport()
-    SetLog("Checking Upgrade Walls")
+    SetLog("Checking Upgrade Walls...")
 			$itxtWallMinGold = GUICtrlRead($txtWallMinGold)
 			$itxtWallMinElixir = GUICtrlRead($txtWallMinElixir)
 			Local $MinWallGold = Number($GoldCount) > Number($itxtWallMinGold)

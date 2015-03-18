@@ -84,6 +84,7 @@ Func readConfig() ;Reads config and sets it to the variables
 	$iUseStorage = IniRead($config, "other", "use-storage", "0")
 	$itxtWallMinGold = IniRead($config, "other", "minwallgold", "0")
 	$itxtWallMinElixir = IniRead($config, "other", "minwallelixir", "0")
+	$icmbTolerance = IniRead($config, "other", "walltolerance", "0")
 
 	;General Settings--------------------------------------------------------------------------
 	$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")

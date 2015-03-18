@@ -580,10 +580,7 @@ Func chkNoAttack()
 		$CommandStop = 0
 		SetLog("~~~Donate / Train Only Activated~~~", $COLOR_PURPLE)
 	Else
-		If GUICtrlRead($chkDonateOnly) = 0 Then
 			$CommandStop = -1
-			SetLog("~~~Attack Mode Activated~~~", $COLOR_PURPLE)
-		EndIf
     EndIf
 EndFunc   ;==>chkNoAttack
 
@@ -592,10 +589,7 @@ Func chkDonateOnly()
 		$CommandStop = 3
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
 	Else
-		If GUICtrlRead($chkNoAttack) = 0 Then
 			$CommandStop = -1
-			SetLog("~~~Attack Mode Activated~~~", $COLOR_PURPLE)
-		EndIf
 	EndIf
 EndFunc   ;==>chkDonateOnly
 

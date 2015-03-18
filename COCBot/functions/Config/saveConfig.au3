@@ -251,15 +251,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "misc", "chkTrap", GUICtrlRead($chkTrap))
 	IniWrite($config, "misc", "xTownHall", $TownHallPos[0])
 	IniWrite($config, "misc", "yTownHall", $TownHallPos[1])
-#cs
-	;GB - Add buttons
-	IniWrite($config, "misc", "xTrap", $TrapPos[0])
-	IniWrite($config, "misc", "yTrap", $TrapPos[1])
-	IniWrite($config, "misc", "xXbow", $XbowPos[0])
-	IniWrite($config, "misc", "yXbow", $XbowPos[1])
-	IniWrite($config, "misc", "xInferno", $InfernoPos[0])
-	IniWrite($config, "misc", "yInferno", $InfernoPos[1])
-#ce
     IniWrite($config, "misc", "xArmy", $ArmyPos[0])
 	IniWrite($config, "misc", "yArmy", $ArmyPos[1])
     IniWrite($config, "misc", "xKing", $KingPos[0])

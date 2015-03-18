@@ -104,15 +104,6 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkTrap = IniRead($config, "misc", "chkTrap", "0")
 		$TownHallPos[0] = IniRead($config, "misc", "xTownHall", "-1")
 		$TownHallPos[1] = IniRead($config, "misc", "yTownHall", "-1")
-	#cs
-		;GB - New functions
-		$TrapPos[0] = IniRead($config, "misc", "xTrap", "-1")
-		$TrapPos[1] = IniRead($config, "misc", "yTrap", "-1")
-		$XbowPos[0] = IniRead($config, "misc", "xXbow", "-1")
-		$XbowPos[1] = IniRead($config, "misc", "yXbow", "-1")
-		$InfernoPos[0] = IniRead($config, "misc", "xInferno", "-1")
-		$InfernoPos[1] = IniRead($config, "misc", "yInferno", "-1")
-	#ce
 		$ArmyPos[0] = IniRead($config, "misc", "xArmy", "0")
 		$ArmyPos[1] = IniRead($config, "misc", "yArmy", "0")
 		$KingPos[0] = IniRead($config, "misc", "xKing", "0")

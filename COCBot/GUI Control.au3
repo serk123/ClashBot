@@ -108,12 +108,6 @@ Func Initiate()
 			GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
-		#cs
-			;GB - New buttons
-			GUICtrlSetState($btnLocateXbow, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateInferno, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateTrap, $GUI_DISABLE)
-		#ce
 			GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
 			$sTimer = TimerInit()
 			AdlibRegister("SetTime", 1000)
@@ -196,12 +190,6 @@ Func btnStop()
 		GUICtrlSetState($chkForceBS, $GUI_ENABLE)
 	    GUICtrlSetState($txtCapacity, $GUI_ENABLE)
 		GUICtrlSetState($cmbRaidcap, $GUI_ENABLE)
-	#cs
-		;GB - New Buttons
-		GUICtrlSetState($btnLocateXbow, $GUI_ENABLE)
-		GUICtrlSetState($btnLocateInferno, $GUI_ENABLE)
-		GUICtrlSetState($btnLocateTrap, $GUI_ENABLE)
-	#ce
 		GUICtrlSetState($btnLocateClanCastle2, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 	    GUICtrlSetState($cmbBoostBarracks, $GUI_ENABLE)
@@ -304,6 +292,10 @@ EndFunc    ;==>btnLocateUp3
 
 Func btnFindWall()
 	$RunState = True
+	GUICtrlSetState($chkWalls, $GUI_DISABLE)
+	GUICtrlSetState($UseGold, $GUI_DISABLE)
+	GUICtrlSetState($UseElixir, $GUI_DISABLE)
+	GUICtrlSetState($UseGoldElix, $GUI_DISABLE)
 	While 1
 		SaveConfig()
 		readConfig()
@@ -312,40 +304,12 @@ Func btnFindWall()
 		FindWall()
 		ExitLoop
 	WEnd
+	GUICtrlSetState($chkWalls, $GUI_ENABLE)
+	GUICtrlSetState($UseGold, $GUI_ENABLE)
+	GUICtrlSetState($UseElixir, $GUI_ENABLE)
+	GUICtrlSetState($UseGoldElix, $GUI_ENABLE)
 	$RunState = False
 EndFunc    ;==>btnFindWall
-
-#cs
-Func btnLocateTrap()
-	$RunState = True
-	While 1
-		ZoomOut()
-		LocateTrap()
-		ExitLoop
-	WEnd
-	$RunState = False
-EndFunc   ;==>btnLocateTrap
-
-Func btnLocateXbow()
-	$RunState = True
-	While 1
-		ZoomOut()
-		LocateXbow()
-		ExitLoop
-	WEnd
-	$RunState = False
-EndFunc   ;==>btnLocateXbow
-
-Func btnLocateInferno()
-	$RunState = True
-	While 1
-		ZoomOut()
-		LocateInferno()
-		ExitLoop
-	WEnd
-	$RunState = False
-EndFunc   ;==>btnLocateInferno
-#ce
 
 Func btnLocateCamp()
 	$RunState = True

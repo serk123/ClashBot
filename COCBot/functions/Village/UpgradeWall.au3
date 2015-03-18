@@ -3,7 +3,7 @@ Global $walllowlevel
 
 Func UpgradeWall ()
 	If GUICtrlRead($chkWalls) <> $GUI_CHECKED Then
-		SetLog("Upgrade Wall option disabled, Skip Upgrade ", $COLOR_RED)
+		SetLog("Upgrade Wall option disabled, skipping upgrade ", $COLOR_RED)
 		Return
 	EndIf
 
@@ -50,9 +50,6 @@ Func UpgradeWall ()
 					Else
 						SetLog("Wall level lower than 8, skipping upgrade with Elixir", $COLOR_BLUE)
 					EndIf
-				;GB - pointless?
-				;Else
-				;	UpgradeWallGold()
 				EndIf
 			Else
 				SetLog("Gold is lower than Minimum setting, trying upgrade walls using Elixir", $COLOR_RED)

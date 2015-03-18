@@ -163,13 +163,6 @@ Global $CurGiant
 Global $CurGoblin
 Global $CurWB
 Global $ArmyComp
-
-#cs
-;GB - Add new buttons
-Global $XbowPos[2] = [-1, -1] ;Position of xbow
-Global $InfernoPos[2] = [-1, -1] ;Position of inferno tower
-Global $TrapPos[2] = [-1, -1] ;Position of trap
-#ce
 Global $TownHallPos[2] = [-1, -1] ;Position of TownHall
 Global $barrackPos[4][2] ;Positions of each barracks
 Global $barrackTroop[10] ;Barrack troop set

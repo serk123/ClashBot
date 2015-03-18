@@ -9,7 +9,6 @@ Global $WallX = 0, $WallY = 0, $WallLoc = 0
 Global $Tolerance2
 
 Func checkWall()
-
    	Switch _GUICtrlComboBox_GetCurSel($cmbTolerance)
 		Case 0
 			$Tolerance2 = 55
@@ -38,7 +37,6 @@ Func checkWall()
 EndFunc
 
 Func FindWall()
-
    	Switch _GUICtrlComboBox_GetCurSel($cmbTolerance)
 		Case 0
 			$Tolerance2 = 55

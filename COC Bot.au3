@@ -166,9 +166,9 @@ Func Idle() ;Sequence that runs until Full Army
 EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions
+   		$DCattack = 1
 		PrepareSearch()
 	 If _Sleep(1000) Then Return
-		$DCattack = 1
 		VillageSearch($TakeAllTownSnapShot)
 		If $CommandStop = 0 Then Return
 	 If _Sleep(1000) Or $Restart = True Then Return

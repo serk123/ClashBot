@@ -59,9 +59,10 @@ Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets cond
 					If _Sleep(1000) Then Return
 					PrepareSearch()
 				Else
-					SetLog("Cannot locate Next button, Restarting Bot", $COLOR_RED)
+					SetLog("Cannot locate Next button & Surrender button, Restarting Bot", $COLOR_RED)
 					checkMainScreen()
 					$Restart = True
+				    $DCattack = 1
 					ExitLoop (2)
 				EndIf
 			EndIf

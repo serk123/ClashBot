@@ -64,39 +64,6 @@ Func SetTime()
 	If _GUICtrlTab_GetCurSel($tabMain) = 7 Then GUICtrlSetData($lblresultruntime, StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
 	EndFunc   ;==>SetTime
 
-Func StartAnyway()
-			WinActivate($Title)
-
-			SetLog("~~~~Welcome to " & $sBotTitle & "!~~~~", $COLOR_PURPLE)
-			SetLog($Compiled & " running on " & @OSArch & " OS", $COLOR_GREEN)
-			SetLog("Bot is starting...", $COLOR_ORANGE)
-
-			$RunState = True
-			$AttackNow = False
-			$FirstStart = True
-			$Checkrearm = True
-			GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
-			GUICtrlSetState($btnFindWall, $GUI_DISABLE)
-			GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
-			GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
-			GUICtrlSetState($chkBackground, $GUI_DISABLE)
-			GUICtrlSetState($chkNoAttack, $GUI_DISABLE)
-			GUICtrlSetState($chkDonateOnly, $GUI_DISABLE)
-			GUICtrlSetState($chkForceBS, $GUI_DISABLE)
-			GUICtrlSetState($txtCapacity, $GUI_DISABLE)
-			GUICtrlSetState($cmbRaidcap, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateClanCastle, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
-			$sTimer = TimerInit()
-			AdlibRegister("SetTime", 1000)
-			runBot()
-EndFunc ;==>StartAnyway
-
 Func Initiate()
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
 		Local $BSsize = [ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")[2], ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")[3]]
@@ -114,9 +81,9 @@ Func Initiate()
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			SetLog("Please restart your computer for the applied changes to take effect.", $COLOR_ORANGE)
 			_Sleep(3000)
-			SetLog("Starting Anyway, if ClashBot doesn't work restart your computer")
-			StartAnyway()
-		Else
+			MsgBox($MB_SYSTEMMODAL, "Restart Computer", "Restart your computer for the applied changes to take effect. If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
+		
+		EndIf
 			WinActivate($Title)
 
 			SetLog("~~~~Welcome to " & $sBotTitle & "!~~~~", $COLOR_PURPLE)
@@ -147,7 +114,7 @@ Func Initiate()
 			$sTimer = TimerInit()
 			AdlibRegister("SetTime", 1000)
 			runBot()
-		EndIf
+		
 	Else
 		SetLog("Not in Game!", $COLOR_RED)
 		btnStop()

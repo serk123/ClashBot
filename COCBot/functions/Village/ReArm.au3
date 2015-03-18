@@ -1,6 +1,6 @@
 ;==>ReArm
 Func ReArm()
-	If $ichkTrap = 0 Then Return
+	If $ichkTrap = 1 Then
 
 	SetLog("Checking if Village needs Rearming..", $COLOR_BLUE)
 
@@ -58,6 +58,6 @@ Func ReArm()
 			SetLog("Reloaded Infernos", $COLOR_ORANGE)
 		EndIf
 	EndIf
-
+EndIf
 	Click(1, 1) ; Click away
 EndFunc   ;==>ReArm

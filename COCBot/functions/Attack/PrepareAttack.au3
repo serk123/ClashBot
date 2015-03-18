@@ -1,9 +1,9 @@
 ;Checks the troops when in battle, checks for type, slot, and quantity.
 ;Saved in $atkTroops[SLOT][TYPE/QUANTITY] variable
 
-Func PrepareAttack($remainding = false) ;Assigns troops
-	If $remainding Then
-		SetLog("Checking remainding unlaunched troops", $COLOR_ORANGE)
+Func PrepareAttack($remaining = false) ;Assigns troops
+	If $remaining Then
+		SetLog("Checking remaining unlaunched troops", $COLOR_ORANGE)
 	Else
 		SetLog("Preparing to attack", $COLOR_BLUE)
 	EndIf

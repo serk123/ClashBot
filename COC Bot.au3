@@ -68,19 +68,19 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 	    If $Restart = True Then ContinueLoop
-	    If $checkrearm = true Then
+	    If $Checkrearm = True Then
 			ReArm()
 			If _Sleep(2000) Then Return
 			checkMainScreen(False)
 			If $Restart = True Then ContinueLoop
-			$checkrearm = False
+			$Checkrearm = False
 		EndIf
 		DonateCC()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
-			EndIf
+		EndIf
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
 			checkMainScreen()
 			If _Sleep(1000) Then Return

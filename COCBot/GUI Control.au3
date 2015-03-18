@@ -91,10 +91,11 @@ Func Initiate()
 			$RunState = True
 			$AttackNow = False
 			$FirstStart = True
-			$checkrearm = True
+			$Checkrearm = True
 			GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
+			GUICtrlSetState($btnFindWall, $GUI_DISABLE)
 			GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
 			GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
 			GUICtrlSetState($chkBackground, $GUI_DISABLE)
@@ -120,6 +121,7 @@ Func Initiate()
 		EndIf
 	Else
 		SetLog("Not in Game!", $COLOR_RED)
+		btnStop()
 	EndIf
 EndFunc
 
@@ -187,6 +189,7 @@ Func btnStop()
 		GUICtrlSetState($btnLocateKingAltar, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateQueenAltar, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateCamp, $GUI_ENABLE)
+		GUICtrlSetState($btnFindWall, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 		GUICtrlSetState($chkNoAttack, $GUI_ENABLE)
 		GUICtrlSetState($chkDonateOnly, $GUI_ENABLE)
@@ -237,9 +240,9 @@ Func btnLocateClanCastle()
 		ExitLoop
 	WEnd
 	$RunState = False
- EndFunc   ;==>btnLocateClanCastle
+EndFunc   ;==>btnLocateClanCastle
 
- Func btnLocateTownHall()
+Func btnLocateTownHall()
 	$RunState = True
 	While 1
 		ZoomOut()
@@ -247,9 +250,9 @@ Func btnLocateClanCastle()
 		ExitLoop
 	WEnd
 	$RunState = False
- EndFunc   ;==>btnLocateTownHall
+EndFunc   ;==>btnLocateTownHall
 
- Func btnLocateKingAltar()
+Func btnLocateKingAltar()
 	$RunState = True
 	While 1
 		ZoomOut()
@@ -257,9 +260,9 @@ Func btnLocateClanCastle()
 		ExitLoop
 	WEnd
 	$RunState = False
- EndFunc   ;==>btnLocateKingAltar
+EndFunc   ;==>btnLocateKingAltar
 
-  Func btnLocateQueenAltar()
+Func btnLocateQueenAltar()
 	$RunState = True
 	While 1
 		ZoomOut()
@@ -267,7 +270,50 @@ Func btnLocateClanCastle()
 		ExitLoop
 	WEnd
 	$RunState = False
- EndFunc   ;==>btnLocateQueenAltar
+EndFunc   ;==>btnLocateQueenAltar
+
+Func btnLocateUp1()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateUpgrade1()
+		ExitLoop
+	WEnd
+	$RunState = False
+EndFunc    ;==>btnLocateUp1
+
+Func btnLocateUp2()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateUpgrade2()
+		ExitLoop
+	WEnd
+	$RunState = False
+EndFunc    ;==>btnLocateUp2
+
+Func btnLocateUp3()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateUpgrade3()
+		ExitLoop
+	WEnd
+	$RunState = False
+EndFunc    ;==>btnLocateUp3
+
+Func btnFindWall()
+	$RunState = True
+	While 1
+		SaveConfig()
+		readConfig()
+		applyConfig()
+		ZoomOut()
+		FindWall()
+		ExitLoop
+	WEnd
+	$RunState = False
+EndFunc    ;==>btnFindWall
 
 #cs
 Func btnLocateTrap()
@@ -310,6 +356,10 @@ Func btnLocateCamp()
 	WEnd
 	$RunState = False
 EndFunc   ;==>btnLocateArmyCamp
+
+Func btnDeletelist()
+   DeleteList()
+EndFunc   ;==>btnLocatelist
 
 Func btnSearchMode()
 	While 1
@@ -573,7 +623,7 @@ Func chkNoAttack()
     EndIf
 EndFunc   ;==>chkNoAttack
 
- Func chkDonateOnly()
+Func chkDonateOnly()
 	If GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
 		$CommandStop = 3
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
@@ -606,15 +656,15 @@ Func chkRequest()
 EndFunc
 
 Func Randomspeedatk()
-   If GUICtrlRead($Randomspeedatk) = $GUI_CHECKED Then
-	  $iRandomspeedatk = 1
-	  GUICtrlSetState($cmbUnitDelay, $GUI_DISABLE)
-	  GUICtrlSetState($cmbWaveDelay, $GUI_DISABLE)
-   Else
-	  $iRandomspeedatk = 0
-	  GUICtrlSetState($cmbUnitDelay, $GUI_ENABLE)
-	  GUICtrlSetState($cmbWaveDelay, $GUI_ENABLE)
-   EndIf
+	If GUICtrlRead($Randomspeedatk) = $GUI_CHECKED Then
+		$iRandomspeedatk = 1
+		GUICtrlSetState($cmbUnitDelay, $GUI_DISABLE)
+		GUICtrlSetState($cmbWaveDelay, $GUI_DISABLE)
+	Else
+		$iRandomspeedatk = 0
+		GUICtrlSetState($cmbUnitDelay, $GUI_ENABLE)
+		GUICtrlSetState($cmbWaveDelay, $GUI_ENABLE)
+	EndIf
 EndFunc   ;==>Randomspeedatk
 
 Func tabMain()

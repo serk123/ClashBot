@@ -9,7 +9,7 @@ Func PrepareSearch() ;Click attack button and find match button, will break shie
 		If _Sleep(3000) Then ExitLoop
 		_CaptureRegion()
 		If _ColorCheck(_GetPixelColor(287, 494), Hex(0xEEAC28, 6), 50) Then
-			Click(217, 510);Click Find a Match again if stuck find match screen
+			Click(217, 510);Click Find a Match again if stuck at find match screen
 		EndIf
 		If _Sleep(1000) Then ExitLoop
 		_CaptureRegion()

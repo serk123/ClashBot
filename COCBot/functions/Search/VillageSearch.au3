@@ -2,7 +2,7 @@
 
 Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets conditions
 	Local $skippedVillages
-	_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; Reduce BlueStacks Memory Usage, moved from b
+	_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; Reduce BlueStacks Memory Usage
 	If _Sleep(1000) Then Return
 	_CaptureRegion() ; Check Break Shield button again
 	If _ColorCheck(_GetPixelColor(513, 416), Hex(0x5DAC10, 6), 50) Then
@@ -46,9 +46,10 @@ Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets cond
 			    _CaptureRegion()
 				If _ColorCheck(_GetPixelColor(703, 520), Hex(0xD84400, 6), 20) Then
 					Click(750, 500) ;Click Next
-					$skippedVillages = $skippedVillages + 1
-				Else
-					If _Sleep(1000) Then Return
+					$skippedVillages += 1
+				ElseIf _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
+					SetLog("Cannot locate Next button, try to return home...", $COLOR_RED)
+					If _Sleep(500) Then Return
 					ReturnHome(False, False) ;If End battle is available
 					checkMainScreen()
 					If _Sleep(1000) Then Return
@@ -57,6 +58,11 @@ Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets cond
 					checkMainScreen(False)
 					If _Sleep(1000) Then Return
 					PrepareSearch()
+				Else
+					SetLog("Cannot locate Next button, Restarting Bot", $COLOR_RED)
+					checkMainScreen()
+					$Restart = True
+					ExitLoop (2)
 				EndIf
 			EndIf
 		WEnd

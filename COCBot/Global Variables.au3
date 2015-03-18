@@ -120,6 +120,7 @@ Global $itxtKingSkill 	;Delay before activating King Skill
 Global $itxtQueenSkill	;Delay before activating Queen Skill
 
 ;Boosts Settings
+Global $BoostAll
 Global $remainingBoosts = 0 ;  remaining boost to active during session
 Global $boostsEnabled = 1 ; is this function enabled
 Global $chkBoostKing
@@ -175,6 +176,9 @@ Global $barrackTroop[10] ;Barrack troop set
 Global $ArmyPos[2]
 Global $KingPos[2]
 Global $QueenPos[2]
+Global $BuildPos1[2]
+Global $BuildPos2[2]
+Global $BuildPos3[2]
 
 ;Other Settings
 Global $ichkWalls
@@ -182,6 +186,7 @@ Global $icmbWalls
 Global $iUseStorage
 Global $itxtWallMinGold
 Global $itxtWallMinElixir
+Global $icmbTolerance
 Global $itxtReconnect
 Global $iTimeTroops = 0
 Global $iTimeGiant = 120
@@ -220,4 +225,4 @@ Global $CurCamp, $TotalCamp = 0
 Global $NoLeague
 Global $FirstStart = true
 Global $DCattack = 0
-Global $checkrearm = true
+Global $Checkrearm = True

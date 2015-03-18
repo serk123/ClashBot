@@ -75,5 +75,4 @@ Func CheckArmyCamp()
 		ClickP($TopLeftClient) ;Click Away
 		$FirstCampView = True
 	EndIf
-
 Endfunc  ;==>CheckArmyCamp

@@ -101,7 +101,7 @@ Func Train()
 		Else
 			Click($TrainPos[0], $TrainPos[1]) ;Click Train Troops button
 			;SetLog("Barrack " & $i + 1 & " ...", $COLOR_GREEN)
-			If _Sleep(800) Then ExitLoop
+			If _Sleep(1000) Then ExitLoop
 
 			If _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 8 Then
 				_CaptureRegion()

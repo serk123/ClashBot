@@ -233,6 +233,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkWalls, $GUI_UNCHECKED)
 	EndIf
 	_GUICtrlComboBox_SetCurSel($cmbWalls, $icmbWalls)
+    _GUICtrlComboBox_SetCurSel($cmbTolerance, $icmbTolerance)
 
 	Switch $iUseStorage
 		Case 0

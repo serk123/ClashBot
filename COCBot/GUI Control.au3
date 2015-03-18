@@ -91,6 +91,7 @@ Func Initiate()
 			$RunState = True
 			$AttackNow = False
 			$FirstStart = True
+			$checkrearm = True
 			GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
 			GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
@@ -565,9 +566,9 @@ Func chkNoAttack()
 		$CommandStop = 0
 		SetLog("~~~Donate / Train Only Activated~~~", $COLOR_PURPLE)
 	Else
-		$CommandStop = -1
 		If GUICtrlRead($chkDonateOnly) = 0 Then
-		SetLog("~~~Stay Online Mode Deactivated~~~", $COLOR_PURPLE)
+			$CommandStop = -1
+			SetLog("~~~Attack Mode Activated~~~", $COLOR_PURPLE)
 		EndIf
     EndIf
 EndFunc   ;==>chkNoAttack
@@ -577,11 +578,11 @@ EndFunc   ;==>chkNoAttack
 		$CommandStop = 3
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
 	Else
-		$CommandStop = -1
 		If GUICtrlRead($chkNoAttack) = 0 Then
-		SetLog("~~~Stay Online Mode Deactivated~~~", $COLOR_PURPLE)
-	 EndIf
-    EndIf
+			$CommandStop = -1
+			SetLog("~~~Attack Mode Activated~~~", $COLOR_PURPLE)
+		EndIf
+	EndIf
 EndFunc   ;==>chkDonateOnly
 
 ;Func btnLocateCollectors()

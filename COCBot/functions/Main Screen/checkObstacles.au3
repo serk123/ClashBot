@@ -32,7 +32,7 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 	_CaptureRegion()
 	If _ColorCheck(_GetPixelColor(235, 209), Hex(0x9E3826, 6), 20) Then
 		Click(429, 493);See if village was attacked, clicks Okay
-	    $checkrearm = true
+	    $checkrearm = True
 		Return True
 	EndIf
 

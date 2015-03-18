@@ -64,6 +64,39 @@ Func SetTime()
 	If _GUICtrlTab_GetCurSel($tabMain) = 7 Then GUICtrlSetData($lblresultruntime, StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
 	EndFunc   ;==>SetTime
 
+Func StartAnyway()
+			WinActivate($Title)
+
+			SetLog("~~~~Welcome to " & $sBotTitle & "!~~~~", $COLOR_PURPLE)
+			SetLog($Compiled & " running on " & @OSArch & " OS", $COLOR_GREEN)
+			SetLog("Bot is starting...", $COLOR_ORANGE)
+
+			$RunState = True
+			$AttackNow = False
+			$FirstStart = True
+			$Checkrearm = True
+			GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
+			GUICtrlSetState($btnFindWall, $GUI_DISABLE)
+			GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
+			GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
+			GUICtrlSetState($chkBackground, $GUI_DISABLE)
+			GUICtrlSetState($chkNoAttack, $GUI_DISABLE)
+			GUICtrlSetState($chkDonateOnly, $GUI_DISABLE)
+			GUICtrlSetState($chkForceBS, $GUI_DISABLE)
+			GUICtrlSetState($txtCapacity, $GUI_DISABLE)
+			GUICtrlSetState($cmbRaidcap, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateClanCastle, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
+			GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
+			$sTimer = TimerInit()
+			AdlibRegister("SetTime", 1000)
+			runBot()
+EndFunc ;==>StartAnyway
+
 Func Initiate()
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
 		Local $BSsize = [ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")[2], ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")[3]]
@@ -73,14 +106,16 @@ Func Initiate()
 		Local $windowHeightRegistryData = RegRead($REGISTRY_KEY_DIRECTORY, "WindowHeight")
 		Local $windowWidthRegistryData = RegRead($REGISTRY_KEY_DIRECTORY, "WindowWidth")
 
-		If $BSsize[0] <> 860 Or $BSsize[1] <> 720 Then
+		If $BSsize[0] <> 860 Or $BSsize[0] <> 720 Or $BSsize[1] <> 720 Or $BSsize[1] <> 860 Then
 			RegWrite($REGISTRY_KEY_DIRECTORY, "FullScreen", "REG_DWORD", "0")
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestHeight", "REG_DWORD", $DEFAULT_HEIGHT)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowHeight", "REG_DWORD", $DEFAULT_HEIGHT)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			SetLog("Please restart your computer for the applied changes to take effect.", $COLOR_ORANGE)
-
+			_Sleep(3000)
+			SetLog("Starting Anyway, if ClashBot doesn't work restart your computer")
+			StartAnyway()
 		Else
 			WinActivate($Title)
 

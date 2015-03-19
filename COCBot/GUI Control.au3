@@ -73,7 +73,12 @@ Func Initiate()
 		Local $windowHeightRegistryData = RegRead($REGISTRY_KEY_DIRECTORY, "WindowHeight")
 		Local $windowWidthRegistryData = RegRead($REGISTRY_KEY_DIRECTORY, "WindowWidth")
 
-		If $BSsize[0] <> 860 Or $BSsize[0] <> 720 Or $BSsize[1] <> 720 Or $BSsize[1] <> 860 Then
+		Local $BSx = ($BSsize[0] > $BSsize[1]) ? $BSsize[0] : $BSsize[1]
+		Local $BSy = ($BSsize[0] > $BSsize[1]) ? $BSsize[1] : $BSsize[0]
+
+		$RunState = True
+
+		If $BSx <> 860 Or $BSy <> 720 Then
 			RegWrite($REGISTRY_KEY_DIRECTORY, "FullScreen", "REG_DWORD", "0")
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestHeight", "REG_DWORD", $DEFAULT_HEIGHT)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestWidth", "REG_DWORD", $DEFAULT_WIDTH)
@@ -81,40 +86,42 @@ Func Initiate()
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			SetLog("Please restart your computer for the applied changes to take effect.", $COLOR_ORANGE)
 			_Sleep(3000)
-			MsgBox($MB_SYSTEMMODAL, "Restart Computer", "Restart your computer for the applied changes to take effect. If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
-		
+			$MsgRet = MsgBox(BitOR($MB_OKCANCEL,$MB_SYSTEMMODAL), "Restart Computer", "Restart your computer for the applied changes to take effect." & @CRLF & "If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
+			If $MsgRet <> $IDOK Then
+				btnStop()
+				Return
+			EndIf
 		EndIf
-			WinActivate($Title)
 
-			SetLog("~~~~Welcome to " & $sBotTitle & "!~~~~", $COLOR_PURPLE)
-			SetLog($Compiled & " running on " & @OSArch & " OS", $COLOR_GREEN)
-			SetLog("Bot is starting...", $COLOR_ORANGE)
+		WinActivate($Title)
 
-			$RunState = True
-			$AttackNow = False
-			$FirstStart = True
-			$Checkrearm = True
-			GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
-			GUICtrlSetState($btnFindWall, $GUI_DISABLE)
-			GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
-			GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
-			GUICtrlSetState($chkBackground, $GUI_DISABLE)
-			GUICtrlSetState($chkNoAttack, $GUI_DISABLE)
-			GUICtrlSetState($chkDonateOnly, $GUI_DISABLE)
-			GUICtrlSetState($chkForceBS, $GUI_DISABLE)
-			GUICtrlSetState($txtCapacity, $GUI_DISABLE)
-			GUICtrlSetState($cmbRaidcap, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateClanCastle, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
-			GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
-			$sTimer = TimerInit()
-			AdlibRegister("SetTime", 1000)
-			runBot()
-		
+		SetLog("~~~~Welcome to " & $sBotTitle & "!~~~~", $COLOR_PURPLE)
+		SetLog($Compiled & " running on " & @OSArch & " OS", $COLOR_GREEN)
+		SetLog("Bot is starting...", $COLOR_ORANGE)
+
+		$AttackNow = False
+		$FirstStart = True
+		$Checkrearm = True
+		GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
+		GUICtrlSetState($btnFindWall, $GUI_DISABLE)
+		GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
+		GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
+		GUICtrlSetState($chkBackground, $GUI_DISABLE)
+		GUICtrlSetState($chkNoAttack, $GUI_DISABLE)
+		GUICtrlSetState($chkDonateOnly, $GUI_DISABLE)
+		GUICtrlSetState($chkForceBS, $GUI_DISABLE)
+		GUICtrlSetState($txtCapacity, $GUI_DISABLE)
+		GUICtrlSetState($cmbRaidcap, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateClanCastle, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateTownHall, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
+		$sTimer = TimerInit()
+		AdlibRegister("SetTime", 1000)
+		runBot()
 	Else
 		SetLog("Not in Game!", $COLOR_RED)
 		btnStop()

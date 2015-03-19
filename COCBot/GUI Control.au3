@@ -73,15 +73,17 @@ Func Initiate()
 		Local $windowHeightRegistryData = RegRead($REGISTRY_KEY_DIRECTORY, "WindowHeight")
 		Local $windowWidthRegistryData = RegRead($REGISTRY_KEY_DIRECTORY, "WindowWidth")
 
-		If $BSsize[0] <> 860 Or $BSsize[1] <> 720 Then
+		If $BSsize[0] <> 860 Or $BSsize[0] <> 720 Or $BSsize[1] <> 720 Or $BSsize[1] <> 860 Then
 			RegWrite($REGISTRY_KEY_DIRECTORY, "FullScreen", "REG_DWORD", "0")
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestHeight", "REG_DWORD", $DEFAULT_HEIGHT)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "GuestWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowHeight", "REG_DWORD", $DEFAULT_HEIGHT)
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			SetLog("Please restart your computer for the applied changes to take effect.", $COLOR_ORANGE)
-
-		Else
+			_Sleep(3000)
+			MsgBox($MB_SYSTEMMODAL, "Restart Computer", "Restart your computer for the applied changes to take effect. If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
+		
+		EndIf
 			WinActivate($Title)
 
 			SetLog("~~~~Welcome to " & $sBotTitle & "!~~~~", $COLOR_PURPLE)
@@ -112,7 +114,7 @@ Func Initiate()
 			$sTimer = TimerInit()
 			AdlibRegister("SetTime", 1000)
 			runBot()
-		EndIf
+		
 	Else
 		SetLog("Not in Game!", $COLOR_RED)
 		btnStop()

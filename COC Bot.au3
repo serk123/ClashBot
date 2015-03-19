@@ -7,7 +7,7 @@
 #pragma compile(FileVersion, 5.7)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "5.7.4"
+$sBotVersion = "5.8"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -106,6 +106,7 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		If $Restart = True Then ContinueLoop
+		VillageReport() ; populate resource stats and gather info required for upgrades
 		UpgradeWall()
 		If _Sleep(1000) Then Return
 		Idle()

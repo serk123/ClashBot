@@ -1,18 +1,33 @@
 Global $wallbuild
 Global $walllowlevel
 
-Func UpgradeWall ()
+Func UpgradeWall()
 	If GUICtrlRead($chkWalls) <> $GUI_CHECKED Then
-		SetLog("Upgrade Wall option disabled, skipping upgrade ", $COLOR_RED)
+		SetLog("Upgrade Wall option disabled, skipping upgrading", $COLOR_RED)
+		Click(1, 1) ; Click Away
 		Return
 	EndIf
 
-	VillageReport()
-	SetLog("Checking Upgrade Walls...")
-	$itxtWallMinGold = GUICtrlRead($txtWallMinGold)
-	$itxtWallMinElixir = GUICtrlRead($txtWallMinElixir)
-	Local $MinWallGold = Number($GoldCount) > Number($itxtWallMinGold)
-	Local $MinWallElixir = Number($ElixirCount) > Number($itxtWallMinElixir)
+	SetLog("Attempting upgrade of walls...")
+
+	If $FreeBuilder = 0 Then
+		SetLog("No builders available", $COLOR_RED)
+		Click(1, 1) ; Click Away
+		Return
+	EndIf
+
+	If Not checkWall() Then
+		SetLog("Cannot find Walls level " & $icmbWalls+4 & ", skipping upgrading", $COLOR_RED)
+		Click(1, 1) ; Click Away
+		Return
+	EndIf
+
+	Local $iWallMinGold = Number(GUICtrlRead($txtWallMinGold))
+	Local $iWallMinElixir = Number(GUICtrlRead($txtWallMinElixir))
+	Local $iGoldStorage = Number($GoldCount)
+	Local $iElixirStorage = Number($ElixirCount)
+	Local $iBeforeGoldStorage = $iGoldStorage + 1
+	Local $iBeforeElixirStorage = $iElixirStorage + 1
 
 	If GUICtrlRead($UseGold) = $GUI_CHECKED Then
 		$iUseStorage = 1
@@ -22,133 +37,100 @@ Func UpgradeWall ()
 		$iUseStorage = 3
 	EndIf
 
-	Switch $iUseStorage
-		Case 1
-			if $MinWallGold Then
-				SetLog("Upgrading walls using Gold", $COLOR_BLUE)
-				UpgradeWallGold()
-				Return True
-			Else
-				SetLog("Gold is lower than Minimum setting, skipping ugrade", $COLOR_RED)
-			EndIf
-		Case 2
-			If $MinWallElixir Then
-				Setlog ("Upgrading walls using Elixir", $COLOR_BLUE)
-				UpgradeWallElix()
-				Return True
-			Else
-				Setlog ("Elixir is lower than Minimum setting, skipping ugrade", $COLOR_BLUE)
-			Endif
-		Case 3
-			If $MinWallGold Then
-				SetLog("Upgrading walls using Gold", $COLOR_BLUE)
-				UpgradeWallGold()
-				If $wallbuild = 0 Then
-					If $walllowlevel = 0 Then
-						SetLog("Upgrade with Gold failed, trying upgrade using Elixir", $COLOR_BLUE)
-						UpgradeWallElix()
-					Else
-						SetLog("Wall level lower than 8, skipping upgrade with Elixir", $COLOR_BLUE)
+	If $iUseStorage <> 2 And $iGoldStorage > $iWallMinGold Then ; Upgrade using Gold
+		While $iGoldStorage > $iWallMinGold And $iGoldStorage < $iBeforeGoldStorage ; extra check to ensure previous upgrade succeeded and gold in villagereport decreased
+			$iBeforeGoldStorage = $iGoldStorage
+			If checkWall() Then
+				SetLog("Found Wall level " & $icmbWalls+4 & ", upgrading with Gold...", $COLOR_GREEN)
+				Click(1, 1) ; Click Away
+				If _Sleep(600) Then ExitLoop
+				Click($WallX, $WallY)
+				If _Sleep(600) Then ExitLoop
+
+				_CaptureRegion()
+				If _ColorCheck(_GetPixelColor(510, 570), Hex(0xE8C438, 6), 20) Then ; wall level 8 or higher
+					If _ColorCheck(_GetPixelColor(500, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
+						SetLog("Not enough Gold to upgrade wall", $COLOR_ORANGE)
+						Click(1, 1) ; Click Away
+						ExitLoop
 					EndIf
-				EndIf
-			Else
-				SetLog("Gold is lower than Minimum setting, trying upgrade walls using Elixir", $COLOR_RED)
-				If $MinWallElixir Then
-					UpgradeWallElix()
+				ElseIf _ColorCheck(_GetPixelColor(557, 570), Hex(0xEAD544, 6), 20) Then ; wall level 7 or lower
+					If _ColorCheck(_GetPixelColor(549, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
+						SetLog("Not enough Gold to upgrade wall", $COLOR_ORANGE)
+						Click(1, 1) ; Click Away
+						ExitLoop
+					EndIf
 				Else
-					Setlog ("Elixir is lower than Minimum setting, skipping ugrade", $COLOR_BLUE)
+					SetLog("Invalid Wall Found", $COLOR_RED)
+					ExitLoop
 				EndIf
-			EndIf
-	EndSwitch
-EndFunc
 
-
-Func UpgradeWallelix()
-	If $FreeBuilder = 0 Then
-		SetLog("No builders available", $COLOR_RED)
-		Click(1, 1) ; Click Away
-		Return
-	EndIf
-
-	checkWall()
-	If $checkwalllogic = True Then
-		Click(1, 1) ; Click Away
-		_Sleep(600)
-		Click($WallX, $WallY)
-		_Sleep(600)
-		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(596, 570), Hex(0xFFFFFF, 6), 20) = False Then
-			SetLog("Not enough Elixir or your Wall is lower than level 8 ", $COLOR_ORANGE)
-		Else
-			If _ColorCheck(_GetPixelColor(596, 570), Hex(0xFFFFFF, 6), 20) = True  or _ColorCheck(_GetPixelColor(583, 570), Hex(0xFFFFFF, 6), 20) = True Then
-				Click(560, 599) ; Click Upgrade
-				_Sleep(2000)
+				; Wall found successfully
+				Click(505, 596) ; Click Upgrade
+				If _Sleep(2000) Then ExitLoop
 				Click(472, 482) ; Click Okay
 				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
-				_Sleep(1000)
-			Else
+				If _Sleep(1000) Then ExitLoop
 				Click(1, 1) ; Click away
-				_Sleep(1000)
-			Endif
-		EndIf
+				If _Sleep(1000) Then ExitLoop
+
+				; Update gold count
+				VillageReport()
+				$iGoldStorage = Number($GoldCount)
+			Else
+				SetLog("Cannot find Walls level " & $icmbWalls+4 & ", finished upgrading...", $COLOR_GREEN)
+				Return
+			EndIf
+		WEnd
+	ElseIf $iUseStorage <> 2 Then
+		SetLog("Gold is lower than Minimum setting for ugrade", $COLOR_RED)
 	EndIf
-	Click(1, 1) ; Click Away
-EndFunc
 
-
-Func UpgradeWallGold()
-	If $FreeBuilder = 0 Then
-		SetLog("No builders available", $COLOR_RED)
-		Click(1, 1) ; Click Away
+	If $iUseStorage <> 1 And $icmbWalls < 4 Then
+		SetLog("Wall level too low to upgrade with Elixir", $COLOR_RED)
 		Return
 	EndIf
 
-	checkWall()
-	If $checkwalllogic = True Then
-		Click(1, 1) ; Click Away
-		_Sleep(600)
-		Click($WallX, $WallY)
-		_Sleep(600)
-		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(523, 641), Hex(0x000000, 6), 20) = False Then  ; checking wall level high than level 8
-			$walllowlevel = 0
-			If _ColorCheck(_GetPixelColor(500, 570), Hex(0xE70A12, 6), 20) or  _ColorCheck(_GetPixelColor(496, 570), Hex(0xE70A12, 6), 20)  Then
-				SetLog("Not enough Gold...", $COLOR_ORANGE)
+	If $iUseStorage <> 1 And $iElixirStorage > $iWallMinElixir Then ; Upgrade using Elixir
+		While $iElixirStorage > $iWallMinElixir And $iElixirStorage < $iBeforeElixirStorage ; extra check to ensure previous upgrade succeeded and elixir in villagereport decreased
+			$iBeforeElixirStorage = $iElixirStorage
+			If checkWall() Then
+				SetLog("Found Wall level " & $icmbWalls+4 & ", upgrading with Elixir...", $COLOR_GREEN)
 				Click(1, 1) ; Click Away
-				$wallbuild = 0
-			Else
-				If _ColorCheck(_GetPixelColor(500, 570), Hex(0xFFFFFF, 6), 20) = True  or _ColorCheck(_GetPixelColor(583, 570), Hex(0xFFFFFF, 6), 20) = True  Then
-					Click(505, 596) ; Click Upgrade
-					_Sleep(2000)
-					Click(472, 482) ; Click Okay
-					SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
-					$wallbuild =1
-					_Sleep(1000)
+				If _Sleep(600) Then ExitLoop
+				Click($WallX, $WallY)
+				If _Sleep(600) Then ExitLoop
+
+				_CaptureRegion()
+				If _ColorCheck(_GetPixelColor(605, 570), Hex(0xF857F0, 6), 20) Then
+					If _ColorCheck(_GetPixelColor(596, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
+						SetLog("Not enough Elixir to upgrade wall", $COLOR_ORANGE)
+						Click(1, 1) ; Click Away
+						ExitLoop
+					EndIf
 				Else
-					Click(1, 1) ; Click away
-					_Sleep(1000)
-				Endif
-			EndIf
-		Else ; check wall level lower than 8
-			$walllowlevel=1
-			If _ColorCheck(_GetPixelColor(549, 570), Hex(0xE70A12, 6), 20) or  _ColorCheck(_GetPixelColor(540, 570), Hex(0xE70A12, 6), 20)  Then
-				SetLog("Not enough Gold...", $COLOR_ORANGE)
-				Click(1, 1) ; Click Away
-				$wallbuild = 0
-			Else
-				If _ColorCheck(_GetPixelColor(549, 570), Hex(0xFFFFFF, 6), 20) or  _ColorCheck(_GetPixelColor(540, 570), Hex(0xFFFFFF, 6), 20)  Then
-					Click(505, 596) ; Click Upgrade
-					_Sleep(2000)
-					Click(472, 482) ; Click Okay
-					SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
-					$wallbuild =1
-					_Sleep(1000)
-				Else
-					Click(1, 1) ; Click away
-					_Sleep(1000)
+					SetLog("Invalid Wall Found", $COLOR_RED)
+					ExitLoop
 				EndIf
+
+				; Wall found successfully
+				Click(560, 596) ; Click Upgrade
+				If _Sleep(2000) Then ExitLoop
+				Click(472, 482) ; Click Okay
+				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
+				If _Sleep(1000) Then ExitLoop
+				Click(1, 1) ; Click away
+				If _Sleep(1000) Then ExitLoop
+
+				; Update elixir count
+				VillageReport()
+				$iElixirStorage = Number($ElixirCount)
+			Else
+				SetLog("Cannot find Walls level " & $icmbWalls+4 & ", finished upgrading...", $COLOR_GREEN)
+				Return
 			EndIf
-		EndIf
+		WEnd
+	ElseIf $iUseStorage <> 1 Then
+		SetLog("Elixir is lower than Minimum setting for ugrade", $COLOR_RED)
 	EndIf
-	Click(1, 1) ; Click Away
 EndFunc

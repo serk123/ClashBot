@@ -310,7 +310,15 @@ Func btnFindWall()
 		readConfig()
 		applyConfig()
 		ZoomOut()
-		FindWall()
+
+		If checkWall() Then
+			WinActivate($HWnD)
+		    Click($WallX, $WallY)
+			SetLog("Found Walls level " & $icmbWalls+4 & " at PosX: " & $WallX & ", PosY: " & $WallY & "...", $COLOR_GREEN)
+		Else
+			SetLog("Cannot find Walls level " & $icmbWalls+4 & ", adjust tolerance and try again...", $COLOR_RED)
+		EndIf
+
 		ExitLoop
 	WEnd
 	GUICtrlSetState($chkWalls, $GUI_ENABLE)

@@ -48,7 +48,7 @@ Func BotCommand()
 			Switch $icmbBotCommand
 				Case 0
 					SetLog("Halt Attack, Stay Online and Donate...", $COLOR_BLUE)
-					$CommandStop = 0 ; Halt Attack
+					If $CommandStop <> 3 Then $CommandStop = 0 ; Halt Attack
 					If _Sleep(500) Then Return
 				Case 1
 					SetLog("Force Shutdown your PC...", $COLOR_BLUE)

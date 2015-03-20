@@ -1,6 +1,6 @@
 ;Searches for a village that until meets conditions
 
-Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets conditions
+Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $skippedVillages
 	_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; Reduce BlueStacks Memory Usage
 	If _Sleep(1000) Then Return
@@ -11,7 +11,7 @@ Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets cond
 	While 1
 	    If GUICtrlRead($chkDeadGE) = 1 Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
   		If GUICtrlRead($chkMeetGE) = 1 Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
-		If $TakeSS = 1 Then SetLog("Will save all of the towns when searching", $COLOR_GREEN)
+		If $TakeAllTownSnapShot = 1 Then SetLog("Will save all of the towns when searching", $COLOR_GREEN)
 		$SearchCount = 0
 	    _BlockInputEx(3, "", "", $HWnD)
 		While 1
@@ -22,7 +22,7 @@ Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets cond
 
 			If $Restart = True Then ExitLoop (2)
 
-			If $TakeSS = 1 Then
+			If $TakeAllTownSnapShot = 1 Then
 				Local $Date = @MDAY & "." & @MON & "." & @YEAR
 				Local $Time = @HOUR & "." & @MIN & "." & @SEC
 				_CaptureRegion()
@@ -50,7 +50,7 @@ Func VillageSearch($TakeSS = 0) ;Control for searching a village that meets cond
 				ElseIf _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
 					SetLog("Cannot locate Next button, try to return home...", $COLOR_RED)
 					If _Sleep(500) Then Return
-					ReturnHome(False, False) ;If End battle is available
+					ReturnHome(False) ;If End battle is available
 					checkMainScreen()
 					If _Sleep(1000) Then Return
 					ZoomOut()

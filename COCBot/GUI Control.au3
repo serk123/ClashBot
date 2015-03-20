@@ -354,7 +354,7 @@ Func btnSearchMode()
 		;GUICtrlSetState($btnLocateCollectors, $GUI_DISABLE)
 
 		$RunState = True
-		VillageSearch($TakeAllTownSnapShot)
+		VillageSearch()
 		$RunState = False
 
 		GUICtrlSetState($btnStart, $GUI_SHOW)

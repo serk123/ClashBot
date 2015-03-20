@@ -168,7 +168,7 @@ Func AttackMain() ;Main control for attack functions
    		$DCattack = 1
 		PrepareSearch()
 	 If _Sleep(1000) Then Return
-		VillageSearch($TakeAllTownSnapShot)
+		VillageSearch()
 		If $CommandStop = 0 Then Return
 	 If _Sleep(1000) Or $Restart = True Then Return
 		PrepareAttack()
@@ -176,7 +176,7 @@ Func AttackMain() ;Main control for attack functions
 		Attack()
 		$DCattack = 0
 	 If _Sleep(1000) Then Return
-		ReturnHome($TakeLootSnapShot)
+		ReturnHome()
 	 If _Sleep(1000) Then Return
 EndFunc   ;==>AttackMain
 

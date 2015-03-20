@@ -45,9 +45,9 @@ Global $hLogFileHandle
 Global $Restart = False
 Global $RunState = False
 Global $AttackNow = False
-Global $AlertBaseFound = False
-Global $TakeLootSnapShot = True
-Global $TakeAllTownSnapShot = False
+Global $AlertBaseFound = 0
+Global $TakeLootSnapShot = 1
+Global $TakeAllTownSnapShot = 0
 Global $ReqText
 
 Global $cmbTroopComp ;For Event change on ComboBox Troop Compositions

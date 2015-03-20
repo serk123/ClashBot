@@ -1,4 +1,5 @@
 ;Searches for a village that until meets conditions
+Global $AtkDeadEnabled, $AtkAnyEnabled
 
 Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $skippedVillages
@@ -8,9 +9,23 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	If _ColorCheck(_GetPixelColor(513, 416), Hex(0x5DAC10, 6), 50) Then
 		Click(513, 416);Click Okay To Break Shield
 	EndIf
+
+	$AtkDeadEnabled = False
+	$AtkAnyEnabled = False
+
+	If GUICtrlRead($chkDeadGE) = $GUI_CHECKED Or GUICtrlRead($chkDeadMeetDE) = $GUI_CHECKED Or GUICtrlRead($chkDeadMeetTrophy) = $GUI_CHECKED Or GUICtrlRead($chkDeadMeetTH) = $GUI_CHECKED Or GUICtrlRead($chkDeadMeetTHO) = $GUI_CHECKED Then $AtkDeadEnabled = True
+	If GUICtrlRead($chkMeetGE) = $GUI_CHECKED Or GUICtrlRead($chkMeetDE) = $GUI_CHECKED Or GUICtrlRead($chkMeetTrophy) = $GUI_CHECKED Or GUICtrlRead($chkMeetTH) = $GUI_CHECKED Or GUICtrlRead($chkMeetTHO) = $GUI_CHECKED Then $AtkAnyEnabled = True
+
+	If Not $AtkDeadEnabled And Not $AtkAnyEnabled Then
+		SetLog("~~~No search conditions enabled, deactivating attack mode~~~", $COLOR_RED)
+		GUICtrlSetState($chkNoAttack, $GUI_CHECKED)
+		chkNoAttack()
+		Return
+	EndIf
+
 	While 1
-	    If GUICtrlRead($chkDeadGE) = 1 Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
-  		If GUICtrlRead($chkMeetGE) = 1 Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
+	    If $AtkDeadEnabled Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
+  		If $AtkAnyEnabled Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
 		If $TakeAllTownSnapShot = 1 Then SetLog("Will save all of the towns when searching", $COLOR_GREEN)
 		$SearchCount = 0
 	    _BlockInputEx(3, "", "", $HWnD)
@@ -42,7 +57,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			If CompareResources() Then
 				ExitLoop
 			Else
-				If $CommandStop = 0 Then Return
 			    _CaptureRegion()
 				If _ColorCheck(_GetPixelColor(703, 520), Hex(0xD84400, 6), 20) Then
 					Click(750, 500) ;Click Next

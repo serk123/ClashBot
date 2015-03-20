@@ -11,8 +11,8 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		If $MinElixir - 5000 >= 0 Then $MinElixir -= 5000
 		If $MinDark - 100 >= 0 Then $MinDark -= 100
 		If $MinTrophy - 2 >= 0 Then $MinTrophy -= 2
-	    If GUICtrlRead($chkDeadGE) = 1 Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
-  		If GUICtrlRead($chkMeetGE) = 1 Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
+	    If $AtkDeadEnabled Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
+  		If $AtkAnyEnabled Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
 	EndIf
 
 	Local $DG = (Number($searchGold) >= Number($MinDeadGold)), $DE = (Number($searchElixir) >= Number($MinDeadElixir)), $DD = (Number($searchDark) >= Number($MinDeadDark)), $DT = (Number($searchTrophy) >= Number($MinDeadTrophy))
@@ -35,12 +35,12 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		Return True
 	EndIf
 
-	; Variables to check whether to attack dead bases
-	Local $deadEnabled = False, $conditionPass = True
+	; Variable to check whether to attack a dead base
+	Local $conditionPass = True
 
-	If $searchDead Then
+	; check conditions for a dead base
+	If $searchDead And $AtkDeadEnabled Then
 		If GUICtrlRead($chkDeadGE) = $GUI_CHECKED Then
-			$deadEnabled = True
 			If $icmbDead = 0 Then ; And
 				If $DG = False Or $DE = False Then $conditionPass = False
 			Else ; Or
@@ -49,70 +49,55 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		EndIf
 
 		If GUICtrlRead($chkDeadMeetDE) = $GUI_CHECKED Then
-			$deadEnabled = True
 			If $DD = False Then $conditionPass = False
 		EndIf
 
 		If GUICtrlRead($chkDeadMeetTrophy) = $GUI_CHECKED Then
-			$deadEnabled = True
 			If $DT = False Then $conditionPass = False
 		EndIf
 
 		If GUICtrlRead($chkDeadMeetTH) = $GUI_CHECKED Then
-			$deadEnabled = True
 			If $THL = -1 Or $THL > _GUICtrlComboBox_GetCurSel($cmbDeadTH) Then $conditionPass = False
 		EndIf
 
 		If GUICtrlRead($chkDeadMeetTHO) = $GUI_CHECKED Then
-			$deadEnabled = True
 			If $THLO <> 1 Then $conditionPass = False
 		EndIf
 
-		If $deadEnabled And $conditionPass Then
+		If $conditionPass Then
 			SetLog("~~~~~~~Dead Base Found!~~~~~~~", $COLOR_GREEN)
 			Return True
 		EndIf
-	Else
-		$deadEnabled = True
 	EndIf
 
-	; Variables to check whether to attack non-dead bases
-	Local $anyEnabled = False
-
-	If GUICtrlRead($chkMeetGE) = $GUI_CHECKED Then
-		$anyEnabled = True
-		If $icmbAny = 0 Then ; And
-			If $G = False Or $E = False Then Return False
-		Else ; Or
-			If $G = False And $E = False Then Return False
+	; check conditions for any base
+	If $AtkAnyEnabled Then
+		If GUICtrlRead($chkMeetGE) = $GUI_CHECKED Then
+			If $icmbAny = 0 Then ; And
+				If $G = False Or $E = False Then Return False
+			Else ; Or
+				If $G = False And $E = False Then Return False
+			EndIf
 		EndIf
+
+		If GUICtrlRead($chkMeetDE) = $GUI_CHECKED Then
+			If $D = False Then Return False
+		EndIf
+
+		If GUICtrlRead($chkMeetTrophy) = $GUI_CHECKED Then
+			If $T = False Then Return False
+		EndIf
+
+		If GUICtrlRead($chkMeetTH) = $GUI_CHECKED Then
+			If $THL = -1 Or $THL > _GUICtrlComboBox_GetCurSel($cmbTH) Then Return False
+		EndIf
+
+		If GUICtrlRead($chkMeetTHO) = $GUI_CHECKED Then
+			If $THLO <> 1 Then Return False
+		EndIf
+
+		Return True
 	EndIf
 
-	If GUICtrlRead($chkMeetDE) = $GUI_CHECKED Then
-		$anyEnabled = True
-		If $D = False Then Return False
-	EndIf
-
-	If GUICtrlRead($chkMeetTrophy) = $GUI_CHECKED Then
-		$anyEnabled = True
-		If $T = False Then Return False
-	EndIf
-
-	If GUICtrlRead($chkMeetTH) = $GUI_CHECKED Then
-		$anyEnabled = True
-		If $THL = -1 Or $THL > _GUICtrlComboBox_GetCurSel($cmbTH) Then Return False
-	EndIf
-
-	If GUICtrlRead($chkMeetTHO) = $GUI_CHECKED Then
-		$anyEnabled = True
-		If $THLO <> 1 Then Return False
-	EndIf
-
-	If Not $deadEnabled And Not $anyEnabled Then
-		SetLog("~~~No search settings enabled, deactivating attack mode~~~", $COLOR_RED)
-		GUICtrlSetState($chkNoAttack, $GUI_CHECKED)
-		chkNoAttack()
-	EndIf
-
-	Return $anyEnabled
+	Return False
 EndFunc   ;==>CompareResources

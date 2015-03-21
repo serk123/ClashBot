@@ -4,11 +4,15 @@ Global $AtkDeadEnabled, $AtkAnyEnabled
 Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $skippedVillages
 	_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; Reduce BlueStacks Memory Usage
+	#cs ; don't need to check shield twice - uncomment if there are problems
 	If _Sleep(1000) Then Return
 	_CaptureRegion() ; Check Break Shield button again
-	If _ColorCheck(_GetPixelColor(513, 416), Hex(0x5DAC10, 6), 50) Then
-		Click(513, 416);Click Okay To Break Shield
+	Local $offColors[3][3] = [[0x202C0D, 105, 0], [0x60B010, 30, 30], [0xFFFFFF, 20, 20]] ; 2nd pixel edge of button, 3rd pixel dark green of button, 4th pixel white of ok
+	Local $ShieldPixel = _MultiPixelSearch(480, 380, 586, 411, 1, 1, Hex(0xD0E878, 6), $offColors, 30) ; light green pixel of button
+	If IsArray($ShieldPixel) Then
+		Click($ShieldPixel[0], $ShieldPixel[1]);Click Okay To Break Shield
 	EndIf
+	#ce
 
 	$AtkDeadEnabled = False
 	$AtkAnyEnabled = False

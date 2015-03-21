@@ -13,8 +13,10 @@ Func PrepareSearch() ;Click attack button and find match button, will break shie
 		EndIf
 		If _Sleep(1000) Then ExitLoop
 		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(513, 416), Hex(0x5DAC10, 6), 50) Then
-			Click(513, 416);Click Okay To Break Shield
+		Local $offColors[3][3] = [[0x202C0D, 105, 0], [0x60B010, 30, 30], [0xFFFFFF, 20, 20]] ; 2nd pixel edge of button, 3rd pixel dark green of button, 4th pixel white of ok
+		Local $ShieldPixel = _MultiPixelSearch(480, 380, 586, 411, 1, 1, Hex(0xD0E878, 6), $offColors, 30) ; light green pixel of button
+		If IsArray($ShieldPixel) Then
+			Click($ShieldPixel[0], $ShieldPixel[1]);Click Okay To Break Shield
 		EndIf
    		ExitLoop
 	WEnd

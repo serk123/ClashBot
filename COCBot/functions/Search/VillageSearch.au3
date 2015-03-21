@@ -33,7 +33,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			If _Sleep(1000) Then ExitLoop (2)
 		    GUICtrlSetState($btnAtkNow, $GUI_ENABLE)
 			GetResources() ;Reads Resource Values
-			If _Sleep(2000) Then ExitLoop (2)
 
 			If $Restart = True Then ExitLoop (2)
 
@@ -44,7 +43,8 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				_GDIPlus_ImageSaveToFile($hBitmap, @ScriptDir & "\AllTowns\" & $Date & " at " & $Time & ".png")
 			EndIf
 
-			If _Sleep($icmbSearchsp * 1500) Then ExitLoop (2)
+			; read setting directly to allow speed change while searching to use attack now
+			If _Sleep(_GUICtrlComboBox_GetCurSel($cmbSearchsp) * 1500) Then ExitLoop (2)
 
 			; Attack instantly if Attack Now button pressed
 			GUICtrlSetState($btnAtkNow, $GUI_DISABLE)

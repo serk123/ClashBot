@@ -4,7 +4,7 @@ Global $walllowlevel
 Func UpgradeWall()
 	If GUICtrlRead($chkWalls) <> $GUI_CHECKED Then
 		SetLog("Upgrade Wall option disabled, skipping upgrading", $COLOR_RED)
-		Click(1, 1) ; Click Away
+		ClickP($TopLeftClient) ; Click Away
 		Return
 	EndIf
 
@@ -12,13 +12,13 @@ Func UpgradeWall()
 
 	If $FreeBuilder = 0 Then
 		SetLog("No builders available", $COLOR_RED)
-		Click(1, 1) ; Click Away
+		ClickP($TopLeftClient) ; Click Away
 		Return
 	EndIf
 
 	If Not checkWall() Then
 		SetLog("Cannot find Walls level " & $icmbWalls+4 & ", skipping upgrading", $COLOR_RED)
-		Click(1, 1) ; Click Away
+		ClickP($TopLeftClient) ; Click Away
 		Return
 	EndIf
 
@@ -42,7 +42,7 @@ Func UpgradeWall()
 			$iBeforeGoldStorage = $iGoldStorage
 			If checkWall() Then
 				SetLog("Found Wall level " & $icmbWalls+4 & ", upgrading with Gold...", $COLOR_GREEN)
-				Click(1, 1) ; Click Away
+				ClickP($TopLeftClient) ; Click Away
 				If _Sleep(600) Then ExitLoop
 				Click($WallX, $WallY)
 				If _Sleep(600) Then ExitLoop
@@ -51,13 +51,13 @@ Func UpgradeWall()
 				If _ColorCheck(_GetPixelColor(510, 570), Hex(0xE8C438, 6), 20) Then ; wall level 8 or higher
 					If _ColorCheck(_GetPixelColor(500, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
 						SetLog("Not enough Gold to upgrade wall", $COLOR_ORANGE)
-						Click(1, 1) ; Click Away
+						ClickP($TopLeftClient) ; Click Away
 						ExitLoop
 					EndIf
 				ElseIf _ColorCheck(_GetPixelColor(557, 570), Hex(0xEAD544, 6), 20) Then ; wall level 7 or lower
 					If _ColorCheck(_GetPixelColor(549, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
 						SetLog("Not enough Gold to upgrade wall", $COLOR_ORANGE)
-						Click(1, 1) ; Click Away
+						ClickP($TopLeftClient) ; Click Away
 						ExitLoop
 					EndIf
 				Else
@@ -71,7 +71,7 @@ Func UpgradeWall()
 				Click(472, 482) ; Click Okay
 				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
 				If _Sleep(1000) Then ExitLoop
-				Click(1, 1) ; Click away
+				ClickP($TopLeftClient) ; Click away
 				If _Sleep(1000) Then ExitLoop
 
 				; Update gold count
@@ -96,7 +96,7 @@ Func UpgradeWall()
 			$iBeforeElixirStorage = $iElixirStorage
 			If checkWall() Then
 				SetLog("Found Wall level " & $icmbWalls+4 & ", upgrading with Elixir...", $COLOR_GREEN)
-				Click(1, 1) ; Click Away
+				ClickP($TopLeftClient) ; Click Away
 				If _Sleep(600) Then ExitLoop
 				Click($WallX, $WallY)
 				If _Sleep(600) Then ExitLoop
@@ -105,7 +105,7 @@ Func UpgradeWall()
 				If _ColorCheck(_GetPixelColor(605, 570), Hex(0xF857F0, 6), 20) Then
 					If _ColorCheck(_GetPixelColor(596, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
 						SetLog("Not enough Elixir to upgrade wall", $COLOR_ORANGE)
-						Click(1, 1) ; Click Away
+						ClickP($TopLeftClient) ; Click Away
 						ExitLoop
 					EndIf
 				Else
@@ -119,7 +119,7 @@ Func UpgradeWall()
 				Click(472, 482) ; Click Okay
 				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
 				If _Sleep(1000) Then ExitLoop
-				Click(1, 1) ; Click away
+				ClickP($TopLeftClient) ; Click away
 				If _Sleep(1000) Then ExitLoop
 
 				; Update elixir count

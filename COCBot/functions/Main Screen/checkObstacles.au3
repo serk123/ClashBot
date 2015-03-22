@@ -39,7 +39,7 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 	EndIf
 
 	If _ColorCheck(_GetPixelColor(284, 28), Hex(0x215B69, 6), 20) Then
-		Click(1, 1) ;Click away If things are open
+		ClickP($TopLeftClient) ;Click away If things are open
 		Return True
 	EndIf
 

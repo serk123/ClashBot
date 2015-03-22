@@ -12,7 +12,7 @@ Func DonateCC()
   	   Return
   	EndIf
 
-	Click(1, 1) ;Click Away
+	ClickP($TopLeftClient) ;Click Away
 	If _ColorCheck(_GetPixelColor(331, 330), Hex(0xF0A03B, 6), 20) = False Then Click(19, 349) ;Clicks chat thing
 	If _Sleep(500) Then Return
 	Click(189, 24) ; clicking clan tab
@@ -91,7 +91,7 @@ Func DonateCC()
 				ExitLoop
 			EndIf
 		    If _Sleep(500) Then Return
-		    Click(1, 1, 1, 2000)
+		    ClickP($TopLeftClient) ;Click Away
 			$y = $DonatePixel[1] + 10
 		WEnd
 		$DonatePixel = _MultiPixelSearch(202, $y, 203, 670, 1, 1, Hex(0x262926, 6), $offColors, 20)
@@ -151,7 +151,7 @@ Func DonateBarbs()
 			Return
 		EndIf
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 2000)
+		ClickP($TopLeftClient) ;Click Away
 	Else
 		DonateArchers()
 		Return
@@ -177,7 +177,7 @@ Func DonateArchers()
 			Return
 		EndIf
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 2000)
+		ClickP($TopLeftClient) ;Click Away
 	Else
 		DonateGiants()
 		Return
@@ -200,10 +200,10 @@ Func DonateGiants()
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
 		EndIf
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 2000)
+		ClickP($TopLeftClient) ;Click Away
 	Else
 		SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
 		If _Sleep(500) Then Return
-		Click(1, 1, 1, 2000)
+		ClickP($TopLeftClient) ;Click Away
 	EndIf
 EndFunc   ;==>DonateGiants

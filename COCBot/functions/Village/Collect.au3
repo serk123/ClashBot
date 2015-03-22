@@ -5,7 +5,7 @@ Local $collectx, $collecty, $i = 0
 
 	SetLog("Collecting Resources", $COLOR_BLUE)
 	_Sleep(250)
-	Click(1, 1) ;Click Away
+	ClickP($TopLeftClient) ;Click Away
 	While 1
 		If _Sleep(300) Or $RunState = False Then ExitLoop
 	    _CaptureRegion(0,0,780)
@@ -15,6 +15,6 @@ Local $collectx, $collecty, $i = 0
 			ExitLoop
 		EndIf
 	    $i += 1
-		Click(1, 1) ;Click Away
+		ClickP($TopLeftClient) ;Click Away
 	WEnd
 EndFunc   ;==>Collect

@@ -10,7 +10,7 @@ Func ReArm()
 		If _Sleep(1000) Then Return
 	EndIf
 
-	Click(1, 1) ; Click away
+	ClickP($TopLeftClient) ; Click away
 	If _Sleep(1000) Then Return
 	Click($TownHallPos[0], $TownHallPos[1])
 	If _Sleep(1000) Then Return
@@ -59,5 +59,5 @@ Func ReArm()
 		EndIf
 	EndIf
 
-	Click(1, 1) ; Click away
+	ClickP($TopLeftClient) ; Click away
 EndFunc   ;==>ReArm

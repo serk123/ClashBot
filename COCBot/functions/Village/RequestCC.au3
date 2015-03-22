@@ -27,7 +27,7 @@ Func RequestCC()
 					;Click(340, 228)
 				Else
 					SetLog("Request's already been made", $COLOR_ORANGE)
-					Click(1, 1, 2)
+					ClickP($TopLeftClient, 2)
 				EndIf
 			Else
 				SetLog("Clan Castle not available", $COLOR_RED)

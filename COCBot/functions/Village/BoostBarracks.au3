@@ -10,7 +10,7 @@ Func BoostBarracks()
 		 SetLog("Boosting Barracks", $COLOR_BLUE)
 
 
-			   Click(1, 1)
+			   ClickP($TopLeftClient) ;Click Away
 				 If _Sleep(1000) Then ExitLoop
 				 Click($barrackPos[0][0], $barrackPos[0][1])
 				 If _Sleep(1000) Then ExitLoop
@@ -35,7 +35,7 @@ Func BoostBarracks()
 						 SetLog("Barracks are already Boosted", $COLOR_ORANGE)
 					 EndIf
 					 If _Sleep(500) Then ExitLoop
-					 Click(1, 1)
+					 ClickP($TopLeftClient) ;Click Away
 				 Else
 					 SetLog("Barracks are already Boosted", $COLOR_ORANGE)
 					 If _Sleep(1000) Then Return

@@ -150,6 +150,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		$CC = -1
 		$Barb = -1
 		$Arch = -1
+		$LSpell = -1
 	    For $i = 0 To 8
 			If $atkTroops[$i][0] = $eBarbarian Then
 				$Barb = $i
@@ -161,6 +162,8 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				$King = $i
 			ElseIf $atkTroops[$i][0] = $eQueen Then
 				$Queen = $i
+			ElseIf $atkTroops[$i][0] = $eLSpell Then
+				$LSpell = $i
 			EndIf
 		Next
 

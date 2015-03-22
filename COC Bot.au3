@@ -65,23 +65,21 @@ Func runBot() ;Bot that runs everything in order
 		If BotCommand() Then btnStop()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-	    If $Restart = True Then ContinueLoop
 	    If $Checkrearm = True Then
+			ZoomOut()
 			ReArm()
 			If _Sleep(2000) Then Return
 			checkMainScreen(False)
-			If $Restart = True Then ContinueLoop
 			$Checkrearm = False
 		EndIf
 		DonateCC()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
+			ZoomOut()
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
 		EndIf
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
-			checkMainScreen()
-			If _Sleep(1000) Then Return
 			ZoomOut()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
@@ -91,30 +89,28 @@ Func runBot() ;Bot that runs everything in order
 			$fullArmy = False
 		EndIf
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
+		    ZoomOut()
 			Train()
+			If _Sleep(1000) Then Return
+			CreateSpell()
 			If _Sleep(1000) Then Return
 		EndIf
 		checkMainScreen(False)
-		If $Restart = True Then ContinueLoop
+		ZoomOut()
 		BoostAllBuilding()
 		If _Sleep(1000) Then Return
 		RequestCC()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-	    If $Restart = True Then ContinueLoop
 		Collect()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		If $Restart = True Then ContinueLoop
 		VillageReport() ; populate resource stats and gather info required for upgrades
 		UpgradeWall()
 		If _Sleep(1000) Then Return
 		Idle()
 		If _Sleep(1000) Then Return
-	    If $Restart = True Then ContinueLoop
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
-			checkMainScreen()
-			If _Sleep(1000) Then Return
 			ZoomOut()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)

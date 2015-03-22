@@ -41,7 +41,8 @@ Func GoldElixirChange()
 			If _Sleep($itxtReturnh * 1000) Then Return
 		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)
 		Return False
-		ElseIf ($Gold1 = $Gold2 And $Elixir1 = $Elixir2) Then
+	 ElseIf ($Gold1 = $Gold2 And $Elixir1 = $Elixir2) Then
+			SpellDarkStorage()
 			SetLog("No Income detected, returning in " & $itxtReturnh & " seconds", $COLOR_BLUE)
 			If _Sleep($itxtReturnh * 1000) Then Return
 		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)

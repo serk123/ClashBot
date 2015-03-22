@@ -100,6 +100,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtReturnh = IniRead($config, "misc", "returnhomedelay", "0")
 		$itxtKingSkill = IniRead($config, "misc", "kingskilldelay", "0")
 		$itxtQueenSkill = IniRead($config, "misc", "queenskilldelay", "0")
+		$itxtSpellDarkStorage = IniRead($config, "misc", "SpellDark", "0")
 		$icmbSearchsp = IniRead($config, "misc", "searchspd", "0")
 		$ichkTrap = IniRead($config, "misc", "chkTrap", "0")
 		$TownHallPos[0] = IniRead($config, "misc", "xTownHall", "-1")
@@ -110,6 +111,9 @@ Func readConfig() ;Reads config and sets it to the variables
 		$KingPos[1] = IniRead($config, "misc", "yKing", "0")
 		$QueenPos[0] = IniRead($config, "misc", "xQueen", "0")
 		$QueenPos[1] = IniRead($config, "misc", "yQueen", "0")
+		$SFactoryPos[0] = IniRead($config, "misc", "xSFactory", "0")
+		$SFactoryPos[1] = IniRead($config, "misc", "ySFactory", "0")
+		$SpellDarkStorage = IniRead($config, "misc", "SpellDarkStorage", "0")
 
 		For $i = 0 To 3 ;Covers all 4 Barracks
 			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")

@@ -4,6 +4,7 @@
 #include "functions\Attack\PrepareAttack.au3"
 #include "functions\Attack\ReturnHome.au3"
 #include "functions\Attack\NameOfTroop.au3"
+#include "functions\Attack\SpellDarkStorage.au3"
 #include "functions\Attack\Attack Algorithms\algorithmTH.au3"
 #include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3"
 #include "functions\Attack\Attack Algorithms\algorithm_Barch.au3"
@@ -17,6 +18,7 @@
 #include "functions\Image Search\checkDeadBase.au3"
 #include "functions\Image Search\checkTownhall.au3"
 #include "functions\Image Search\checkWall.au3"
+#include "functions\Image Search\checkDarkElix.au3"
 
 #include "functions\Main Screen\checkMainScreen.au3"
 #include "functions\Main Screen\checkObstacles.au3"
@@ -73,3 +75,4 @@
 #include "functions\Village\BotCommand.au3"
 #include "functions\Village\UpgradeWall.au3"
 #include "functions\Village\VillageReport.au3"
+#include "functions\Village\CreateSpell.au3"

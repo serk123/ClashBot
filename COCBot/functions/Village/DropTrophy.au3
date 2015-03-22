@@ -29,7 +29,7 @@ Func DropTrophy()
 			$CurArch += 1
 			If _Sleep(1000) Then ExitLoop
 
-			ReturnHome(False) ;Return home no screenshot
+			ReturnHome(False, False) ;Return home no screenshot
 			If _Sleep(1000) Then ExitLoop
 			GUICtrlSetData($lblresulttrophiesdropped, GUICtrlRead($lblresulttrophiesdropped)-($TrophyCount-getOther(50, 74, "Trophy")))
 		Else

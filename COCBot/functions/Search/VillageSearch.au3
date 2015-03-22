@@ -68,7 +68,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				ElseIf _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
 					SetLog("Cannot locate Next button, try to return home...", $COLOR_RED)
 					If _Sleep(500) Then Return
-					ReturnHome(False) ;If End battle is available
+					ReturnHome(False, False) ;Return home no screenshot ;If End battle is available
 					checkMainScreen()
 					If _Sleep(1000) Then Return
 					ZoomOut()

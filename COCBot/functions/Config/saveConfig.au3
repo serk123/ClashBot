@@ -247,6 +247,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "misc", "returnhomedelay", GUICtrlRead($txtReturnh))
 	IniWrite($config, "misc", "kingskilldelay", GUICtrlRead($txtKingSkill))
 	IniWrite($config, "misc", "queenskilldelay", GUICtrlRead($txtQueenSkill))
+	IniWrite($config, "misc", "SpellDark", GUICtrlRead($txtSpellDarkStorage))
 	IniWrite($config, "misc", "searchspd", _GUICtrlComboBox_GetCurSel($cmbSearchsp))
 	IniWrite($config, "misc", "xTownHall", $TownHallPos[0])
 	IniWrite($config, "misc", "yTownHall", $TownHallPos[1])
@@ -256,11 +257,19 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "misc", "yKing", $KingPos[1])
     IniWrite($config, "misc", "xQueen", $QueenPos[0])
 	IniWrite($config, "misc", "yQueen", $QueenPos[1])
+    IniWrite($config, "misc", "xSFactory", $SFactoryPos[0])
+	IniWrite($config, "misc", "ySFactory", $SFactoryPos[1])
 
 	For $i = 0 To 3 ;Covers all 4 Barracks
 		IniWrite($config, "troop", "xBarrack" & $i + 1, $barrackPos[$i][0])
 		IniWrite($config, "troop", "yBarrack" & $i + 1, $barrackPos[$i][1])
 	Next
+
+	If GUICtrlRead($chkSpellDarkStorage) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "SpellDarkStorage", 1)
+	Else
+		IniWrite($config, "misc", "SpellDarkStorage", 0)
+	EndIf
 
 	If GUICtrlRead($chkTrap) = $GUI_CHECKED Then
 		IniWrite($config, "misc", "chkTrap", 1)

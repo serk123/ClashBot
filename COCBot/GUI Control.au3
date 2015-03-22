@@ -46,6 +46,13 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					If GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
 						GUICtrlSetState($chkNoAttack, $GUI_UNCHECKED)
 					EndIf
+				Case $chkMeetGE
+					If GUICtrlRead($chkMeetGE) = $GUI_UNCHECKED Then
+						GUICtrlSetState($chkSpellDarkStorage, $GUI_UNCHECKED)
+						GUICtrlSetState($chkSpellDarkStorage, $GUI_DISABLE)
+					 ElseIf GUICtrlRead($chkMeetGE) = $GUI_CHECKED Then
+						GUICtrlSetState($chkSpellDarkStorage, $GUI_ENABLE)
+					EndIf
 			EndSwitch
 		Case 274
 			Switch $wParam
@@ -119,6 +126,7 @@ Func Initiate()
 		GUICtrlSetState($btnLocateKingAltar, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateSFactory, $GUI_DISABLE)
 		$sTimer = TimerInit()
 		AdlibRegister("SetTime", 1000)
 		runBot()
@@ -192,6 +200,7 @@ Func btnStop()
 		GUICtrlSetState($btnLocateKingAltar, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateQueenAltar, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateCamp, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateSFactory, $GUI_ENABLE)
 		GUICtrlSetState($btnFindWall, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
 		GUICtrlSetState($chkNoAttack, $GUI_ENABLE)
@@ -206,7 +215,7 @@ Func btnStop()
 		GUICtrlSetState($btnStart, $GUI_SHOW)
 		GUICtrlSetState($btnStop, $GUI_HIDE)
 
-		AdlibUnRegister("SetTime")
+;		AdlibUnRegister("SetTime")
 		_BlockInputEx(0, "", "", $HWnD)
 
 		FileClose($hLogFileHandle)
@@ -268,6 +277,16 @@ Func btnLocateQueenAltar()
 	WEnd
 	$RunState = False
 EndFunc   ;==>btnLocateQueenAltar
+
+ Func btnLocateSFactory()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateSFactory()
+		ExitLoop
+	WEnd
+	$RunState = False
+EndFunc   ;==>btnLocateSFactory
 
 Func btnLocateUp1()
 	$RunState = True

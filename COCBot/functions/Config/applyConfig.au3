@@ -256,11 +256,18 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtReturnh, $itxtReturnh)
 	GUICtrlSetData($txtKingSkill, $itxtKingSkill)
 	GUICtrlSetData($txtQueenSkill, $itxtQueenSkill)
+	GUICtrlSetData($txtSpellDarkStorage, $itxtSpellDarkStorage)
 	_GUICtrlComboBox_SetCurSel($cmbSearchsp, $icmbSearchsp)
 	If $ichkTrap = 1 Then
 		GUICtrlSetState($chkTrap, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($chkTrap, $GUI_UNCHECKED)
+	EndIf
+
+	If $SpellDarkStorage = 1 Then
+		GUICtrlSetState($chkSpellDarkStorage, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSpellDarkStorage, $GUI_UNCHECKED)
 	EndIf
 
 	If $ichkBackground = 1 Then

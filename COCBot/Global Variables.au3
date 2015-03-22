@@ -118,6 +118,10 @@ Global $icmbSearchsp
 Global $ichkTrap
 Global $itxtKingSkill 	;Delay before activating King Skill
 Global $itxtQueenSkill	;Delay before activating Queen Skill
+Global $itxtSpellDarkStorage
+Global $SpellDarkStorage
+Global $DELocation, $DElixx = 0, $DElixy = 0
+Global $LSpell
 
 ;Boosts Settings
 Global $BoostAll
@@ -169,6 +173,7 @@ Global $barrackTroop[10] ;Barrack troop set
 Global $ArmyPos[2]
 Global $KingPos[2]
 Global $QueenPos[2]
+Global $SFactoryPos[2]
 Global $BuildPos1[2]
 Global $BuildPos2[2]
 Global $BuildPos3[2]

@@ -135,7 +135,19 @@ Func LocateQueenAltar()
 		EndIf
 		ExitLoop
 	WEnd
-EndFunc   ;==>LocateKingAltar
+ EndFunc   ;==>LocateQueenAltar
+
+ Func LocateSFactory()
+	While 1
+		$MsgBox = MsgBox(1 + 262144, "Locate Spell Factory", "Click OK then click on your Spell Factory", 0, $frmBot)
+		If $MsgBox = 1 Then
+			$SFactoryPos[0] = FindPos()[0]
+			$SFactoryPos[1] = FindPos()[1]
+			SetLog("-Spell Factory =  " & "(" & $SFactoryPos[0] & "," & $SFactoryPos[1] & ")", $COLOR_GREEN)
+		EndIf
+		ExitLoop
+	WEnd
+EndFunc   ;==>LocateSpellFactoryAltar
 
 Func LocateUpgrade1()
 	While 1

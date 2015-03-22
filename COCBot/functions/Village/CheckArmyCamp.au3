@@ -72,6 +72,9 @@ Func CheckArmyCamp()
 				If $TroopQ <> 0 Then SetLog("- " & $TroopName & " " & $TroopQ, $COLOR_GREEN)
 			Next
 		EndIf
+			If $fullArmy Then
+			SetLog("Army Camp Full : " & $fullArmy, $COLOR_RED)
+			EndIf
 		ClickP($TopLeftClient) ;Click Away
 		$FirstCampView = True
 	EndIf

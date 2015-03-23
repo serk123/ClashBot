@@ -1,6 +1,5 @@
 ;==>BoostBarracks
 Func BoostAllBuilding()
-	$BoostAll = 0
 	If (GUICtrlRead($cmbBoostBarracks) > 0) And ($boostsEnabled = 1)  Then
 
 		If $barrackPos[0][0] = "" Then
@@ -67,9 +66,10 @@ Func BoostAllBuilding()
 			BoostBuilding()
 		EndIf
 
-		If $BoostAll >= 1 Then
+		If $BoostAll >= (GUICtrlRead($chkBoostRax1) + GUICtrlRead($chkBoostRax2) + GUICtrlRead($chkBoostRax3) + GUICtrlRead($chkBoostRax4) + GUICtrlRead($chkBoostKing) + GUICtrlRead($chkBoostQueen)) Then
 			_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, (GUICtrlRead($cmbBoostBarracks)-1))
 			SetLog("Boost remaining : " & GUICtrlRead($cmbBoostBarracks), $COLOR_GREEN)
+			$BoostAll = 0
 		EndIf
 	EndIf
 EndFunc ;==>BoostAllBuilding

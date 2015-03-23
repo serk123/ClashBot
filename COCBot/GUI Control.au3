@@ -215,7 +215,7 @@ Func btnStop()
 		GUICtrlSetState($btnStart, $GUI_SHOW)
 		GUICtrlSetState($btnStop, $GUI_HIDE)
 
-;		AdlibUnRegister("SetTime")
+		AdlibUnRegister("SetTime")
 		_BlockInputEx(0, "", "", $HWnD)
 
 		FileClose($hLogFileHandle)

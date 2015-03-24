@@ -101,6 +101,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtKingSkill = IniRead($config, "misc", "kingskilldelay", "0")
 		$itxtQueenSkill = IniRead($config, "misc", "queenskilldelay", "0")
 		$itxtSpellDarkStorage = IniRead($config, "misc", "SpellDark", "0")
+		$SpellDarkStorage = IniRead($config, "misc", "SpellDarkStorage", "0")
 		$icmbSearchsp = IniRead($config, "misc", "searchspd", "0")
 		$ichkTrap = IniRead($config, "misc", "chkTrap", "0")
 		$TownHallPos[0] = IniRead($config, "misc", "xTownHall", "-1")
@@ -113,18 +114,19 @@ Func readConfig() ;Reads config and sets it to the variables
 		$QueenPos[1] = IniRead($config, "misc", "yQueen", "0")
 		$SFactoryPos[0] = IniRead($config, "misc", "xSFactory", "0")
 		$SFactoryPos[1] = IniRead($config, "misc", "ySFactory", "0")
-		$SpellDarkStorage = IniRead($config, "misc", "SpellDarkStorage", "0")
+
 
 		For $i = 0 To 3 ;Covers all 4 Barracks
 			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")
 			$barrackPos[$i][1] = IniRead($config, "troop", "yBarrack" & $i + 1, "0")
 			$barrackTroop[$i] = IniRead($config, "troop", "troop" & $i + 1, "0")
 		Next
-
+#cs
 		For $i = 0 To 16 ;Covers all Collectors
 			$collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")
 			$collectorPos[$i][1] = IniRead($config, "general", "yCollector" & $i + 1, "0")
 		Next
+#ce
 	Else
 		Return False
 	EndIf

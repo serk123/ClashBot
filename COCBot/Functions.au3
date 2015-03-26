@@ -13,6 +13,7 @@
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\saveConfig.au3"
 #include "functions\Config\ScreenCoordinates.au3"
+#include "functions\Config\saveloadConfig.au3"
 
 #include "functions\Image Search\ImageSearch.au3"
 #include "functions\Image Search\checkDeadBase.au3"

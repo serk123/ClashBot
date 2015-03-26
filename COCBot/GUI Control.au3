@@ -111,6 +111,7 @@ Func Initiate()
 		$Checkrearm = True
 		GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateDarkBarracks, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateCamp, $GUI_DISABLE)
 		GUICtrlSetState($btnFindWall, $GUI_DISABLE)
 		GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
@@ -127,6 +128,8 @@ Func Initiate()
 		GUICtrlSetState($btnLocateQueenAltar, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateClanCastle2, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateSFactory, $GUI_DISABLE)
+		GUICtrlSetState($btnSaveConfig, $GUI_DISABLE)
+		GUICtrlSetState($btnLoadConfig, $GUI_DISABLE)
 		$sTimer = TimerInit()
 		AdlibRegister("SetTime", 1000)
 		runBot()
@@ -192,6 +195,7 @@ Func btnStop()
 		EnableBS($HWnD, $SC_MINIMIZE)
 		EnableBS($HWnD, $SC_CLOSE)
 		GUICtrlSetState($btnLocateBarracks, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateDarkBarracks, $GUI_ENABLE)
 		GUICtrlSetState($btnSearchMode, $GUI_ENABLE)
 		GUICtrlSetState($cmbTroopComp, $GUI_ENABLE)
 		;GUICtrlSetState($btnLocateCollectors, $GUI_ENABLE)
@@ -214,6 +218,8 @@ Func btnStop()
 		GUICtrlSetState($btnAtkNow, $GUI_DISABLE)
 		GUICtrlSetState($btnStart, $GUI_SHOW)
 		GUICtrlSetState($btnStop, $GUI_HIDE)
+		GUICtrlSetState($btnSaveConfig, $GUI_ENABLE)
+		GUICtrlSetState($btnLoadConfig, $GUI_ENABLE)
 
 		AdlibUnRegister("SetTime")
 		_BlockInputEx(0, "", "", $HWnD)
@@ -237,6 +243,16 @@ Func btnLocateBarracks()
 	WEnd
 	$RunState = False
 EndFunc   ;==>btnLocateBarracks
+
+Func btnLocateDarkBarracks()
+	$RunState = True
+	While 1
+		ZoomOut()
+		LocateDarkBarrack()
+		ExitLoop
+	WEnd
+	$RunState = False
+EndFunc   ;==>btnLocateDarkBarracks
 
 Func btnLocateClanCastle()
 	$RunState = True
@@ -367,6 +383,7 @@ Func btnSearchMode()
 		GUICtrlSetState($btnStop, $GUI_SHOW)
 
 		GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
+		GUICtrlSetState($btnLocateDarkBarracks, $GUI_DISABLE)
 		GUICtrlSetState($btnSearchMode, $GUI_DISABLE)
 		GUICtrlSetState($cmbTroopComp, $GUI_DISABLE)
 		GUICtrlSetState($chkBackground, $GUI_DISABLE)
@@ -380,6 +397,7 @@ Func btnSearchMode()
 		GUICtrlSetState($btnStop, $GUI_HIDE)
 
 		GUICtrlSetState($btnLocateBarracks, $GUI_ENABLE)
+		GUICtrlSetState($btnLocateDarkBarracks, $GUI_ENABLE)
 		GUICtrlSetState($btnSearchMode, $GUI_ENABLE)
 		GUICtrlSetState($cmbTroopComp, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)

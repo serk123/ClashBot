@@ -70,6 +70,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$GiantsComp = IniRead($config, "troop", "giant", "0")
 		$GoblinsComp = IniRead($config, "troop", "goblin", "0")
 		$WBComp = IniRead($config, "troop", "WB", "0")
+		$ichkDarkTroop = IniRead($config, "troop", "chkDarkTroop", "0")
 		$icmbUnitDelay = IniRead($config, "other", "UnitD", "0")
 	    $icmbWaveDelay = IniRead($config, "other", "WaveD", "0")
 		$iRandomspeedatk = IniRead($config, "other", "randomatk", "0")
@@ -120,6 +121,12 @@ Func readConfig() ;Reads config and sets it to the variables
 			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")
 			$barrackPos[$i][1] = IniRead($config, "troop", "yBarrack" & $i + 1, "0")
 			$barrackTroop[$i] = IniRead($config, "troop", "troop" & $i + 1, "0")
+		Next
+
+		For $i = 0 To 1 ;Cover 2 Dark Barracks
+			$DarkBarrackPos[$i][0] = IniRead($config, "troop", "xDarkBarrack" & $i + 1, "0")
+			$DarkBarrackPos[$i][1] = IniRead($config, "troop", "yDarkBarrack" & $i + 1, "0")
+			$DarkBarrackTroop[$i] = IniRead($config, "troop", "Darktroop" & $i + 1, "0")
 		Next
 #cs
 		For $i = 0 To 16 ;Covers all Collectors

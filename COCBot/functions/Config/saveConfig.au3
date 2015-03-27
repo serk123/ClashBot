@@ -217,6 +217,9 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "troop", "troop3", _GUICtrlComboBox_GetCurSel($cmbBarrack3))
 	IniWrite($config, "troop", "troop4", _GUICtrlComboBox_GetCurSel($cmbBarrack4))
 
+	IniWrite($config, "troop", "Darktroop1", _GUICtrlComboBox_GetCurSel($cmbDarkBarrack1))
+	IniWrite($config, "troop", "Darktroop2", _GUICtrlComboBox_GetCurSel($cmbDarkBarrack2))
+
    ;Other Settings--------------------------------------------------------------------------
 	If GUICtrlRead($chkWalls) = $GUI_CHECKED Then
 		IniWrite($config, "other", "auto-wall", 1)
@@ -264,6 +267,17 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "troop", "xBarrack" & $i + 1, $barrackPos[$i][0])
 		IniWrite($config, "troop", "yBarrack" & $i + 1, $barrackPos[$i][1])
 	Next
+
+	For $i = 0 To 1 ;Cover 2 Dark Barracks
+		IniWrite($config, "troop", "xDarkBarrack" & $i + 1, $DarkBarrackPos[$i][0])
+		IniWrite($config, "troop", "yDarkBarrack" & $i + 1, $DarkBarrackPos[$i][1])
+	Next
+
+	If GUICtrlRead($chkDarkTroop) = $GUI_CHECKED Then
+		IniWrite($config, "troop", "chkDarkTroop", 1)
+	Else
+		IniWrite($config, "troop", "chkDarkTroop", 0)
+	EndIf
 
 	If GUICtrlRead($chkSpellDarkStorage) = $GUI_CHECKED Then
 		IniWrite($config, "misc", "SpellDarkStorage", 1)

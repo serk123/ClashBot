@@ -10,6 +10,7 @@ Func SpellDarkStorage()
 			   If _Sleep(500) Then Return
 			   Click($DElixx, $DElixy)
 			   If _Sleep(3000) Then Return
+			   $CreateSpell = True
 			ElseIf $LSpell = -1 Then
 			   SetLog("Lightning Spell is not ready", $COLOR_RED)
 			ElseIf ($SDark - $itxtSpellDarkStorage <= -1) Then

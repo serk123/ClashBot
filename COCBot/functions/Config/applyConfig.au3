@@ -227,6 +227,15 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbBarrack2, $barrackTroop[1])
 	_GUICtrlComboBox_SetCurSel($cmbBarrack3, $barrackTroop[2])
 	_GUICtrlComboBox_SetCurSel($cmbBarrack4, $barrackTroop[3])
+
+	_GUICtrlComboBox_SetCurSel($cmbDarkBarrack1, $DarkBarrackTroop[0])
+	_GUICtrlComboBox_SetCurSel($cmbDarkBarrack2, $DarkBarrackTroop[1])
+
+	If $ichkDarkTroop = 1 Then
+		GUICtrlSetState($chkDarkTroop, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDarkTroop, $GUI_UNCHECKED)
+	EndIf
 	;Other Settings--------------------------------------------------------------------------
 	If $ichkWalls = 1 Then
 		GUICtrlSetState($chkWalls, $GUI_CHECKED)

@@ -1,5 +1,5 @@
 Func CreateSpell()
-	If $SpellDarkStorage = 0 Then Return
+	If $SpellDarkStorage = 0 or $CreateSpell = False Then Return
 
   	SetLog("Create Lightning Spells...", $COLOR_BLUE)
 
@@ -34,5 +34,5 @@ Func CreateSpell()
     If _Sleep(500) Then Return
 	Click($TopLeftClient[0], $TopLeftClient[1], 2, 250); Click away twice with 250ms delay
     SetLog("Create Spell Complete...", $COLOR_BLUE)
-
+    $CreateSpell = False
 EndFunc   ;==>Create Spell

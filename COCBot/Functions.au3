@@ -77,3 +77,4 @@
 #include "functions\Village\UpgradeWall.au3"
 #include "functions\Village\VillageReport.au3"
 #include "functions\Village\CreateSpell.au3"
+#include "functions\Village\TrainDark.au3"

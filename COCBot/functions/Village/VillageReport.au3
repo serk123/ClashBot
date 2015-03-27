@@ -41,5 +41,9 @@ Func VillageReport()
 	GUICtrlSetData($lblresultelixirnow, $ElixirCount)
 	GUICtrlSetData($lblresultdenow, $DarkCount)
 	GUICtrlSetData($lblresulttrophynow, $TrophyCount)
+
+	GUICtrlSetData($lblresultgoldnowM, $GoldCount)
+	GUICtrlSetData($lblresultelixirnowM, $ElixirCount)
+	GUICtrlSetData($lblresultdenowM, $DarkCount)
 	$FirstAttack = 1
 EndFunc

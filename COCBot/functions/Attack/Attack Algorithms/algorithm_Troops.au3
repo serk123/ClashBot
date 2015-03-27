@@ -70,7 +70,7 @@ Func DropOnEdges2($troop, $nbSides, $number, $slotsPerEdge=0)
     Next
 EndFunc
 
-Func LauchTroop2($troopKind, $nbSides, $waveNb, $maxWaveNb, $slotsPerEdge=0)
+Func LaunchTroop2($troopKind, $nbSides, $waveNb, $maxWaveNb, $slotsPerEdge=0)
    Local $troop = -1
    Local $troopNb = 0
    Local $name = ""
@@ -161,28 +161,28 @@ Func algorithm_Troops() ;Attack Algorithm for all existing troops
          ; ========= Feel free to experiment something else ===============================
          ; ================================================================================?
          algorithmTH()
-         if LauchTroop2($eGiant, $nbSides, 1, 1, 1) Then
+         if LaunchTroop2($eGiant, $nbSides, 1, 1, 1) Then
             If _Sleep(400) Then Return
                EndIf
-         if LauchTroop2($eBarbarian, $nbSides, 1, 2) Then
+         if LaunchTroop2($eBarbarian, $nbSides, 1, 2) Then
             If _Sleep(400) Then Return
                EndIf
-         if LauchTroop2($eArcher, $nbSides, 1, 2) Then
+         if LaunchTroop2($eArcher, $nbSides, 1, 2) Then
             If _Sleep(100) Then Return
                EndIf
-         If LauchTroop2($eBarbarian, $nbSides, 2, 2) Then
+         If LaunchTroop2($eBarbarian, $nbSides, 2, 2) Then
             If _Sleep(200) Then Return
             EndIf
-         if LauchTroop2($eWallbreaker, $nbSides, 1, 1, 1) Then
+         if LaunchTroop2($eWallbreaker, $nbSides, 1, 1, 1) Then
             If _Sleep(50) Then Return
                EndIf
-         If LauchTroop2($eGoblin, $nbSides, 1, 2) Then
+         If LaunchTroop2($eGoblin, $nbSides, 1, 2) Then
             If _Sleep(50) Then Return
                EndIf
-         If LauchTroop2($eArcher, $nbSides, 2, 2) Then
+         If LaunchTroop2($eArcher, $nbSides, 2, 2) Then
             If _Sleep(50) Then Return
                EndIf
-         If LauchTroop2($eGoblin, $nbSides, 2, 2) Then
+         If LaunchTroop2($eGoblin, $nbSides, 2, 2) Then
             If _Sleep(50) Then Return
                EndIf
          ; ================================================================================?
@@ -210,9 +210,9 @@ Func algorithm_Troops() ;Attack Algorithm for all existing troops
 		   PrepareAttack(True) ;Check remaining quantities
 		   For $i = $eBarbarian To $eWallbreaker ; lauch all remaining troops
 			  If $i = $eBarbarian Or $i = $eArcher Or $i = $eGoblin Then
-				 LauchTroop2($i, $nbSides, 0, 1)
+				 LaunchTroop2($i, $nbSides, 0, 1)
 			  Else
-				 LauchTroop($i, $nbSides, 0, 1, 2)
+				 LaunchTroop2($i, $nbSides, 0, 1, 2)
 			  EndIf
 			  If _Sleep(100) Then Return
 		   Next

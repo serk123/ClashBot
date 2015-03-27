@@ -140,7 +140,7 @@ Func Idle() ;Sequence that runs until Full Army
 			$iCollectCounter = $iCollectCounter + 1
 			If $CommandStop <> 3 Then
 			    CheckArmyCamp()
-			    If _Sleep(1000) Then Return
+			    If _Sleep(1000) Then ExitLoop
 				Train()
 				If _Sleep(1000) Then ExitLoop
 			EndIf
@@ -174,6 +174,7 @@ Func AttackMain() ;Main control for attack functions
 	If _Sleep(1000) Then Return
 	ReturnHome()
 	If _Sleep(1000) Then Return
+	$FirstStart = True ;Ensure camps get recalculated after battle
 EndFunc   ;==>AttackMain
 
 Func Attack() ;Selects which algorithm

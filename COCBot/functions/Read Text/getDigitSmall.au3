@@ -5,40 +5,39 @@
 ;--------------------------------------------------------------------------------------------------------------
 
 Func getDigitSmall(ByRef $x, $y, $type)
-    Local $width = 0
+	Local $width = 0
 
-    ;Search for digit 0
-    $width = 10
-   Select
-	 Case $type = "Camp"
-		 Local $c1 = Hex(0x979797, 6), $c2 = Hex(0x050505, 6), $c3 = Hex(0xD8D8D8, 6)
-	  EndSelect
-
-   For $i = 0 To 1
-	Local $pixel1[3] = [$x + 5, $y + 3, $c1], $pixel2[3] = [$x + 5, $y + 4, $c2], $pixel3[3] = [$x + 6, $y + 8, $c3]
-	If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-		$x += $width ;Adds to x coordinate to get the next digit
-		Return "0"
-	Else
-		$x -= 1 ;Solves the problem when the spaces between the middle goes from 6 to 5 pixels
+	;Search for digit 0
+	$width = 10
+	Select
+		Case $type = "Camp"
+			Local $c1 = Hex(0x979797, 6), $c2 = Hex(0x050505, 6), $c3 = Hex(0xD8D8D8, 6)
+	EndSelect
+	For $i = 0 To 1
 		Local $pixel1[3] = [$x + 5, $y + 3, $c1], $pixel2[3] = [$x + 5, $y + 4, $c2], $pixel3[3] = [$x + 6, $y + 8, $c3]
-		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-			$x += $width ;Changes x coordinate for the next digit.
+			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+			$x += $width ;Adds to x coordinate to get the next digit
 			Return "0"
 		Else
-			$x += 2 ;Solves the problem when there is 1 pixel space between a set of numbers
+			$x -= 1 ;Solves the problem when the spaces between the middle goes from 6 to 5 pixels
 			Local $pixel1[3] = [$x + 5, $y + 3, $c1], $pixel2[3] = [$x + 5, $y + 4, $c2], $pixel3[3] = [$x + 6, $y + 8, $c3]
 			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-				$x += $width
+				$x += $width ;Changes x coordinate for the next digit.
 				Return "0"
 			Else
-				$x -= 1
+				$x += 2 ;Solves the problem when there is 1 pixel space between a set of numbers
+				Local $pixel1[3] = [$x + 5, $y + 3, $c1], $pixel2[3] = [$x + 5, $y + 4, $c2], $pixel3[3] = [$x + 6, $y + 8, $c3]
+				If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+					$x += $width
+					Return "0"
+				Else
+					$x -= 1
+				EndIf
 			EndIf
 		EndIf
-	 EndIf
-	 If $i = 0 Then $x -= 1
-	 Next
-   $x += 1
+		If $i = 0 Then $x -= 1
+	Next
+	$x += 1
 
     ;Search for digit 1
     $width = 4
@@ -126,35 +125,35 @@ Func getDigitSmall(ByRef $x, $y, $type)
 
 	;Search for digit 4
 	For $i = 0 To 1
-	   $width = 9
-	   Select
-		   Case $type = "Camp"
-			   Local $c1 = Hex(0xC9C9C9, 6), $c2 = Hex(0x202020, 6), $c3 = Hex(0x1E1E1E, 6)
-	   EndSelect
-	   Local $pixel1[3] = [$x + 2, $y + 4, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
-	   If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-		   $x += $width
-		   Return 4
-	   Else
-		   $x -= 1
-		   Local $pixel1[3] = [$x + 2, $y + 4, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
-		   If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-			   $x += $width
-			   Return 4
-		   Else
-			   $x += 2
-			   Local $pixel1[3] = [$x + 2, $y + 4, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
-			   If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-				   $x += $width
-				   Return 4
-			   Else
-				   $x -= 1
-			   EndIf
-		   EndIf
+		$width = 9
+		Select
+			Case $type = "Camp"
+				Local $c1 = Hex(0xC9C9C9, 6), $c2 = Hex(0x202020, 6), $c3 = Hex(0x1E1E1E, 6)
+		EndSelect
+		Local $pixel1[3] = [$x + 2, $y + 4, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+			$x += $width
+			Return 4
+		Else
+			$x -= 1
+			Local $pixel1[3] = [$x + 2, $y + 4, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
+			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+				$x += $width
+				Return 4
+			Else
+				$x += 2
+				Local $pixel1[3] = [$x + 2, $y + 4, $c1], $pixel2[3] = [$x + 3, $y + 1, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
+				If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+					$x += $width
+					Return 4
+				Else
+					$x -= 1
+				EndIf
+			EndIf
 		EndIf
 		If $i = 0 Then $x -= 3
-    Next
-    $x += 3
+	Next
+	$x += 3
 
 	;Search for digit 5
 	$width = 8

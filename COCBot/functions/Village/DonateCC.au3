@@ -139,10 +139,13 @@ Func DonateBarbs()
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 		If _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Barbarians", $COLOR_BLUE)
-			If _Sleep(500) Then Return
-			Click(237, $DonatePixel[1] - 5, 5, 50)
+			While _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
+				Click(237, $DonatePixel[1] - 5)
+				$CurBarb += 1
+				If _Sleep(250) Then Return
+				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
+			WEnd
 			$Donate = True
-			$CurBarb += 5
 		ElseIf $ichkDonateAllArchers = 1 Then
 			DonateArchers()
 			Return
@@ -165,10 +168,13 @@ Func DonateArchers()
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 		If _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Archers", $COLOR_BLUE)
-			If _Sleep(500) Then Return
-			Click(315, $DonatePixel[1] - 5, 5, 50)
+			While _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
+				Click(315, $DonatePixel[1] - 5)
+				$CurArch += 1
+				If _Sleep(250) Then Return
+				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
+			WEnd
 			$Donate = True
-			$CurArch += 5
 		ElseIf $ichkDonateAllGiants = 1 Then
 			DonateGiants()
 			Return
@@ -192,10 +198,13 @@ Func DonateGiants()
 		;Giants Fixed
 		If _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Giants", $COLOR_BLUE)
-			If _Sleep(500) = True Then Return
-			Click(400, $DonatePixel[1] - 5, 5, 50)
+			While _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
+				Click(400, $DonatePixel[1] - 5)
+				$CurGiant += 1
+				If _Sleep(250) = True Then Return
+				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
+			WEnd
 			$Donate = True
-			$CurGiant += 5
 		Else
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
 		EndIf

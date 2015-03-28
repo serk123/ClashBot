@@ -29,10 +29,11 @@ Func CreateSpell()
 				If _Sleep(200) Then ExitLoop
 			    _CaptureRegion()
 			WEnd
+    $CreateSpell = False
 	EndIf
 
     If _Sleep(500) Then Return
 	Click($TopLeftClient[0], $TopLeftClient[1], 2, 250); Click away twice with 250ms delay
     SetLog("Create Spell Complete...", $COLOR_BLUE)
-    $CreateSpell = False
+
 EndFunc   ;==>Create Spell

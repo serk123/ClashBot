@@ -73,7 +73,7 @@ Global $SearchCount = 0 ;Number of searches
 Global $THaddtiles, $THside, $THi
 
 ;Troop types
-Global Enum $eBarbarian, $eArcher, $eGiant, $eGoblin, $eWallbreaker, $eKing, $eQueen, $eCastle, $eLSpell
+Global Enum $eBarbarian, $eArcher, $eGiant, $eGoblin, $eWallbreaker, $eKing, $eQueen, $eCastle, $eLSpell, $eMinion, $eHog, $eValkyrie
 
 ;Attack Settings
 Global $TopLeft[5][2] = [[79, 281], [170, 205], [234, 162], [296, 115], [368, 66]]
@@ -106,7 +106,7 @@ Global $checkQPower = False ; Check for Queen activate power
 
 Global $THLoc
 
-Global $King, $Queen, $CC, $Barb, $Arch
+Global $King, $Queen, $CC, $Barb, $Arch, $Minion, $Hog, $Valkyrie
 Global $LeftTHx, $RightTHx, $BottomTHy, $TopTHy
 Global $AtkTroopTH
 Global $GetTHLoc
@@ -122,6 +122,7 @@ Global $itxtSpellDarkStorage
 Global $SpellDarkStorage
 Global $DELocation, $DElixx = 0, $DElixy = 0
 Global $LSpell
+Global $CreateSpell = True
 
 ;Boosts Settings
 Global $BoostAll
@@ -156,6 +157,7 @@ Global $itxtDonateGiants = ""
 Global $icmbRaidcap
 Global $icmbTroopComp ;Troop Composition
 Global $itxtcampCap
+Global $ichkDarkTroop
 Global $BarbariansComp
 Global $ArchersComp
 Global $GiantsComp
@@ -166,10 +168,16 @@ Global $CurArch
 Global $CurGiant
 Global $CurGoblin
 Global $CurWB
+Global $CurMinion
+Global $CurHog
+Global $CurValkyrie
 Global $ArmyComp
 Global $TownHallPos[2] = [-1, -1] ;Position of TownHall
 Global $barrackPos[4][2] ;Positions of each barracks
 Global $barrackTroop[10] ;Barrack troop set
+Global $DarkBarrackPos[2][2]
+Global $DarkBarrackTroop [3]
+
 Global $ArmyPos[2]
 Global $KingPos[2]
 Global $QueenPos[2]
@@ -221,6 +229,7 @@ Global $CurTrophy = 0
 Global $sTimer, $hour, $min, $sec
 Global $CurCamp, $TotalCamp = 0
 Global $NoLeague
-Global $FirstStart = true
+Global $FirstStart = True
 Global $DCattack = 0
 Global $Checkrearm = True
+Global $lblgoldnowM, $lblresultgoldnowM, $imggoldnowM, $lblelixirnowM, $lblresultelixirnowM, $imgelixirnowM, $lbldenowM, $lblresultdenowM, $imgdenowM

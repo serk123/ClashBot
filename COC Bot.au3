@@ -7,7 +7,7 @@
 #pragma compile(FileVersion, 5.7)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "5.8"
+$sBotVersion = "5.9 Beta"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -92,6 +92,8 @@ Func runBot() ;Bot that runs everything in order
 		    ZoomOut()
 			Train()
 			If _Sleep(1000) Then Return
+			TrainDark()
+			If _Sleep(1000) Then Return
 			CreateSpell()
 			If _Sleep(1000) Then Return
 		EndIf
@@ -142,6 +144,8 @@ Func Idle() ;Sequence that runs until Full Army
 			    CheckArmyCamp()
 			    If _Sleep(1000) Then ExitLoop
 				Train()
+			    If _Sleep(1000) Then Return
+				TrainDark()
 				If _Sleep(1000) Then ExitLoop
 			EndIf
 			If $CommandStop = 0 And $fullArmy Then

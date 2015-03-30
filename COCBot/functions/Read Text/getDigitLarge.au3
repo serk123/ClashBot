@@ -5,119 +5,119 @@
 ;--------------------------------------------------------------------------------------------------------------
 
 Func getDigitLarge(ByRef $x, $y, $type)
-    Local $width = 0
+	Local $width = 0
 
-    ;Search for digit 0
-    $width = 17
-    Select
-        Case $type = "ReturnHome"
-            Local $c1 = Hex(0x484848, 10), $c2 = Hex(0x050505, 10), $c3 = Hex(0x4C4442, 10)
-    EndSelect
-    Local $pixel1[3] = [$x + 9, $y + 6, $c1], $pixel2[3] = [$x + 9, $y + 9, $c2], $pixel3[3] = [$x + 14, $y + 18, $c3]
-    If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-        $x += $width ;Adds to x coordinate to get the next digit
-        Return "0"
-    Else
-        $x -= 1 ;Solves the problem when the spaces between the middle goes from 6 to 5 pixels
-        Local $pixel1[3] = [$x + 9, $y + 6, $c1], $pixel2[3] = [$x + 9, $y + 9, $c2], $pixel3[3] = [$x + 14, $y + 18, $c3]
+	;Search for digit 0
+	$width = 17
+	Select
+		Case $type = "ReturnHome"
+			Local $c1 = Hex(0x484848, 10), $c2 = Hex(0x050505, 10), $c3 = Hex(0x4C4442, 10)
+	EndSelect
+	Local $pixel1[3] = [$x + 9, $y + 6, $c1], $pixel2[3] = [$x + 9, $y + 9, $c2], $pixel3[3] = [$x + 14, $y + 18, $c3]
+	If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+		$x += $width ;Adds to x coordinate to get the next digit
+		Return "0"
+	Else
+		$x -= 1 ;Solves the problem when the spaces between the middle goes from 6 to 5 pixels
+		Local $pixel1[3] = [$x + 9, $y + 6, $c1], $pixel2[3] = [$x + 9, $y + 9, $c2], $pixel3[3] = [$x + 14, $y + 18, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-            $x += $width ;Changes x coordinate for the next digit.
-            Return "0"
-        Else
-            $x += 2 ;Solves the problem when there is 1 pixel space between a set of numbers
-            Local $pixel1[3] = [$x + 9, $y + 6, $c1], $pixel2[3] = [$x + 9, $y + 9, $c2], $pixel3[3] = [$x + 14, $y + 18, $c3]
+			$x += $width ;Changes x coordinate for the next digit.
+			Return "0"
+		Else
+			$x += 2 ;Solves the problem when there is 1 pixel space between a set of numbers
+			Local $pixel1[3] = [$x + 9, $y + 6, $c1], $pixel2[3] = [$x + 9, $y + 9, $c2], $pixel3[3] = [$x + 14, $y + 18, $c3]
 			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-                $x += $width
-                Return "0"
-            Else
-                $x -= 1
-            EndIf
-        EndIf
-    EndIf
+				$x += $width
+				Return "0"
+			Else
+				$x -= 1
+			EndIf
+		EndIf
+	EndIf
 
-    ;Search for digit 1
-    $width = 7
-    Select
-        Case $type = "ReturnHome"
-            Local $c1 = Hex(0x231C24, 10), $c2 = Hex(0x707863, 20), $c3 = Hex(0xCBCBC9, 10)
-    EndSelect
-    Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 17, $c2], $pixel3[3] = [$x + 6, $y + 17, $c3]
-    If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-        $x += $width
-        Return 1
-    Else
-        $x -= 1
-        Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 17, $c2], $pixel3[3] = [$x + 6, $y + 17, $c3]
-        If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-            $x += $width
-            Return 1
-        Else
-            $x += 2
-            Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 17, $c2], $pixel3[3] = [$x + 6, $y + 17, $c3]
-            If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-                $x += $width
-                Return 1
-            Else
-                $x -= 1
-            EndIf
-        EndIf
-    EndIf
+	;Search for digit 1
+	$width = 7
+	Select
+		Case $type = "ReturnHome"
+			Local $c1 = Hex(0x231C24, 10), $c2 = Hex(0x707863, 20), $c3 = Hex(0xCBCBC9, 10)
+	EndSelect
+	Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 17, $c2], $pixel3[3] = [$x + 6, $y + 17, $c3]
+	If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+		$x += $width
+		Return 1
+	Else
+		$x -= 1
+		Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 17, $c2], $pixel3[3] = [$x + 6, $y + 17, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+			$x += $width
+			Return 1
+		Else
+			$x += 2
+			Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 17, $c2], $pixel3[3] = [$x + 6, $y + 17, $c3]
+			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+				$x += $width
+				Return 1
+			Else
+				$x -= 1
+			EndIf
+		EndIf
+	EndIf
 
-    ;Search for digit 2
-    $width = 13
-    Select
-        Case $type = "ReturnHome"
-            Local $c1 = Hex(0x737C69, 10), $c2 = Hex(0xE2E2E2, 10), $c3 = Hex(0xB8B8B8, 10)
-    EndSelect
-    Local $pixel1[3] = [$x + 1, $y + 10, $c1], $pixel2[3] = [$x + 5, $y + 8, $c2], $pixel3[3] = [$x + 8, $y + 11, $c3]
-    If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-        $x += $width
-        Return 2
-    Else
-        $x -= 1
-        Local $pixel1[3] = [$x + 1, $y + 10, $c1], $pixel2[3] = [$x + 5, $y + 8, $c2], $pixel3[3] = [$x + 8, $y + 11, $c3]
-        If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-            $x += $width
-            Return 2
-        Else
-            $x += 2
-            Local $pixel1[3] = [$x + 1, $y + 10, $c1], $pixel2[3] = [$x + 5, $y + 8, $c2], $pixel3[3] = [$x + 8, $y + 11, $c3]
-            If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-                $x += $width
-                Return 2
-            Else
-                $x -= 1
-            EndIf
-        EndIf
-    EndIf
+	;Search for digit 2
+	$width = 13
+	Select
+		Case $type = "ReturnHome"
+			Local $c1 = Hex(0x737C69, 10), $c2 = Hex(0xE2E2E2, 10), $c3 = Hex(0xB8B8B8, 10)
+	EndSelect
+	Local $pixel1[3] = [$x + 1, $y + 10, $c1], $pixel2[3] = [$x + 5, $y + 8, $c2], $pixel3[3] = [$x + 8, $y + 11, $c3]
+	If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+		$x += $width
+		Return 2
+	Else
+		$x -= 1
+		Local $pixel1[3] = [$x + 1, $y + 10, $c1], $pixel2[3] = [$x + 5, $y + 8, $c2], $pixel3[3] = [$x + 8, $y + 11, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+			$x += $width
+			Return 2
+		Else
+			$x += 2
+			Local $pixel1[3] = [$x + 1, $y + 10, $c1], $pixel2[3] = [$x + 5, $y + 8, $c2], $pixel3[3] = [$x + 8, $y + 11, $c3]
+			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+				$x += $width
+				Return 2
+			Else
+				$x -= 1
+			EndIf
+		EndIf
+	EndIf
 
-    ;Search for digit 3
-    $width = 14
-    Select
-        Case $type = "ReturnHome"
-            Local $c1 = Hex(0xD9D9DB, 10), $c2 = Hex(0x050505, 10), $c3 = Hex(0x4E4F54, 10)
-    EndSelect
-    Local $pixel1[3] = [$x + 4, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 11, $c2], $pixel3[3] = [$x + 7, $y + 18, $c3]
-    If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-        $x += $width
-        Return 3
-    Else
-        $x -= 1
-        Local $pixel1[3] = [$x + 4, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 11, $c2], $pixel3[3] = [$x + 7, $y + 18, $c3]
-        If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-            $x += $width
-            Return 3
-        Else
-            $x += 2
-            Local $pixel1[3] = [$x + 4, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 11, $c2], $pixel3[3] = [$x + 7, $y + 18, $c3]
-            If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
-                $x += $width
-                Return 3
-            Else
-                $x -= 1
-            EndIf
-        EndIf
-    EndIf
+	;Search for digit 3
+	$width = 14
+	Select
+		Case $type = "ReturnHome"
+			Local $c1 = Hex(0xD9D9DB, 10), $c2 = Hex(0x050505, 10), $c3 = Hex(0x4E4F54, 10)
+	EndSelect
+	Local $pixel1[3] = [$x + 4, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 11, $c2], $pixel3[3] = [$x + 7, $y + 18, $c3]
+	If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+		$x += $width
+		Return 3
+	Else
+		$x -= 1
+		Local $pixel1[3] = [$x + 4, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 11, $c2], $pixel3[3] = [$x + 7, $y + 18, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+			$x += $width
+			Return 3
+		Else
+			$x += 2
+			Local $pixel1[3] = [$x + 4, $y + 4, $c1], $pixel2[3] = [$x + 5, $y + 11, $c2], $pixel3[3] = [$x + 7, $y + 18, $c3]
+			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
+				$x += $width
+				Return 3
+			Else
+				$x -= 1
+			EndIf
+		EndIf
+	EndIf
 
 	;Search for digit 4
 	$width = 16
@@ -237,19 +237,19 @@ Func getDigitLarge(ByRef $x, $y, $type)
 		Case $type = "ReturnHome"
 			Local $c1 = Hex(0x5B5A5F, 10), $c2 = Hex(0x0E0E18, 10), $c3 = Hex(0x000000, 6)
 	EndSelect
-	Local $pixel1[3] = [$x + 8, $y + 4, $c1], $pixel2[3] = [$x +7, $y + 14, $c2], $pixel3[3] = [$x + 2, $y + 9, $c3]
+	Local $pixel1[3] = [$x + 8, $y + 4, $c1], $pixel2[3] = [$x + 7, $y + 14, $c2], $pixel3[3] = [$x + 2, $y + 9, $c3]
 	If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
 		$x += $width
 		Return 8
 	Else
 		$x -= 1
-		Local $pixel1[3] = [$x + 8, $y + 4, $c1], $pixel2[3] = [$x +7, $y + 14, $c2], $pixel3[3] = [$x + 2, $y + 9, $c3]
+		Local $pixel1[3] = [$x + 8, $y + 4, $c1], $pixel2[3] = [$x + 7, $y + 14, $c2], $pixel3[3] = [$x + 2, $y + 9, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
 			$x += $width
 			Return 8
 		Else
 			$x += 2
-			Local $pixel1[3] = [$x + 8, $y + 4, $c1], $pixel2[3] = [$x +7, $y + 14, $c2], $pixel3[3] = [$x + 2, $y + 9, $c3]
+			Local $pixel1[3] = [$x + 8, $y + 4, $c1], $pixel2[3] = [$x + 7, $y + 14, $c2], $pixel3[3] = [$x + 2, $y + 9, $c3]
 			If boolPixelSearch($pixel1, $pixel2, $pixel3, 7) Then
 				$x += $width
 				Return 8
@@ -285,7 +285,7 @@ Func getDigitLarge(ByRef $x, $y, $type)
 				$x -= 1
 			EndIf
 		EndIf
-	 EndIf
+	EndIf
 
 	Return ""
-EndFunc   ;==>getDigit
+EndFunc   ;==>getDigitLarge

@@ -42,7 +42,7 @@ Func GetResources() ;Reads resources
 
 		If $THx > 227 And $THx < 627 And $THy > 151 And $THy < 419 And $searchTH <> "-" Then
 			$THLoc = "In"
-		Elseif $searchTH <> "-" Then
+		ElseIf $searchTH <> "-" Then
 			$THLoc = "Out"
 		Else
 			$THLoc = $searchTH

@@ -754,14 +754,14 @@ Func getChar(ByRef $x, $y)
 	$width = 2
 	Local $c1 = Hex(0x404440, 6), $c2 = Hex(0x404440, 6), $c3 = Hex(0x404440, 6)
 	For $i = 1 To 3
-	    Local $pixel1[3] = [$x + 1, $y + 3, $c1], $pixel2[3] = [$x + 1, $y + 7, $c2], $pixel3[3] = [$x + 2, $y + 5, $c3]
-	    If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
-		   $x += $width
-		   Return " "
-	    Else
-		   $x += 1
-	    EndIf
-    Next
+		Local $pixel1[3] = [$x + 1, $y + 3, $c1], $pixel2[3] = [$x + 1, $y + 7, $c2], $pixel3[3] = [$x + 2, $y + 5, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return " "
+		Else
+			$x += 1
+		EndIf
+	Next
 	$x -= 3
 
 	Return "|"

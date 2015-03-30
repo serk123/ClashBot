@@ -21,7 +21,7 @@
 #include <GuiRichEdit.au3>
 #include <GuiTab.au3>
 
-GLOBAL CONST $COLOR_ORANGE = 0xFFA500
+Global Const $COLOR_ORANGE = 0xFFA500
 
 Global $Compiled
 If @Compiled Then
@@ -59,7 +59,7 @@ Global $BSpos[2] ; Inside BlueStacks positions relative to the screen
 ;Search Settings
 Global $searchGold, $searchElixir, $searchDark, $searchTrophy, $searchDead, $searchTH ; Resources of bases when searching
 Global $MinDeadGold, $MinDeadElixir, $MinDeadDark, $MinDeadTrophy, $MaxDeadTH, $MinGold, $MinElixir, $MinDark, $MinTrophy, $MaxTH ; Minimum Resources conditions
-Global $chkConditions[10]  ;Conditions (meet gold...)
+Global $chkConditions[10] ;Conditions (meet gold...)
 Global $icmbTH, $icmbDeadTH, $icmbAny, $icmbDead
 Global $THLocation
 Global $THx = 0, $THy = 0
@@ -116,8 +116,8 @@ Global $itxtReconnect
 Global $itxtReturnh
 Global $icmbSearchsp
 Global $ichkTrap
-Global $itxtKingSkill 	;Delay before activating King Skill
-Global $itxtQueenSkill	;Delay before activating Queen Skill
+Global $itxtKingSkill ;Delay before activating King Skill
+Global $itxtQueenSkill ;Delay before activating Queen Skill
 Global $itxtSpellDarkStorage
 Global $SpellDarkStorage
 Global $DELocation, $DElixx = 0, $DElixy = 0

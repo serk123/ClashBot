@@ -64,4 +64,4 @@ Func BotCommand()
 		EndIf
 	EndIf
 	Return False
-EndFunc
+EndFunc   ;==>BotCommand

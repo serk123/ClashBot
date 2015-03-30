@@ -9,14 +9,14 @@ Func _GUICtrlRichEdit_AppendTextColor($hWnd, $sText, $iColor)
 	Local $iLength = _GUICtrlRichEdit_GetTextLength($hWnd, True, True)
 	Local $iCp = _GUICtrlRichEdit_GetCharPosOfNextWord($hWnd, $iLength)
 	_GUICtrlRichEdit_AppendText($hWnd, $sText)
-	_GUICtrlRichEdit_SetSel($hWnd, $iCp-1, $iLength + StringLen($sText))
+	_GUICtrlRichEdit_SetSel($hWnd, $iCp - 1, $iLength + StringLen($sText))
 	_GUICtrlRichEdit_SetCharColor($hWnd, $iColor)
-	_GuiCtrlRichEdit_Deselect($hWnd)
-EndFunc
+	_GUICtrlRichEdit_Deselect($hWnd)
+EndFunc   ;==>_GUICtrlRichEdit_AppendTextColor
 
 Func _ColorConvert($nColor);RGB to BGR or BGR to RGB
-    Return _
-        BitOR(BitShift(BitAND($nColor, 0x000000FF), -16), _
-        BitAND($nColor, 0x0000FF00), _
-        BitShift(BitAND($nColor, 0x00FF0000), 16))
-EndFunc	;==>_ColorConvert
+	Return _
+			BitOR(BitShift(BitAND($nColor, 0x000000FF), -16), _
+			BitAND($nColor, 0x0000FF00), _
+			BitShift(BitAND($nColor, 0x00FF0000), 16))
+EndFunc   ;==>_ColorConvert

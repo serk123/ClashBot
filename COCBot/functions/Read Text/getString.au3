@@ -18,4 +18,4 @@ Func getString($y)
 	$String = StringReplace($String, "|", Null)
 
 	Return $String
-EndFunc
+EndFunc   ;==>getString

@@ -2,39 +2,39 @@
 ;Returns True when there is something blocking
 
 Func checkObstacles() ;Checks if something is in the way for mainscreen
-    Local $x, $y
+	Local $x, $y
 	_CaptureRegion()
-    If _ImageSearchArea($device, 0, 237, 321, 293, 346, $x, $y, 80) Then
-			SetLog("Another Device has connected, reconnect in " & $itxtReconnect & " minutes ", $COLOR_RED)
+	If _ImageSearchArea($device, 0, 237, 321, 293, 346, $x, $y, 80) Then
+		SetLog("Another Device has connected, reconnect in " & $itxtReconnect & " minutes ", $COLOR_RED)
 		If _Sleep($itxtReconnect * 60000) Then Return
 		$iTimeTroops = 0
 		Click(416, 399);Check for "Another device" message
 		If _Sleep(6000) Then Return
-	    $Checkrearm = True
-	    ZoomOut()
-	    Return True
-	Endif
-
-    If _ImageSearch($break, 0, $x, $y, 80) Then
-        SetLog("Village must take a break, wait ...", $COLOR_RED)
-        If _Sleep(120000) Then Return ; 2 Minutes
-        Click(416, 399);Check for "Take a break" message
 		$Checkrearm = True
-        Return True
-	 EndIf
+		ZoomOut()
+		Return True
+	EndIf
+
+	If _ImageSearch($break, 0, $x, $y, 80) Then
+		SetLog("Village must take a break, wait ...", $COLOR_RED)
+		If _Sleep(120000) Then Return ; 2 Minutes
+		Click(416, 399);Check for "Take a break" message
+		$Checkrearm = True
+		Return True
+	EndIf
 
 	$Message = _PixelSearch(457, 300, 458, 330, Hex(0x33B5E5, 6), 10)
 	If IsArray($Message) Then
 		Click(416, 399);Check for out of sync or inactivity
 		If _Sleep(6000) Then Return
-	    ZoomOut()
+		ZoomOut()
 		Return True
-	 EndIf
+	EndIf
 
 	_CaptureRegion()
 	If _ColorCheck(_GetPixelColor(235, 209), Hex(0x9E3826, 6), 20) Then
 		Click(429, 493);See if village was attacked, clicks Okay
-	    $Checkrearm = True
+		$Checkrearm = True
 		Return True
 	EndIf
 
@@ -67,9 +67,9 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 	If _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
 		ReturnHome(False) ;If End battle is available
 		Return True
-	 EndIf
+	EndIf
 
-    $Message = _PixelSearch(19, 565, 104, 580, Hex(0xD9DDCF, 6), 10)
+	$Message = _PixelSearch(19, 565, 104, 580, Hex(0xD9DDCF, 6), 10)
 	If IsArray($Message) Then
 		Click(67, 602);Check if Return Home button available
 		If _Sleep(2000) Then Return

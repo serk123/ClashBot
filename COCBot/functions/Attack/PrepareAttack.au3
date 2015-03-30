@@ -1,7 +1,7 @@
 ;Checks the troops when in battle, checks for type, slot, and quantity.
 ;Saved in $atkTroops[SLOT][TYPE/QUANTITY] variable
 
-Func PrepareAttack($remaining = false) ;Assigns troops
+Func PrepareAttack($remaining = False) ;Assigns troops
 	If $remaining Then
 		SetLog("Checking remaining unlaunched troops", $COLOR_ORANGE)
 	Else
@@ -33,10 +33,10 @@ Func PrepareAttack($remaining = false) ;Assigns troops
 				ElseIf $troopKind = $eMinion And ($DarkBarrackTroop[0] = 0 Or $DarkBarrackTroop[1] = 0) Then
 					$atkTroops[$i][0] = $troopKind
 					ExitLoop
-				ElseIf $troopKind = $eHog And ($DarkBarrackTroop[0] = 1 Or $DarkBarrackTroop[1] = 1)  Then
+				ElseIf $troopKind = $eHog And ($DarkBarrackTroop[0] = 1 Or $DarkBarrackTroop[1] = 1) Then
 					$atkTroops[$i][0] = $troopKind
 					ExitLoop
-				ElseIf $troopKind = $eValkyrie And ($DarkBarrackTroop[0] = 2 Or $DarkBarrackTroop[1]) = 2  Then
+				ElseIf $troopKind = $eValkyrie And ($DarkBarrackTroop[0] = 2 Or $DarkBarrackTroop[1]) = 2 Then
 					$atkTroops[$i][0] = $troopKind
 					ExitLoop
 				ElseIf $troopKind <> $eKing And $troopKind <> $eQueen And $troopKind <> $eCastle And $troopKind <> $eLSpell Then

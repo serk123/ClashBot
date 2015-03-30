@@ -12,14 +12,14 @@ Func ZoomOut2() ;Zooms out
 				ExitLoop
 			EndIf
 			_CaptureRegion(0, 0, 860, 2)
-		 WEnd
+		WEnd
 		ExitLoop
 	WEnd
- EndFunc   ;==>ZoomOut
+EndFunc   ;==>ZoomOut2
 
- ;Only does it for 30 zoom outs, no more than that.
+;Only does it for 30 zoom outs, no more than that.
 Func ZoomOut() ;Zooms out Control
-    If _GetPixelColor(394, 37) <> Hex(0x488B00, 6) Then checkMainScreen(False)
+	If _GetPixelColor(394, 37) <> Hex(0x488B00, 6) Then checkMainScreen(False)
 	Local $i = 0
 	While 1
 		_CaptureRegion()
@@ -31,13 +31,13 @@ Func ZoomOut() ;Zooms out Control
 				ExitLoop
 			EndIf
 			_CaptureRegion()
-		 WEnd
+		WEnd
 		ExitLoop
 	WEnd
- EndFunc   ;==>ZoomOut
+EndFunc   ;==>ZoomOut
 
- Func ZoomOut10() ;Zooms out
-    If _GetPixelColor(394, 37) <> Hex(0x488B00, 6) Then checkMainScreen(False)
+Func ZoomOut10() ;Zooms out
+	If _GetPixelColor(394, 37) <> Hex(0x488B00, 6) Then checkMainScreen(False)
 	Local $i = 0
 	While 1
 		_CaptureRegion()
@@ -49,7 +49,7 @@ Func ZoomOut() ;Zooms out Control
 				ExitLoop
 			EndIf
 			_CaptureRegion()
-		 WEnd
+		WEnd
 		ExitLoop
 	WEnd
-EndFunc   ;==>ZoomOutControl
+EndFunc   ;==>ZoomOut10

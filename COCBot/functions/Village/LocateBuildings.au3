@@ -11,10 +11,10 @@ Func LocateBarrack()
 			ElseIf $MsgBox = 10 Then
 				ExitLoop
 			Else
-				For $i=0 To 3
+				For $i = 0 To 3
 					$barrackPos[$i][0] = ""
 					$barrackPos[$i][1] = ""
-			    Next
+				Next
 				ExitLoop (2)
 			EndIf
 			If _Sleep(500) Then ExitLoop
@@ -25,10 +25,10 @@ Func LocateBarrack()
 			ElseIf $MsgBox = 10 Then
 				ExitLoop
 			Else
-				For $i=1 To 3
+				For $i = 1 To 3
 					$barrackPos[$i][0] = ""
 					$barrackPos[$i][1] = ""
-			    Next
+				Next
 				ExitLoop (2)
 			EndIf
 			If _Sleep(500) Then ExitLoop
@@ -39,10 +39,10 @@ Func LocateBarrack()
 			ElseIf $MsgBox = 10 Then
 				ExitLoop
 			Else
-				For $i=2 To 3
+				For $i = 2 To 3
 					$barrackPos[$i][0] = ""
 					$barrackPos[$i][1] = ""
-			    Next
+				Next
 				ExitLoop (2)
 			EndIf
 			If _Sleep(500) Then ExitLoop
@@ -66,7 +66,7 @@ Func LocateBarrack()
 	SetLog("-Barrack 2 = " & "(" & $barrackPos[1][0] & "," & $barrackPos[1][1] & ")", $COLOR_GREEN)
 	SetLog("-Barrack 3 = " & "(" & $barrackPos[2][0] & "," & $barrackPos[2][1] & ")", $COLOR_GREEN)
 	SetLog("-Barrack 4 = " & "(" & $barrackPos[3][0] & "," & $barrackPos[3][1] & ")", $COLOR_GREEN)
- EndFunc   ;==>LocateBarrack
+EndFunc   ;==>LocateBarrack
 
 Func LocateDarkBarrack()
 	SetLog("Locating Dark Barracks...", $COLOR_BLUE)
@@ -80,10 +80,10 @@ Func LocateDarkBarrack()
 			ElseIf $MsgBox = 10 Then
 				ExitLoop
 			Else
-				For $i=0 To 1
-				   $DarkBarrackPos[$i][0] = ""
-				   $DarkBarrackPos[$i][1] = ""
-			    Next
+				For $i = 0 To 1
+					$DarkBarrackPos[$i][0] = ""
+					$DarkBarrackPos[$i][1] = ""
+				Next
 				ExitLoop (2)
 			EndIf
 			If _Sleep(500) Then ExitLoop
@@ -94,13 +94,13 @@ Func LocateDarkBarrack()
 			ElseIf $MsgBox = 10 Then
 				ExitLoop
 			Else
-				For $i=1 To 1
-				   $DarkBarrackPos[$i][0] = ""
-				   $DarkBarrackPos[$i][1] = ""
-			    Next
+				For $i = 1 To 1
+					$DarkBarrackPos[$i][0] = ""
+					$DarkBarrackPos[$i][1] = ""
+				Next
 				ExitLoop (2)
 			EndIf
-		  ExitLoop (2)
+			ExitLoop (2)
 		WEnd
 	WEnd
 	SaveConfig()
@@ -113,7 +113,7 @@ EndFunc   ;==>LocateDarkBarrack
 Func LocateCamp()
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Camp", "Click OK then click on one of your camps", 0, $frmBot)
-	    If $MsgBox = 1 Then
+		If $MsgBox = 1 Then
 			$ArmyPos[0] = FindPos()[0]
 			$ArmyPos[1] = FindPos()[1]
 			SetLog("-ArmyCamp =  " & "(" & $ArmyPos[0] & "," & $ArmyPos[1] & ")", $COLOR_GREEN)
@@ -176,9 +176,9 @@ Func LocateQueenAltar()
 		EndIf
 		ExitLoop
 	WEnd
- EndFunc   ;==>LocateQueenAltar
+EndFunc   ;==>LocateQueenAltar
 
- Func LocateSFactory()
+Func LocateSFactory()
 	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Spell Factory", "Click OK then click on your Spell Factory", 0, $frmBot)
 		If $MsgBox = 1 Then
@@ -188,7 +188,7 @@ Func LocateQueenAltar()
 		EndIf
 		ExitLoop
 	WEnd
-EndFunc   ;==>LocateSpellFactoryAltar
+EndFunc   ;==>LocateSFactory
 
 Func LocateUpgrade1()
 	While 1
@@ -202,10 +202,10 @@ Func LocateUpgrade1()
 		EndIf
 		ExitLoop
 	WEnd
-EndFunc
+EndFunc   ;==>LocateUpgrade1
 
 Func LocateUpgrade2()
-While 1
+	While 1
 		$MsgBox = MsgBox(1 + 262144, "Locate Upgrade Building 2", "Click OK then click on your Building", 0, $frmBot)
 		If $MsgBox = 1 Then
 			$BuildPos2[0] = FindPos()[0]
@@ -216,7 +216,7 @@ While 1
 		EndIf
 		ExitLoop
 	WEnd
-EndFunc
+EndFunc   ;==>LocateUpgrade2
 
 Func LocateUpgrade3()
 	While 1
@@ -230,4 +230,4 @@ Func LocateUpgrade3()
 		EndIf
 		ExitLoop
 	WEnd
-EndFunc
+EndFunc   ;==>LocateUpgrade3

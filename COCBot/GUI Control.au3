@@ -50,7 +50,7 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					If GUICtrlRead($chkMeetGE) = $GUI_UNCHECKED Then
 						GUICtrlSetState($chkSpellDarkStorage, $GUI_UNCHECKED)
 						GUICtrlSetState($chkSpellDarkStorage, $GUI_DISABLE)
-					 ElseIf GUICtrlRead($chkMeetGE) = $GUI_CHECKED Then
+					ElseIf GUICtrlRead($chkMeetGE) = $GUI_CHECKED Then
 						GUICtrlSetState($chkSpellDarkStorage, $GUI_ENABLE)
 					EndIf
 			EndSwitch
@@ -67,9 +67,9 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 EndFunc   ;==>GUIControl
 
 Func SetTime()
-    Local $time = _TicksToTime(Int(TimerDiff($sTimer)), $hour, $min, $sec)
+	Local $time = _TicksToTime(Int(TimerDiff($sTimer)), $hour, $min, $sec)
 	If _GUICtrlTab_GetCurSel($tabMain) = 7 Then GUICtrlSetData($lblresultruntime, StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
-	EndFunc   ;==>SetTime
+EndFunc   ;==>SetTime
 
 Func Initiate()
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
@@ -93,7 +93,7 @@ Func Initiate()
 			RegWrite($REGISTRY_KEY_DIRECTORY, "WindowWidth", "REG_DWORD", $DEFAULT_WIDTH)
 			SetLog("Please restart your computer for the applied changes to take effect.", $COLOR_ORANGE)
 			_Sleep(3000)
-			$MsgRet = MsgBox(BitOR($MB_OKCANCEL,$MB_SYSTEMMODAL), "Restart Computer", "Restart your computer for the applied changes to take effect." & @CRLF & "If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
+			$MsgRet = MsgBox(BitOR($MB_OKCANCEL, $MB_SYSTEMMODAL), "Restart Computer", "Restart your computer for the applied changes to take effect." & @CRLF & "If your BlueStacks is the correct size  (860 x 720), click OK.", 10)
 			If $MsgRet <> $IDOK Then
 				btnStop()
 				Return
@@ -109,7 +109,7 @@ Func Initiate()
 		$AttackNow = False
 		$FirstStart = True
 		$Checkrearm = True
-	    $CreateSpell = True
+		$CreateSpell = True
 		GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateBarracks, $GUI_DISABLE)
 		GUICtrlSetState($btnLocateDarkBarracks, $GUI_DISABLE)
@@ -138,7 +138,7 @@ Func Initiate()
 		SetLog("Not in Game!", $COLOR_RED)
 		btnStop()
 	EndIf
-EndFunc
+EndFunc   ;==>Initiate
 
 Func Open()
 	If $64Bit Then ;If 64-Bit
@@ -154,11 +154,11 @@ Func Open()
 		SetLog("Waiting for BlueStacks to initiate...", $COLOR_GREEN)
 		Check()
 	EndIf
-EndFunc
+EndFunc   ;==>Open
 
 Func Check()
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
-		SetLog("BlueStacks Loaded, took " & ($Initiate) & " seconds to begin." , $COLOR_GREEN)
+		SetLog("BlueStacks Loaded, took " & ($Initiate) & " seconds to begin.", $COLOR_GREEN)
 		Initiate()
 	Else
 		Sleep(1000)
@@ -166,7 +166,7 @@ Func Check()
 
 		Check()
 	EndIf
-EndFunc
+EndFunc   ;==>Check
 
 Func btnStart()
 	GUICtrlSetState($btnStart, $GUI_HIDE)
@@ -222,11 +222,11 @@ Func btnStop()
 		GUICtrlSetState($chkNoAttack, $GUI_ENABLE)
 		GUICtrlSetState($chkDonateOnly, $GUI_ENABLE)
 		GUICtrlSetState($chkForceBS, $GUI_ENABLE)
-	    GUICtrlSetState($txtCapacity, $GUI_ENABLE)
+		GUICtrlSetState($txtCapacity, $GUI_ENABLE)
 		GUICtrlSetState($cmbRaidcap, $GUI_ENABLE)
 		GUICtrlSetState($btnLocateClanCastle2, $GUI_ENABLE)
 		GUICtrlSetState($chkBackground, $GUI_ENABLE)
-	    GUICtrlSetState($cmbBoostBarracks, $GUI_ENABLE)
+		GUICtrlSetState($cmbBoostBarracks, $GUI_ENABLE)
 		GUICtrlSetState($btnAtkNow, $GUI_DISABLE)
 		GUICtrlSetState($btnStart, $GUI_SHOW)
 		GUICtrlSetState($btnStop, $GUI_HIDE)
@@ -235,15 +235,15 @@ Func btnStop()
 		GUICtrlSetState($lblConfig, $GUI_SHOW)
 		GUICtrlSetState($btnSaveConfig, $GUI_SHOW)
 		GUICtrlSetState($btnLoadConfig, $GUI_SHOW)
-	    GUICtrlSetState($lblgoldnowM, $GUI_HIDE)
-	    GUICtrlSetState($lblresultgoldnowM, $GUI_HIDE)
-	    GUICtrlSetState($imggoldnowM, $GUI_HIDE)
+		GUICtrlSetState($lblgoldnowM, $GUI_HIDE)
+		GUICtrlSetState($lblresultgoldnowM, $GUI_HIDE)
+		GUICtrlSetState($imggoldnowM, $GUI_HIDE)
 		GUICtrlSetState($lblelixirnowM, $GUI_HIDE)
-	    GUICtrlSetState($lblresultelixirnowM, $GUI_HIDE)
+		GUICtrlSetState($lblresultelixirnowM, $GUI_HIDE)
 		GUICtrlSetState($imgelixirnowM, $GUI_HIDE)
-	    GUICtrlSetState($lbldenowM, $GUI_HIDE)
-	    GUICtrlSetState($lblresultdenowM, $GUI_HIDE)
-	    GUICtrlSetState($imgdenowM, $GUI_HIDE)
+		GUICtrlSetState($lbldenowM, $GUI_HIDE)
+		GUICtrlSetState($lblresultdenowM, $GUI_HIDE)
+		GUICtrlSetState($imgdenowM, $GUI_HIDE)
 
 		AdlibUnRegister("SetTime")
 		_BlockInputEx(0, "", "", $HWnD)
@@ -318,7 +318,7 @@ Func btnLocateQueenAltar()
 	$RunState = False
 EndFunc   ;==>btnLocateQueenAltar
 
- Func btnLocateSFactory()
+Func btnLocateSFactory()
 	$RunState = True
 	While 1
 		ZoomOut()
@@ -336,7 +336,7 @@ Func btnLocateUp1()
 		ExitLoop
 	WEnd
 	$RunState = False
-EndFunc    ;==>btnLocateUp1
+EndFunc   ;==>btnLocateUp1
 
 Func btnLocateUp2()
 	$RunState = True
@@ -346,7 +346,7 @@ Func btnLocateUp2()
 		ExitLoop
 	WEnd
 	$RunState = False
-EndFunc    ;==>btnLocateUp2
+EndFunc   ;==>btnLocateUp2
 
 Func btnLocateUp3()
 	$RunState = True
@@ -356,7 +356,7 @@ Func btnLocateUp3()
 		ExitLoop
 	WEnd
 	$RunState = False
-EndFunc    ;==>btnLocateUp3
+EndFunc   ;==>btnLocateUp3
 
 Func btnFindWall()
 	$RunState = True
@@ -372,10 +372,10 @@ Func btnFindWall()
 
 		If checkWall() Then
 			WinActivate($HWnD)
-		    Click($WallX, $WallY)
-			SetLog("Found Walls level " & $icmbWalls+4 & " at PosX: " & $WallX & ", PosY: " & $WallY & "...", $COLOR_GREEN)
+			Click($WallX, $WallY)
+			SetLog("Found Walls level " & $icmbWalls + 4 & " at PosX: " & $WallX & ", PosY: " & $WallY & "...", $COLOR_GREEN)
 		Else
-			SetLog("Cannot find Walls level " & $icmbWalls+4 & ", adjust tolerance and try again...", $COLOR_RED)
+			SetLog("Cannot find Walls level " & $icmbWalls + 4 & ", adjust tolerance and try again...", $COLOR_RED)
 		EndIf
 
 		ExitLoop
@@ -385,7 +385,7 @@ Func btnFindWall()
 	GUICtrlSetState($UseElixir, $GUI_ENABLE)
 	GUICtrlSetState($UseGoldElix, $GUI_ENABLE)
 	$RunState = False
-EndFunc    ;==>btnFindWall
+EndFunc   ;==>btnFindWall
 
 Func btnLocateCamp()
 	$RunState = True
@@ -395,11 +395,11 @@ Func btnLocateCamp()
 		ExitLoop
 	WEnd
 	$RunState = False
-EndFunc   ;==>btnLocateArmyCamp
+EndFunc   ;==>btnLocateCamp
 
 Func btnDeletelist()
-   DeleteList()
-EndFunc   ;==>btnLocatelist
+	DeleteList()
+EndFunc   ;==>btnDeletelist
 
 Func btnSearchMode()
 	While 1
@@ -460,8 +460,8 @@ Func cmbTroopComp()
 		$CurGiant = 1
 		$CurWB = 1
 		SetComboTroopComp()
-	    _GUICtrlComboBox_SetCurSel($cmbAlgorithm, $icmbTroopComp)
-	    _GUICtrlComboBox_SetCurSel($cmbDeadAlgorithm, $icmbTroopComp)
+		_GUICtrlComboBox_SetCurSel($cmbAlgorithm, $icmbTroopComp)
+		_GUICtrlComboBox_SetCurSel($cmbDeadAlgorithm, $icmbTroopComp)
 	EndIf
 EndFunc   ;==>cmbTroopComp
 
@@ -713,7 +713,7 @@ Func chkRequest()
 		$ichkRequest = 0
 		GUICtrlSetState($txtRequest, $GUI_DISABLE)
 	EndIf
-EndFunc
+EndFunc   ;==>chkRequest
 
 Func Randomspeedatk()
 	If GUICtrlRead($Randomspeedatk) = $GUI_CHECKED Then
@@ -733,7 +733,7 @@ Func tabMain()
 	Else
 		ControlHide("", "", $txtLog)
 	EndIf
-EndFunc ;==>tabMain
+EndFunc   ;==>tabMain
 
 Func DisableBS($HWnD, $iButton)
 	ConsoleWrite('+ Window Handle: ' & $HWnD & @CRLF)

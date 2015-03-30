@@ -15,9 +15,9 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbDead, $icmbDead)
 
 	For $i = 0 To 4
-	   If $icmbTH = $i Then $MaxTH = $THText[$i]
-	   If $icmbDeadTH = $i Then $MaxDeadTH = $THText[$i]
-    Next
+		If $icmbTH = $i Then $MaxTH = $THText[$i]
+		If $icmbDeadTH = $i Then $MaxDeadTH = $THText[$i]
+	Next
 
 	If $chkConditions[0] = 1 Then
 		GUICtrlSetState($chkDeadGE, $GUI_CHECKED)
@@ -172,7 +172,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkRequest, $GUI_UNCHECKED)
 	EndIf
 
-	;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	If $ichkDonateBarbarians = 1 Then
 		GUICtrlSetState($chkDonateBarbarians, $GUI_CHECKED)
 	Else
@@ -194,7 +194,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	Else
 		GUICtrlSetState($chkDonateAllArchers, $GUI_UNCHECKED)
 	EndIf
-	;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	If $ichkDonateGiants = 1 Then
 		GUICtrlSetState($chkDonateGiants, $GUI_CHECKED)
 	Else
@@ -260,7 +260,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 		GUICtrlSetState($chkWalls, $GUI_UNCHECKED)
 	EndIf
 	_GUICtrlComboBox_SetCurSel($cmbWalls, $icmbWalls)
-    _GUICtrlComboBox_SetCurSel($cmbTolerance, $icmbTolerance)
+	_GUICtrlComboBox_SetCurSel($cmbTolerance, $icmbTolerance)
 
 	Switch $iUseStorage
 		Case 0
@@ -269,7 +269,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 			GUICtrlSetState($UseElixir, $GUI_CHECKED)
 		Case 2
 			GUICtrlSetState($UseGoldElix, $GUI_CHECKED)
-    EndSwitch
+	EndSwitch
 
 	GUICtrlSetData($txtWallMinGold, $itxtWallMinGold)
 	GUICtrlSetData($txtWallMinElixir, $itxtWallMinElixir)

@@ -148,7 +148,7 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "attack", "townhall", 0)
 	EndIf
 
-    IniWrite($config, "attack", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
+	IniWrite($config, "attack", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
 	IniWrite($config, "attack", "WaveD", _GUICtrlComboBox_GetCurSel($cmbWaveDelay))
 	IniWrite($config, "attack", "randomatk", GUICtrlRead($Randomspeedatk))
 
@@ -158,7 +158,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "donate", "chkRequest", 0)
 	EndIf
-	;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	If GUICtrlRead($chkDonateAllBarbarians) = $GUI_CHECKED Then
 		IniWrite($config, "donate", "chkDonateAllBarbarians", 1)
 	Else
@@ -223,7 +223,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "troop", "Darktroop2", _GUICtrlComboBox_GetCurSel($cmbDarkBarrack2))
 	IniWrite($config, "troop", "DarkRax1", GUICtrlRead($txtDarkBarrack1))
 	IniWrite($config, "troop", "DarkRax2", GUICtrlRead($txtDarkBarrack2))
-   ;Custom Troop 2 Settings--------------------------------------------------------------------------
+	;Custom Troop 2 Settings--------------------------------------------------------------------------
 	IniWrite($config, "troop", "CustomRax1", GUICtrlRead($txtFirstTroop1))
 	IniWrite($config, "troop", "CustomRax2", GUICtrlRead($txtFirstTroop2))
 	IniWrite($config, "troop", "CustomRax3", GUICtrlRead($txtFirstTroop3))
@@ -237,7 +237,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "troop", "CustomtroopS3", _GUICtrlComboBox_GetCurSel($cmbSecondTroop3))
 	IniWrite($config, "troop", "CustomtroopS4", _GUICtrlComboBox_GetCurSel($cmbSecondTroop4))
 
-   ;Other Settings--------------------------------------------------------------------------
+	;Other Settings--------------------------------------------------------------------------
 	If GUICtrlRead($chkWalls) = $GUI_CHECKED Then
 		IniWrite($config, "other", "auto-wall", 1)
 	Else
@@ -271,13 +271,13 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "misc", "searchspd", _GUICtrlComboBox_GetCurSel($cmbSearchsp))
 	IniWrite($config, "misc", "xTownHall", $TownHallPos[0])
 	IniWrite($config, "misc", "yTownHall", $TownHallPos[1])
-    IniWrite($config, "misc", "xArmy", $ArmyPos[0])
+	IniWrite($config, "misc", "xArmy", $ArmyPos[0])
 	IniWrite($config, "misc", "yArmy", $ArmyPos[1])
-    IniWrite($config, "misc", "xKing", $KingPos[0])
+	IniWrite($config, "misc", "xKing", $KingPos[0])
 	IniWrite($config, "misc", "yKing", $KingPos[1])
-    IniWrite($config, "misc", "xQueen", $QueenPos[0])
+	IniWrite($config, "misc", "xQueen", $QueenPos[0])
 	IniWrite($config, "misc", "yQueen", $QueenPos[1])
-    IniWrite($config, "misc", "xSFactory", $SFactoryPos[0])
+	IniWrite($config, "misc", "xSFactory", $SFactoryPos[0])
 	IniWrite($config, "misc", "ySFactory", $SFactoryPos[1])
 
 	For $i = 0 To 3 ;Covers all 4 Barracks
@@ -340,11 +340,11 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	IniWrite($config, "general", "Command", _GUICtrlComboBox_GetCurSel($cmbBotCommand))
 	IniWrite($config, "general", "Cond", _GUICtrlComboBox_GetCurSel($cmbBotCond))
-#cs
-	For $i = 0 To 16 ;Covers all Collectors
+	#cs
+		For $i = 0 To 16 ;Covers all Collectors
 		IniWrite($config, "general", "xCollector" & $i + 1, $collectorPos[$i][0])
 		IniWrite($config, "general", "yCollector" & $i + 1, $collectorPos[$i][1])
-	Next
-#ce
+		Next
+	#ce
 
 EndFunc   ;==>saveConfig

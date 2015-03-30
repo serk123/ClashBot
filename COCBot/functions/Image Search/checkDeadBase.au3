@@ -3,8 +3,8 @@ Func checkDeadBase()
 EndFunc   ;==>checkDeadBase
 
 ;checkDeadBase Variables:-------------===========================
-GLOBAL $AdjustTolerance=0
-Global $Tolerance[5][11]=[[55,55,55,80,70,70,75,80,0,75,65],[55,55,55,80,80,70,75,80,0,75,65],[55,55,55,80,80,70,75,80,0,75,65],[55,55,55,80,80,60,75,75,0,75,60],[55,55,55,80,80,70,75,80,0,75,65]]
+Global $AdjustTolerance = 0
+Global $Tolerance[5][11] = [[55, 55, 55, 80, 70, 70, 75, 80, 0, 75, 65], [55, 55, 55, 80, 80, 70, 75, 80, 0, 75, 65], [55, 55, 55, 80, 80, 70, 75, 80, 0, 75, 65], [55, 55, 55, 80, 80, 60, 75, 75, 0, 75, 60], [55, 55, 55, 80, 80, 70, 75, 80, 0, 75, 65]]
 Global $ZC = 0, $ZombieCount = 0;, $E
 Global $ZombieFileSets = 4 ;Variant Image to use organized as per Folder
 Global $ZSExclude = 0 ;Set to 0 to include Elixir Lvl 6, 1 to include lvl 7 and so on..
@@ -72,23 +72,23 @@ $E[3][10] = @ScriptDir & "\images\ELIX4\E12F9.bmp"
 ;--------------------------------------------------------------------------------------------------------------
 
 Func ZombieSearch()
-   _CaptureRegion()
+	_CaptureRegion()
 	$ZombieCount = 0
-	 $ZC = 0
-	 For $s = 0 To ($ZombieFileSets - 1) Step 1
-		 For $p = 10 To 0 + $ZSExclude Step -1
-			 If FileExists($E[$s][$p]) Then
-			 $Area[$s][$p][0] = _ImageSearch($E[$s][$p], 1, $IS_x[$p][0], $IS_y[$p][0], $Tolerance[$s][$p]+$AdjustTolerance)
-				 If $Area[$s][$p][0] > 0 Then
-					 $ZC = 1
-					 ExitLoop (2)
-				 EndIf
-			 Else
-				 $Area[$s][$p][0]= 0
-			 EndIf
-		 Next
-	 Next
-	 $ZombieCount += $ZC
+	$ZC = 0
+	For $s = 0 To ($ZombieFileSets - 1) Step 1
+		For $p = 10 To 0 + $ZSExclude Step -1
+			If FileExists($E[$s][$p]) Then
+				$Area[$s][$p][0] = _ImageSearch($E[$s][$p], 1, $IS_x[$p][0], $IS_y[$p][0], $Tolerance[$s][$p] + $AdjustTolerance)
+				If $Area[$s][$p][0] > 0 Then
+					$ZC = 1
+					ExitLoop (2)
+				EndIf
+			Else
+				$Area[$s][$p][0] = 0
+			EndIf
+		Next
+	Next
+	$ZombieCount += $ZC
 	If $ZombieCount > 0 Then
 		Return True
 	Else

@@ -11,8 +11,8 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 		If $MinElixir - 5000 >= 0 Then $MinElixir -= 5000
 		If $MinDark - 100 >= 0 Then $MinDark -= 100
 		If $MinTrophy - 2 >= 0 Then $MinTrophy -= 2
-	    If $AtkDeadEnabled Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
-  		If $AtkAnyEnabled Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
+		If $AtkDeadEnabled Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
+		If $AtkAnyEnabled Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
 	EndIf
 
 	Local $DG = (Number($searchGold) >= Number($MinDeadGold)), $DE = (Number($searchElixir) >= Number($MinDeadElixir)), $DD = (Number($searchDark) >= Number($MinDeadDark)), $DT = (Number($searchTrophy) >= Number($MinDeadTrophy))
@@ -24,10 +24,10 @@ Func CompareResources() ;Compares resources and returns true if conditions meet,
 	Next
 
 	Switch $THLoc
-	Case "In"
-		$THLO = 0
-	Case "Out"
-		$THLO = 1
+		Case "In"
+			$THLO = 0
+		Case "Out"
+			$THLO = 1
 	EndSwitch
 
 	If $THLoc = "Out" And ($checkAttackTH = 1 Or ($searchDead And $checkDeadAttackTH = 1)) Then

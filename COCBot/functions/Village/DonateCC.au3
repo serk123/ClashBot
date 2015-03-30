@@ -6,11 +6,11 @@ Func DonateCC()
 	Local $y = 119
 	SetLog("Donating Troops", $COLOR_BLUE)
 
- 	_CaptureRegion()
-   	If _ColorCheck(_GetPixelColor(34, 321), Hex(0xE00300, 6), 20) = False And $CommandStop <> 3 Then
-  	   SetLog("No new chats, skip donating", $COLOR_ORANGE)
-  	   Return
-  	EndIf
+	_CaptureRegion()
+	If _ColorCheck(_GetPixelColor(34, 321), Hex(0xE00300, 6), 20) = False And $CommandStop <> 3 Then
+		SetLog("No new chats, skip donating", $COLOR_ORANGE)
+		Return
+	EndIf
 
 	ClickP($TopLeftClient) ;Click Away
 	If _ColorCheck(_GetPixelColor(331, 330), Hex(0xF0A03B, 6), 20) = False Then Click(19, 349) ;Clicks chat thing
@@ -42,7 +42,7 @@ Func DonateCC()
 								DonateBarbs()
 								ExitLoop
 							EndIf
-						 Next
+						Next
 						If $Donate Then
 							If _Sleep(500) Then ExitLoop
 							$y = $DonatePixel[1] + 10
@@ -90,8 +90,8 @@ Func DonateCC()
 			Else
 				ExitLoop
 			EndIf
-		    If _Sleep(500) Then Return
-		    ClickP($TopLeftClient) ;Click Away
+			If _Sleep(500) Then Return
+			ClickP($TopLeftClient) ;Click Away
 			$y = $DonatePixel[1] + 10
 		WEnd
 		$DonatePixel = _MultiPixelSearch(202, $y, 203, 670, 1, 1, Hex(0x262926, 6), $offColors, 20)
@@ -101,7 +101,7 @@ Func DonateCC()
 			Click($Scroll[0], $Scroll[1])
 			$y = 119
 			If _Sleep(700) Then ExitLoop
-	    ElseIf Not IsArray($DonatePixel) Then
+		ElseIf Not IsArray($DonatePixel) Then
 			$Donate = False
 		EndIf
 	WEnd
@@ -111,26 +111,26 @@ Func DonateCC()
 	_CaptureRegion()
 	If _ColorCheck(_GetPixelColor(331, 330), Hex(0xF0A03B, 6), 20) Then
 		Click(331, 330) ;Clicks chat thing
-	    If _Sleep(500) Then Return
+		If _Sleep(500) Then Return
 	EndIf
 EndFunc   ;==>DonateCC
 
-Func CheckDonate($string, $clanString) ;Checks if it exact
-	$Contains = StringMid($string, 1, 1) & StringMid($string, StringLen($string), 1)
+Func CheckDonate($String, $clanString) ;Checks if it exact
+	$Contains = StringMid($String, 1, 1) & StringMid($String, StringLen($String), 1)
 	If $Contains = "[]" Then
-		If $clanString = StringMid($string, 2, StringLen($string) - 2) Then
+		If $clanString = StringMid($String, 2, StringLen($String) - 2) Then
 			Return True
 		Else
 			Return False
 		EndIf
 	Else
-		If StringInStr($clanString, $string, 2) Then
+		If StringInStr($clanString, $String, 2) Then
 			Return True
 		Else
 			Return False
 		EndIf
 	EndIf
-EndFunc
+EndFunc   ;==>CheckDonate
 
 Func DonateBarbs()
 	If $ichkDonateBarbarians = 1 Or $ichkDonateAllBarbarians = 1 Then

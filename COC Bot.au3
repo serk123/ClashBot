@@ -13,11 +13,11 @@ $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 If _Singleton($sBotTitle, 1) = 0 Then
 	MsgBox(0, "", "Bot is already running.")
 	Exit
- EndIf
+EndIf
 
 If @AutoItX64 = 1 Then
 	MsgBox(0, "", "Don't Run/Compile Script (x64)! try to Run/Compile Script (x86) to getting this bot work." & @CRLF & _
-				  "If this message still appear, try to re-install your AutoIt with newer version.")
+			"If this message still appear, try to re-install your AutoIt with newer version.")
 	Exit
 EndIf
 
@@ -38,7 +38,7 @@ DirCreate($dirAllTowns)
 
 While 1
 	Switch TrayGetMsg()
-        Case $tiAbout
+		Case $tiAbout
 			MsgBox(64 + $MB_APPLMODAL + $MB_TOPMOST, $sBotTitle, "Clash of Clans Bot" & @CRLF & @CRLF & _
 					"Version: " & $sBotVersion & @CRLF & _
 					"Released under the GNU GPLv3 license.", 0, $frmBot)
@@ -65,7 +65,7 @@ Func runBot() ;Bot that runs everything in order
 		If BotCommand() Then btnStop()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-	    If $Checkrearm = True Then
+		If $Checkrearm = True Then
 			ZoomOut()
 			ReArm()
 			If _Sleep(2000) Then Return
@@ -89,7 +89,7 @@ Func runBot() ;Bot that runs everything in order
 			$fullArmy = False
 		EndIf
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
-		    ZoomOut()
+			ZoomOut()
 			Train()
 			If _Sleep(1000) Then Return
 			TrainDark()
@@ -125,43 +125,43 @@ EndFunc   ;==>runBot
 
 Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
-		While $fullArmy = False
-			If $CommandStop = -1 Then SetLog("~~~Waiting for full army~~~", $COLOR_PURPLE)
-			Local $hTimer = TimerInit(), $x = 30000
-			If $CommandStop = 3 Then $x = 15000
-			If _Sleep($x) Then ExitLoop
-			checkMainScreen()
+	While $fullArmy = False
+		If $CommandStop = -1 Then SetLog("~~~Waiting for full army~~~", $COLOR_PURPLE)
+		Local $hTimer = TimerInit(), $x = 30000
+		If $CommandStop = 3 Then $x = 15000
+		If _Sleep($x) Then ExitLoop
+		checkMainScreen()
+		If _Sleep(1000) Then ExitLoop
+		ZoomOut()
+		If _Sleep(1000) Then ExitLoop
+		If $iCollectCounter > $COLLECTATCOUNT Then ; This is prevent from collecting all the time which isn't needed anyway
+			Collect()
+			If _Sleep(1000) Or $RunState = False Then ExitLoop
+			$iCollectCounter = 0
+		EndIf
+		$iCollectCounter = $iCollectCounter + 1
+		If $CommandStop <> 3 Then
+			CheckArmyCamp()
 			If _Sleep(1000) Then ExitLoop
-			ZoomOut()
+			Train()
+			If _Sleep(1000) Then Return
+			TrainDark()
 			If _Sleep(1000) Then ExitLoop
-			If $iCollectCounter > $COLLECTATCOUNT Then ; This is prevent from collecting all the time which isn't needed anyway
-				Collect()
-				If _Sleep(1000) Or $RunState = False Then ExitLoop
-				$iCollectCounter = 0
-			EndIf
-			$iCollectCounter = $iCollectCounter + 1
-			If $CommandStop <> 3 Then
-			    CheckArmyCamp()
-			    If _Sleep(1000) Then ExitLoop
-				Train()
-			    If _Sleep(1000) Then Return
-				TrainDark()
-				If _Sleep(1000) Then ExitLoop
-			EndIf
-			If $CommandStop = 0 And $fullArmy Then
-				SetLog("Army Camp is Full, Stop Training...", $COLOR_ORANGE)
-				$CommandStop = 3
-				$fullArmy = False
-			EndIf
-			If $CommandStop = -1 Then
-				If $fullArmy Then ExitLoop
-				DropTrophy()
-				If _Sleep(1000) Then ExitLoop
-			EndIf
-			DonateCC()
-			$TimeIdle += Round(TimerDiff($hTimer) / 1000, 2) ;In Seconds
-			SetLog("Time Idle: " & Floor(Floor($TimeIdle / 60) / 60) & " hours " & Floor(Mod(Floor($TimeIdle / 60), 60)) & " minutes " & Floor(Mod($TimeIdle, 60)) & " seconds", $COLOR_ORANGE)
-		WEnd
+		EndIf
+		If $CommandStop = 0 And $fullArmy Then
+			SetLog("Army Camp is Full, Stop Training...", $COLOR_ORANGE)
+			$CommandStop = 3
+			$fullArmy = False
+		EndIf
+		If $CommandStop = -1 Then
+			If $fullArmy Then ExitLoop
+			DropTrophy()
+			If _Sleep(1000) Then ExitLoop
+		EndIf
+		DonateCC()
+		$TimeIdle += Round(TimerDiff($hTimer) / 1000, 2) ;In Seconds
+		SetLog("Time Idle: " & Floor(Floor($TimeIdle / 60) / 60) & " hours " & Floor(Mod(Floor($TimeIdle / 60), 60)) & " minutes " & Floor(Mod($TimeIdle, 60)) & " seconds", $COLOR_ORANGE)
+	WEnd
 EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions
@@ -183,13 +183,13 @@ EndFunc   ;==>AttackMain
 
 Func Attack() ;Selects which algorithm
 	SetLog("======Beginning Attack======")
-;	Switch $attackpattern
-;		Case 0 ; v5.5
-;			SetLog("Attacking with v5.5 attacking Algorithm")
-;			algorithm_Troops()
-;		Case 1 ; v5.6
-;			SetLog("Attacking with v5.6 attacking Algorithm")
-			algorithm_AllTroops()
-;	EndSwitch
+	;	Switch $attackpattern
+	;		Case 0 ; v5.5
+	;			SetLog("Attacking with v5.5 attacking Algorithm")
+	;			algorithm_Troops()
+	;		Case 1 ; v5.6
+	;			SetLog("Attacking with v5.6 attacking Algorithm")
+	algorithm_AllTroops()
+	;	EndSwitch
 EndFunc   ;==>Attack
 

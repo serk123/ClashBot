@@ -1,6 +1,6 @@
 ;==>BoostBarracks
 Func BoostAllBuilding()
-	If (GUICtrlRead($cmbBoostBarracks) > 0) And ($boostsEnabled = 1)  Then
+	If (GUICtrlRead($cmbBoostBarracks) > 0) And ($boostsEnabled = 1) Then
 
 		If $barrackPos[0][0] = "" Then
 			LocateBarrack()
@@ -67,21 +67,21 @@ Func BoostAllBuilding()
 		EndIf
 
 		If $BoostAll >= (GUICtrlRead($chkBoostRax1) + GUICtrlRead($chkBoostRax2) + GUICtrlRead($chkBoostRax3) + GUICtrlRead($chkBoostRax4) + GUICtrlRead($chkBoostKing) + GUICtrlRead($chkBoostQueen)) Then
-			_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, (GUICtrlRead($cmbBoostBarracks)-1))
+			_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, (GUICtrlRead($cmbBoostBarracks) - 1))
 			SetLog("Boost remaining : " & GUICtrlRead($cmbBoostBarracks), $COLOR_GREEN)
 			$BoostAll = 0
 		EndIf
 	EndIf
-EndFunc ;==>BoostAllBuilding
+EndFunc   ;==>BoostAllBuilding
 
 Func BoostBuilding()
 	_CaptureRegion()
 	Local $Boost = _PixelSearch(355, 608, 362, 610, Hex(0xA1A084, 6), 10) ;Check Boost
 	If IsArray($Boost) Then
-		Click(355, 608)			;Click Boost
+		Click(355, 608) ;Click Boost
 		If _Sleep(1000) Then Return
 		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(420, 375), Hex(0xd2ec78, 6), 20) Then  ;Confirm Message
+		If _ColorCheck(_GetPixelColor(420, 375), Hex(0xd2ec78, 6), 20) Then ;Confirm Message
 			Click(420, 375)
 			If _Sleep(2000) Then Return
 			_CaptureRegion()
@@ -101,4 +101,4 @@ Func BoostBuilding()
 		SetLog("Building is already Boosted", $COLOR_ORANGE)
 		If _Sleep(1000) Then Return
 	EndIf
-EndFunc ;==>BoostBuilding
+EndFunc   ;==>BoostBuilding

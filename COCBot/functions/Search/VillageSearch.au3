@@ -5,13 +5,13 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $skippedVillages
 	_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; Reduce BlueStacks Memory Usage
 	#cs ; don't need to check shield twice - uncomment if there are problems
-	If _Sleep(1000) Then Return
-	_CaptureRegion() ; Check Break Shield button again
-	Local $offColors[3][3] = [[0x202C0D, 105, 0], [0x60B010, 30, 30], [0xFFFFFF, 20, 20]] ; 2nd pixel edge of button, 3rd pixel dark green of button, 4th pixel white of ok
-	Local $ShieldPixel = _MultiPixelSearch(480, 380, 586, 411, 1, 1, Hex(0xD0E878, 6), $offColors, 30) ; light green pixel of button
-	If IsArray($ShieldPixel) Then
+		If _Sleep(1000) Then Return
+		_CaptureRegion() ; Check Break Shield button again
+		Local $offColors[3][3] = [[0x202C0D, 105, 0], [0x60B010, 30, 30], [0xFFFFFF, 20, 20]] ; 2nd pixel edge of button, 3rd pixel dark green of button, 4th pixel white of ok
+		Local $ShieldPixel = _MultiPixelSearch(480, 380, 586, 411, 1, 1, Hex(0xD0E878, 6), $offColors, 30) ; light green pixel of button
+		If IsArray($ShieldPixel) Then
 		Click($ShieldPixel[0], $ShieldPixel[1]);Click Okay To Break Shield
-	EndIf
+		EndIf
 	#ce
 
 	$AtkDeadEnabled = False
@@ -28,14 +28,14 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	EndIf
 
 	While 1
-	    If $AtkDeadEnabled Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
-  		If $AtkAnyEnabled Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
+		If $AtkDeadEnabled Then SetLog("~Dead - Gold: " & $MinDeadGold & "; Elixir: " & $MinDeadElixir & "; Dark: " & $MinDeadDark & "; Trophy: " & $MinDeadTrophy & "; Townhall: " & $MaxDeadTH, $COLOR_GREEN)
+		If $AtkAnyEnabled Then SetLog("~Any  - Gold: " & $MinGold & "; Elixir: " & $MinElixir & "; Dark: " & $MinDark & "; Trophy: " & $MinTrophy & "; Townhall: " & $MaxTH, $COLOR_GREEN)
 		If $TakeAllTownSnapShot = 1 Then SetLog("Will save all of the towns when searching", $COLOR_GREEN)
 		$SearchCount = 0
-	    _BlockInputEx(3, "", "", $HWnD)
+		_BlockInputEx(3, "", "", $HWnD)
 		While 1
 			If _Sleep(1000) Then ExitLoop (2)
-		    GUICtrlSetState($btnAtkNow, $GUI_ENABLE)
+			GUICtrlSetState($btnAtkNow, $GUI_ENABLE)
 			GetResources() ;Reads Resource Values
 
 			If $Restart = True Then ExitLoop (2)
@@ -61,7 +61,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			If CompareResources() Then
 				ExitLoop
 			Else
-			    _CaptureRegion()
+				_CaptureRegion()
 				If _ColorCheck(_GetPixelColor(703, 520), Hex(0xD84400, 6), 20) Then
 					Click(750, 500) ;Click Next
 					$skippedVillages += 1
@@ -80,21 +80,21 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					SetLog("Cannot locate Next button & Surrender button, Restarting Bot", $COLOR_RED)
 					checkMainScreen()
 					$Restart = True
-				    $DCattack = 1
+					$DCattack = 1
 					ExitLoop (2)
 				EndIf
 			EndIf
 		WEnd
 
 		If GUICtrlRead($chkAlertSearch) = $GUI_CHECKED Then
-			TrayTip("Match Found!", "Gold: " & $searchGold & "; Elixir: " & $searchElixir & "; Dark: " & $searchDark & "; Trophy: " & $searchTrophy  & "; Townhall: " & $searchTH & ", " & $THLoc, 0)
+			TrayTip("Match Found!", "Gold: " & $searchGold & "; Elixir: " & $searchElixir & "; Dark: " & $searchDark & "; Trophy: " & $searchTrophy & "; Townhall: " & $searchTH & ", " & $THLoc, 0)
 			If FileExists(@WindowsDir & "\media\Windows Exclamation.wav") Then
-			   SoundPlay(@WindowsDir & "\media\Windows Exclamation.wav", 1)
+				SoundPlay(@WindowsDir & "\media\Windows Exclamation.wav", 1)
 			Else
-			   SoundPlay(@WindowsDir & "\media\Festival\Windows Exclamation.wav", 1)
+				SoundPlay(@WindowsDir & "\media\Festival\Windows Exclamation.wav", 1)
 			EndIf
-	    EndIf
-		GUICtrlSetData($lblresultvillagesskipped, GUICtrlRead($lblresultvillagesskipped)+ $skippedVillages)
+		EndIf
+		GUICtrlSetData($lblresultvillagesskipped, GUICtrlRead($lblresultvillagesskipped) + $skippedVillages)
 		SetLog("===============Searching Complete===============", $COLOR_BLUE)
 		readConfig()
 		_BlockInputEx(0, "", "", $HWnD)

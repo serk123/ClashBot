@@ -2,7 +2,7 @@
 
 Func PrepareSearch() ;Click attack button and find match button, will break shield
 	While 1
-	    SetLog("Searching...")
+		SetLog("Searching...")
 		Click(60, 614);Click Attack Button
 		If _Sleep(1000) Then ExitLoop
 		Click(217, 510);Click Find a Match Button
@@ -18,6 +18,6 @@ Func PrepareSearch() ;Click attack button and find match button, will break shie
 		If IsArray($ShieldPixel) Then
 			Click($ShieldPixel[0], $ShieldPixel[1]);Click Okay To Break Shield
 		EndIf
-   		ExitLoop
+		ExitLoop
 	WEnd
 EndFunc   ;==>PrepareSearch

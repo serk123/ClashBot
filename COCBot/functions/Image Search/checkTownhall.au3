@@ -16,4 +16,4 @@ Func checkTownhall()
 		EndIf
 	Next
 	If $THLocation = 0 Then Return "-"
-EndFunc
+EndFunc   ;==>checkTownhall

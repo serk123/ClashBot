@@ -44,7 +44,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$checkUseClanCastle = IniRead($config, "attack", "use-cc", "0")
 		$checkAttackTH = IniRead($config, "attack", "townhall", "0")
 		$icmbUnitDelay = IniRead($config, "attack", "UnitD", "0")
-	    $icmbWaveDelay = IniRead($config, "attack", "WaveD", "0")
+		$icmbWaveDelay = IniRead($config, "attack", "WaveD", "0")
 		$iRandomspeedatk = IniRead($config, "attack", "randomatk", "0")
 
 		;Donate Settings-------------------------------------------------------------------------
@@ -140,12 +140,12 @@ Func readConfig() ;Reads config and sets it to the variables
 			$DarkBarrackPos[$i][1] = IniRead($config, "troop", "yDarkBarrack" & $i + 1, "0")
 			$DarkBarrackTroop[$i] = IniRead($config, "troop", "Darktroop" & $i + 1, "0")
 		Next
-#cs
-		For $i = 0 To 16 ;Covers all Collectors
+		#cs
+			For $i = 0 To 16 ;Covers all Collectors
 			$collectorPos[$i][0] = IniRead($config, "general", "xCollector" & $i + 1, "0")
 			$collectorPos[$i][1] = IniRead($config, "general", "yCollector" & $i + 1, "0")
-		Next
-#ce
+			Next
+		#ce
 	Else
 		Return False
 	EndIf

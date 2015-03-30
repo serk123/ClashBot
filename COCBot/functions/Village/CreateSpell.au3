@@ -1,12 +1,12 @@
 Func CreateSpell()
-	If $SpellDarkStorage = 0 or $CreateSpell = False Then Return
+	If $SpellDarkStorage = 0 Or $CreateSpell = False Then Return
 
-  	SetLog("Create Lightning Spells...", $COLOR_BLUE)
+	SetLog("Create Lightning Spells...", $COLOR_BLUE)
 
 	If $SFactoryPos[0] = "" Then
-		 LocateSFactory()
-		 SaveConfig()
-		 If _Sleep(1000) Then Return
+		LocateSFactory()
+		SaveConfig()
+		If _Sleep(1000) Then Return
 	EndIf
 
 	ClickP($TopLeftClient) ;Click Away
@@ -23,17 +23,17 @@ Func CreateSpell()
 		Click($CreatePos[0], $CreatePos[1]) ;Click Create Spell
 		If _Sleep(500) Then Return
 
+		_CaptureRegion()
+		While _ColorCheck(_GetPixelColor(250, 357), Hex(0xCC4FC6, 6), 20)
+			Click(220, 320, 5) ;Lightning Spell
+			If _Sleep(200) Then ExitLoop
 			_CaptureRegion()
-			While _ColorCheck(_GetPixelColor(250, 357), Hex(0xCC4FC6, 6), 20)
-				Click(220, 320, 5) ;Lightning Spell
-				If _Sleep(200) Then ExitLoop
-			    _CaptureRegion()
-			WEnd
-    $CreateSpell = False
+		WEnd
+		$CreateSpell = False
 	EndIf
 
-    If _Sleep(500) Then Return
+	If _Sleep(500) Then Return
 	Click($TopLeftClient[0], $TopLeftClient[1], 2, 250); Click away twice with 250ms delay
-    SetLog("Create Spell Complete...", $COLOR_BLUE)
+	SetLog("Create Spell Complete...", $COLOR_BLUE)
 
-EndFunc   ;==>Create Spell
+EndFunc   ;==>CreateSpell

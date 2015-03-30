@@ -2,9 +2,9 @@
 ;After five minutes, will try to restart bluestacks.
 
 Func waitMainScreen() ;Waits for main screen to popup
-		If($ichkForceBS) = 1 Then
-			WinActivate($HWnD)
-		 EndIf
+	If ($ichkForceBS) = 1 Then
+		WinActivate($HWnD)
+	EndIf
 	SetLog("Waiting for Main Screen", $COLOR_ORANGE)
 	For $i = 0 To 150 ;150*2000 = 5 Minutes
 		_CaptureRegion()

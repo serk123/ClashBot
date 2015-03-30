@@ -2,7 +2,7 @@
 ;Will drop a troop and return home with no screenshot or gold wait.
 
 Func DropTrophy()
-    Local $i = 0
+	Local $i = 0
 	Local $TrophyCount = getOther(50, 74, "Trophy")
 	While Number($TrophyCount) > Number($itxtMaxTrophy)
 		$TrophyCount = getOther(50, 74, "Trophy")
@@ -19,9 +19,9 @@ Func DropTrophy()
 				If _Sleep(1000) Then ExitLoop (2)
 				$i += 1
 				If $i >= 10 Then
-				checkMainScreen()
-				$Restart = True
-				ExitLoop (2)
+					checkMainScreen()
+					$Restart = True
+					ExitLoop (2)
 				EndIf
 			WEnd
 			Click(34, 310) ;Drop one troop
@@ -31,7 +31,7 @@ Func DropTrophy()
 
 			ReturnHome(False, False) ;Return home no screenshot
 			If _Sleep(1000) Then ExitLoop
-			GUICtrlSetData($lblresulttrophiesdropped, GUICtrlRead($lblresulttrophiesdropped)-($TrophyCount-getOther(50, 74, "Trophy")))
+			GUICtrlSetData($lblresulttrophiesdropped, GUICtrlRead($lblresulttrophiesdropped) - ($TrophyCount - getOther(50, 74, "Trophy")))
 		Else
 			SetLog("Trophy Drop Complete", $COLOR_BLUE)
 		EndIf

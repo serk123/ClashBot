@@ -6,19 +6,19 @@
 Func _MultiPixelSearch($iLeft, $iTop, $iRight, $iBottom, $xSkip, $ySkip, $firstColor, $offColor, $iColorVariation)
 	_CaptureRegion($iLeft, $iTop, $iRight, $iBottom)
 	For $x = 0 To $iRight - $iLeft Step $xSkip
-		For $y = 0 to $iBottom - $iTop Step $ySkip
+		For $y = 0 To $iBottom - $iTop Step $ySkip
 			If _ColorCheck(_GetPixelColor($x, $y), $firstColor, $iColorVariation) Then
-			     Local $allchecked = True
-				 For $i = 0 to UBound($offColor) - 1
-					 If _ColorCheck(_GetPixelColor($x + $offColor[$i][1], $y + $offColor[$i][2]), Hex($offColor[$i][0], 6), $iColorVariation) = False Then
+				Local $allchecked = True
+				For $i = 0 To UBound($offColor) - 1
+					If _ColorCheck(_GetPixelColor($x + $offColor[$i][1], $y + $offColor[$i][2]), Hex($offColor[$i][0], 6), $iColorVariation) = False Then
 						$allchecked = False
 						ExitLoop
-					 EndIf
-				  Next
-				  If $allChecked Then
-					 Local $Pos[2] = [$iLeft + $x, $iTop + $y]
-					 Return $Pos
-				  EndIf
+					EndIf
+				Next
+				If $allchecked Then
+					Local $Pos[2] = [$iLeft + $x, $iTop + $y]
+					Return $Pos
+				EndIf
 			EndIf
 		Next
 	Next

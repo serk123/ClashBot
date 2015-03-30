@@ -23,34 +23,34 @@ Func GoldElixirChange()
 		$Elixir1 = getElixir(51, 66 + 29)
 ;		Local $iBegin = TimerInit(), $x = 10000
 ;		While TimerDiff($iBegin) < $x
-			If _Sleep(7000) Then Return
-			SetLog("Checking if the battle has finished", $COLOR_GREEN)
-			$Gold2 = getGold(51, 66)
-			$Elixir2 = getElixir(51, 66 + 29)
-			If $Gold2 <> "" Or $Elixir2 <> "" Then
-				$GoldChange = $Gold2
-				$ElixirChange = $Elixir2
-				If $searchDark <> 0 Then $Dark1 = getDarkElixir(51, 66 + 57)
-			EndIf
+		If _Sleep(7000) Then Return
+		SetLog("Checking if the battle has finished", $COLOR_GREEN)
+		$Gold2 = getGold(51, 66)
+		$Elixir2 = getElixir(51, 66 + 29)
+		If $Gold2 <> "" Or $Elixir2 <> "" Then
+			$GoldChange = $Gold2
+			$ElixirChange = $Elixir2
+			If $searchDark <> 0 Then $Dark1 = getDarkElixir(51, 66 + 57)
+		EndIf
 		If ($Gold2 = "" And $Elixir2 = "") Then
 			SetLog("Battle has finished", $COLOR_GREEN)
-		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)
-		Return False
+			GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked) + 1)
+			Return False
 		ElseIf ($Gold2 = 0 And $Elixir2 = 0) Then
 			SetLog("No resource detected, returning in " & $itxtReturnh & " seconds", $COLOR_GREEN)
 			If _Sleep($itxtReturnh * 1000) Then Return
-		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)
-		Return False
-	    ElseIf ($Gold1 = $Gold2 And $Elixir1 = $Elixir2) Then
+			GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked) + 1)
+			Return False
+		ElseIf ($Gold1 = $Gold2 And $Elixir1 = $Elixir2) Then
 			SpellDarkStorage()
 			SetLog("No Income detected, returning in " & $itxtReturnh & " seconds", $COLOR_BLUE)
 			If _Sleep($itxtReturnh * 1000) Then Return
-		GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked)+1)
-		Return False
+			GUICtrlSetData($lblresultvillagesattacked, GUICtrlRead($lblresultvillagesattacked) + 1)
+			Return False
 		Else
 			SetLog("Gold & Elixir change detected, waiting...", $COLOR_GREEN)
 			Return True
-		 EndIf
+		EndIf
 		ExitLoop
 	WEnd
 EndFunc   ;==>GoldElixirChange

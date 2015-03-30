@@ -17,7 +17,7 @@ Func UpgradeWall()
 	EndIf
 
 	If Not checkWall() Then
-		SetLog("Cannot find Walls level " & $icmbWalls+4 & ", skipping upgrading", $COLOR_RED)
+		SetLog("Cannot find Walls level " & $icmbWalls + 4 & ", skipping upgrading", $COLOR_RED)
 		ClickP($TopLeftClient) ; Click Away
 		Return
 	EndIf
@@ -41,7 +41,7 @@ Func UpgradeWall()
 		While $iGoldStorage > $iWallMinGold And $iGoldStorage < $iBeforeGoldStorage ; extra check to ensure previous upgrade succeeded and gold in villagereport decreased
 			$iBeforeGoldStorage = $iGoldStorage
 			If checkWall() Then
-				SetLog("Found Wall level " & $icmbWalls+4 & ", upgrading with Gold...", $COLOR_GREEN)
+				SetLog("Found Wall level " & $icmbWalls + 4 & ", upgrading with Gold...", $COLOR_GREEN)
 				ClickP($TopLeftClient) ; Click Away
 				If _Sleep(600) Then ExitLoop
 				Click($WallX, $WallY)
@@ -70,7 +70,7 @@ Func UpgradeWall()
 				If _Sleep(2000) Then ExitLoop
 				Click(472, 482) ; Click Okay
 				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
-				GUICtrlSetData($lblresultwallsupgraded, GUICtrlRead($lblresultwallsupgraded)+ 1)
+				GUICtrlSetData($lblresultwallsupgraded, GUICtrlRead($lblresultwallsupgraded) + 1)
 				If _Sleep(1000) Then ExitLoop
 				ClickP($TopLeftClient) ; Click away
 				If _Sleep(1000) Then ExitLoop
@@ -79,7 +79,7 @@ Func UpgradeWall()
 				VillageReport()
 				$iGoldStorage = Number($GoldCount)
 			Else
-				SetLog("Cannot find Walls level " & $icmbWalls+4 & ", finished upgrading...", $COLOR_GREEN)
+				SetLog("Cannot find Walls level " & $icmbWalls + 4 & ", finished upgrading...", $COLOR_GREEN)
 				Return
 			EndIf
 		WEnd
@@ -96,7 +96,7 @@ Func UpgradeWall()
 		While $iElixirStorage > $iWallMinElixir And $iElixirStorage < $iBeforeElixirStorage ; extra check to ensure previous upgrade succeeded and elixir in villagereport decreased
 			$iBeforeElixirStorage = $iElixirStorage
 			If checkWall() Then
-				SetLog("Found Wall level " & $icmbWalls+4 & ", upgrading with Elixir...", $COLOR_GREEN)
+				SetLog("Found Wall level " & $icmbWalls + 4 & ", upgrading with Elixir...", $COLOR_GREEN)
 				ClickP($TopLeftClient) ; Click Away
 				If _Sleep(600) Then ExitLoop
 				Click($WallX, $WallY)
@@ -127,11 +127,11 @@ Func UpgradeWall()
 				VillageReport()
 				$iElixirStorage = Number($ElixirCount)
 			Else
-				SetLog("Cannot find Walls level " & $icmbWalls+4 & ", finished upgrading...", $COLOR_GREEN)
+				SetLog("Cannot find Walls level " & $icmbWalls + 4 & ", finished upgrading...", $COLOR_GREEN)
 				Return
 			EndIf
 		WEnd
 	ElseIf $iUseStorage <> 1 Then
 		SetLog("Elixir is lower than Minimum setting for ugrade", $COLOR_RED)
 	EndIf
-EndFunc
+EndFunc   ;==>UpgradeWall

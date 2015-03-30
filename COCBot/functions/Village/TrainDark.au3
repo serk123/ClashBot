@@ -191,32 +191,6 @@ If GUICtrlRead($txtDarkBarrack2) <> "0" And $i = 1 And $TrainDrax2 = True Then
 					 EndIf
 EndIf
 
-#cs
-			   _CaptureRegion()
-			   Switch $DarkBarrackTroop[$i]
-					Case 0
-						While _ColorCheck(_GetPixelColor(230, 312), Hex(0x94DEE8, 6), 20)
-							Click(220, 320, 15) ;Minions
-							If _Sleep(250) Then ExitLoop
-							_CaptureRegion()
-						WEnd
-					Case 1
-						While _ColorCheck(_GetPixelColor(336, 306), Hex(0xC5795C, 6), 20)
-							Click(331, 320, 10) ;Hogs
-							If _Sleep(250) Then ExitLoop
-							_CaptureRegion()
-						 WEnd
-					 Case 2
-						While _ColorCheck(_GetPixelColor(418, 300), Hex(0xF87118, 6), 20)
-							Click(440, 320, 5) ;Valkyries
-							If _Sleep(250) Then ExitLoop
-							_CaptureRegion()
-						 WEnd
-					Case Else
-						If _Sleep(50) Then ExitLoop
-						_CaptureRegion()
-			   EndSwitch
-#ce
 	EndIf
     If _Sleep(100) Then ExitLoop
 	Click($TopLeftClient[0], $TopLeftClient[1], 2, 250); Click away twice with 250ms delay

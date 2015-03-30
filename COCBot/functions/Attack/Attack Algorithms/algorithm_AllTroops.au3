@@ -278,14 +278,15 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
 	;Activate KQ's power
 	If $checkKPower Or $checkQPower Then
-		If $itxtKingSkill <= $itxtQueenSkill Then
-			SetLog("Waiting " & $itxtKingSkill & " seconds before activating Heroes abilities", $COLOR_ORANGE)
+		If $itxtKingSkill < $itxtQueenSkill Then
 			If $checkKPower Then
+			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating King's abilities", $COLOR_ORANGE)
 				_Sleep($itxtKingSkill * 1000)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
 			EndIf
 			If $checkQPower Then
+			    SetLog("Waiting " & ($itxtQueenSkill - $itxtKingSkill) & " seconds before activating Queen's abilities", $COLOR_ORANGE)
 				_Sleep(($itxtQueenSkill - $itxtKingSkill) * 1000)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
@@ -293,16 +294,30 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		EndIf
 
 		If $itxtQueenSkill < $itxtKingSkill Then
-			SetLog("Waiting " & $itxtQueenSkill & " seconds before activating Heroes abilities", $COLOR_ORANGE)
 			If $checkQPower Then
+			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating Queen's abilities", $COLOR_ORANGE)
 				_Sleep($itxtQueenSkill * 1000)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
 			EndIf
 			If $checkKPower Then
+			    SetLog("Waiting " & ($itxtKingSkill - $itxtQueenSkill) & " seconds before activating King's abilities", $COLOR_ORANGE)
 				_Sleep(($itxtKingSkill - $itxtQueenSkill) * 1000)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
+			EndIf
+		 EndIf
+
+		If $itxtQueenSkill = $itxtKingSkill Then
+		   	If $checkKPower Or $checkQPower Then SetLog("Waiting " & $itxtKingSkill & " seconds before activating Heroes abilities", $COLOR_ORANGE)
+			_Sleep($itxtKingSkill * 1000)
+			If $checkKPower Then
+				SetLog("Activate King's power", $COLOR_BLUE)
+				SelectDropTroupe($King)
+			EndIf
+			If $checkQPower Then
+				SetLog("Activate Queen's power", $COLOR_BLUE)
+				SelectDropTroupe($Queen)
 			EndIf
 		EndIf
 	EndIf

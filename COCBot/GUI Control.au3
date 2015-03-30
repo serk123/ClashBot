@@ -108,6 +108,7 @@ Func Initiate()
 
 		$AttackNow = False
 		$FirstStart = True
+		$FirstDarkTrain = True
 		$Checkrearm = True
 		$CreateSpell = True
 		GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)

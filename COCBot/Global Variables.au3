@@ -227,6 +227,7 @@ Global $sTimer, $hour, $min, $sec
 Global $CurCamp, $TotalCamp = 0
 Global $NoLeague
 Global $FirstStart = True
+Global $FirstDarkTrain = True
 Global $DCattack = 0
 Global $Checkrearm = True
 Global $lblgoldnowM, $lblresultgoldnowM, $imggoldnowM, $lblelixirnowM, $lblresultelixirnowM, $imgelixirnowM, $lbldenowM, $lblresultdenowM, $imgdenowM

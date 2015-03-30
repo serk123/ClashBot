@@ -140,8 +140,8 @@ Func DonateBarbs()
 		If _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Barbarians", $COLOR_BLUE)
 			While _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
-				Click(237, $DonatePixel[1] - 5)
-				$CurBarb += 1
+				Click(237, $DonatePixel[1] - 5, 5)
+				$CurBarb += 5
 				If _Sleep(250) Then Return
 				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 			WEnd
@@ -169,8 +169,8 @@ Func DonateArchers()
 		If _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Archers", $COLOR_BLUE)
 			While _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
-				Click(315, $DonatePixel[1] - 5)
-				$CurArch += 1
+				Click(315, $DonatePixel[1] - 5, 5)
+				$CurArch += 5
 				If _Sleep(250) Then Return
 				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 			WEnd
@@ -199,8 +199,8 @@ Func DonateGiants()
 		If _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Giants", $COLOR_BLUE)
 			While _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
-				Click(400, $DonatePixel[1] - 5)
-				$CurGiant += 1
+				Click(400, $DonatePixel[1] - 5, 5)
+				$CurGiant += 5
 				If _Sleep(250) = True Then Return
 				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 			WEnd

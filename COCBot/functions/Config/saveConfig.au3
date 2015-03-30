@@ -94,9 +94,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 
 	;Attack Settings-------------------------------------------------------------------------
-    IniWrite($config, "other", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
-	IniWrite($config, "other", "WaveD", _GUICtrlComboBox_GetCurSel($cmbWaveDelay))
-	IniWrite($config, "other", "randomatk", GUICtrlRead($Randomspeedatk))
 	IniWrite($config, "attack", "deploy-dead", _GUICtrlComboBox_GetCurSel($cmbDeadDeploy))
 	IniWrite($config, "attack", "algorithm-dead", _GUICtrlComboBox_GetCurSel($cmbDeadAlgorithm))
 
@@ -150,6 +147,11 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "attack", "townhall", 0)
 	EndIf
+
+    IniWrite($config, "attack", "UnitD", _GUICtrlComboBox_GetCurSel($cmbUnitDelay))
+	IniWrite($config, "attack", "WaveD", _GUICtrlComboBox_GetCurSel($cmbWaveDelay))
+	IniWrite($config, "attack", "randomatk", GUICtrlRead($Randomspeedatk))
+
 	;Donate Settings-------------------------------------------------------------------------
 	If GUICtrlRead($chkRequest) = $GUI_CHECKED Then
 		IniWrite($config, "donate", "chkRequest", 1)
@@ -219,6 +221,21 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	IniWrite($config, "troop", "Darktroop1", _GUICtrlComboBox_GetCurSel($cmbDarkBarrack1))
 	IniWrite($config, "troop", "Darktroop2", _GUICtrlComboBox_GetCurSel($cmbDarkBarrack2))
+	IniWrite($config, "troop", "DarkRax1", GUICtrlRead($txtDarkBarrack1))
+	IniWrite($config, "troop", "DarkRax2", GUICtrlRead($txtDarkBarrack2))
+   ;Custom Troop 2 Settings--------------------------------------------------------------------------
+	IniWrite($config, "troop", "CustomRax1", GUICtrlRead($txtFirstTroop1))
+	IniWrite($config, "troop", "CustomRax2", GUICtrlRead($txtFirstTroop2))
+	IniWrite($config, "troop", "CustomRax3", GUICtrlRead($txtFirstTroop3))
+	IniWrite($config, "troop", "CustomRax4", GUICtrlRead($txtFirstTroop4))
+	IniWrite($config, "troop", "CustomtroopF1", _GUICtrlComboBox_GetCurSel($cmbFirstTroop1))
+	IniWrite($config, "troop", "CustomtroopF2", _GUICtrlComboBox_GetCurSel($cmbFirstTroop2))
+	IniWrite($config, "troop", "CustomtroopF3", _GUICtrlComboBox_GetCurSel($cmbFirstTroop3))
+	IniWrite($config, "troop", "CustomtroopF4", _GUICtrlComboBox_GetCurSel($cmbFirstTroop4))
+	IniWrite($config, "troop", "CustomtroopS1", _GUICtrlComboBox_GetCurSel($cmbSecondTroop1))
+	IniWrite($config, "troop", "CustomtroopS2", _GUICtrlComboBox_GetCurSel($cmbSecondTroop2))
+	IniWrite($config, "troop", "CustomtroopS3", _GUICtrlComboBox_GetCurSel($cmbSecondTroop3))
+	IniWrite($config, "troop", "CustomtroopS4", _GUICtrlComboBox_GetCurSel($cmbSecondTroop4))
 
    ;Other Settings--------------------------------------------------------------------------
 	If GUICtrlRead($chkWalls) = $GUI_CHECKED Then

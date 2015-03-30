@@ -228,14 +228,31 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	_GUICtrlComboBox_SetCurSel($cmbBarrack3, $barrackTroop[2])
 	_GUICtrlComboBox_SetCurSel($cmbBarrack4, $barrackTroop[3])
 
-	_GUICtrlComboBox_SetCurSel($cmbDarkBarrack1, $DarkBarrackTroop[0])
-	_GUICtrlComboBox_SetCurSel($cmbDarkBarrack2, $DarkBarrackTroop[1])
-
 	If $ichkDarkTroop = 1 Then
 		GUICtrlSetState($chkDarkTroop, $GUI_CHECKED)
 	Else
 		GUICtrlSetState($chkDarkTroop, $GUI_UNCHECKED)
 	EndIf
+	_GUICtrlComboBox_SetCurSel($cmbDarkBarrack1, $DarkBarrackTroop[0])
+	_GUICtrlComboBox_SetCurSel($cmbDarkBarrack2, $DarkBarrackTroop[1])
+	GUICtrlSetData($txtDarkBarrack1, $itxtDarkBarrack1)
+	GUICtrlSetData($txtDarkBarrack2, $itxtDarkBarrack2)
+
+	;Custom Troop 2 Settings--------------------------------------------------------------------------
+	GUICtrlSetData($txtFirstTroop1, $itxtFirstTroop1)
+	GUICtrlSetData($txtFirstTroop2, $itxtFirstTroop2)
+	GUICtrlSetData($txtFirstTroop3, $itxtFirstTroop3)
+	GUICtrlSetData($txtFirstTroop4, $itxtFirstTroop4)
+	_GUICtrlComboBox_SetCurSel($cmbFirstTroop1, $CustomTroopF[0])
+	_GUICtrlComboBox_SetCurSel($cmbFirstTroop2, $CustomTroopF[1])
+	_GUICtrlComboBox_SetCurSel($cmbFirstTroop3, $CustomTroopF[2])
+	_GUICtrlComboBox_SetCurSel($cmbFirstTroop4, $CustomTroopF[3])
+
+	_GUICtrlComboBox_SetCurSel($cmbSecondTroop1, $CustomTroopS[0])
+	_GUICtrlComboBox_SetCurSel($cmbSecondTroop2, $CustomTroopS[1])
+	_GUICtrlComboBox_SetCurSel($cmbSecondTroop3, $CustomTroopS[2])
+	_GUICtrlComboBox_SetCurSel($cmbSecondTroop4, $CustomTroopS[3])
+
 	;Other Settings--------------------------------------------------------------------------
 	If $ichkWalls = 1 Then
 		GUICtrlSetState($chkWalls, $GUI_CHECKED)

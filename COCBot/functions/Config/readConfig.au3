@@ -43,6 +43,10 @@ Func readConfig() ;Reads config and sets it to the variables
 		$checkUseQueen = IniRead($config, "attack", "queen-all", "0")
 		$checkUseClanCastle = IniRead($config, "attack", "use-cc", "0")
 		$checkAttackTH = IniRead($config, "attack", "townhall", "0")
+		$icmbUnitDelay = IniRead($config, "attack", "UnitD", "0")
+	    $icmbWaveDelay = IniRead($config, "attack", "WaveD", "0")
+		$iRandomspeedatk = IniRead($config, "attack", "randomatk", "0")
+
 		;Donate Settings-------------------------------------------------------------------------
 		$CCPos[0] = IniRead($config, "donate", "xCCPos", "0")
 		$CCPos[1] = IniRead($config, "donate", "yCCPos", "0")
@@ -71,9 +75,17 @@ Func readConfig() ;Reads config and sets it to the variables
 		$GoblinsComp = IniRead($config, "troop", "goblin", "0")
 		$WBComp = IniRead($config, "troop", "WB", "0")
 		$ichkDarkTroop = IniRead($config, "troop", "chkDarkTroop", "0")
-		$icmbUnitDelay = IniRead($config, "other", "UnitD", "0")
-	    $icmbWaveDelay = IniRead($config, "other", "WaveD", "0")
-		$iRandomspeedatk = IniRead($config, "other", "randomatk", "0")
+		$itxtDarkBarrack1 = IniRead($config, "troop", "DarkRax1", "0")
+		$itxtDarkBarrack2 = IniRead($config, "troop", "DarkRax2", "0")
+		;Custom Troop 2 Settings--------------------------------------------------------------------------
+		$itxtFirstTroop1 = IniRead($config, "troop", "CustomRax1", "0")
+		$itxtFirstTroop2 = IniRead($config, "troop", "CustomRax2", "0")
+		$itxtFirstTroop3 = IniRead($config, "troop", "CustomRax3", "0")
+		$itxtFirstTroop4 = IniRead($config, "troop", "CustomRax4", "0")
+		For $i = 0 To 3 ;Covers all 4 Barracks
+			$CustomTroopF[$i] = IniRead($config, "troop", "CustomtroopF" & $i + 1, "0")
+			$CustomTroopS[$i] = IniRead($config, "troop", "CustomtroopS" & $i + 1, "0")
+		Next
 
 		;Other Settings--------------------------------------------------------------------------
 		;Walls

@@ -163,20 +163,17 @@ Global $ArchersComp
 Global $GiantsComp
 Global $GoblinsComp
 Global $WBComp
-Global $CurBarb
-Global $CurArch
-Global $CurGiant
-Global $CurGoblin
-Global $CurWB
-Global $CurMinion
-Global $CurHog
-Global $CurValkyrie
+Global $CurBarb, $CurArch, $CurGiant, $CurGoblin, $CurWB, $CurMinion, $CurHog, $CurValkyrie
 Global $ArmyComp
 Global $TownHallPos[2] = [-1, -1] ;Position of TownHall
 Global $barrackPos[4][2] ;Positions of each barracks
-Global $barrackTroop[10] ;Barrack troop set
+Global $barrackTroop[4] ;Barrack troop set
 Global $DarkBarrackPos[2][2]
-Global $DarkBarrackTroop [3]
+Global $DarkBarrackTroop[2]
+Global $itxtDarkBarrack1, $itxtDarkBarrack2
+Global $itxtFirstTroop1, $itxtFirstTroop2, $itxtFirstTroop3, $itxtFirstTroop4
+Global $CustomTroopF[4]
+Global $CustomTroopS[4]
 
 Global $ArmyPos[2]
 Global $KingPos[2]

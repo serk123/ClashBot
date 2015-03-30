@@ -368,5 +368,5 @@ Func Train()
 		ClickP($TopLeftClient, 2, 250); Click away twice with 250ms delay
 	Next
 	SetLog("Training Troops Complete...", $COLOR_BLUE)
-	$FirstStart = False
+    If $ichkDarkTroop = 0 Then $FirstStart = False
 EndFunc   ;==>Train

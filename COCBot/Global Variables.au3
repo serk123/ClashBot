@@ -255,6 +255,7 @@ Global $PushBulletmessages = 100
 
 ;GoldCostPerSearch
 Global $SearchCost = 0
+Global $BuilderCountStart = 0
 
 ;Remote Control
 Global $PauseBot = False

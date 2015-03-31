@@ -61,6 +61,12 @@ Func runBot() ;Bot that runs everything in order
 		Pause()
 		If _Sleep(1000) Then Return
 		ZoomOut()
+		VillageReport() ; populate resource stats and gather info required for upgrades
+		Pause()
+		If $SearchCost = 0 Then
+		    If _Sleep(1000) Then Return
+			CheckCostPerSearch()
+		EndIf
 		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
@@ -127,8 +133,6 @@ Func runBot() ;Bot that runs everything in order
 		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
-		VillageReport() ; populate resource stats and gather info required for upgrades
 		Pause()
 		UpgradeWall()
 		Pause()

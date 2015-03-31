@@ -583,7 +583,7 @@ GUICtrlCreateTabItem("")
 
 ;Notification
 $pagenotificationSetting = GUICtrlCreateTabItem("Notification")
-$lblpushbullet = GUICtrlCreateGroup("PushBullet", 20, 40, 370, 240)
+$lblpushbullet = GUICtrlCreateGroup("PushBullet", 20, 40, 375, 240)
 $pushbullettoken1 = GUICtrlCreateLabel("Account Token:", 30, 90, 80, 17, $SS_CENTER)
 $pushbullettokenvalue = GUICtrlCreateInput("", 120, 90, 260, 17)
 $lblpushbulletenabled = GUICtrlCreateCheckbox("Enable", 30, 65, 60, 17)

@@ -52,19 +52,24 @@ Func runBot() ;Bot that runs everything in order
 		SaveConfig()
 		readConfig()
 		applyConfig()
+		Pause()
 		chkNoAttack()
 		$Restart = False
 		$fullArmy = False
 		If _Sleep(1000) Then Return
 		checkMainScreen()
+		Pause()
 		If _Sleep(1000) Then Return
 		ZoomOut()
+		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
+		Pause()
 		If $Restart = True Then ContinueLoop
 		If BotCommand() Then btnStop()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
+		Pause()
 		If $Checkrearm = True Then
 			ZoomOut()
 			ReArm()
@@ -72,52 +77,73 @@ Func runBot() ;Bot that runs everything in order
 			checkMainScreen(False)
 			$Checkrearm = False
 		EndIf
+		Pause()
 		DonateCC()
+		Pause()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			ZoomOut()
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
 		EndIf
+		Pause()
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
 			ZoomOut()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
+			Pause()
 			If _Sleep(1000) Then Return
 			AttackMain()
+			Pause()
 			If _Sleep(1000) Then Return
 			$fullArmy = False
 		EndIf
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			ZoomOut()
+			Pause()
 			Train()
+			Pause()
 			If _Sleep(1000) Then Return
 			TrainDark()
+			Pause()
 			If _Sleep(1000) Then Return
 			CreateSpell()
+			Pause()
 			If _Sleep(1000) Then Return
 		EndIf
 		checkMainScreen(False)
+		Pause()
 		ZoomOut()
+		Pause()
 		BoostAllBuilding()
+		Pause()
 		If _Sleep(1000) Then Return
 		RequestCC()
+		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
+		Pause()
 		Collect()
+		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
+		Pause()
 		VillageReport() ; populate resource stats and gather info required for upgrades
+		Pause()
 		UpgradeWall()
+		Pause()
 		If _Sleep(1000) Then Return
 		Idle()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			ZoomOut()
+			Pause()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
+			Pause()
 			If _Sleep(1000) Then Return
 			AttackMain()
+			Pause()
 			If _Sleep(1000) Then Return
 		EndIf
 	WEnd
@@ -193,3 +219,8 @@ Func Attack() ;Selects which algorithm
 	;	EndSwitch
 EndFunc   ;==>Attack
 
+Func Pause() ;Remotely allows you to pause the bot
+   While $PauseBot
+	  Sleep(1000)
+   Wend
+EndFunc

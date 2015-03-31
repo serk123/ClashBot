@@ -70,7 +70,7 @@ Func UpgradeWall()
 				If _Sleep(2000) Then ExitLoop
 				Click(472, 482) ; Click Okay
 				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
-				GUICtrlSetData($lblresultwallsupgraded, GUICtrlRead($lblresultwallsupgraded) + 1)
+				GUICtrlSetData($lblwallupgradecount, GUICtrlRead($lblwallupgradecount)+ 1)
 				If _Sleep(1000) Then ExitLoop
 				ClickP($TopLeftClient) ; Click away
 				If _Sleep(1000) Then ExitLoop
@@ -116,6 +116,7 @@ Func UpgradeWall()
 				If _Sleep(2000) Then ExitLoop
 				Click(472, 482) ; Click Okay
 				SetLog("Upgrading Done !!!", $COLOR_BLUE) ; Done upgrade
+				GUICtrlSetData($lblwallupgradecount, GUICtrlRead($lblwallupgradecount)+ 1)
 				If _Sleep(1000) Then ExitLoop
 				ClickP($TopLeftClient) ; Click away
 				If _Sleep(1000) Then ExitLoop

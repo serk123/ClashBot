@@ -247,8 +247,8 @@ GUICtrlSetState(-1, $GUI_DISABLE)
 $txtNumWallbreakers = GUICtrlCreateInput("4", 120, 130, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 GUICtrlSetState(-1, $GUI_DISABLE)
 
-$lblPercentArchers = GUICtrlCreateLabel("Unit", 178, 108, 40, 17)
-$lblPercentGoblins = GUICtrlCreateLabel("Unit", 178, 133, 40, 17)
+$lblUnitGiants = GUICtrlCreateLabel("Unit", 178, 108, 40, 17)
+$lblUnitWallBreakers = GUICtrlCreateLabel("Unit", 178, 133, 40, 17)
 
 $lblCapacity = GUICtrlCreateLabel("Camp Capacity :", 30, 158, 95, 17)
 $txtCapacity = GUICtrlCreateInput("0", 120, 155, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -381,9 +381,9 @@ GUICtrlSetOnEvent(-1, "btnLocateUp2")
 GUICtrlSetState(-1, $GUI_DISABLE)
 $chkUpgrade3 = GUICtrlCreateCheckbox("Upgrade 3 :", 30, 252, 80, 17)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$lblUP2PosX = GUICtrlCreateLabel("Pos X : ", 112, 254, 40, 17)
+$lblUP3PosX = GUICtrlCreateLabel("Pos X : ", 112, 254, 40, 17)
 $txtUpgradeX3 = GUICtrlCreateInput("", 152, 249, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER, $ES_READONLY))
-$lblUP2PosY = GUICtrlCreateLabel("Pos Y : ", 195, 254, 40, 17)
+$lblUP3PosY = GUICtrlCreateLabel("Pos Y : ", 195, 254, 40, 17)
 $txtUpgradeY3 = GUICtrlCreateInput("", 235, 249, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER, $ES_READONLY))
 $btnLocateUp3 = GUICtrlCreateButton("Locate Building 3", 285, 249, 100, 21)
 GUICtrlSetOnEvent(-1, "btnLocateUp3")
@@ -413,7 +413,6 @@ $chkBoostRax2 = GUICtrlCreateCheckbox("Barrack 2", 195, 330, 65, 17)
 $chkBoostRax3 = GUICtrlCreateCheckbox("Barrack 3", 285, 305, 65, 17)
 $chkBoostRax4 = GUICtrlCreateCheckbox("Barrack 4", 285, 330, 65, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-GUICtrlCreateTabItem("")
 
 ;Misc Tab
 $pageMiscSettings = GUICtrlCreateTabItem("Misc")
@@ -493,7 +492,6 @@ GUICtrlSetOnEvent(-1, "btnLocateCamp")
 $btnLocateBarracks = GUICtrlCreateButton("Locate Barracks Manually", 213, 324, 170, 25)
 GUICtrlSetOnEvent(-1, "btnLocateBarracks")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-GUICtrlCreateTabItem("")
 
 #cs
 	;Remote Tab

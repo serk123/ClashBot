@@ -583,6 +583,61 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 GUICtrlCreateTabItem("")
 
+;Notification
+$pagenotificationSetting = GUICtrlCreateTabItem("Notification")
+$lblpushbullet = GUICtrlCreateGroup("PushBullet", 20, 40, 370, 240)
+$pushbullettoken1 = GUICtrlCreateLabel("Account Token:", 30, 90, 80, 17, $SS_CENTER)
+$pushbullettokenvalue = GUICtrlCreateInput("", 120, 90, 260, 17)
+$lblpushbulletenabled = GUICtrlCreateCheckbox("Enable", 30, 65, 60, 17)
+GUICtrlSetTip(-1, "Enable pushbullet notification")
+$lblpushbulletdebug = GUICtrlCreateCheckbox("Debug", 100, 65, 60, 17)
+GUICtrlSetTip(-1, "This will add verbosity on log while sending files via pushbullet")
+$lblpushbulletremote = GUICtrlCreateCheckbox("Remote", 170, 65, 60, 17)
+GUICtrlSetTip(-1, "Enables pushbullet remote function")
+$lblpushbulletdelete = GUICtrlCreateCheckbox("Delete Msg on Start", 240, 65, 120, 17)
+GUICtrlSetTip(-1, "Will delete your messages on start button click")
+
+$lblpushmessage = GUICtrlCreateGroup("Push Messages", 30, 115, 260, 75)
+$lblvillagereport = GUICtrlCreateCheckbox("Village Report", 40, 140, 90, 17)
+$lblmatchfound = GUICtrlCreateCheckbox("Match Found", 40, 160, 90, 17)
+GUICtrlSetOnEvent(-1, "MatchFound")
+$lbllastraid = GUICtrlCreateCheckbox("Last Raid", 130, 140, 70, 17)
+$lbltotalraid = GUICtrlCreateCheckbox("Total Raid", 130, 160, 70, 17)
+$lblfreebuilder = GUICtrlCreateCheckbox("Free Builder", 210, 140, 75, 17)
+$lblerror = GUICtrlCreateCheckbox("Errors", 210, 160, 70, 17)
+
+$lblpushbulletloot = GUICtrlCreateGroup("Last Raid", 300, 115, 80, 75)
+$UseJPG = GUICtrlCreateRadio("as JPG", 310, 140, 60, 17)
+GUICtrlSetTip(-1, "Attach the loot jpg file in push message")
+GUICtrlSetLimit(-1, 7)
+
+$UseText = GUICtrlCreateRadio("as TXT", 310, 160, 60, 17)
+GUICtrlSetTip(-1, "Push only text message")
+GUICtrlSetLimit(-1, 7)
+
+;$lblpushbulletloot = GUICtrlCreateGroup("Stats", 305, 115, 75, 85)
+;$UseJPG2 = GUICtrlCreateRadio("as JPG", 315, 135, 60, 17)
+;GUICtrlSetTip(-1, "Attach the stats jpg file in push message")
+;GUICtrlSetLimit(-1, 7)
+;GUICtrlSetState(-1, $GUI_DISABLE)
+
+;$UseText2 = GUICtrlCreateRadio("as TEXT", 315, 160, 60, 17)
+;GUICtrlSetTip(-1, "Push only text message")
+;GUICtrlSetLimit(-1, 7)
+;GUICtrlSetState(-1, $GUI_DISABLE)
+
+;$lblpushbullet = GUICtrlCreateGroup("PushBullet Remote", 20, 210, 370, 140)
+;$pushbullettoken1 = GUICtrlCreateLabel("You can remotely control your bot using the following command format" & @CRLF & "Enter the command in the title of the message" & @CRLF & "Bot <command> where <command> is:" & @CRLF & @CRLF & "Pause - pause the bot" & @CRLF & "Resume - resume the bot" & @CRLF & "Stats - send bot current statistics" & @CRLF & "Logs - send the current log file" & @CRLF & "Help - send this help message", 25, 230, 340, 350, $SS_LEFT)
+
+$lblpushbulletconfig = GUICtrlCreateGroup("Remote Configuration", 30, 195, 185, 75)
+$lblpushbulletinterval = GUICtrlCreateLabel("Check Interval:", 40, 220, 80, 17, $SS_RIGHT)
+$lblpushbulletintervalvalue = GUICtrlCreateInput("10", 125, 215, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+$lblpushbulleintervalmin = GUICtrlCreateLabel("minutes", 140, 220, 80, 17, $SS_CENTER)
+$lblpushbullemessages = GUICtrlCreateLabel("Keep Messages:", 40, 245, 80, 17, $SS_RIGHT)
+$lblpushbulletmessagesvalue = GUICtrlCreateInput("100", 125, 240, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 3)
+
 ;Bottom status bar
 $statLog = _GUICtrlStatusBar_Create($frmBot)
 _GUICtrlStatusBar_SetSimple($statLog)

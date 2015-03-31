@@ -231,3 +231,30 @@ Global $FirstDarkTrain = True
 Global $DCattack = 0
 Global $Checkrearm = True
 Global $lblgoldnowM, $lblresultgoldnowM, $imggoldnowM, $lblelixirnowM, $lblresultelixirnowM, $imgelixirnowM, $lbldenowM, $lblresultdenowM, $imgdenowM
+
+;PushBullet
+Global $GoldGained = 0, $ElixirGained = 0, $DarkGained = 0, $TrophyGained = 0
+Global $GoldCountOld = 0, $ElixirCountOld = 0, $DarkCountOld = 0, $TrophyOld = 0
+Global $PushBulletEnabled = 0
+Global $PushBullettoken = ""
+Global $PushBullettype = 0
+Global $FileName = ""
+Global $PushBulletvillagereport = 0
+Global $PushBulletmatchfound = 0
+Global $PushBulletlastraid = 0
+Global $PushBullettotalraid = 0
+Global $PushBulletdebug = 0
+Global $PushBulletremote = 0
+Global $PushBulletdelete = 0
+Global $PushBulletbuilder = 0
+Global $PushBulleterror = 0
+Global $sLogFileName
+Global $Raid = 0
+Global $PushBulletinterval = 10
+Global $PushBulletmessages = 100
+
+;GoldCostPerSearch
+Global $SearchCost = 0
+
+;Remote Control
+Global $PauseBot = False

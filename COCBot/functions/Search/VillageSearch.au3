@@ -81,6 +81,9 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					PrepareSearch()
 				Else
 					SetLog("Cannot locate Next button & Surrender button, Restarting Bot", $COLOR_RED)
+					if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblerror) = $GUI_CHECKED Then
+						_Push("Disconnected","Your bot got disconnected while searching for enemy..")
+				    EndIf
 					checkMainScreen()
 					$Restart = True
 					$DCattack = 1
@@ -91,6 +94,10 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		If GUICtrlRead($chkAlertSearch) = $GUI_CHECKED Then
 			TrayTip("Match Found!", "Gold: " & $searchGold & "; Elixir: " & $searchElixir & "; Dark: " & $searchDark & "; Trophy: " & $searchTrophy & "; Townhall: " & $searchTH & ", " & $THLoc, 0)
+			If GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblmatchfound) = $GUI_CHECKED Then
+			   _Push("Match Found!", "[G]: " & _NumberFormat($searchGold) & "; [E]: " & _NumberFormat($searchElixir) & "; [D]: " & _NumberFormat($searchDark) & "; [T]: " & $searchTrophy  & "; [TH Lvl]: " & $searchTH & ", Loc: " & $THLoc )
+			   SetLog("Push: Match Found",$COLOR_GREEN)
+			EndIf
 			If FileExists(@WindowsDir & "\media\Windows Exclamation.wav") Then
 				SoundPlay(@WindowsDir & "\media\Windows Exclamation.wav", 1)
 			Else

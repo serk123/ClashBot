@@ -106,13 +106,11 @@ Func DonateCC()
 		EndIf
 	WEnd
 
-	If _Sleep(1000) Then Return
-	SetLog("Finished Donating", $COLOR_BLUE)
-	_CaptureRegion()
-	If _ColorCheck(_GetPixelColor(331, 330), Hex(0xF0A03B, 6), 20) Then
+	If _WaitForPixel(331, 330, Hex(0xF0A03B, 6), 20) Then
 		Click(331, 330) ;Clicks chat thing
 		If _Sleep(500) Then Return
 	EndIf
+	SetLog("Finished Donating", $COLOR_BLUE)
 EndFunc   ;==>DonateCC
 
 Func CheckDonate($String, $clanString) ;Checks if it exact
@@ -137,14 +135,13 @@ Func DonateBarbs()
 		Click($DonatePixel[0], $DonatePixel[1] + 11)
 		If _Sleep(1000) Then Return
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
-		If _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
+		If _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Then ;Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Barbarians", $COLOR_BLUE)
-			While _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
+			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 237, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 500, 20)
 				Click(237, $DonatePixel[1] - 5)
 				$CurBarb += 1
-				If _Sleep(250) Then Return
-				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 			WEnd
+			$CurBarb -= 1 ;_WaitForPixel tends to allow one extra click due to delay in picture going grey
 			$Donate = True
 		ElseIf $ichkDonateAllArchers = 1 Then
 			DonateArchers()
@@ -166,14 +163,13 @@ Func DonateArchers()
 		Click($DonatePixel[0], $DonatePixel[1] + 11)
 		If _Sleep(1000) Then Return
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
-		If _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
+		If _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Then ;Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Archers", $COLOR_BLUE)
-			While _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
+			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 315, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 500, 20)
 				Click(315, $DonatePixel[1] - 5)
 				$CurArch += 1
-				If _Sleep(250) Then Return
-				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 			WEnd
+			$CurArch -= 1 ;_WaitForPixel tends to allow one extra click due to delay in picture going grey
 			$Donate = True
 		ElseIf $ichkDonateAllGiants = 1 Then
 			DonateGiants()
@@ -196,14 +192,13 @@ Func DonateGiants()
 		If _Sleep(1000) Then Return
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 		;Giants Fixed
-		If _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
+		If _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Then ;Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Giants", $COLOR_BLUE)
-			While _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10)
+			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 400, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 500, 20)
 				Click(400, $DonatePixel[1] - 5)
 				$CurGiant += 1
-				If _Sleep(250) = True Then Return
-				_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 			WEnd
+			$CurGiant -= 1 ;_WaitForPixel tends to allow one extra click due to delay in picture going grey
 			$Donate = True
 		Else
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)

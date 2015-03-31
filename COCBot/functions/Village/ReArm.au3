@@ -22,9 +22,7 @@ Func ReArm()
 	Local $RearmPixel = _MultiPixelSearch($x1, $y1, $x2, $y2, 1, 1, Hex(0xF2F6F5, 6), $offColors, 30) ; first white pixel of button
 	If IsArray($RearmPixel) Then
 		Click($RearmPixel[0] + 20, $RearmPixel[1] + 20) ; Click RearmButton
-		If _Sleep(1000) Then Return
-		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(350, 420), Hex(0xC83B10, 6), 20) Then
+		If _WaitForPixel(350, 420, Hex(0xC83B10, 6), 20) Then
 			Click(515, 400)
 			If _Sleep(500) Then Return
 			SetLog("Rearmed Traps", $COLOR_ORANGE)
@@ -36,9 +34,7 @@ Func ReArm()
 	Local $XbowPixel = _MultiPixelSearch($x1, $y1, $x2, $y2, 1, 1, Hex(0xF2F6F5, 6), $offColors, 30) ; button start
 	If IsArray($XbowPixel) Then
 		Click($XbowPixel[0] + 20, $XbowPixel[1] + 20) ; Click XbowButton
-		If _Sleep(1000) Then Return
-		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(350, 420), Hex(0xC83B10, 6), 20) Then
+		If _WaitForPixel(350, 420, Hex(0xC83B10, 6), 20) Then
 			Click(515, 400)
 			If _Sleep(500) Then Return
 			SetLog("Reloaded X-Bows", $COLOR_ORANGE)
@@ -50,9 +46,7 @@ Func ReArm()
 	Local $InfernoPixel = _MultiPixelSearch($x1, $y1, $x2, $y2, 1, 1, Hex(0xF2F6F5, 6), $offColors, 30)
 	If IsArray($InfernoPixel) Then
 		Click($InfernoPixel[0] + 20, $InfernoPixel[1] + 20) ; Click InfernoButton
-		If _Sleep(1000) Then Return
-		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(350, 420), Hex(0xC83B10, 6), 20) Then
+		If _WaitForPixel(350, 420, Hex(0xC83B10, 6), 20) Then
 			Click(515, 400)
 			If _Sleep(500) Then Return
 			SetLog("Reloaded Infernos", $COLOR_ORANGE)

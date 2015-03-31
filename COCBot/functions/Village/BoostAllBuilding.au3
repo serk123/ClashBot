@@ -79,13 +79,9 @@ Func BoostBuilding()
 	Local $Boost = _PixelSearch(355, 608, 362, 610, Hex(0xA1A084, 6), 10) ;Check Boost
 	If IsArray($Boost) Then
 		Click(355, 608) ;Click Boost
-		If _Sleep(1000) Then Return
-		_CaptureRegion()
-		If _ColorCheck(_GetPixelColor(420, 375), Hex(0xd2ec78, 6), 20) Then ;Confirm Message
+		If _WaitForPixel(420, 375, Hex(0xd2ec78, 6), 20) Then ;Confirm Message
 			Click(420, 375)
-			If _Sleep(2000) Then Return
-			_CaptureRegion()
-			If _ColorCheck(_GetPixelColor(586, 267), Hex(0xd80405, 6), 20) Then ;Not enough Gem
+			If _WaitForPixel(586, 267, Hex(0xd80405, 6), 20, 2000, 500) Then ;Not enough Gem
 				_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, 0)
 				SetLog("Not Enough GEMS...", $COLOR_RED)
 			Else

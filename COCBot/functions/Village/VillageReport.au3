@@ -12,12 +12,7 @@ Func VillageReport()
 	Click(388, 30) ; Click Builder Button
 	_CaptureRegion()
 	Local $i = 0
-	While _ColorCheck(_GetPixelColor(819, 39), Hex(0xF8FCFF, 6), 20) = False
-		$i += 1
-		If _Sleep(500) Then Return
-		_CaptureRegion()
-		If $i >= 20 Then ExitLoop
-	WEnd
+	_WaitForPixel(819, 39, Hex(0xF8FCFF, 6), 20, 10000, 200)
 	If _ColorCheck(_GetPixelColor(318, 637), Hex(0xD854D0, 6), 20) Then
 		$GoldCount = GetOther(356, 625, "Resource")
 		$ElixirCount = GetOther(195, 625, "Resource")

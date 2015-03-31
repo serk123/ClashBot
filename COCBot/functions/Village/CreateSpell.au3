@@ -21,13 +21,8 @@ Func CreateSpell()
 		If _Sleep(500) Then Return
 	Else
 		Click($CreatePos[0], $CreatePos[1]) ;Click Create Spell
-		If _Sleep(500) Then Return
-
-		_CaptureRegion()
-		While _ColorCheck(_GetPixelColor(250, 357), Hex(0xCC4FC6, 6), 20)
-			Click(220, 320, 5) ;Lightning Spell
-			If _Sleep(200) Then ExitLoop
-			_CaptureRegion()
+		While _WaitForPixel(250, 357, Hex(0xCC4FC6, 6), 20, 500, 10)
+			Click(220, 320, 1) ;Lightning Spell
 		WEnd
 		$CreateSpell = False
 	EndIf

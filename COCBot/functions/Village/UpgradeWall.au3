@@ -100,10 +100,7 @@ Func UpgradeWall()
 				ClickP($TopLeftClient) ; Click Away
 				If _Sleep(600) Then ExitLoop
 				Click($WallX, $WallY)
-				If _Sleep(600) Then ExitLoop
-
-				_CaptureRegion()
-				If _ColorCheck(_GetPixelColor(605, 570), Hex(0xF857F0, 6), 20) Then
+				If _WaitForPixel(605, 570, Hex(0xF857F0, 6), 20, 600) Then
 					If _ColorCheck(_GetPixelColor(596, 570), Hex(0xE70A12, 6), 20) Then ; Red numbers
 						SetLog("Not enough Elixir to upgrade wall", $COLOR_ORANGE)
 						ClickP($TopLeftClient) ; Click Away

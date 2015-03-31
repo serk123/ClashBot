@@ -41,6 +41,7 @@
 #include "functions\Pixels\_GetPixelColor.au3"
 #include "functions\Pixels\_PixelSearch.au3"
 #include "functions\Pixels\_MultiPixelSearch.au3"
+#include "functions\Pixels\_WaitForPixel.au3"
 #include "functions\Pixels\boolPixelSearch.au3"
 
 #include "functions\Read Text\getChar.au3"

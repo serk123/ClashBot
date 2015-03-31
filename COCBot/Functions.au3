@@ -35,6 +35,7 @@
 #include "functions\Other\Tab.au3"
 #include "functions\Other\Time.au3"
 #include "functions\Other\BlockInputEx.au3"
+#include "functions\Other\_NumberFormat.au3"
 
 #include "functions\Pixels\_CaptureRegion.au3"
 #include "functions\Pixels\_ColorCheck.au3"

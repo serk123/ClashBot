@@ -31,6 +31,14 @@ Func VillageReport()
 		GUICtrlSetData($lblresultelixirstart, $ElixirCount)
 		GUICtrlSetData($lblresultdestart, $DarkCount)
 		GUICtrlSetData($lblresulttrophystart, $TrophyCount)
+		$BuilderCountStart = $FreeBuilder
+	Else
+		If GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblfreebuilder) = $GUI_CHECKED Then
+			If $FreeBuilder > $BuilderCountStart Then
+				_Push("Free Builder Available", "You have a free builder available")
+				SetLog("You have a free builder available")
+			EndIf
+		EndIf
 	EndIf
 	GUICtrlSetData($lblresultgoldnow, $GoldCount)
 	GUICtrlSetData($lblresultelixirnow, $ElixirCount)

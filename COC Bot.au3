@@ -60,7 +60,7 @@ Func runBot() ;Bot that runs everything in order
 		checkMainScreen()
 		Pause()
 		If _Sleep(1000) Then Return
-		ZoomOut()
+		If ZoomOut() = False Then ContinueLoop
 		VillageReport() ; populate resource stats and gather info required for upgrades
 		Pause()
 		If $SearchCost = 0 Then
@@ -77,7 +77,7 @@ Func runBot() ;Bot that runs everything in order
 		checkMainScreen(False)
 		Pause()
 		If $Checkrearm = True Then
-			ZoomOut()
+			If ZoomOut() = False Then ContinueLoop
 			ReArm()
 			If _Sleep(2000) Then Return
 			checkMainScreen(False)
@@ -88,13 +88,13 @@ Func runBot() ;Bot that runs everything in order
 		Pause()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
-			ZoomOut()
+			If ZoomOut() = False Then ContinueLoop
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
 		EndIf
 		Pause()
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
-			ZoomOut()
+			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			Pause()
@@ -105,7 +105,7 @@ Func runBot() ;Bot that runs everything in order
 			$fullArmy = False
 		EndIf
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
-			ZoomOut()
+			If ZoomOut() = False Then ContinueLoop
 			Pause()
 			Train()
 			Pause()
@@ -119,7 +119,7 @@ Func runBot() ;Bot that runs everything in order
 		EndIf
 		checkMainScreen(False)
 		Pause()
-		ZoomOut()
+		If ZoomOut() = False Then ContinueLoop
 		Pause()
 		BoostAllBuilding()
 		Pause()
@@ -140,7 +140,7 @@ Func runBot() ;Bot that runs everything in order
 		Idle()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
-			ZoomOut()
+			If ZoomOut() = False Then ContinueLoop
 			Pause()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
@@ -162,7 +162,7 @@ Func Idle() ;Sequence that runs until Full Army
 		If _Sleep($x) Then ExitLoop
 		checkMainScreen()
 		If _Sleep(1000) Then ExitLoop
-		ZoomOut()
+		If ZoomOut() = False Then ContinueLoop
 		If _Sleep(1000) Then ExitLoop
 		If $iCollectCounter > $COLLECTATCOUNT Then ; This is prevent from collecting all the time which isn't needed anyway
 			Collect()

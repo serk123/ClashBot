@@ -64,7 +64,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				_CaptureRegion()
 				If _ColorCheck(_GetPixelColor(703, 520), Hex(0xD84400, 6), 20) Then
 					Click(750, 500) ;Click Next
-					$skippedVillages += 1
+					GUICtrlSetData($lblresultvillagesskipped, GUICtrlRead($lblresultvillagesskipped) + 1)
 				ElseIf _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
 					SetLog("Cannot locate Next button, try to return home...", $COLOR_RED)
 					if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblerror) = $GUI_CHECKED Then
@@ -104,7 +104,6 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				SoundPlay(@WindowsDir & "\media\Festival\Windows Exclamation.wav", 1)
 			EndIf
 		EndIf
-		GUICtrlSetData($lblresultvillagesskipped, GUICtrlRead($lblresultvillagesskipped) + $skippedVillages)
 		SetLog("===============Searching Complete===============", $COLOR_BLUE)
 		readConfig()
 		_BlockInputEx(0, "", "", $HWnD)

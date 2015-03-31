@@ -285,9 +285,14 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
 			EndIf
-			If $checkQPower Then
+			If $checkQPower And $checkKPower Then
 			    SetLog("Waiting " & ($itxtQueenSkill - $itxtKingSkill) & " seconds before activating Queen's abilities", $COLOR_ORANGE)
 				_Sleep(($itxtQueenSkill - $itxtKingSkill) * 1000)
+				SetLog("Activate Queen's power", $COLOR_BLUE)
+				SelectDropTroupe($Queen)
+			 Else
+			    SetLog("Waiting " & $itxtQueenSkill & " seconds before activating Queen's abilities", $COLOR_ORANGE)
+				_Sleep($itxtQueenSkill * 1000)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
 			EndIf
@@ -300,9 +305,14 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
 			EndIf
-			If $checkKPower Then
+			If $checkKPower And $checkQPower Then
 			    SetLog("Waiting " & ($itxtKingSkill - $itxtQueenSkill) & " seconds before activating King's abilities", $COLOR_ORANGE)
 				_Sleep(($itxtKingSkill - $itxtQueenSkill) * 1000)
+				SetLog("Activate King's power", $COLOR_BLUE)
+				SelectDropTroupe($King)
+			 Else
+			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating King's abilities", $COLOR_ORANGE)
+				_Sleep($itxtKingSkill * 1000)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
 			EndIf

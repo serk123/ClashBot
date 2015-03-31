@@ -11,12 +11,18 @@ Func VillageReport()
 	$TrophyCountOld = GUICtrlRead($lblresulttrophynow)
 	$TrophyCount = getOther(50, 74, "Trophy")
 
+	If $FirstAttack = 1 Then
+		 GUICtrlSetData($lblresulttrophiesdropped, $TrophyCount - $TrophyCountOld)
+	EndIf
+
 	SetLog("Opening Builder page to read Resources..", $COLOR_BLUE)
 	Click(388, 30) ; Click Builder Button
 	_CaptureRegion()
 	Local $i = 0
 	_WaitForPixel(819, 39, Hex(0xF8FCFF, 6), 20, 10000, 200)
 	If _ColorCheck(_GetPixelColor(318, 637), Hex(0xD854D0, 6), 20) Then
+		$GoldCountOld = $GoldCount
+	    $ElixirCountOld = $ElixirCount
 		$GoldCount = GetOther(356, 625, "Resource")
 		$ElixirCount = GetOther(195, 625, "Resource")
 		$GemCount = GetOther(543, 625, "Gems")
@@ -39,6 +45,9 @@ Func VillageReport()
 			SetLog("Push: Village Report",$COLOR_GREEN)
 		 EndIf
 	Else
+		$GoldCountOld = $GoldCount
+	    $ElixirCountOld = $ElixirCount
+	    $DarkCountOld = $DarkCount
 		$GoldCount = GetOther(440, 625, "Resource")
 		$ElixirCount = GetOther(282, 625, "Resource")
 		$DarkCount = GetOther(125, 625, "Resource")

@@ -71,6 +71,12 @@ Func SetTime()
 	If _GUICtrlTab_GetCurSel($tabMain) = 7 Then GUICtrlSetData($lblresultruntime, StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
 EndFunc   ;==>SetTime
 
+Func SetTimeRC()
+    if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblpushbulletremote) = $GUI_CHECKED Then
+		  _RemoteControl()
+	EndIf
+EndFunc   ;==>SetTime
+
 Func Initiate()
 	If IsArray(ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")) Then
 		Local $BSsize = [ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")[2], ControlGetPos($Title, "_ctl.Window", "[CLASS:BlueStacksApp; INSTANCE:1]")[3]]
@@ -134,6 +140,7 @@ Func Initiate()
 		GUICtrlSetState($btnLoadConfig, $GUI_DISABLE)
 		$sTimer = TimerInit()
 		AdlibRegister("SetTime", 1000)
+		AdlibRegister("SetTimeRC", 60000 * $PushBulletinterval)
 		runBot()
 	Else
 		SetLog("Not in Game!", $COLOR_RED)
@@ -247,6 +254,7 @@ Func btnStop()
 		GUICtrlSetState($imgdenowM, $GUI_HIDE)
 
 		AdlibUnRegister("SetTime")
+		AdlibUnRegister("SetTimeRC")
 		_BlockInputEx(0, "", "", $HWnD)
 
 		FileClose($hLogFileHandle)

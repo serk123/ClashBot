@@ -67,6 +67,9 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					$skippedVillages += 1
 				ElseIf _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
 					SetLog("Cannot locate Next button, try to return home...", $COLOR_RED)
+					if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblerror) = $GUI_CHECKED Then
+						_Push("Disconnected","Your bot got disconnected while searching for enemy..")
+				    EndIf
 					If _Sleep(500) Then Return
 					ReturnHome(False, False) ;Return home no screenshot ;If End battle is available
 					checkMainScreen()

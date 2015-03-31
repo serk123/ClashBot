@@ -177,6 +177,11 @@ Func Check()
 EndFunc   ;==>Check
 
 Func btnStart()
+	If GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($pushbullettokenvalue) = "" Then
+		SetLog ("Please set PushBullet account token")
+		Return
+	EndIf
+
 	GUICtrlSetState($btnStart, $GUI_HIDE)
 	GUICtrlSetState($btnStop, $GUI_SHOW)
 	GUICtrlSetState($lblConfig, $GUI_HIDE)
@@ -714,14 +719,24 @@ EndFunc   ;==>chkBackground
 
 Func chkNoAttack()
 	If GUICtrlRead($chkNoAttack) = $GUI_CHECKED Then
+	   if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED Then
+		  SetLog("Please disable PushBullet if you intend to do donate only mode")
+		  GUICtrlSetState($chkNoAttack, $GUI_UNCHECKED)
+	   else
 		$CommandStop = 0
 		SetLog("~~~Donate / Train Only Activated~~~", $COLOR_PURPLE)
-	ElseIf GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
+		EndIf
+	 ElseIf GUICtrlRead($chkDonateOnly) = $GUI_CHECKED Then
+		 if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED Then
+		 SetLog("Please disable PushBullet if you intend to do donate only mode")
+		 GUICtrlSetState($chkDonateOnly, $GUI_UNCHECKED)
+		 else
 		$CommandStop = 3
 		SetLog("~~~Donate Only Activated~~~", $COLOR_PURPLE)
+		EndIf
 	Else
 		$CommandStop = -1
-	EndIf
+	 EndIf
 EndFunc   ;==>chkNoAttack
 
 ;Func btnLocateCollectors()

@@ -33,6 +33,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		If $TakeAllTownSnapShot = 1 Then SetLog("Will save all of the towns when searching", $COLOR_GREEN)
 		$SearchCount = 0
 		_BlockInputEx(3, "", "", $HWnD)
+		GUICtrlSetData($lblresultsearchcost, GUICtrlRead($lblresultsearchcost)+ $SearchCost)
 		While 1
 			If _Sleep(1000) Then ExitLoop (2)
 			GUICtrlSetState($btnAtkNow, $GUI_ENABLE)
@@ -65,6 +66,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				If _ColorCheck(_GetPixelColor(703, 520), Hex(0xD84400, 6), 20) Then
 					Click(750, 500) ;Click Next
 					GUICtrlSetData($lblresultvillagesskipped, GUICtrlRead($lblresultvillagesskipped) + 1)
+					GUICtrlSetData($lblresultsearchcost, GUICtrlRead($lblresultsearchcost)+ $SearchCost)
 				ElseIf _ColorCheck(_GetPixelColor(71, 530), Hex(0xC00000, 6), 20) Then
 					SetLog("Cannot locate Next button, try to return home...", $COLOR_RED)
 					if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblerror) = $GUI_CHECKED Then
@@ -92,6 +94,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			EndIf
 		WEnd
 
+		GUICtrlSetData($lblresultsearchcost, GUICtrlRead($lblresultsearchcost)+ $SearchCost)
 		If GUICtrlRead($chkAlertSearch) = $GUI_CHECKED Then
 			TrayTip("Match Found!", "Gold: " & $searchGold & "; Elixir: " & $searchElixir & "; Dark: " & $searchDark & "; Trophy: " & $searchTrophy & "; Townhall: " & $searchTH & ", " & $THLoc, 0)
 			If GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED and GUICtrlRead($lblmatchfound) = $GUI_CHECKED Then

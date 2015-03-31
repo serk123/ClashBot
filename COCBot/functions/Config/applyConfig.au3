@@ -328,4 +328,77 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	Else
 		GUICtrlSetState($chkDonateOnly, $GUI_UNCHECKED)
 	EndIf
+
+	;Push Bullet
+    If $PushBulletEnabled = 1 Then
+	   GUICtrlSetState($lblpushbulletenabled, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblpushbulletenabled, $GUI_UNCHECKED)
+    EndIf
+
+	GUICtrlSetData($pushbullettokenvalue, $PushBullettoken)
+
+    If $PushBulletvillagereport = 1 Then
+	   GUICtrlSetState($lblvillagereport, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblvillagereport, $GUI_UNCHECKED)
+    EndIf
+
+    If $PushBulletmatchfound = 1 Then
+	   GUICtrlSetState($lblmatchfound, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblmatchfound, $GUI_UNCHECKED)
+    EndIf
+
+	If $PushBulletlastraid = 1 Then
+	   GUICtrlSetState($lbllastraid, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lbllastraid, $GUI_UNCHECKED)
+    EndIf
+
+	If $PushBullettotalraid = 1 Then
+	   GUICtrlSetState($lbltotalraid, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lbltotalraid, $GUI_UNCHECKED)
+    EndIf
+
+	If $PushBulletdebug = 1 Then
+	   GUICtrlSetState($lblpushbulletdebug, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblpushbulletdebug, $GUI_UNCHECKED)
+    EndIf
+
+	If $PushBulletremote = 1 Then
+	   GUICtrlSetState($lblpushbulletremote, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblpushbulletremote, $GUI_UNCHECKED)
+    EndIf
+
+    If $PushBulletdelete = 1 Then
+	   GUICtrlSetState($lblpushbulletdelete, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblpushbulletdelete, $GUI_UNCHECKED)
+    EndIf
+
+	If $PushBulletbuilder = 1 Then
+	   GUICtrlSetState($lblfreebuilder, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblfreebuilder, $GUI_UNCHECKED)
+    EndIf
+
+    If $PushBulleterror = 1 Then
+	   GUICtrlSetState($lblerror, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($lblerror, $GUI_UNCHECKED)
+	EndIf
+
+   Switch $PushBullettype
+		Case 0
+			GUICtrlSetState($UseJPG, $GUI_CHECKED)
+		Case 1
+			GUICtrlSetState($UseText, $GUI_CHECKED)
+    EndSwitch
+
+	GUICtrlSetData($lblpushbulletintervalvalue, $PushBulletinterval)
+	GUICtrlSetData($lblpushbulletmessagesvalue, $PushBulletmessages)
 EndFunc   ;==>applyConfig

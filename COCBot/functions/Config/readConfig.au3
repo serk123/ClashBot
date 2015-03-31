@@ -128,6 +128,21 @@ Func readConfig() ;Reads config and sets it to the variables
 		$SFactoryPos[0] = IniRead($config, "misc", "xSFactory", "0")
 		$SFactoryPos[1] = IniRead($config, "misc", "ySFactory", "0")
 
+		;Push Bullet--------------------------------------------------------------------------
+		$PushBulletEnabled = IniRead($config, "notification", "pushbullet", "0")
+		$PushBullettoken = IniRead($config, "notification", "accounttoken", "")
+	    $PushBullettype = IniRead($config, "notification", "lastraidtype", "0")
+		$PushBulletvillagereport = IniRead($config, "notification", "villagereport", "0")
+		$PushBulletmatchfound = IniRead($config, "notification", "matchfound", "0")
+		$PushBulletlastraid = IniRead($config, "notification", "lastraid", "0")
+		$PushBullettotalraid = IniRead($config, "notification", "totalraid", "0")
+		$PushBulletdebug = IniRead($config, "notification", "debug", "0")
+	    $PushBulletremote = IniRead($config, "notification", "remote", "0")
+		$PushBulletdelete = IniRead($config, "notification", "delete", "0")
+		$PushBulletbuilder = IniRead($config, "notification", "builder", "0")
+		$PushBulleterror = IniRead($config, "notification", "error", "0")
+		$PushBulletinterval = IniRead($config, "notification", "interval", "10")
+		$PushBulletmessages = IniRead($config, "notification", "messages", "100")
 
 		For $i = 0 To 3 ;Covers all 4 Barracks
 			$barrackPos[$i][0] = IniRead($config, "troop", "xBarrack" & $i + 1, "0")

@@ -262,6 +262,80 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "general", "frmBotPosY", $frmBotPos[1])
 	IniWrite($config, "general", "MaxTrophy", GUICtrlRead($txtMaxTrophy))
 
+	;Push Bullet--------------------------------------------------------------------------
+	If GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "pushbullet", 1)
+	Else
+		IniWrite($config, "notification", "pushbullet", 0)
+	EndIf
+
+	If GUICtrlRead($lblvillagereport) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "villagereport", 1)
+	Else
+		IniWrite($config, "notification", "villagereport", 0)
+	 EndIf
+
+	If GUICtrlRead($lblmatchfound) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "matchfound", 1)
+	Else
+		IniWrite($config, "notification", "matchfound", 0)
+   EndIf
+
+	If GUICtrlRead($lbllastraid) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "lastraid", 1)
+	Else
+		IniWrite($config, "notification", "lastraid", 0)
+	 EndIf
+
+	If GUICtrlRead($lbltotalraid) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "totalraid", 1)
+	Else
+		IniWrite($config, "notification", "totalraid", 0)
+    EndIf
+
+    If GUICtrlRead($lblpushbulletdebug) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "debug", 1)
+	Else
+		IniWrite($config, "notification", "debug", 0)
+	 EndIf
+
+    If GUICtrlRead($lblpushbulletremote) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "remote", 1)
+	Else
+		IniWrite($config, "notification", "remote", 0)
+   EndIf
+
+    If GUICtrlRead($lblpushbulletdelete) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "delete", 1)
+	Else
+		IniWrite($config, "notification", "delete", 0)
+	 EndIf
+
+	If GUICtrlRead($lblfreebuilder) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "builder", 1)
+	Else
+		IniWrite($config, "notification", "builder", 0)
+   EndIf
+
+    If GUICtrlRead($lblerror) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "error", 1)
+	Else
+		IniWrite($config, "notification", "error", 0)
+	EndIf
+
+    IniWrite($config, "notification", "accounttoken", GUICtrlRead($pushbullettokenvalue))
+
+    If GUICtrlRead($UseJPG) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "lastraidtype", 0)
+	ElseIf GUICtrlRead($UseText) = $GUI_CHECKED Then
+		IniWrite($config, "notification", "lastraidtype", 1)
+	Else
+		IniWrite($config, "notification", "lastraidtype", 0)
+	EndIf
+
+	IniWrite($config, "notification", "interval", GUICtrlRead($lblpushbulletintervalvalue))
+	IniWrite($config, "notification", "messages", GUICtrlRead($lblpushbulletmessagesvalue))
+
 	;Misc Settings--------------------------------------------------------------------------
 	IniWrite($config, "misc", "reconnectdelay", GUICtrlRead($txtReconnect))
 	IniWrite($config, "misc", "returnhomedelay", GUICtrlRead($txtReturnh))

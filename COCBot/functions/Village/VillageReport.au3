@@ -6,6 +6,9 @@ Func VillageReport()
 
 	$FreeBuilder = GetOther(324, 23, "Builder")
 	Setlog("Num. of Free Builders: " & $FreeBuilder, $COLOR_GREEN)
+	GUICtrlSetData($lblresultbuilder, $FreeBuilder)
+
+	$TrophyCountOld = GUICtrlRead($lblresulttrophynow)
 	$TrophyCount = getOther(50, 74, "Trophy")
 
 	SetLog("Opening Builder page to read Resources..", $COLOR_BLUE)
@@ -18,12 +21,49 @@ Func VillageReport()
 		$ElixirCount = GetOther(195, 625, "Resource")
 		$GemCount = GetOther(543, 625, "Gems")
 		SetLog("Resources: [G]: " & $GoldCount & " [E]: " & $ElixirCount & " [GEM]: " & $GemCount, $COLOR_GREEN)
+		If $FirstAttack = 1 Then
+			If $GoldCount >= $GoldCountOld Then
+			   $GoldGained += $GoldCount - $GoldCountOld
+			EndIf
+			If $ElixirCount >= $ElixirCountOld Then
+			   $ElixirGained += $ElixirCount - $ElixirCountOld
+			EndIf
+			$TrophyGained += $TrophyCount - $TrophyCountOld
+			if $PushBulletEnabled = 1 and $PushBullettotalraid = 1 Then
+			   _Push("Total Loot", "[G]: " & _NumberFormat($GoldGained) & " [E]: " & _NumberFormat($ElixirGained) & " [T]: " & $TrophyGained & " [Attacked]: " & GUICtrlRead($lblresultvillagesattacked) & " [Skipped]: " & GUICtrlRead($lblresultvillagesskipped) & " [Trophies Won]: " & GUICtrlRead($lblresulttrophiesdropped) & " [Wall Upgrade]: " & GUICtrlRead($lblwallupgradecount) & " [Run Time]: " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
+			   SetLog("Push: Total Loot",$COLOR_GREEN)
+			EndIf
+		 EndIf
+		 If $PushBulletEnabled = 1 and $PushBulletvillagereport = 1 Then
+			_Push("Village Report", "[G]: " &_NumberFormat($GoldCount) & " [E]: " & _NumberFormat($ElixirCount) & " [T]: " & $TrophyCount & " [GEM]: " & $GemCount)
+			SetLog("Push: Village Report",$COLOR_GREEN)
+		 EndIf
 	Else
 		$GoldCount = GetOther(440, 625, "Resource")
 		$ElixirCount = GetOther(282, 625, "Resource")
 		$DarkCount = GetOther(125, 625, "Resource")
 		$GemCount = GetOther(606, 625, "Gems")
 		SetLog("Resources: [G]: " & $GoldCount & " [E]: " & $ElixirCount & " [D]: " & $DarkCount & " [GEM]: " & $GemCount, $COLOR_GREEN)
+		If $FirstAttack = 1 Then
+			 If $GoldCount >= $GoldCountOld Then
+				$GoldGained += $GoldCount - $GoldCountOld
+			 EndIf
+			 If $ElixirCount >= $ElixirCountOld Then
+				$ElixirGained += $ElixirCount - $ElixirCountOld
+			 EndIf
+			 If $DarkCount >= $DarkCountOld Then
+				$DarkGained += $DarkCount - $DarkCountOld
+			 EndIf
+			 $TrophyGained += $TrophyCount - $TrophyCountOld
+			 if $PushBulletEnabled = 1 and $PushBullettotalraid = 1 Then
+				_Push("Total Loot", "[G]: " & _NumberFormat($GoldGained) & " [E]: " & _NumberFormat($ElixirGained) & " [D]: " & _NumberFormat($DarkGained) & " [T]: " & $TrophyGained & " [Attacked]: " & GUICtrlRead($lblresultvillagesattacked) & " [Skipped]: " & GUICtrlRead($lblresultvillagesskipped) & " [Trophies Won]: " & GUICtrlRead($lblresulttrophiesdropped) & " [Wall Upgrade]: " & GUICtrlRead($lblwallupgradecount) & " [Run Time]: " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
+				SetLog("Push: Total Loot",$COLOR_GREEN)
+			 EndIf
+		EndIf
+    	If $PushBulletEnabled = 1 and $PushBulletvillagereport = 1 Then
+			_Push("Village Report", "[G]: " & _NumberFormat($GoldCount) & " [E]: " & _NumberFormat($ElixirCount) & " [D]: " & _NumberFormat($DarkCount) & " [T]: " & $TrophyCount & " [GEM]: " & $GemCount)
+			SetLog("Push: Village Report",$COLOR_GREEN)
+		EndIf
 	EndIf
 	Click(820, 40) ; Close Builder/Shop
 	If $FirstAttack = 0 Then
@@ -38,6 +78,26 @@ Func VillageReport()
 				_Push("Free Builder Available", "You have a free builder available")
 				SetLog("You have a free builder available")
 			EndIf
+		EndIf
+		GUICtrlSetData($lblresultgoldgain, $GoldGained)
+	    GUICtrlSetData($lblresultelixirgain, $ElixirGained)
+	    GUICtrlSetData($lblresultdegain, $DarkGained)
+	    GUICtrlSetData($lblresulttrophiesdropped, $TrophyGained)
+
+		GUICtrlSetData($lblresultgoldlast, $GoldCount - $GoldCountOld)
+	    GUICtrlSetData($lblresultelixirlast, $ElixirCount - $ElixirCountOld)
+	    GUICtrlSetData($lblresultdelast, $DarkCount - $DarkCountOld)
+	    GUICtrlSetData($lblresulttrophylast, $TrophyCount - $TrophyCountOld)
+
+	    if $PushBulletEnabled = 1 and $PushBulletlastraid = 1 And $PushBullettype = 0 and $Raid = 1 Then
+		If _Sleep(2000) Then Return
+			_PushFile($FileName, "loots", "image/jpeg", "Last Raid", $FileName)
+			$Raid = 0
+	    EndIf
+	    if $PushBulletEnabled = 1 and $PushBulletlastraid = 1 And $PushBullettype = 1 and $Raid = 1 Then
+			_Push("Last Raid", "[G]: " & _NumberFormat($GoldCount - $GoldCountOld) & " [E]: " & _NumberFormat($ElixirCount - $ElixirCountOld) & " [D]: " & _NumberFormat($DarkCount - $DarkCountOld) & " [T]: " & $TrophyCount - $TrophyCountOld)
+			SetLog("Push: Last Raid",$COLOR_GREEN)
+			$Raid = 0
 		EndIf
 	EndIf
 	GUICtrlSetData($lblresultgoldnow, $GoldCount)

@@ -36,8 +36,8 @@ Func VillageReport()
 			EndIf
 			$TrophyGained += $TrophyCount - $TrophyCountOld
 			if $PushBulletEnabled = 1 and $PushBullettotalraid = 1 Then
-			   _Push("Total Loot", "[G]: " & _NumberFormat($GoldGained) & " [E]: " & _NumberFormat($ElixirGained) & " [T]: " & $TrophyGained & " [Attacked]: " & GUICtrlRead($lblresultvillagesattacked) & " [Skipped]: " & GUICtrlRead($lblresultvillagesskipped) & " [Trophies Won]: " & GUICtrlRead($lblresulttrophiesdropped) & " [Wall Upgrade]: " & GUICtrlRead($lblwallupgradecount) & " [Run Time]: " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
-			   SetLog("Push: Total Loot",$COLOR_GREEN)
+			   _Push("Total Raid", "[G]: " & _NumberFormat($GoldGained) & " [E]: " & _NumberFormat($ElixirGained) & " [T]: " & $TrophyGained & " [Attacked]: " & GUICtrlRead($lblresultvillagesattacked) & " [Skipped]: " & GUICtrlRead($lblresultvillagesskipped) & " [Trophies Won]: " & GUICtrlRead($lblresulttrophiesdropped) & " [Wall Upgrade]: " & GUICtrlRead($lblwallupgradecount) & " [Run Time]: " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
+			   SetLog("Push: Total Raid",$COLOR_GREEN)
 			EndIf
 		 EndIf
 		 If $PushBulletEnabled = 1 and $PushBulletvillagereport = 1 Then
@@ -65,8 +65,8 @@ Func VillageReport()
 			 EndIf
 			 $TrophyGained += $TrophyCount - $TrophyCountOld
 			 if $PushBulletEnabled = 1 and $PushBullettotalraid = 1 Then
-				_Push("Total Loot", "[G]: " & _NumberFormat($GoldGained) & " [E]: " & _NumberFormat($ElixirGained) & " [D]: " & _NumberFormat($DarkGained) & " [T]: " & $TrophyGained & " [Attacked]: " & GUICtrlRead($lblresultvillagesattacked) & " [Skipped]: " & GUICtrlRead($lblresultvillagesskipped) & " [Trophies Won]: " & GUICtrlRead($lblresulttrophiesdropped) & " [Wall Upgrade]: " & GUICtrlRead($lblwallupgradecount) & " [Run Time]: " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
-				SetLog("Push: Total Loot",$COLOR_GREEN)
+				_Push("Total Raid", "[G]: " & _NumberFormat($GoldGained) & " [E]: " & _NumberFormat($ElixirGained) & " [D]: " & _NumberFormat($DarkGained) & " [T]: " & $TrophyGained & " [Attacked]: " & GUICtrlRead($lblresultvillagesattacked) & " [Skipped]: " & GUICtrlRead($lblresultvillagesskipped) & " [Trophies Won]: " & GUICtrlRead($lblresulttrophiesdropped) & " [Wall Upgrade]: " & GUICtrlRead($lblwallupgradecount) & " [Run Time]: " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
+				SetLog("Push: Total Raid",$COLOR_GREEN)
 			 EndIf
 		EndIf
     	If $PushBulletEnabled = 1 and $PushBulletvillagereport = 1 Then

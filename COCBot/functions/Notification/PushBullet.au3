@@ -166,7 +166,12 @@ Func _PushFile($File, $Folder, $FileType, $title, $body)
 	Local $policy = _StringBetween($Result, 'policy":"', '"')
 	Local $file_url = _StringBetween($Result, 'file_url":"', '"')
 
-    $result=runwait(@ScriptDir & "\curl\curl.exe -i -X POST " & $upload_url[0] & ' -F awsaccesskeyid="' & $awsaccesskeyid[0] & '" -F acl="' & $acl[0] & '" -F key="' & $key[0] & '" -F signature="' & $signature[0] & '" -F policy="' & $policy[0] & '" -F content-type="' & $FileType & '" -F file=@"' & @ScriptDir & '\' & $Folder & '\' & $File & '" -o "' & @ScriptDir & '\logs\curl.log"',"",@SW_HIDE)
+	if $upload_url[0] = "" or $awsaccesskeyid[0] = "" or $acl[0] = "" or $key[0] = "" or $signature[0] = "" or $policy[0] = "" or $file_url[0] = "" Then
+		SetLog("Something went wrong during upload authorization")
+		Return
+	else
+		$result=runwait(@ScriptDir & "\curl\curl.exe -i -X POST " & $upload_url[0] & ' -F awsaccesskeyid="' & $awsaccesskeyid[0] & '" -F acl="' & $acl[0] & '" -F key="' & $key[0] & '" -F signature="' & $signature[0] & '" -F policy="' & $policy[0] & '" -F content-type="' & $FileType & '" -F file=@"' & @ScriptDir & '\' & $Folder & '\' & $File & '" -o "' & @ScriptDir & '\logs\curl.log"',"",@SW_HIDE)
+	EndIf
 
 	if GUICtrlRead($lblpushbulletdebug) = $GUI_CHECKED Then
 	   SetLog('=========================================================================')
@@ -188,7 +193,7 @@ Func _PushFile($File, $Folder, $FileType, $title, $body)
 		Local $sLink = $sFileRead1[2]
 		Local $findstr1 = StringRegExp ($sLink, 'https://')
 	Else
-		SetLog("There is a problem uploading file.")
+		SetLog("Problem encountered while uploading file.")
 		Return
 	EndIf
 

@@ -720,7 +720,7 @@ EndFunc   ;==>chkBackground
 Func chkNoAttack()
 	If GUICtrlRead($chkNoAttack) = $GUI_CHECKED Then
 	   if GUICtrlRead($lblpushbulletenabled) = $GUI_CHECKED Then
-		  SetLog("Please disable PushBullet if you intend to do donate only mode")
+		  SetLog("Please disable PushBullet if you intend to use donate only mode")
 		  GUICtrlSetState($chkNoAttack, $GUI_UNCHECKED)
 	   else
 		$CommandStop = 0

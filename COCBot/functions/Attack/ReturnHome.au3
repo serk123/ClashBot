@@ -27,7 +27,9 @@ Func ReturnHome($TakeLootSnapShot = 1, $GoldChangeCheck = True) ;Return main scr
 		Local $Date = @MDAY & "." & @MON & "." & @YEAR
 		Local $Time = @HOUR & "." & @MIN
 		_CaptureRegion()
-		_GDIPlus_ImageSaveToFile($hBitmap, $dirLoots & $Date & " at " & $Time & ".jpg")
+		$Raid = 1
+		_GDIPlus_ImageSaveToFile($hBitmap, $dirLoots & $Date & "_at_" & $Time & ".jpg")
+		$FileName = $Date & "_at_" & $Time & ".jpg"
 	EndIf
 
 	If _Sleep(2000) Then Return

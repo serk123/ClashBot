@@ -269,7 +269,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		For $i = $eBarbarian To $eMinion ; launch all remaining troops
 			If $i = $eBarbarian Or $i = $eArcher Or $i = $eMinion Or $i = $eHog Or $i = $eValkyrie Then
 				LaunchTroop($i, $nbSides, 0, 1)
-			ElseIf $i <> $LSpell
+			ElseIf $i <> $LSpell Then
 				LaunchTroop($i, $nbSides, 0, 1, 2)
 			EndIf
 			If _Sleep(500) Then Return

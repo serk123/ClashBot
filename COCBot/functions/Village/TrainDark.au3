@@ -40,21 +40,21 @@ Func TrainDark()
 			If GUICtrlRead($txtDarkBarrack1) <> "0" And $i = 0 And $TrainDrax1 = True Then
 				If $DarkBarrackTroop[$i] = 0 Then
 					Local $troopMinion = Number(getOther(171 + 107 * 0, 278, "Barrack"))
-					If $itxtDarkBarrack1 <= 10 And ($fullArmy Or $FirstDarkTrain) Then
+					If $itxtDarkBarrack1 <= 15 And ($fullArmy Or $FirstDarkTrain) Then
 						TrainIt($eMinion, $itxtDarkBarrack1)
 						$TrainDrax1 = False
 						SetLog("Dark Barrack 1 Train Minion Completed...", $COLOR_BLUE)
-					ElseIf $itxtDarkBarrack1 > 10 And ($fullArmy Or $FirstDarkTrain) Then
-						TrainIt($eMinion, 10)
-						$LeftRax1 = ($itxtDarkBarrack1 - 10)
+					ElseIf $itxtDarkBarrack1 > 15 And ($fullArmy Or $FirstDarkTrain) Then
+						TrainIt($eMinion, 15)
+						$LeftRax1 = ($itxtDarkBarrack1 - 15)
 						$ClickRax1 = $LeftRax1
 						SetLog("Dark Barrack 1 Minion Remaining : " & $LeftRax1, $COLOR_BLUE)
-					ElseIf $LeftRax1 > 5 And ($troopMinion <= 15) Then
-						TrainIt($eMinion, 5)
-						$LeftRax1 = ($ClickRax1 - 5)
+					ElseIf $LeftRax1 > 1 And ($troopMinion < 20) Then
+						TrainIt($eMinion, (20 - $troopMinion))
+						$LeftRax1 = ($ClickRax1 - (20 - $troopMinion))
 						$ClickRax1 = $LeftRax1
 						SetLog("Dark Barrack 1 Minion Remaining : " & $LeftRax1, $COLOR_BLUE)
-					ElseIf $LeftRax1 <= 5 And ($troopMinion <= 15) Then
+					ElseIf $LeftRax1 <= 1 And ($troopMinion < 20) Then
 						TrainIt($eMinion, $LeftRax1)
 						$TrainDrax1 = False
 						SetLog("Dark Barrack 1 Train Minion Completed...", $COLOR_BLUE)
@@ -74,12 +74,12 @@ Func TrainDark()
 						$LeftRax1 = ($itxtDarkBarrack1 - 10)
 						$ClickRax1 = $LeftRax1
 						SetLog("Dark Barrack 1 Hog Remaining : " & $LeftRax1, $COLOR_BLUE)
-					ElseIf $LeftRax1 > 1 And ($troopHog <= 9) Then
-						TrainIt($eHog, 1)
-						$LeftRax1 = ($ClickRax1 - 1)
+					ElseIf $LeftRax1 > 1 And ($troopHog < 10) Then
+						TrainIt($eHog, (10 - $troopHog))
+						$LeftRax1 = ($ClickRax1 - (10 - $troopHog))
 						$ClickRax1 = $LeftRax1
 						SetLog("Dark Barrack 1 Hog Remaining : " & $LeftRax1, $COLOR_BLUE)
-					ElseIf $LeftRax1 <= 1 And ($troopHog <= 9) Then
+					ElseIf $LeftRax1 <= 1 And ($troopHog < 10) Then
 						TrainIt($eHog, $LeftRax1)
 						$TrainDrax1 = False
 						SetLog("Dark Barrack 1 Train Hog Completed...", $COLOR_BLUE)
@@ -99,12 +99,12 @@ Func TrainDark()
 						$LeftRax1 = ($itxtDarkBarrack1 - 7)
 						$ClickRax1 = $LeftRax1
 						SetLog("Dark Barrack 1 Valkyrie Remaining : " & $LeftRax1, $COLOR_BLUE)
-					ElseIf $LeftRax1 > 1 And ($troopValkyrie <= 6) Then
-						TrainIt($eValkyrie, 1)
-						$LeftRax1 = ($ClickRax1 - 1)
+					ElseIf $LeftRax1 > 1 And ($troopValkyrie < 7) Then
+						TrainIt($eValkyrie, (7 - $troopValkyrie))
+						$LeftRax1 = ($ClickRax1 - (7 - $troopValkyrie))
 						$ClickRax1 = $LeftRax1
 						SetLog("Dark Barrack 1 Valkyrie Remaining : " & $LeftRax1, $COLOR_BLUE)
-					ElseIf $LeftRax1 <= 1 And ($troopValkyrie <= 6) Then
+					ElseIf $LeftRax1 <= 1 And ($troopValkyrie < 7) Then
 						TrainIt($eValkyrie, $LeftRax1)
 						$TrainDrax1 = False
 						SetLog("Dark Barrack 1 Train Valkyrie Completed...", $COLOR_BLUE)
@@ -117,21 +117,21 @@ Func TrainDark()
 			If GUICtrlRead($txtDarkBarrack2) <> "0" And $i = 1 And $TrainDrax2 = True Then
 				If $DarkBarrackTroop[$i] = 0 Then
 					Local $troopMinion2 = Number(getOther(171 + 107 * 0, 278, "Barrack"))
-					If $itxtDarkBarrack2 <= 10 And ($fullArmy Or $FirstDarkTrain) Then
+					If $itxtDarkBarrack2 <= 15 And ($fullArmy Or $FirstDarkTrain) Then
 						TrainIt($eMinion, $itxtDarkBarrack2)
 						$TrainDrax2 = False
 						SetLog("Dark Barrack 2 Train Minion Completed...", $COLOR_BLUE)
-					ElseIf $itxtDarkBarrack2 > 10 And ($fullArmy Or $FirstDarkTrain) Then
-						TrainIt($eMinion, 10)
-						$LeftRax2 = ($itxtDarkBarrack2 - 10)
+					ElseIf $itxtDarkBarrack2 > 15 And ($fullArmy Or $FirstDarkTrain) Then
+						TrainIt($eMinion, 15)
+						$LeftRax2 = ($itxtDarkBarrack2 - 15)
 						$ClickRax2 = $LeftRax2
 						SetLog("Dark Barrack 2 Minion Remaining : " & $LeftRax2, $COLOR_BLUE)
-					ElseIf $LeftRax2 > 5 And ($troopMinion2 <= 15) Then
-						TrainIt($eMinion, 5)
-						$LeftRax2 = ($ClickRax2 - 5)
+					ElseIf $LeftRax2 > 1 And ($troopMinion2 < 20) Then
+						TrainIt($eMinion, (20 - $troopMinion2))
+						$LeftRax2 = ($ClickRax2 - (20 - $troopMinion2))
 						$ClickRax2 = $LeftRax2
 						SetLog("Dark Barrack 2 Minion Remaining : " & $LeftRax2, $COLOR_BLUE)
-					ElseIf $LeftRax2 <= 5 And ($troopMinion2 <= 15) Then
+					ElseIf $LeftRax2 <= 1 And ($troopMinion2 < 20) Then
 						TrainIt($eMinion, $LeftRax2)
 						$TrainDrax2 = False
 						SetLog("Dark Barrack 2 Train Minion Completed...", $COLOR_BLUE)
@@ -151,12 +151,12 @@ Func TrainDark()
 						$LeftRax2 = ($itxtDarkBarrack2 - 10)
 						$ClickRax2 = $LeftRax2
 						SetLog("Dark Barrack 2 Hog Remaining : " & $LeftRax2, $COLOR_BLUE)
-					ElseIf $LeftRax2 > 1 And ($troopHog2 <= 9) Then
-						TrainIt($eHog, 1)
-						$LeftRax2 = ($ClickRax2 - 1)
+					ElseIf $LeftRax2 > 1 And ($troopHog2 < 10) Then
+						TrainIt($eHog, (10 - $troopHog2))
+						$LeftRax2 = ($ClickRax2 - (10 - $troopHog2))
 						$ClickRax2 = $LeftRax2
 						SetLog("Dark Barrack 2 Hog Remaining : " & $LeftRax2, $COLOR_BLUE)
-					ElseIf $LeftRax2 <= 1 And ($troopHog2 <= 9) Then
+					ElseIf $LeftRax2 <= 1 And ($troopHog2 < 10) Then
 						TrainIt($eHog, $LeftRax2)
 						$TrainDrax2 = False
 						SetLog("Dark Barrack 2 Train Hog Completed...", $COLOR_BLUE)
@@ -176,12 +176,12 @@ Func TrainDark()
 						$LeftRax2 = ($itxtDarkBarrack2 - 7)
 						$ClickRax2 = $LeftRax2
 						SetLog("Dark Barrack 2 Valkyrie Remaining : " & $LeftRax2, $COLOR_BLUE)
-					ElseIf $LeftRax2 > 1 And ($troopValkyrie2 <= 6) Then
-						TrainIt($eValkyrie, 1)
-						$LeftRax2 = ($ClickRax2 - 1)
+					ElseIf $LeftRax2 > 1 And ($troopValkyrie2 < 7) Then
+						TrainIt($eValkyrie, (7 - $troopValkyrie2))
+						$LeftRax2 = ($ClickRax2 - (7 - $troopValkyrie2))
 						$ClickRax2 = $LeftRax2
 						SetLog("Dark Barrack 2 Valkyrie Remaining : " & $LeftRax2, $COLOR_BLUE)
-					ElseIf $LeftRax2 <= 1 And ($troopValkyrie2 <= 6) Then
+					ElseIf $LeftRax2 <= 1 And ($troopValkyrie2 < 7) Then
 						TrainIt($eValkyrie, $LeftRax2)
 						$TrainDrax2 = False
 						SetLog("Dark Barrack 2 Train Valkyrie Completed...", $COLOR_BLUE)

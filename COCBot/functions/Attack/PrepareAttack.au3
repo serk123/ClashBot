@@ -36,7 +36,7 @@ Func PrepareAttack($remaining = False) ;Assigns troops
 				ElseIf $troopKind = $eHog And ($DarkBarrackTroop[0] = 1 Or $DarkBarrackTroop[1] = 1) Then
 					$atkTroops[$i][0] = $troopKind
 					ExitLoop
-				ElseIf $troopKind = $eValkyrie And ($DarkBarrackTroop[0] = 2 Or $DarkBarrackTroop[1]) = 2 Then
+				ElseIf $troopKind = $eValkyrie And ($DarkBarrackTroop[0] = 2 Or $DarkBarrackTroop[1] = 2) Then
 					$atkTroops[$i][0] = $troopKind
 					ExitLoop
 				ElseIf $troopKind <> $eKing And $troopKind <> $eQueen And $troopKind <> $eCastle And $troopKind <> $eLSpell Then

@@ -4,7 +4,8 @@ Func CheckCostPerSearch()
     If $SearchCost = 0 Then
 		Click($TownHallPos[0], $TownHallPos[1]) ; Click Townhall
 		If _Sleep(1000) Then Return
-		Click(384, 592); Click Info
+		Click(283, 591); Click Info
+		If _Sleep(1000) Then Return
 		Local $THLevel = getOther(495, 136, "Townhall")
 
 		If $THLevel = "1" Then
@@ -27,6 +28,10 @@ Func CheckCostPerSearch()
 			$SearchCost = 750
 		ElseIf $THLevel = "10" Then
 			$SearchCost = 1000
+		EndIf
+
+		if $SearchCost <> 0 Then
+			SetLog("Gold Cost Per Search: " & $SearchCost)
 		EndIf
 
 	EndIf

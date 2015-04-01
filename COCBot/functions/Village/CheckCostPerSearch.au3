@@ -1,10 +1,17 @@
 ;Will detect how much gold per search
-
 Func CheckCostPerSearch()
     If $SearchCost = 0 Then
 		Click($TownHallPos[0], $TownHallPos[1]) ; Click Townhall
 		If _Sleep(1000) Then Return
-		Click(283, 591); Click Info
+		Local $Info = _PixelSearch(240, 550, 625, 650, Hex(0x4084B8, 6), 5) ;Finds Create Spells button
+		 If IsArray($Info) = False Then
+		  SetLog("Info Button not available", $COLOR_RED)
+		  If _Sleep(500) Then Return
+		 Else
+		  Click($Info[0], $Info[1]) ;Click Info Button
+		 EndIf
+
+		;Click(283, 591); Click Info
 		If _Sleep(1000) Then Return
 		Local $THLevel = getOther(495, 136, "Townhall")
 

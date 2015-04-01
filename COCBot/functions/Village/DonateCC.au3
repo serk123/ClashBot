@@ -137,7 +137,7 @@ Func DonateBarbs()
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 		If _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Then ;Or _ColorCheck(_GetPixelColor(237, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Barbarians", $COLOR_BLUE)
-			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 237, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 500, 20)
+			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 237, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 800, 50)
 				Click(237, $DonatePixel[1] - 5)
 				$CurBarb += 1
 			WEnd
@@ -165,7 +165,7 @@ Func DonateArchers()
 		_CaptureRegion(0, 0, 517, $DonatePixel[1] + 50)
 		If _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Then ;Or _ColorCheck(_GetPixelColor(315, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Archers", $COLOR_BLUE)
-			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 315, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 500, 20)
+			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 315, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 800, 50)
 				Click(315, $DonatePixel[1] - 5)
 				$CurArch += 1
 			WEnd
@@ -194,7 +194,7 @@ Func DonateGiants()
 		;Giants Fixed
 		If _ColorCheck(_GetPixelColor(400, $DonatePixel[1] - 5), Hex(0x507C00, 6), 10) Then ;Or _ColorCheck(_GetPixelColor(480, $DonatePixel[1] - 10), Hex(0x507C00, 6), 10) Then
 			SetLog("Donating Giants", $COLOR_BLUE)
-			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 400, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 500, 20)
+			While _WaitForPixelCapture(0, 0, 517, $DonatePixel[1] + 50, 400, $DonatePixel[1] - 5, Hex(0x507C00, 6), 10, 800, 50)
 				Click(400, $DonatePixel[1] - 5)
 				$CurGiant += 1
 			WEnd

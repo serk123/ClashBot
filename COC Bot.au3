@@ -76,6 +76,7 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		CheckCostPerSearch()
 		Pause()
+		If _Sleep(1000) Then Return
 		If $Checkrearm = True Then
 			ReArm()
 			If _Sleep(2000) Then Return

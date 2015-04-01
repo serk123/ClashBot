@@ -102,11 +102,16 @@ Func Train()
 			If _Sleep(500) Then ExitLoop
 		Else
 			Click($TrainPos[0], $TrainPos[1]) ;Click Train Troops button
-			;SetLog("Barrack " & $i + 1 & " ...", $COLOR_GREEN)
+			SetLog("Barrack " & $i + 1 & " ...", $COLOR_GREEN)
 			If _Sleep(1000) Then ExitLoop
 
 			If _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 8 Then ; Use Barracks
 				_CaptureRegion()
+				While _ColorCheck(_GetPixelColor(420, 190), Hex(0xF0F0F0, 6), 20)
+					Click(420, 190, 20) ;Removing useless troops
+					_CaptureRegion()
+				WEnd
+
 				Switch $barrackTroop[$i]
 					Case 0
 						While _WaitForPixel(220, 320, Hex(0xF89683, 6), 20, 500, 10)

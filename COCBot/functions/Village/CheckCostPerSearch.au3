@@ -1,6 +1,11 @@
 ;Will detect how much gold per search
 Func CheckCostPerSearch()
     If $SearchCost = 0 Then
+		If $TownHallPos[0] = -1 Then
+			LocateTownHall()
+			SaveConfig()
+			If _Sleep(1000) Then Return
+		EndIf
 		Click($TownHallPos[0], $TownHallPos[1]) ; Click Townhall
 		If _Sleep(1000) Then Return
 		Local $Info = _PixelSearch(240, 550, 625, 650, Hex(0x4084B8, 6), 5) ;Finds Info button

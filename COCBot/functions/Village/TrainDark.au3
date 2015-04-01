@@ -10,6 +10,10 @@ Func TrainDark()
 	SetLog("Training Dark Troops...", $COLOR_BLUE)
 
 	Global $LeftRax1, $LeftRax2, $TrainDrax1, $TrainDrax2, $ClickRax1, $ClickRax2
+	If $fullArmy Or $FirstDarkTrain Then
+		$TrainDrax1 = True
+		$TrainDrax2 = True
+	EndIf
 
 	For $i = 0 To 1
 		If _Sleep(500) Then ExitLoop
@@ -33,11 +37,10 @@ Func TrainDark()
 				If Not _ColorCheck(_GetPixelColor(497, 195), Hex(0xE0E4D0, 6), 20) Then
 					Click(496, 190, 80, 2)
 				EndIf
-				$TrainDrax1 = True
-				$TrainDrax2 = True
 			EndIf
 
 			If GUICtrlRead($txtDarkBarrack1) <> "0" And $i = 0 And $TrainDrax1 = True Then
+
 				If $DarkBarrackTroop[$i] = 0 Then
 					Local $troopMinion = Number(getOther(171 + 107 * 0, 278, "Barrack"))
 					If $itxtDarkBarrack1 <= 15 And ($fullArmy Or $FirstDarkTrain) Then

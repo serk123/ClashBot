@@ -61,11 +61,6 @@ Func runBot() ;Bot that runs everything in order
 		Pause()
 		If _Sleep(1000) Then Return
 		If ZoomOut() = False Then ContinueLoop
-		VillageReport() ; populate resource stats and gather info required for upgrades
-		Pause()
-		If _Sleep(1000) Then Return
-		CheckCostPerSearch()
-		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		Pause()
@@ -74,79 +69,92 @@ Func runBot() ;Bot that runs everything in order
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		Pause()
+		VillageReport() ; populate resource stats and gather info required for upgrades
+		If _Sleep(1000) Then Return
+		checkMainScreen(False)
+		Pause()
+		If _Sleep(1000) Then Return
+		CheckCostPerSearch()
+		Pause()
 		If $Checkrearm = True Then
-			If ZoomOut() = False Then ContinueLoop
 			ReArm()
 			If _Sleep(2000) Then Return
 			checkMainScreen(False)
+			Pause()
 			$Checkrearm = False
 		EndIf
-		Pause()
 		DonateCC()
-		Pause()
 		If _Sleep(1000) Then Return
+		checkMainScreen(False)
+		Pause()
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			If ZoomOut() = False Then ContinueLoop
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			Pause()
 		EndIf
-		Pause()
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
 			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			Pause()
-			If _Sleep(1000) Then Return
 			AttackMain()
-			Pause()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			Pause()
 			$fullArmy = False
 		EndIf
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			If ZoomOut() = False Then ContinueLoop
+			If _Sleep(1000) Then Return
+			checkMainScreen(False)
 			Pause()
 			Train()
-			Pause()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			Pause()
 			TrainDark()
-			Pause()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			Pause()
 			CreateSpell()
-			Pause()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			Pause()
 		EndIf
 		checkMainScreen(False)
-		Pause()
 		If ZoomOut() = False Then ContinueLoop
+		If _Sleep(1000) Then Return
+		checkMainScreen(False)
 		Pause()
 		BoostAllBuilding()
-		Pause()
 		If _Sleep(1000) Then Return
-		RequestCC()
+		checkMainScreen(False)
 		Pause()
+		RequestCC()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		Pause()
 		Collect()
-		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		Pause()
 		UpgradeWall()
-		Pause()
 		If _Sleep(1000) Then Return
+		checkMainScreen(False)
+		Pause()
 		Idle()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			If ZoomOut() = False Then ContinueLoop
-			Pause()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			Pause()
-			If _Sleep(1000) Then Return
 			AttackMain()
-			Pause()
 			If _Sleep(1000) Then Return
+			checkMainScreen(False)
+			Pause()
 		EndIf
 	WEnd
 EndFunc   ;==>runBot

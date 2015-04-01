@@ -1,6 +1,5 @@
 ;Will detect how much gold per search
 Func CheckCostPerSearch()
-<<<<<<< HEAD
     If $SearchCost <> 0 Then Return
 
 	SetLog("Checking Townhall Level...", $COLOR_BLUE)

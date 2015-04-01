@@ -63,10 +63,8 @@ Func runBot() ;Bot that runs everything in order
 		If ZoomOut() = False Then ContinueLoop
 		VillageReport() ; populate resource stats and gather info required for upgrades
 		Pause()
-		If $SearchCost = 0 Then
-		    If _Sleep(1000) Then Return
-			CheckCostPerSearch()
-		EndIf
+		If _Sleep(1000) Then Return
+		CheckCostPerSearch()
 		Pause()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)

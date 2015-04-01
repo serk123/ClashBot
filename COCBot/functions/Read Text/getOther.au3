@@ -21,6 +21,16 @@ Func getOther($x_start, $y_start, $type, $totalcamp = False)
 			$Number &= getDigit($x, $y, "Other")
 			$Number &= getDigit($x, $y, "Other")
 
+		Case "Townhall"
+			$Number = getDigitTownHall($x, $y)
+
+			While $Number = ""
+				If $i >= 50 Then ExitLoop
+				$i += 1
+				$x += 1
+				$Number = getDigitTownHall($x, $y)
+			WEnd
+
 		Case "Builder"
 			$Number = getDigit($x, $y, "Builder")
 

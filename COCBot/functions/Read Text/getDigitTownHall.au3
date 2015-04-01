@@ -4,7 +4,7 @@
 ;Finds pixel color pattern of specific X and Y values, returns digit if pixel color pattern found.
 ;--------------------------------------------------------------------------------------------------------------
 
-Func getDigitTownHall(ByRef $x, $y, $type)
+Func getDigitTownHall(ByRef $x, $y)
 
 	;Search for digit 10
 	Local $c1 = Hex(0x383838, 6), $c2 = Hex(0x171615, 6), $c3 = Hex(0xFFFFFF, 6)

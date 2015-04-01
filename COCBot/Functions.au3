@@ -56,6 +56,7 @@
 #include "functions\Read Text\getOther.au3"
 #include "functions\Read Text\getTrophy.au3"
 #include "functions\Read Text\getString.au3"
+#include "functions\Read Text\getDigitTownHall.au3"
 
 #include "functions\Search\checkNextButton.au3"
 #include "functions\Search\CompareResources.au3"

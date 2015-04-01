@@ -8,25 +8,6 @@ Func CheckCostPerSearch()
 	If $TownHallPos[0] = -1 Then
 		LocateTownHall()
 		SaveConfig()
-=======
-    If $SearchCost = 0 Then
-		If $TownHallPos[0] = -1 Then
-			LocateTownHall()
-			SaveConfig()
-			If _Sleep(1000) Then Return
-		EndIf
-		Click($TownHallPos[0], $TownHallPos[1]) ; Click Townhall
-		If _Sleep(1000) Then Return
-		Local $Info = _PixelSearch(240, 550, 625, 650, Hex(0x4084B8, 6), 5) ;Finds Info button
-		 If IsArray($Info) = False Then
-		  SetLog("Info Button not available", $COLOR_RED)
-		  If _Sleep(500) Then Return
-		 Else
-		  Click($Info[0], $Info[1]) ;Click Info Button
-		 EndIf
-
-		;Click(283, 591); Click Info
->>>>>>> origin/master
 		If _Sleep(1000) Then Return
 	EndIf
 

@@ -9,24 +9,25 @@ Func CheckCostPerSearch()
 
 		If $THLevel = "1" Then
 			$SearchCost = 10
-		If $THLevel = "2" Then
+		ElseIf $THLevel = "2" Then
 			$SearchCost = 50
-		If $THLevel = "3" Then
+		ElseIf $THLevel = "3" Then
 			$SearchCost = 75
-		If $THLevel = "4" Then
+		ElseIf $THLevel = "4" Then
 			$SearchCost = 110
-		If $THLevel = "5" Then
+		ElseIf $THLevel = "5" Then
 			$SearchCost = 170
-		If $THLevel = "6" Then
+		ElseIf $THLevel = "6" Then
 			$SearchCost = 250
-		If $THLevel = "7" Then
+		ElseIf $THLevel = "7" Then
 			$SearchCost = 380
-		If $THLevel = "8" Then
+		ElseIf $THLevel = "8" Then
 			$SearchCost = 580
-		If $THLevel = "9" Then
+		ElseIf $THLevel = "9" Then
 			$SearchCost = 750
-		If $THLevel = "10" Then
+		ElseIf $THLevel = "10" Then
 			$SearchCost = 1000
 		EndIf
+
 	EndIf
 EndFunc   ;==>CheckGoldCostPerSearch

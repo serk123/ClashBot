@@ -24,7 +24,7 @@ Func _RemoteControl()
 
 			if $title[$x] = "Bot Help" Then
 			   SetLog("Your request has been received. Help has been sent")
-			   _Push("Request for Help","You can remotely control your bot using the following command format\n\nBot <command> where <command> is:\n\nPause - pause the bot\nResume - resume the bot\nStats - send bot current statistics\nLogs - send the current log file\nHelp - send this help message\n\nEnter the command in the title of the message")
+			   _Push("Request for Help","You can remotely control your bot using the following command format\n\nBot <command> where <command> is:\n\nPause - pause the bot\nResume - resume the bot\nStats - send bot current statistics\nLogs - send the current log file\nBot Boost1 - Boost 1 barrack\nBot Boost2 - Boost 2 barracks\Bot Boost3 - Boost 3 barracks\nBot BoostAll - Boost all barracks\nHelp - send this help message\n\nEnter the command in the title of the message")
 			   _DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Pause" Then
 			    If $PauseBot = False Then
@@ -63,11 +63,11 @@ Func _RemoteControl()
 			   _DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Boost1" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
-				   GUICtrlSetData($chkBoostRax1, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax2, $GUI_UNCHECKED)
-				   GUICtrlSetData($chkBoostRax3, $GUI_UNCHECKED)
-				   GUICtrlSetData($chkBoostRax4, $GUI_UNCHECKED)
+				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax2, $GUI_UNCHECKED)
+				   GUICtrlSetState($chkBoostRax3, $GUI_UNCHECKED)
+				   GUICtrlSetState($chkBoostRax4, $GUI_UNCHECKED)
 				   _Push("Barrack Boost", "Barrack 1 will be boosted on return to village")
 				Else
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")
@@ -75,11 +75,11 @@ Func _RemoteControl()
 				_DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Boost2" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
-				   GUICtrlSetData($chkBoostRax1, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax2, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax3, $GUI_UNCHECKED)
-				   GUICtrlSetData($chkBoostRax4, $GUI_UNCHECKED)
+				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax3, $GUI_UNCHECKED)
+				   GUICtrlSetState($chkBoostRax4, $GUI_UNCHECKED)
 				   _Push("Barrack Boost", "Barracks 1 and 2 will be boosted on return to village")
 				Else
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")
@@ -87,11 +87,11 @@ Func _RemoteControl()
 				_DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Boost3" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
-				   GUICtrlSetData($chkBoostRax1, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax2, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax3, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax4, $GUI_UNCHECKED)
+				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax3, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax4, $GUI_UNCHECKED)
 				   _Push("Barrack Boost", "Barracks 1, 2 and 3 will be boosted on return to village")
 				Else
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")
@@ -99,11 +99,11 @@ Func _RemoteControl()
 				_DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot BoostAll" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
-				   GUICtrlSetData($chkBoostRax1, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax2, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax3, $GUI_CHECKED)
-				   GUICtrlSetData($chkBoostRax4, $GUI_CHECKED)
+				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax3, $GUI_CHECKED)
+				   GUICtrlSetState($chkBoostRax4, $GUI_CHECKED)
 				   _Push("Barrack Boost", "All barracks will be boosted on return to village")
 				Else
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")

@@ -259,3 +259,9 @@ Global $BuilderCountStart = 0
 
 ;Remote Control
 Global $PauseBot = False
+
+;Last Raid
+Global $LastRaidGold = 0
+Global $LastRaidElixir = 0
+Global $LastRaidDarkElixir = 0
+Global $LastRaidTrophy = 0

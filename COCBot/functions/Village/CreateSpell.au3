@@ -21,7 +21,7 @@ Func CreateSpell()
 		If _Sleep(500) Then Return
 	Else
 		Click($CreatePos[0], $CreatePos[1]) ;Click Create Spell
-		While _WaitForPixel(250, 357, Hex(0xCC4FC6, 6), 20, 500, 10)
+		While _WaitForPixel(250, 357, Hex(0xCC4FC6, 6), 20, 800, 30)
 			Click(220, 320, 1) ;Lightning Spell
 		WEnd
 		$CreateSpell = False

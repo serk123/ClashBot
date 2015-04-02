@@ -30,6 +30,17 @@ Func ReturnHome($TakeLootSnapShot = 1, $GoldChangeCheck = True) ;Return main scr
 		$Raid = 1
 		_GDIPlus_ImageSaveToFile($hBitmap, $dirLoots & $Date & "_at_" & $Time & ".jpg")
 		$FileName = $Date & "_at_" & $Time & ".jpg"
+
+		;Get Last Raid Resources
+		$LastRaidGold = getOther(330, 289, "LastRaidGold")
+		$LastRaidElixir = getOther(330, 328, "LastRaidElixir")
+		Local $trophyicon = _PixelSearch(457, 403, 467, 418, Hex(0xE8C528, 6), 5) ;Finds Trophy icon in the bottom, if it finds it then Dark Elixir is available
+		If IsArray($trophyicon) = True Then
+			$LastRaidDarkElixir = getOther(330, 365, "LastRaidDarkElixir")
+			$LastRaidTrophy = getOther(330, 402, "LastRaidTrophy")
+		Else
+			$LastRaidTrophy = getOther(330, 365, "LastRaidTrophy")
+		EndIf
 	EndIf
 
 	If _Sleep(2000) Then Return

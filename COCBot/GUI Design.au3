@@ -1,192 +1,261 @@
-$frmBot = GUICreate($sBotTitle, 417, 445, 207, 158)
+;Main GUI Settings
+$frmBot = GUICreate($sBotTitle, 640, 425, -1, -1)
+
 GUISetIcon(@ScriptDir & "\Icons\cocbot.ico")
 TraySetIcon(@ScriptDir & "\Icons\cocbot.ico")
-$txtLog = _GUICtrlRichEdit_Create($frmBot, "", 16, 40, 385, 230, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8912))
-$tabMain = GUICtrlCreateTab(5, 8, 408, 410)
+
+; The Bot Status Screen
+$txtLog = _GUICtrlRichEdit_Create($frmBot, "", 8, 68, 290, 225, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8912))
+
+
+;Menu Settings
+$fileMenu = GUICtrlCreateMenu("File")
+$configMenu = GUICtrlCreateMenu("Config")
+$loadConfig = GUICtrlCreateMenuItem("Load", $configMenu)
+$saveConfig = GUICtrlCreateMenuItem("Save", $configMenu)
+$aboutUs = GUICtrlCreateMenu("About Us")
+
+
+; Main TABS Container
+$tabMain = GUICtrlCreateTab(-1, 30, 645, 400)
 GUICtrlSetOnEvent(-1, "tabMain")
 
-;Buttons at bottom of all tabs
 
-$btnStart = GUICtrlCreateButton("Start Bot", 30, 360, 75, 50)
+$lblConfig = GUICtrlCreateLabel(getfilename($config), 280, 500, 110, 15, $SS_CENTER)
+GUICtrlSetBkColor($lblConfig, $COLOR_WHITE)
+$btnSaveConfig = GUICtrlCreateButton("Save Config", 280, 500, 50, 35, $BS_MULTILINE)
+GUICtrlSetOnEvent(-1, "btnSaveConfig")
+GUICtrlSetTip(-1, "Save Configuration Setting")
+$btnLoadConfig = GUICtrlCreateButton("Load Config", 340, 500, 50, 35, $BS_MULTILINE)
+GUICtrlSetOnEvent(-1, "btnLoadConfig")
+GUICtrlSetTip(-1, "Load Configuration Setting")
+
+; ------------------------- GLOBAL SECTION STARTS HERE ------------------------- ;
+
+; Control Bot Container in GLOBAL
+$bottomControlGroup = GUICtrlCreateGroup("Control", 8, 300, 290, 75)
+$btnStart = GUICtrlCreateButton("Start Bot", 15, 320, 75, 50)
 GUICtrlSetOnEvent(-1, "btnStart")
-$btnStop = GUICtrlCreateButton("Stop Bot", 30, 360, 75, 50)
+$btnStop = GUICtrlCreateButton("Stop Bot", 15, 320, 75, 50)
 GUICtrlSetOnEvent(-1, "btnStop")
 GUICtrlSetState(-1, $GUI_HIDE)
-$btnHide = GUICtrlCreateButton("Hide BS", 110, 360, 75, 30)
+$btnHide = GUICtrlCreateButton("Hide BS", 110, 320, 75, 30)
 GUICtrlSetOnEvent(-1, "btnHide")
 GUICtrlSetState(-1, $GUI_DISABLE)
-$chkBackground = GUICtrlCreateCheckbox("BG Mode", 115, 395, 75, 15)
+$chkBackground = GUICtrlCreateCheckbox("BG Mode", 115, 355, 75, 15)
 GUICtrlSetBkColor($chkBackground, $COLOR_WHITE)
 GUICtrlSetOnEvent(-1, "chkBackground")
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Activate Background Mode")
-$chkForceBS = GUICtrlCreateCheckbox("Force Active", 190, 395, 75, 15)
+$chkForceBS = GUICtrlCreateCheckbox("Force Active", 190, 355, 75, 15)
 GUICtrlSetBkColor($chkForceBS, $COLOR_WHITE)
 GUICtrlSetOnEvent(-1, "chkForceBS")
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Maximize Bluestack window if fail to locate")
-$btnAtkNow = GUICtrlCreateButton("Attack Now", 190, 360, 75, 30)
+$btnAtkNow = GUICtrlCreateButton("Attack Now", 190, 320, 75, 30)
 GUICtrlSetOnEvent(-1, "btnAtkNow")
 GUICtrlSetState(-1, $GUI_DISABLE)
 
-$lblConfig = GUICtrlCreateLabel(getfilename($config), 280, 357, 110, 15, $SS_CENTER)
-GUICtrlSetBkColor($lblConfig, $COLOR_WHITE)
-$btnSaveConfig = GUICtrlCreateButton("Save Config", 280, 375, 50, 35, $BS_MULTILINE)
-GUICtrlSetOnEvent(-1, "btnSaveConfig")
-GUICtrlSetTip(-1, "Save Configuration Setting")
-$btnLoadConfig = GUICtrlCreateButton("Load Config", 340, 375, 50, 35, $BS_MULTILINE)
-GUICtrlSetOnEvent(-1, "btnLoadConfig")
-GUICtrlSetTip(-1, "Load Configuration Setting")
 
-$lblgoldnowM = GUICtrlCreateLabel("Gold Now :", 295, 358, 60, 17)
-GUICtrlSetState(-1, $GUI_HIDE)
-$lblresultgoldnowM = GUICtrlCreateLabel("0", 348, 358, 50, 17, $SS_RIGHT)
-GUICtrlSetState(-1, $GUI_HIDE)
-$imggoldnowM = GUICtrlCreatePic(@ScriptDir & "\images\Resource\Gold.jpg", 275, 357, 15, 15)
-GUICtrlSetState(-1, $GUI_HIDE)
-GUICtrlSetBkColor($lblgoldnowM, $COLOR_WHITE)
-GUICtrlSetBkColor($lblresultgoldnowM, $COLOR_WHITE)
-$lblelixirnowM = GUICtrlCreateLabel("Elixir Now :", 295, 378, 60, 17)
-GUICtrlSetState(-1, $GUI_HIDE)
-$lblresultelixirnowM = GUICtrlCreateLabel("0", 348, 378, 50, 17, $SS_RIGHT)
-GUICtrlSetState(-1, $GUI_HIDE)
-$imgelixirnowM = GUICtrlCreatePic(@ScriptDir & "\images\Resource\Elixir.jpg", 275, 377, 15, 15)
-GUICtrlSetState(-1, $GUI_HIDE)
-GUICtrlSetBkColor($lblelixirnowM, $COLOR_WHITE)
-GUICtrlSetBkColor($lblresultelixirnowM, $COLOR_WHITE)
-$lbldenowM = GUICtrlCreateLabel("DE Now :", 295, 398, 60, 17)
-GUICtrlSetState(-1, $GUI_HIDE)
-$lblresultdenowM = GUICtrlCreateLabel("0", 348, 398, 50, 17, $SS_RIGHT)
-GUICtrlSetState(-1, $GUI_HIDE)
-$imgdenowM = GUICtrlCreatePic(@ScriptDir & "\images\Resource\Dark.jpg", 275, 397, 15, 15)
-GUICtrlSetState(-1, $GUI_HIDE)
-GUICtrlSetBkColor($lbldenowM, $COLOR_WHITE)
-GUICtrlSetBkColor($lblresultdenowM, $COLOR_WHITE)
-
+; ------------------------- General SECTION STARTS HERE ------------------------- ;
 
 ;General Tab
 $pageGeneral = GUICtrlCreateTabItem("General")
-$Controls = GUICtrlCreateGroup("Controls", 15, 270, 385, 41)
-$chkBotStop = GUICtrlCreateCheckbox("", 37, 289, 16, 16)
-$cmbBotCommand = GUICtrlCreateCombo("", 60, 285, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Halt Attack Mode|Shutdown PC|Sleep PC", "Halt Attack Mode")
-$lblPC = GUICtrlCreateLabel("IF :", 178, 289, 25, 17)
-$cmbBotCond = GUICtrlCreateCombo("", 198, 285, 163, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "G and E Full and Max.Trophy|(G and E) Full or Max.Trophy|(G or E) Full and Max.Trophy|G or E Full or Max.Trophy|Gold and Elixir Full|Gold or Elixir Full|Gold Full and Max.Trophy|Elixir Full and Max.Trophy|Gold Full or Max.Trophy|Elixir Full or Max.Trophy|Gold Full|Elixir Full|Reach Max. Trophy", "Gold and Elixir Full")
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$otherSettings = GUICtrlCreateGroup("Other Settings", 15, 315, 385, 41)
 
-$chkNoAttack = GUICtrlCreateCheckbox("Donate/Train Only", 37, 330, 105, 17)
+; The Locate Buildings Manual CONTAINER
+$LocationSettings = GUICtrlCreateGroup("Locate Buildings Manually", 310, 68, 320, 155)
+; First Row
+$btnLocateTownHall = GUICtrlCreateButton("Locate Townhall", 325, 88, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateTownHall")
+$btnLocateClanCastle2 = GUICtrlCreateButton("Locate Clan Castle", 475, 88, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateClanCastle")
+; Second Row!
+$btnLocateKingAltar = GUICtrlCreateButton("Locate King Altar", 325, 120, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateKingAltar")
+$btnLocateQueenAltar = GUICtrlCreateButton("Locate Queen Altar", 475, 120, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateQueenAltar")
+; Third Row!
+$btnLocateDarkBarracks = GUICtrlCreateButton("Locate Dark Barrack", 325, 152, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateDarkBarracks")
+$btnLocateBarracks = GUICtrlCreateButton("Locate Barracks", 475, 152, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateBarracks")
+; Fourth Row!
+$btnLocateSFactory = GUICtrlCreateButton("Locate Spell Factory", 325, 185, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateSFactory")
+$btnLocateCamp = GUICtrlCreateButton("Locate Army Camp", 475, 185, 140, 25)
+GUICtrlSetOnEvent(-1, "btnLocateCamp")
+
+; Options Group
+$bottomOptionsGroup = GUICtrlCreateGroup("Options", 310, 230, 320, 80)
+
+; Options Commands
+$chkBotStop = GUICtrlCreateCheckbox("", 325, 250, 16, 16)
+$cmbBotCommand = GUICtrlCreateCombo("", 348, 246, 250, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Halt Attack Mode|Shutdown PC|Sleep PC", "Halt Attack Mode")
+$lblPC = GUICtrlCreateLabel("IF :", 330, 280, 25, 17)
+$cmbBotCond = GUICtrlCreateCombo("", 360, 275, 240, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "G and E Full and Max.Trophy|(G and E) Full or Max.Trophy|(G or E) Full and Max.Trophy|G or E Full or Max.Trophy|Gold and Elixir Full|Gold or Elixir Full|Gold Full and Max.Trophy|Elixir Full and Max.Trophy|Gold Full or Max.Trophy|Elixir Full or Max.Trophy|Gold Full|Elixir Full|Reach Max. Trophy", "Gold and Elixir Full")
+
+; Other Options
+$otherOptionsGroup = GUICtrlCreateGroup("Other Options", 310, 315, 320, 60)
+
+; Max Trophies
+$lblMaxTrophy = GUICtrlCreateLabel("Trophy Range:", 325, 332, 75, 17)
+$txtMinimumTrophy = GUICtrlCreateInput("1800", 400, 328, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$lblMaxTrophy2 = GUICtrlCreateLabel("-", 460, 332, 5, 17)
+$txtMaxTrophy = GUICtrlCreateInput("2000", 475, 328, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+
+
+; Donate Train Only
+$chkNoAttack = GUICtrlCreateCheckbox("Donate/Train Only", 325, 352, 105, 17)
 GUICtrlSetBkColor($chkNoAttack, $COLOR_WHITE)
 GUICtrlSetOnEvent(-1, "chkNoAttack")
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Disable attacking, only do collections/training/donating")
-$chkDonateOnly = GUICtrlCreateCheckbox("Donate Only", 152, 330, 80, 17)
+
+; Donate Only
+$chkDonateOnly = GUICtrlCreateCheckbox("Donate Only", 442, 352, 80, 17)
 GUICtrlSetBkColor($chkDonateOnly, $COLOR_WHITE)
 GUICtrlSetOnEvent(-1, "chkNoAttack")
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Disable attacking & training, only do collections/donating")
 
-$lblMaxTrophy = GUICtrlCreateLabel("Trophy Range:", 242, 332, 75, 17)
-$txtMinimumTrophy = GUICtrlCreateInput("2000", 317, 328, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-$lblMaxTrophy2 = GUICtrlCreateLabel("-", 350, 332, 5, 17)
-$txtMaxTrophy = GUICtrlCreateInput("3000", 357, 328, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 4)
-GUICtrlSetTip(-1, "Bot will lose trophies to Min if your trophy is greater than Max.")
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+; ------------------------- Search SECTION STARTS HERE ------------------------- ;
 
 ;Search Tab
 $pageSearchSetting = GUICtrlCreateTabItem("Search")
-$Searchonly = GUICtrlCreateGroup("Search Only", 15, 315, 385, 41)
-$btnSearchMode = GUICtrlCreateButton("Search Mode", 24, 327, 368, 25)
-GUICtrlSetOnEvent(-1, "btnSearchMode")
-GUICtrlSetTip(-1, "Does not attack. Searches for base that meets conditions.")
-$DeadConditions = GUICtrlCreateGroup("Dead Base Conditions", 15, 40, 385, 135)
-$lblDeadConditions = GUICtrlCreateLabel("Selected conditions must ALL be met when search base with full collectors", 30, 60, 380, 20)
-$chkDeadGE = GUICtrlCreateCheckbox("Min Resources:", 30, 83, 100, 17)
-$lblDeadMinGold = GUICtrlCreateLabel("Gold: ", 140, 85, 28, 17)
-$txtDeadMinGold = GUICtrlCreateInput("50000", 170, 80, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+
+$DeadConditions = GUICtrlCreateGroup("Dead Base Conditions", 15, 68, 610, 100)
+$lblDeadConditions = GUICtrlCreateLabel("Selected conditions must ALL be met when search base with full collectors", 30, 88, 380, 20)
+
+$chkDeadGE = GUICtrlCreateCheckbox("Min Resources:", 30, 110, 100, 17)
+$lblDeadMinGold = GUICtrlCreateLabel("Gold: ", 140, 111, 28, 17)
+$txtDeadMinGold = GUICtrlCreateInput("50000", 170, 108, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 6)
-$cmbDead = GUICtrlCreateCombo("", 240, 80, 45, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+
+$cmbDead = GUICtrlCreateCombo("", 240, 105, 45, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "And|Or", "And")
-$lblDeadMinElixir = GUICtrlCreateLabel("Elixir: ", 300, 85, 28, 17)
-$txtDeadMinElixir = GUICtrlCreateInput("50000", 330, 80, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+
+$lblDeadMinElixir = GUICtrlCreateLabel("Elixir: ", 300, 111, 28, 17)
+$txtDeadMinElixir = GUICtrlCreateInput("50000", 330, 108, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 6)
-$chkDeadMeetDE = GUICtrlCreateCheckbox("Min Dark Elixir:", 30, 113, 95, 17)
-$txtDeadMinDarkElixir = GUICtrlCreateInput("0", 130, 110, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+
+$chkDeadMeetDE = GUICtrlCreateCheckbox("Min Dark Elixir:", 400, 108, 95, 17)
+$txtDeadMinDarkElixir = GUICtrlCreateInput("0", 500, 105, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 6)
-$chkDeadMeetTrophy = GUICtrlCreateCheckbox("Min Trophies:", 225, 113, 95, 17)
-$txtDeadMinTrophy = GUICtrlCreateInput("0", 325, 110, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 2)
-$chkDeadMeetTH = GUICtrlCreateCheckbox("Max TH Level:", 30, 143, 95, 17)
-$cmbDeadTH = GUICtrlCreateCombo("", 130, 140, 60, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+
+$chkDeadMeetTH = GUICtrlCreateCheckbox("Max TH Level:", 30, 140, 95, 17)
+$cmbDeadTH = GUICtrlCreateCombo("", 130, 137, 60, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "4-6|7|8|9|10", "4-6")
-$chkDeadMeetTHO = GUICtrlCreateCheckbox("Townhall Outside", 225, 143, 100, 17)
-$AnyConditions = GUICtrlCreateGroup("Any Base Conditions", 15, 180, 385, 130)
+
+
+$chkDeadMeetTrophy = GUICtrlCreateCheckbox("Min Trophies:", 225, 140, 95, 17)
+$txtDeadMinTrophy = GUICtrlCreateInput("0", 315, 137, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+
+$chkDeadMeetTHO = GUICtrlCreateCheckbox("Townhall Outside", 400, 140, 100, 17)
+
+
+$AnyConditions = GUICtrlCreateGroup("Any Base Conditions", 15, 180, 610, 100)
+
 $lblAnyConditions = GUICtrlCreateLabel("Selected conditions must ALL be met when search for any other base", 30, 200, 380, 20)
+
 $chkMeetGE = GUICtrlCreateCheckbox("Min Resources: ", 30, 223, 100, 17)
 GUICtrlSetState(-1, $GUI_CHECKED)
+
 $lblMinGold = GUICtrlCreateLabel("Gold:", 140, 225, 28, 17)
 $txtMinGold = GUICtrlCreateInput("80000", 170, 220, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 6)
+
 $cmbAny = GUICtrlCreateCombo("", 240, 220, 45, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "And|Or", "And")
 $lblMinElixir = GUICtrlCreateLabel("Elixir:", 300, 225, 28, 17)
 $txtMinElixir = GUICtrlCreateInput("80000", 330, 220, 50, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 6)
-$chkMeetDE = GUICtrlCreateCheckbox("Min Dark Elixir:", 30, 253, 95, 17)
-$txtMinDarkElixir = GUICtrlCreateInput("0", 130, 250, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 6)
-$chkMeetTrophy = GUICtrlCreateCheckbox("Min Trophies:", 225, 253, 95, 17)
-$txtMinTrophy = GUICtrlCreateInput("0", 325, 250, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 2)
-$chkMeetTH = GUICtrlCreateCheckbox("Max TH Level:", 30, 283, 95, 17)
-$cmbTH = GUICtrlCreateCombo("", 130, 280, 60, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "4-6|7|8|9|10", "4-6")
-$chkMeetTHO = GUICtrlCreateCheckbox("Townhall Outside", 225, 283, 100, 17)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+$chkMeetDE = GUICtrlCreateCheckbox("Min Dark Elixir:", 400, 222, 95, 17)
+$txtMinDarkElixir = GUICtrlCreateInput("0", 500, 219, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 6)
+
+$chkMeetTH = GUICtrlCreateCheckbox("Max TH Level:", 30, 253, 95, 17)
+$cmbTH = GUICtrlCreateCombo("", 130, 250, 60, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "4-6|7|8|9|10", "4-6")
+
+$chkMeetTrophy = GUICtrlCreateCheckbox("Min Trophies:", 225, 253, 95, 17)
+$txtMinTrophy = GUICtrlCreateInput("0", 315, 250, 60, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+
+$chkMeetTHO = GUICtrlCreateCheckbox("Townhall Outside", 400, 253, 100, 17)
+
+$Searchonly = GUICtrlCreateGroup("Search Only", 310, 290, 320, 85)
+GUICtrlCreateLabel("Searching only! Disables attacking!", 375, 310, 320, 15)
+$btnSearchMode = GUICtrlCreateButton("Search Mode", 319, 330, 300, 30)
+GUICtrlSetOnEvent(-1, "btnSearchMode")
+GUICtrlSetTip(-1, "Does not attack. Searches for base that meets conditions.")
+
+
+; ------------------------- ATTACK SECTION ENDS HERE ------------------------- ;
 
 ;Attack Tab
 $pageAttackSettings = GUICtrlCreateTabItem("Attack")
-$DeadDeploySettings = GUICtrlCreateGroup("Dead Base Deploy Settings", 15, 40, 385, 123)
-$cmbDeadDeploy = GUICtrlCreateCombo("", 30, 55, 360, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+
+
+$DeadDeploySettings = GUICtrlCreateGroup("Dead Base Deploy Settings", 15, 68, 610, 90)
+$cmbDeadDeploy = GUICtrlCreateCombo("", 30, 90, 290, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Attack on a single side, penetrates through base|Attack on two sides, penetrates through base|Attack on three sides, gets outer and some inside of base|Attack on all sides equally, gets most of outer base", "Attack on all sides equally, gets most of outer base")
-$cmbDeadAlgorithm = GUICtrlCreateCombo("", 30, 85, 360, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbDeadAlgorithm = GUICtrlCreateCombo("", 30, 125, 290, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Archers|Barbarians|Goblins|Barbarians + Archers|Barb + Arch + Goblin + Giant|Barb + Arch + Giant|Barb + Arch + Goblin|Barb + Arch + Goblin + Giant + Wallbreakers|Use Barracks|Use All Troops", "Use All Troops") ;"Archers|Barbarians|Goblins|Barbarians + Archers|Barb + Arch + Goblin + Giant|Barb + Arch + Giant|Barb + Arch + Goblin|Barb + Arch + Goblin + Giant + Wallbreakers|Use Barracks"
-$chkDeadUseKing = GUICtrlCreateCheckbox("Attack with King", 30, 115, 150, 17)
-$chkDeadUseQueen = GUICtrlCreateCheckbox("Attack with Queen", 200, 115, 150, 17)
-$chkDeadUseClanCastle = GUICtrlCreateCheckbox("Attack with Clan Castle troops", 30, 135, 160, 17)
-$chkDeadAttackTH = GUICtrlCreateCheckbox("Attack Townhall (Outside)", 200, 135, 160, 17)
+$chkDeadUseKing = GUICtrlCreateCheckbox("Attack with King", 					345,  90, 115, 17)
+$chkDeadUseQueen = GUICtrlCreateCheckbox("Attack with Queen", 					345, 125, 115, 17)
+$chkDeadUseClanCastle = GUICtrlCreateCheckbox("Attack with Clan Castle troops", 460, 90, 157, 17)
+$chkDeadAttackTH = GUICtrlCreateCheckbox("Attack Townhall (Outside)", 			460, 125, 140, 17)
 GUICtrlSetTip(-1, "Troops target Townhall when on the outside of a dead base. Enforces a match during base search if Townhall on outside and base is dead")
 
-$AnyDeploySettings = GUICtrlCreateGroup("Other Base Deploy Settings", 15, 163, 385, 123)
-$cmbDeploy = GUICtrlCreateCombo("", 30, 182, 360, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+
+$AnyDeploySettings = GUICtrlCreateGroup("Other Base Deploy Settings", 15, 163, 610, 90)
+$cmbDeploy = GUICtrlCreateCombo("", 30, 185, 290, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Attack on a single side, penetrates through base|Attack on two sides, penetrates through base|Attack on three sides, gets outer and some inside of base|Attack on all sides equally, gets most of outer base", "Attack on all sides equally, gets most of outer base")
-$cmbAlgorithm = GUICtrlCreateCombo("", 30, 212, 360, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbAlgorithm = GUICtrlCreateCombo("", 30, 220, 290, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Archers|Barbarians|Goblins|Barbarians + Archers|Barb + Arch + Goblin + Giant|Barb + Arch + Giant|Barb + Arch + Goblin|Barb + Arch + Goblin + Giant + Wallbreakers|Use Barracks|Use All Troops", "Use All Troops") ;"Archers|Barbarians|Goblins|Barbarians + Archers|Barb + Arch + Goblin + Giant|Barb + Arch + Giant|Barb + Arch + Goblin|Barb + Arch + Goblin + Giant + Wallbreakers|Use Barracks"
-$chkUseKing = GUICtrlCreateCheckbox("Attack with King", 30, 240, 150, 17)
-$chkUseQueen = GUICtrlCreateCheckbox("Attack with Queen", 200, 240, 150, 17)
-$chkUseClanCastle = GUICtrlCreateCheckbox("Attack with Clan Castle troops", 30, 260, 160, 17)
-$chkAttackTH = GUICtrlCreateCheckbox("Attack Townhall (Outside)", 200, 260, 160, 17)
+$chkUseKing = GUICtrlCreateCheckbox("Attack with King", 					 345, 185, 115, 17)
+$chkUseQueen = GUICtrlCreateCheckbox("Attack with Queen",					 345, 220, 115, 17)
+$chkUseClanCastle = GUICtrlCreateCheckbox("Attack with Clan Castle troops",  460, 185, 157, 17)
+$chkAttackTH = GUICtrlCreateCheckbox("Attack Townhall (Outside)", 			 460, 220, 140, 17)
 GUICtrlSetTip(-1, "Troops target Townhall when on the outside of a base. Enforces a match during base search if Townhall on outside")
 
-$AtkSpeed = GUICtrlCreateGroup("Deploy Speed", 15, 286, 385, 69)
-$lblUnitDelay = GUICtrlCreateLabel("Unit Delay:", 30, 307, 75, 17)
-$cmbUnitDelay = GUICtrlCreateCombo("", 90, 304, 50, 17, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "5")
-$lblWaveDelay = GUICtrlCreateLabel("Wave Delay:", 155, 307, 75, 17)
-$cmbWaveDelay = GUICtrlCreateCombo("", 225, 304, 50, 17, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "5")
-$Randomspeedatk = GUICtrlCreateCheckbox("Random Speeds", 295, 307, 100, 17)
-GUICtrlSetOnEvent(-1, "Randomspeedatk")
-$lblAttackdelay = GUICtrlCreateLabel("Delays of troops deployment speed, 1 (fast) = like a Bot, 10 (slow) = Like a Human. Random will make bot more varied and closer to a person.", 35, 325, 350, 67, $SS_CENTER)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+
+$AtkSpeed = GUICtrlCreateGroup("Deploy Speed", 310, 265, 320, 110)
+
+$lblUnitDelay = GUICtrlCreateLabel("Unit Delay:", 320, 295, 75, 17)
+$cmbUnitDelay = GUICtrlCreateCombo("", 390, 290, 50, 17, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "5")
+
+$lblWaveDelay = GUICtrlCreateLabel("Wave Delay:", 320, 325, 75, 17)
+$cmbWaveDelay = GUICtrlCreateCombo("", 390, 320, 50, 17, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "5")
+
+$Randomspeedatk = GUICtrlCreateCheckbox("Random Speeds!!", 325, 348, 100, 17)
+GUICtrlSetOnEvent(-1, "Randomspeedatk")
+
+$lblAttackdelay = GUICtrlCreateLabel("* Delays of troops deployment speed *	       - [1] Fast = Bot Like!		        - [10] Slow = Human Like!    		                                                  Random will make bot more variant and closer to human!", 445, 280, 180, 400, $SS_CENTER)
+;Delays of troops deployment speed, 1 (fast) = like a Bot, 10 (slow) = Like a Human. Random will make bot more varied and closer to a person.
+
+; ------------------------- DONATE SECTION ENDS HERE ------------------------- ;
 
 ;Donate Tab
 $pageDonateSettings = GUICtrlCreateTabItem("Donate")
+
+
+
+
+
+
+
+
+
+
 $Donation = GUICtrlCreateGroup("", 15, 30, 385, 325)
 $Barbarians = GUICtrlCreateGroup("Barbarians", 20, 70, 120, 235)
 $chkDonateAllBarbarians = GUICtrlCreateCheckbox("Donate to All", 30, 95, 97, 17)
@@ -220,6 +289,8 @@ GUICtrlSetTip(-1, "Request for input.")
 $btnLocateClanCastle = GUICtrlCreateButton("Locate Clan Castle Manually", 25, 325, 365, 25)
 GUICtrlSetOnEvent(-1, "btnLocateClanCastle")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+; ------------------------- TROOPS SECTION ENDS HERE ------------------------- ;
 
 
 ;Troops Tab
@@ -334,6 +405,10 @@ $cmbSecondTroop4 = GUICtrlCreateCombo("", 285, 325, 95, 25, BitOR($CBS_DROPDOWNL
 GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Archers")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+
+; ------------------------- OTHER SECTION ENDS HERE ------------------------- ;
+
+
 ;Other Tab
 $pageOtherSettings = GUICtrlCreateTabItem("Other")
 $Walls = GUICtrlCreateGroup("Walls", 20, 40, 375, 125)
@@ -416,49 +491,52 @@ $chkBoostRax3 = GUICtrlCreateCheckbox("Barrack 3", 285, 305, 65, 17)
 $chkBoostRax4 = GUICtrlCreateCheckbox("Barrack 4", 285, 330, 65, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+
+; ------------------------- MISC SECTION ENDS HERE ------------------------- ;
+
+
 ;Misc Tab
 $pageMiscSettings = GUICtrlCreateTabItem("Misc")
-$Miscs = GUICtrlCreateGroup("Misc", 20, 40, 375, 215)
-$lblReconnect = GUICtrlCreateLabel("Reconnect Interval:", 30, 65, 100, 17)
+$Miscs = GUICtrlCreateGroup("Misc", 20, 68, 610, 215)
+$lblReconnect = GUICtrlCreateLabel("Reconnect Interval:", 30, 93, 100, 17)
 GUICtrlSetTip(-1, "Set reconnect interval when other devices connected - COC English version Only")
-$txtReconnect = GUICtrlCreateInput("2", 130, 60, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtReconnect = GUICtrlCreateInput("2", 130, 88, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-$lblReconnectmin = GUICtrlCreateLabel("minutes", 165, 65, 100, 17)
-
-$chkTrap = GUICtrlCreateCheckbox("Auto Rearm Traps", 270, 65, 110, 17)
+$lblReconnectmin = GUICtrlCreateLabel("minutes", 165, 93, 100, 17)
+$chkTrap = GUICtrlCreateCheckbox("Auto Rearm Traps", 270, 93, 110, 17)
 GUICtrlSetState(-1, $GUI_CHECKED)
 GUICtrlSetTip(-1, "Auto rearm for Traps, Crossbows & Inferno Towers")
 
-$lblSearchsp = GUICtrlCreateLabel("Seach Base Speed:", 30, 92, 100, 17)
+$lblSearchsp = GUICtrlCreateLabel("Seach Base Speed:", 30, 120, 100, 17)
 GUICtrlSetTip(-1, "Set search base speed to higher number if having frequent server sync issue")
-$cmbSearchsp = GUICtrlCreateCombo("", 130, 87, 45, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbSearchsp = GUICtrlCreateCombo("", 130, 115, 45, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "0|1|2|3|4|5", "0") ; Search Base Speed
-$lblSearchspd = GUICtrlCreateLabel("Tips: 0 = Fast, 5 = Slow", 182, 92, 200, 17)
+$lblSearchspd = GUICtrlCreateLabel("Tips: 0 = Fast, 5 = Slow", 182, 120, 200, 17)
 
-$lblKingSkill = GUICtrlCreateLabel("King Skill Delay:", 30, 119, 80, 17)
+$lblKingSkill = GUICtrlCreateLabel("King Skill Delay:", 30, 147, 80, 17)
 GUICtrlSetTip(-1, "Set delay timing for King skill")
-$txtKingSkill = GUICtrlCreateInput("10", 110, 114, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtKingSkill = GUICtrlCreateInput("10", 110, 142, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-$lblKingsSkill = GUICtrlCreateLabel("seconds   /", 145, 119, 60, 17)
+$lblKingsSkill = GUICtrlCreateLabel("seconds   /", 145, 147, 60, 17)
 
-$lblQueenSkill = GUICtrlCreateLabel("Queen Skill Delay:", 210, 119, 100, 17)
+$lblQueenSkill = GUICtrlCreateLabel("Queen Skill Delay:", 210, 147, 100, 17)
 GUICtrlSetTip(-1, "Set delay timing for Queen skill")
-$txtQueenSkill = GUICtrlCreateInput("10", 300, 114, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtQueenSkill = GUICtrlCreateInput("10", 300, 142, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-$lblQueensSkill = GUICtrlCreateLabel("seconds", 335, 119, 50, 17)
+$lblQueensSkill = GUICtrlCreateLabel("seconds", 335, 147, 50, 17)
 
-$lblReturnh = GUICtrlCreateLabel("Return Home Delay:", 30, 146, 100, 17)
+$lblReturnh = GUICtrlCreateLabel("Return Home Delay:", 30, 174, 100, 17)
 GUICtrlSetTip(-1, "Set delay timing for return home during raid")
-$txtReturnh = GUICtrlCreateInput("10", 130, 141, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtReturnh = GUICtrlCreateInput("10", 130, 169, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-$lblReturndelay = GUICtrlCreateLabel("seconds after no income detected", 165, 146, 200, 17)
+$lblReturndelay = GUICtrlCreateLabel("seconds after no income detected", 165, 174, 200, 17)
 
-$chkSpellDarkStorage = GUICtrlCreateCheckbox("Cast Lightning when left:", 30, 172, 131, 17)
+$chkSpellDarkStorage = GUICtrlCreateCheckbox("Cast Lightning when left:", 30, 200, 131, 17)
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetTip(-1, "Set Min Dark Elixir to Lightning Dark Storage")
-$txtSpellDarkStorage = GUICtrlCreateInput("500", 170, 168, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtSpellDarkStorage = GUICtrlCreateInput("500", 170, 196, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 4)
-$lblSpellDarkStorage = GUICtrlCreateLabel("Dark Elixir", 210, 173, 200, 17)
+$lblSpellDarkStorage = GUICtrlCreateLabel("Dark Elixir", 210, 201, 200, 17)
 
 #cs
 	$lblOpenCOC = GUICtrlCreateLabel("Reopen COC after:", 30, 200, 100, 17)
@@ -471,29 +549,11 @@ $lblSpellDarkStorage = GUICtrlCreateLabel("Dark Elixir", 210, 173, 200, 17)
 	GUICtrlSetState(-1, $GUI_DISABLE)
 #ce
 
-$chkTakeTownSS = GUICtrlCreateCheckbox("Take All Towns Snapshot", 253, 230, 141, 17)
-$chkTakeLootSS = GUICtrlCreateCheckbox("Take Loots Snapshot", 131, 230, 118, 17)
+$chkTakeTownSS = GUICtrlCreateCheckbox("Take All Towns Snapshot", 253, 258, 141, 17)
+$chkTakeLootSS = GUICtrlCreateCheckbox("Take Loots Snapshot", 131, 258, 118, 17)
 GUICtrlSetState(-1, $GUI_CHECKED)
-$chkAlertSearch = GUICtrlCreateCheckbox("Base Found Alert", 30, 230, 100, 17)
+$chkAlertSearch = GUICtrlCreateCheckbox("Base Found Alert", 30, 258, 100, 17)
 
-$LocationSettings = GUICtrlCreateGroup("Locate Buildings", 20, 255, 375, 100)
-$btnLocateKingAltar = GUICtrlCreateButton("King Altar", 32, 270, 83, 25)
-GUICtrlSetOnEvent(-1, "btnLocateKingAltar")
-$btnLocateQueenAltar = GUICtrlCreateButton("Queen Altar", 118, 270, 83, 25)
-GUICtrlSetOnEvent(-1, "btnLocateQueenAltar")
-$btnLocateDarkBarracks = GUICtrlCreateButton("Dark Barrack", 213, 270, 83, 25)
-GUICtrlSetOnEvent(-1, "btnLocateDarkBarracks")
-$btnLocateSFactory = GUICtrlCreateButton("Spell Factory", 299, 270, 83, 25)
-GUICtrlSetOnEvent(-1, "btnLocateSFactory")
-$btnLocateTownHall = GUICtrlCreateButton("Locate Townhall Manually", 32, 297, 170, 25)
-GUICtrlSetOnEvent(-1, "btnLocateTownHall")
-$btnLocateClanCastle2 = GUICtrlCreateButton("Locate Clan Castle Manually", 32, 324, 170, 25)
-GUICtrlSetOnEvent(-1, "btnLocateClanCastle")
-$btnLocateCamp = GUICtrlCreateButton("Locate Camp Manually", 213, 297, 170, 25)
-GUICtrlSetOnEvent(-1, "btnLocateCamp")
-$btnLocateBarracks = GUICtrlCreateButton("Locate Barracks Manually", 213, 324, 170, 25)
-GUICtrlSetOnEvent(-1, "btnLocateBarracks")
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 #cs
 	;Remote Tab
@@ -528,6 +588,10 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 #ce
+
+
+; ------------------------- STATS SECTION ENDS HERE ------------------------- ;
+
 
 ;Stats Tab
 $pageStatsSetting = GUICtrlCreateTabItem("Stats")
@@ -607,35 +671,39 @@ GUICtrlCreatePic (@ScriptDir & "\images\Resource\Trophy.jpg", 230, 313, 15, 15)
 
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+
+; ------------------------- Notifications SECTION ENDS HERE ------------------------- ;
+
+
 ;Notification
-$pagenotificationSetting = GUICtrlCreateTabItem("P.Bullet")
-$lblpushbullet = GUICtrlCreateGroup("PushBullet", 20, 40, 375, 240)
-$pushbullettoken1 = GUICtrlCreateLabel("Account Token:", 30, 90, 80, 17, $SS_CENTER)
-$pushbullettokenvalue = GUICtrlCreateInput("", 120, 90, 260, 17)
-$lblpushbulletenabled = GUICtrlCreateCheckbox("Enable", 30, 65, 60, 17)
+$pagenotificationSetting = GUICtrlCreateTabItem("Notification")
+$lblpushbullet = GUICtrlCreateGroup("PushBullet", 20, 68, 375, 175)
+$pushbullettoken1 = GUICtrlCreateLabel("Account Token:", 30, 118, 80, 17, $SS_CENTER)
+$pushbullettokenvalue = GUICtrlCreateInput("", 120, 118, 260, 17)
+$lblpushbulletenabled = GUICtrlCreateCheckbox("Enable", 30, 93, 60, 17)
 GUICtrlSetTip(-1, "Enable pushbullet notification")
-$lblpushbulletdebug = GUICtrlCreateCheckbox("Debug", 100, 65, 60, 17)
+$lblpushbulletdebug = GUICtrlCreateCheckbox("Debug", 100, 93, 60, 17)
 GUICtrlSetTip(-1, "This will add verbosity on log while sending files via pushbullet")
-$lblpushbulletremote = GUICtrlCreateCheckbox("Remote", 170, 65, 60, 17)
+$lblpushbulletremote = GUICtrlCreateCheckbox("Remote", 170, 93, 60, 17)
 GUICtrlSetTip(-1, "Enables pushbullet remote function")
-$lblpushbulletdelete = GUICtrlCreateCheckbox("Delete Msg on Start", 240, 65, 120, 17)
+$lblpushbulletdelete = GUICtrlCreateCheckbox("Delete Msg on Start", 240, 93, 120, 17)
 GUICtrlSetTip(-1, "Will delete your messages on start button click")
 
-$lblpushmessage = GUICtrlCreateGroup("Push Messages", 30, 115, 260, 75)
-$lblvillagereport = GUICtrlCreateCheckbox("Village Report", 40, 140, 90, 17)
-$lblmatchfound = GUICtrlCreateCheckbox("Match Found", 40, 160, 90, 17)
+$lblpushmessage = GUICtrlCreateGroup("Push Messages", 30, 143, 260, 75)
+$lblvillagereport = GUICtrlCreateCheckbox("Village Report", 40, 168, 90, 17)
+$lblmatchfound = GUICtrlCreateCheckbox("Match Found", 40, 185, 90, 17)
 GUICtrlSetOnEvent(-1, "MatchFound")
-$lbllastraid = GUICtrlCreateCheckbox("Last Raid", 130, 140, 70, 17)
-$lbltotalraid = GUICtrlCreateCheckbox("Total Raid", 130, 160, 70, 17)
-$lblfreebuilder = GUICtrlCreateCheckbox("Free Builder", 210, 140, 75, 17)
-$lblerror = GUICtrlCreateCheckbox("Errors", 210, 160, 70, 17)
+$lbllastraid = GUICtrlCreateCheckbox("Last Raid", 130, 168, 70, 17)
+$lbltotalraid = GUICtrlCreateCheckbox("Total Raid", 130, 185, 70, 17)
+$lblfreebuilder = GUICtrlCreateCheckbox("Free Builder", 210, 168, 75, 17)
+$lblerror = GUICtrlCreateCheckbox("Errors", 210, 185, 70, 17)
 
-$lblpushbulletloot = GUICtrlCreateGroup("Last Raid", 300, 115, 80, 75)
-$UseJPG = GUICtrlCreateRadio("as JPG", 310, 140, 60, 17)
+$lblpushbulletloot = GUICtrlCreateGroup("Last Raid", 300, 143, 80, 75)
+$UseJPG = GUICtrlCreateRadio("as JPG", 310, 168, 60, 17)
 GUICtrlSetTip(-1, "Attach the loot jpg file in push message")
 GUICtrlSetLimit(-1, 7)
 
-$UseText = GUICtrlCreateRadio("as TXT", 310, 160, 60, 17)
+$UseText = GUICtrlCreateRadio("as TXT", 310, 185, 60, 17)
 GUICtrlSetTip(-1, "Push only text message")
 GUICtrlSetLimit(-1, 7)
 
@@ -653,14 +721,18 @@ GUICtrlSetLimit(-1, 7)
 ;$lblpushbullet = GUICtrlCreateGroup("PushBullet Remote", 20, 210, 370, 140)
 ;$pushbullettoken1 = GUICtrlCreateLabel("You can remotely control your bot using the following command format" & @CRLF & "Enter the command in the title of the message" & @CRLF & "Bot <command> where <command> is:" & @CRLF & @CRLF & "Pause - pause the bot" & @CRLF & "Resume - resume the bot" & @CRLF & "Stats - send bot current statistics" & @CRLF & "Logs - send the current log file" & @CRLF & "Help - send this help message", 25, 230, 340, 350, $SS_LEFT)
 
-$lblpushbulletconfig = GUICtrlCreateGroup("Remote Configuration", 30, 195, 185, 75)
-$lblpushbulletinterval = GUICtrlCreateLabel("Check Interval:", 40, 220, 80, 17, $SS_RIGHT)
-$lblpushbulletintervalvalue = GUICtrlCreateInput("10", 125, 215, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$lblpushbulletconfig = GUICtrlCreateGroup("Remote Configuration", 415, 68, 185, 75)
+$lblpushbulletinterval = GUICtrlCreateLabel("Check Interval:", 425, 93, 80, 17, $SS_RIGHT)
+$lblpushbulletintervalvalue = GUICtrlCreateInput("10", 510, 88, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-$lblpushbulleintervalmin = GUICtrlCreateLabel("minutes", 140, 220, 80, 17, $SS_CENTER)
-$lblpushbullemessages = GUICtrlCreateLabel("Keep Messages:", 40, 245, 80, 17, $SS_RIGHT)
-$lblpushbulletmessagesvalue = GUICtrlCreateInput("100", 125, 240, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$lblpushbulleintervalmin = GUICtrlCreateLabel("minutes", 525, 93, 80, 17, $SS_CENTER)
+$lblpushbullemessages = GUICtrlCreateLabel("Keep Messages:", 425, 118, 80, 17, $SS_RIGHT)
+$lblpushbulletmessagesvalue = GUICtrlCreateInput("100", 510, 113, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 3)
+
+GUISetState(@SW_SHOW)
+
+
 
 ;Bottom status bar
 $statLog = _GUICtrlStatusBar_Create($frmBot)
@@ -670,3 +742,6 @@ $tiAbout = TrayCreateItem("About")
 TrayCreateItem("")
 $tiExit = TrayCreateItem("Exit")
 GUISetState(@SW_SHOW)
+
+$hPic_background = GUICtrlCreatePic(@ScriptDir & "\images\GUI\banner.bmp", 0, 0, 0, 35)
+GUICtrlSetState($hPic_background, $GUI_DISABLE)

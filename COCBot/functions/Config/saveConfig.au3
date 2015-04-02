@@ -260,6 +260,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	Local $frmBotPos = WinGetPos($sBotTitle)
 	IniWrite($config, "general", "frmBotPosX", $frmBotPos[0])
 	IniWrite($config, "general", "frmBotPosY", $frmBotPos[1])
+	IniWrite($config, "general", "MinTrophy", GUICtrlRead($txtMinimumTrophy))
 	IniWrite($config, "general", "MaxTrophy", GUICtrlRead($txtMaxTrophy))
 
 	;Push Bullet--------------------------------------------------------------------------

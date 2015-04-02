@@ -275,6 +275,7 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtWallMinElixir, $itxtWallMinElixir)
 	;General Settings--------------------------------------------------------------------------
 	If $frmBotPosX <> -32000 Then WinMove($sBotTitle, "", $frmBotPosX, $frmBotPosY)
+	GUICtrlSetData($txtMinimumTrophy, $itxtMinTrophy)
 	GUICtrlSetData($txtMaxTrophy, $itxtMaxTrophy)
 
 	;Misc Settings--------------------------------------------------------------------------

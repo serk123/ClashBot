@@ -99,6 +99,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		;General Settings--------------------------------------------------------------------------
 		$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")
 		$frmBotPosY = IniRead($config, "general", "frmBotPosY", "158")
+		$itxtMinTrophy = IniRead($config, "general", "MinTrophy", "2000")
 		$itxtMaxTrophy = IniRead($config, "general", "MaxTrophy", "3000")
 		$ichkBackground = IniRead($config, "general", "Background", "0")
 		$ichkBotStop = IniRead($config, "general", "BotStop", "0")

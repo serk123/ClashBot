@@ -21,6 +21,18 @@ Func getOther($x_start, $y_start, $type, $totalcamp = False)
 			$Number &= getDigit($x, $y, "Other")
 			$Number &= getDigit($x, $y, "Other")
 
+		Case "LastRaidGold"
+			$Number = getDigitlastRaid($x, $y, "LastRaidGold")
+
+		Case "LastRaidElixir"
+			$Number = getDigitlastRaid($x, $y, "LastRaidElixir")
+
+		Case "LastRaidDarkElixir"
+			$Number = getDigitlastRaid($x, $y, "LastRaidDarkElixir")
+
+		Case "LastRaidTrophy"
+			$Number = getDigitlastRaid($x, $y, "LastRaidTrophy")
+
 		Case "Townhall"
 			$Number = getDigitTownHall($x, $y)
 

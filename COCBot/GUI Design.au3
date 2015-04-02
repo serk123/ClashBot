@@ -606,7 +606,7 @@ GUICtrlCreatePic (@ScriptDir & "\images\Resource\Trophy.jpg", 230, 313, 15, 15)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 ;Notification
-$pagenotificationSetting = GUICtrlCreateTabItem("Notification")
+$pagenotificationSetting = GUICtrlCreateTabItem("P.Bullet")
 $lblpushbullet = GUICtrlCreateGroup("PushBullet", 20, 40, 375, 240)
 $pushbullettoken1 = GUICtrlCreateLabel("Account Token:", 30, 90, 80, 17, $SS_CENTER)
 $pushbullettokenvalue = GUICtrlCreateInput("", 120, 90, 260, 17)

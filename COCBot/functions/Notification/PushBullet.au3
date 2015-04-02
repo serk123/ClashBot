@@ -63,7 +63,7 @@ Func _RemoteControl()
 			   _DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Boost1" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax2, $GUI_UNCHECKED)
 				   GUICtrlSetState($chkBoostRax3, $GUI_UNCHECKED)
@@ -75,7 +75,7 @@ Func _RemoteControl()
 				_DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Boost2" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax3, $GUI_UNCHECKED)
@@ -87,7 +87,7 @@ Func _RemoteControl()
 				_DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot Boost3" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax3, $GUI_CHECKED)
@@ -99,7 +99,7 @@ Func _RemoteControl()
 				_DeleteMessage($iden[$x])
 			Elseif $title[$x] = "Bot BoostAll" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
-				   GUICtrlSetState($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
+				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
 				   GUICtrlSetState($chkBoostRax3, $GUI_CHECKED)

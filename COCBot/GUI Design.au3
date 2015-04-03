@@ -332,7 +332,7 @@ GUICtrlSetData(-1, "Archers|Barbarians|Goblins|B.Arch|B.A.G.G.|B.A.Giant|B.A.Gob
 
 
 Local $CT2_Y_value = 166;
-$BarrackCTGroup = GUICtrlCreateGroup("Custom Troops", 240, 234-$CT2_Y_value, 375, 121)
+$BarrackCTGroup = GUICtrlCreateGroup("Custom Troops 2", 240, 234-$CT2_Y_value, 375, 121)
 $lblBarrackJOE1 = GUICtrlCreateLabel("Barrack 1 :", 250, 253-$CT2_Y_value, 53, 17)
 $lblBarrackJOE2 = GUICtrlCreateLabel("Barrack 2 :", 250, 278-$CT2_Y_value, 53, 17)
 $lblBarrackJOE3 = GUICtrlCreateLabel("Barrack 3 :", 250, 303-$CT2_Y_value, 53, 17)
@@ -398,9 +398,9 @@ GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Balloon(Trainin
 ;83
 
 
-$DarkBarracks = GUICtrlCreateGroup("Dark Troops", 310, 285, 305, 90)
+$DarkBarracks = GUICtrlCreateGroup("", 310, 285, 305, 90)
 
-$chkDarkTroop = GUICtrlCreateCheckbox("Dark Barrack", 9000, 9000, 80, 15) ;; MUST BE REMOVED AND FOLLOW SAME SETUP AS ABOVE!
+$chkDarkTroop = GUICtrlCreateCheckbox("Dark Troops", 320, 285, 80, 15) ;; MUST BE REMOVED AND FOLLOW SAME SETUP AS ABOVE!
 
 
 
@@ -527,7 +527,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 ;Misc Tab
 $pageMiscSettings = GUICtrlCreateTabItem("Misc")
-$Miscs = GUICtrlCreateGroup("Misc", 20, 68, 610, 215)
+$Miscs = GUICtrlCreateGroup("Misc", 20, 68, 600, 215)
 $lblReconnect = GUICtrlCreateLabel("Reconnect Interval:", 30, 93, 100, 17)
 GUICtrlSetTip(-1, "Set reconnect interval when other devices connected - COC English version Only")
 $txtReconnect = GUICtrlCreateInput("2", 130, 88, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))

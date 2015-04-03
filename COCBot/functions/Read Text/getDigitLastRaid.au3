@@ -13,6 +13,7 @@ Local $Resource = ""
 ;EndIf
 
 While $x <> 440
+	$x += 1
 
 	;Check for Negative sign
 	if $type = "LastRaidTrophy" Then
@@ -126,8 +127,6 @@ While $x <> 440
 		$Resource &= 0
 		ContinueLoop
 	EndIf
-
-	$x += 1
 
 	;For Dark Elixir, if there is a digit 1 $y set pixel offset
 	if $x = 440 and $Resource = "" and $type = "LastRaidDarkElixir" Then

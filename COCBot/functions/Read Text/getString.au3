@@ -3,7 +3,7 @@
 Func getString($y)
 	For $i = 0 To 3
 		Local $x_Temp = 35
-		If getChar($x_Temp, $y) = " " Or getChar($x_Temp, $y) = "|" Then
+		If getChar($x_Temp, $y) = "  " Or getChar($x_Temp, $y) = "|" Then
 			$y += 1
 		Else
 			ExitLoop

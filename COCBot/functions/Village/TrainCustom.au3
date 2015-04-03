@@ -6,8 +6,6 @@ Func TrainCustom()
 		If _Sleep(2000) Then Return
 	EndIf
 
-	SetLog("Training Troops...", $COLOR_BLUE)
-
  	Global $LeftTrain0, $LeftTrain1, $LeftTrain2, $LeftTrain3
  	Global $ClickTrain0, $ClickTrain1, $ClickTrain2, $ClickTrain3
 	Global $Trainrax0, $Trainrax1, $Trainrax2, $Trainrax3
@@ -17,7 +15,9 @@ Func TrainCustom()
 		$Trainrax1 = True
 		$Trainrax2 = True
 		$Trainrax3 = True
-	EndIf
+	 EndIf
+
+	SetLog("Training Troops...", $COLOR_BLUE)
 
 	For $i = 0 To 3 ;iterate through barracks
 		If _Sleep(500) Then ExitLoop

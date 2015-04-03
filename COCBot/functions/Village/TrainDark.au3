@@ -7,8 +7,6 @@ Func TrainDark()
 		If _Sleep(2000) Then Return
 	EndIf
 
-	SetLog("Training Dark Troops...", $COLOR_BLUE)
-
 	Global $LeftRax1, $LeftRax2, $TrainDrax1, $TrainDrax2, $ClickRax1, $ClickRax2
 
 	If $fullArmy Or $FirstDarkTrain Then
@@ -17,6 +15,8 @@ Func TrainDark()
 	EndIf
 
 	If $TrainDrax1 = False And $TrainDrax2 = False Then Return
+
+	SetLog("Training Dark Troops...", $COLOR_BLUE)
 
 	For $i = 0 To 1
 		If _Sleep(500) Then ExitLoop

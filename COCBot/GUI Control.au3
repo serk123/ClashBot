@@ -140,7 +140,11 @@ Func Initiate()
 		GUICtrlSetState($btnLoadConfig, $GUI_DISABLE)
 		$sTimer = TimerInit()
 		AdlibRegister("SetTime", 1000)
-		AdlibRegister("SetTimeRC", 60000 * $PushBulletinterval)
+		if $PushBulletinterval <> 0 Then
+			AdlibRegister("SetTimeRC", 60000 * $PushBulletinterval)
+		Else
+			AdlibRegister("SetTimeRC", 60000)
+		EndIf
 		runBot()
 	Else
 		SetLog("Not in Game!", $COLOR_RED)

@@ -161,6 +161,20 @@ Func getChar(ByRef $x, $y)
 	Next
 	$x -= 3
 
+	;search for 'F' another version
+	$width = 5
+	Local $c1 = Hex(0x525652, 6), $c2 = Hex(0xE0E1E0, 6), $c3 = Hex(0xC5C7C5, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 3, $y + 2, $c1], $pixel2[3] = [$x + 1, $y + 8, $c2], $pixel3[3] = [$x + 5, $y + 1, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "F"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
 	;search for 'f'
 	$width = 5
 	Local $c1 = Hex(0xC4C5C4, 6), $c2 = Hex(0xBFC0BF, 6), $c3 = Hex(0x535653, 6)
@@ -264,6 +278,20 @@ Func getChar(ByRef $x, $y)
 	Local $c1 = Hex(0x8E908E, 6), $c2 = Hex(0xC4C5C4, 6), $c3 = Hex(0xFBFBFB, 6)
 	For $i = 1 To 3
 		Local $pixel1[3] = [$x + 1, $y + 5, $c1], $pixel2[3] = [$x + 4, $y + 7, $c2], $pixel3[3] = [$x + 6, $y + 1, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "J"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for 'J' another version
+	$width = 6
+	Local $c1 = Hex(0x5E625E, 6), $c2 = Hex(0xBDBEBD, 6), $c3 = Hex(0xFBFBFB, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 1, $y + 5, $c1], $pixel2[3] = [$x + 5, $y + 7, $c2], $pixel3[3] = [$x + 5, $y + 1, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
 			$x += $width
 			Return "J"
@@ -400,18 +428,18 @@ Func getChar(ByRef $x, $y)
 	$x -= 3
 
 	;search for 'O'
-	$width = 6
-	Local $c1 = Hex(0xBBBDBB, 6), $c2 = Hex(0x888A88, 6), $c3 = Hex(0xD9DAD9, 6)
-	For $i = 1 To 3
-		Local $pixel1[3] = [$x + 2, $y + 6, $c1], $pixel2[3] = [$x + 2, $y + 0, $c2], $pixel3[3] = [$x + 5, $y + 6, $c3]
-		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
-			$x += $width
-			Return "O"
-		Else
-			$x += 1
-		EndIf
-	Next
-	$x -= 3
+	;$width = 6
+	;Local $c1 = Hex(0xBBBDBB, 6), $c2 = Hex(0x888A88, 6), $c3 = Hex(0xD9DAD9, 6)
+	;For $i = 1 To 3
+	;	Local $pixel1[3] = [$x + 2, $y + 6, $c1], $pixel2[3] = [$x + 2, $y + 0, $c2], $pixel3[3] = [$x + 5, $y + 6, $c3]
+	;	If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+	;		$x += $width
+	;		Return "O"
+	;	Else
+	;		$x += 1
+	;	EndIf
+	;Next
+	;$x -= 3
 
 	;search for 'o'
 	$width = 6
@@ -597,7 +625,7 @@ Func getChar(ByRef $x, $y)
 	$x -= 3
 
 	;search for 'V'
-	$width = 7
+	$width = 8
 	Local $c1 = Hex(0x898C89, 6), $c2 = Hex(0x707370, 6), $c3 = Hex(0xE1E2E1, 6)
 	For $i = 1 To 3
 		Local $pixel1[3] = [$x + 2, $y + 2, $c1], $pixel2[3] = [$x + 3, $y + 5, $c2], $pixel3[3] = [$x + 5, $y + 7, $c3]
@@ -639,7 +667,7 @@ Func getChar(ByRef $x, $y)
 	$x -= 3
 
 	;search for 'w'
-	$width = 9
+	$width = 10
 	Local $c1 = Hex(0x8E918E, 6), $c2 = Hex(0x747674, 6), $c3 = Hex(0x797C79, 6)
 	For $i = 1 To 3
 		Local $pixel1[3] = [$x + 3, $y + 5, $c1], $pixel2[3] = [$x + 5, $y + 7, $c2], $pixel3[3] = [$x + 8, $y + 8, $c3]
@@ -668,7 +696,7 @@ Func getChar(ByRef $x, $y)
 
 	;search for 'x'
 	$width = 6
-	Local $c1 = Hex(0x8C8E8C, 6), $c2 = Hex(0x9EA09E, 6), $c3 = Hex(0x4C4F4C, 6)
+	Local $c1 = Hex(0x8C8E8C, 6), $c2 = Hex(0x9FA19F, 6), $c3 = Hex(0x4D514D, 6)
 	For $i = 1 To 3
 		Local $pixel1[3] = [$x + 1, $y + 4, $c1], $pixel2[3] = [$x + 2, $y + 8, $c2], $pixel3[3] = [$x + 5, $y + 6, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
@@ -682,7 +710,7 @@ Func getChar(ByRef $x, $y)
 
 	;search for 'Y'
 	$width = 7
-	Local $c1 = Hex(0xA1A3A1, 6), $c2 = Hex(0x8C8E8C, 6), $c3 = Hex(0xD5D6D5, 6)
+	Local $c1 = Hex(0xA1A3A1, 6), $c2 = Hex(0x8D8F8D, 6), $c3 = Hex(0xD3D4D3, 6)
 	For $i = 1 To 3
 		Local $pixel1[3] = [$x + 2, $y + 1, $c1], $pixel2[3] = [$x + 5, $y + 5, $c2], $pixel3[3] = [$x + 3, $y + 8, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
@@ -750,11 +778,179 @@ Func getChar(ByRef $x, $y)
 	Next
 	$x -= 3
 
+	;search for '1'
+	$width = 4
+	Local $c1 = Hex(0xB6B8B6, 6), $c2 = Hex(0x9D9F9D, 6), $c3 = Hex(0x707370, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 2, $y + 3, $c1], $pixel2[3] = [$x + 2, $y + 8, $c2], $pixel3[3] = [$x + 3, $y, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "1"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '2'
+	$width = 6
+	Local $c1 = Hex(0xBDBFBD, 6), $c2 = Hex(0x939693, 6), $c3 = Hex(0x8F918F, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 2, $y + 2, $c1], $pixel2[3] = [$x + 4, $y + 5, $c2], $pixel3[3] = [$x + 6, $y + 1, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "2"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '3'
+	$width = 6
+	Local $c1 = Hex(0x888A88, 6), $c2 = Hex(0x959795, 6), $c3 = Hex(0x7B7D7B, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 4, $y + 3, $c1], $pixel2[3] = [$x + 2, $y + 6, $c2], $pixel3[3] = [$x + 4, $y + 5, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "3"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '4'
+	$width = 6
+	Local $c1 = Hex(0xD5D6D5, 6), $c2 = Hex(0x939593, 6), $c3 = Hex(0x969996, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 4, $y + 2, $c1], $pixel2[3] = [$x + 3, $y + 7, $c2], $pixel3[3] = [$x + 6, $y + 5, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "4"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '5'
+	$width = 6
+	Local $c1 = Hex(0x767976, 6), $c2 = Hex(0x878987, 6), $c3 = Hex(0x939593, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 3, $y + 3, $c1], $pixel2[3] = [$x + 4, $y + 5, $c2], $pixel3[3] = [$x + 1, $y + 8, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "5"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '6'
+	$width = 6
+	Local $c1 = Hex(0x9A9C9A, 6), $c2 = Hex(0x7B7D7B, 6), $c3 = Hex(0x878987, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 2, $y + 2, $c1], $pixel2[3] = [$x + 5, $y + 3, $c2], $pixel3[3] = [$x + 2, $y + 6, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "6"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '7'
+	$width = 5
+	Local $c1 = Hex(0xE0E1E0, 6), $c2 = Hex(0x707370, 6), $c3 = Hex(0x929592, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 2, $y + 2, $c1], $pixel2[3] = [$x + 1, $y + 5, $c2], $pixel3[3] = [$x + 2, $y + 8, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "7"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '7' another version
+	$width = 6
+	Local $c1 = Hex(0x696C69, 6), $c2 = Hex(0x7A7C7A, 6), $c3 = Hex(0x929492, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 2, $y + 2, $c1], $pixel2[3] = [$x + 4, $y + 5, $c2], $pixel3[3] = [$x + 3, $y + 8, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "7"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '8'
+	$width = 6
+	Local $c1 = Hex(0x939593, 6), $c2 = Hex(0x6A6D6A, 6), $c3 = Hex(0x585B58, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 1, $y + 4, $c1], $pixel2[3] = [$x + 4, $y + 7, $c2], $pixel3[3] = [$x + 4, $y + 3, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "8"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '9'
+	$width = 6
+	Local $c1 = Hex(0x4A4E4A, 6), $c2 = Hex(0x8D8f8D, 6), $c3 = Hex(0x848784, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 4, $y + 2, $c1], $pixel2[3] = [$x + 4, $y + 5, $c2], $pixel3[3] = [$x + 2, $y + 6, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "9"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for 'O'
+	$width = 6
+	Local $c1 = Hex(0xBBBDBB, 6), $c2 = Hex(0x888A88, 6), $c3 = Hex(0xD9DAD9, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x + 2, $y + 6, $c1], $pixel2[3] = [$x + 2, $y + 0, $c2], $pixel3[3] = [$x + 5, $y + 6, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "0"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
+	;search for '+'
+	$width = 3
+	Local $c1 = Hex(0xCFD0CF, 6), $c2 = Hex(0xA1A3A1, 6), $c3 = Hex(0x9FA19F, 6)
+	For $i = 1 To 3
+		Local $pixel1[3] = [$x, $y + 5, $c1], $pixel2[3] = [$x, $y + 3, $c2], $pixel3[3] = [$x + 2, $y + 5, $c3]
+		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
+			$x += $width
+			Return "+"
+		Else
+			$x += 1
+		EndIf
+	Next
+	$x -= 3
+
 	;search for '{space}'
 	$width = 2
 	Local $c1 = Hex(0x404440, 6), $c2 = Hex(0x404440, 6), $c3 = Hex(0x404440, 6)
 	For $i = 1 To 3
-		Local $pixel1[3] = [$x + 1, $y + 3, $c1], $pixel2[3] = [$x + 1, $y + 7, $c2], $pixel3[3] = [$x + 2, $y + 5, $c3]
+		Local $pixel1[3] = [$x + 1, $y + 1, $c1], $pixel2[3] = [$x + 2, $y + 2, $c2], $pixel3[3] = [$x + 2, $y + 3, $c3]
 		If boolPixelSearch($pixel1, $pixel2, $pixel3, 1) Then
 			$x += $width
 			Return " "

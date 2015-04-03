@@ -23,6 +23,7 @@ While $x <> 440
 		If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 			$x +=5
 			$Resource &= "-"
+			ContinueLoop
 		EndIf
 	EndIf
 
@@ -33,6 +34,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 9
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -42,6 +44,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 8
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -51,6 +54,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 7
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -60,6 +64,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 6
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -69,6 +74,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 5
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -78,6 +84,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 4
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -87,6 +94,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 3
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -96,6 +104,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 2
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -105,6 +114,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 1
+		ContinueLoop
 	EndIf
 
 	;Done
@@ -114,6 +124,7 @@ While $x <> 440
 	If boolPixelSearch($pixel1, $pixel2, $pixel3) Then
 		$x +=5
 		$Resource &= 0
+		ContinueLoop
 	EndIf
 
 	$x += 1

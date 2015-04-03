@@ -27,7 +27,7 @@ If Not FileExists(@ScriptDir & "\License.txt") Then
 EndIf
 
 #include "COCBot\Global Variables.au3"
-#include "COCBot\GUI Design 2.au3"
+#include "COCBot\GUI Design.au3"
 #include "COCBot\GUI Control.au3"
 #include "COCBot\Functions.au3"
 #include-once

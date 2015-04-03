@@ -12,7 +12,11 @@ $txtLog = _GUICtrlRichEdit_Create($frmBot, "", 8, 68, 290, 225, BitOR($ES_MULTIL
 $fileMenu = GUICtrlCreateMenu("File")
 $configMenu = GUICtrlCreateMenu("Config")
 $loadConfig = GUICtrlCreateMenuItem("Load", $configMenu)
+GUICtrlSetOnEvent(-1, "btnLoadConfig")
+GUICtrlSetTip(-1, "Load Configuration Setting")
 $saveConfig = GUICtrlCreateMenuItem("Save", $configMenu)
+GUICtrlSetOnEvent(-1, "btnSaveConfig")
+GUICtrlSetTip(-1, "Save Configuration Setting")
 $aboutUs = GUICtrlCreateMenu("About Us")
 
 
@@ -20,15 +24,6 @@ $aboutUs = GUICtrlCreateMenu("About Us")
 $tabMain = GUICtrlCreateTab(-1, 30, 645, 400)
 GUICtrlSetOnEvent(-1, "tabMain")
 
-
-$lblConfig = GUICtrlCreateLabel(getfilename($config), 280, 500, 110, 15, $SS_CENTER)
-GUICtrlSetBkColor($lblConfig, $COLOR_WHITE)
-$btnSaveConfig = GUICtrlCreateButton("Save Config", 280, 500, 50, 35, $BS_MULTILINE)
-GUICtrlSetOnEvent(-1, "btnSaveConfig")
-GUICtrlSetTip(-1, "Save Configuration Setting")
-$btnLoadConfig = GUICtrlCreateButton("Load Config", 340, 500, 50, 35, $BS_MULTILINE)
-GUICtrlSetOnEvent(-1, "btnLoadConfig")
-GUICtrlSetTip(-1, "Load Configuration Setting")
 
 ; ------------------------- GLOBAL SECTION STARTS HERE ------------------------- ;
 
@@ -295,127 +290,130 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 ;Troops Tab
 $pageTroopSettings = GUICtrlCreateTabItem("Troops")
-$Barracks = GUICtrlCreateGroup("Troops", 20, 40, 185, 194)
-$lblBarbarians = GUICtrlCreateLabel("Barb", 35, 60, 45, 17)
-$lblArchers = GUICtrlCreateLabel("Archer", 92, 60, 45, 17)
-$lblGoblins = GUICtrlCreateLabel("Goblin", 153, 60, 45, 17)
-$txtBarbarians = GUICtrlCreateInput("30", 30, 77, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$Barracks = 		GUICtrlCreateGroup("Troops", 20, 68, 200, 205)
+$lblBarbarians = 	GUICtrlCreateLabel("Barb", 35, 88, 45, 17)
+$lblArchers = 		GUICtrlCreateLabel("Archer", 92, 88, 45, 17)
+$lblGoblins = 		GUICtrlCreateLabel("Goblin", 153, 88, 45, 17)
+$txtBarbarians = 	GUICtrlCreateInput("30", 30, 105, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 3)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$txtArchers = GUICtrlCreateInput("60", 90, 77, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtArchers = 		GUICtrlCreateInput("60", 90, 105, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 3)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$txtGoblins = GUICtrlCreateInput("10", 150, 77, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtGoblins = 		GUICtrlCreateInput("10", 150, 105, 35, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 3)
 GUICtrlSetState(-1, $GUI_DISABLE)
-$lblPercentBarbarians = GUICtrlCreateLabel("%", 68, 82, 12, 17)
-$lblPercentArchers = GUICtrlCreateLabel("%", 128, 82, 12, 17)
-$lblPercentGoblins = GUICtrlCreateLabel("%", 188, 82, 12, 17)
+$lblPercentBarbarians = GUICtrlCreateLabel("%", 68, 110, 12, 17)
+$lblPercentArchers = GUICtrlCreateLabel("%", 128, 110, 12, 17)
+$lblPercentGoblins = GUICtrlCreateLabel("%", 188, 110, 12, 17)
 
-$lblGiants = GUICtrlCreateLabel("Giants :", 30, 108, 89, 17)
-$lblWallBreakers = GUICtrlCreateLabel("Wall Breakers :", 30, 133, 125, 17)
+$lblGiants =		GUICtrlCreateLabel("Giants :", 30, 136, 89, 17)
+$lblWallBreakers =  GUICtrlCreateLabel("Wall Breakers :", 30, 161, 125, 17)
 
-$txtNumGiants = GUICtrlCreateInput("4", 120, 105, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+$txtNumGiants = 	GUICtrlCreateInput("4", 120, 133, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 GUICtrlSetState(-1, $GUI_DISABLE)
-$txtNumWallbreakers = GUICtrlCreateInput("4", 120, 130, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+$txtNumWallbreakers = GUICtrlCreateInput("4", 120, 158, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 GUICtrlSetState(-1, $GUI_DISABLE)
 
-$lblUnitGiants = GUICtrlCreateLabel("Unit", 178, 108, 40, 17)
-$lblUnitWallBreakers = GUICtrlCreateLabel("Unit", 178, 133, 40, 17)
+$lblUnitGiants = 	 GUICtrlCreateLabel("Units", 180, 136, 40, 17)
+$lblUnitWallBreakers = GUICtrlCreateLabel("Units", 180, 161, 40, 17)
 
-$lblCapacity = GUICtrlCreateLabel("Camp Capacity :", 30, 158, 95, 17)
-$txtCapacity = GUICtrlCreateInput("0", 120, 155, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$lblCapacity = 		GUICtrlCreateLabel("Camp Capacity :", 30, 186, 95, 17)
+$txtCapacity = 		GUICtrlCreateInput("0", 120, 183, 56, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 
-$lblRaidcap = GUICtrlCreateLabel("Raid Capacity :", 30, 183, 95, 17)
-$cmbRaidcap = GUICtrlCreateCombo("", 120, 180, 56, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$lblRaidcap = 		GUICtrlCreateLabel("Raid Capacity :", 30, 211, 95, 17)
+$cmbRaidcap = 		GUICtrlCreateCombo("", 120, 208, 56, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "70|80|90|100", "100")
-$lblPercentCapacity = GUICtrlCreateLabel("%", 180, 183, 12, 17)
+$lblPercentCapacity = GUICtrlCreateLabel("%", 180, 211, 12, 17)
 
-$cmbTroopComp = GUICtrlCreateCombo("", 30, 205, 150, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbTroopComp = 	GUICtrlCreateCombo("", 30, 240, 175, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUISetOnEvent(-1, "cmbTroopComp")
 GUICtrlSetData(-1, "Archers|Barbarians|Goblins|B.Arch|B.A.G.G.|B.A.Giant|B.A.Goblin|B.A.G.G.Wall|Use Barracks|Custom Troops|Custom Troops 2", "Use Barracks") ;"Archers|Barbarians|Goblins|B.Arch|B.A.G.G.|B.A.Giant|B.A.Goblin|B.A.G.G.Wall|Use Barracks|Custom Troops|Custom Troops 2"
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-;$OtherTroops = GUICtrlCreateGroup("Other Troops", 210, 40, 185, 70)
 
-$BarrackGroup = GUICtrlCreateGroup("Barracks", 210, 112, 185, 122)
-$lblBarrack1 = GUICtrlCreateLabel("Barrack 1:", 220, 134, 53, 17)
-$lblBarrack2 = GUICtrlCreateLabel("Barrack 2:", 220, 159, 53, 17)
-$lblBarrack3 = GUICtrlCreateLabel("Barrack 3:", 220, 184, 53, 17)
-$lblBarrack4 = GUICtrlCreateLabel("Barrack 4:", 220, 209, 53, 17)
-$cmbBarrack1 = GUICtrlCreateCombo("", 275, 130, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+Local $CT2_Y_value = 166;
+$BarrackCTGroup = GUICtrlCreateGroup("Custom Troops", 240, 234-$CT2_Y_value, 375, 121)
+$lblBarrackJOE1 = GUICtrlCreateLabel("Barrack 1 :", 250, 253-$CT2_Y_value, 53, 17)
+$lblBarrackJOE2 = GUICtrlCreateLabel("Barrack 2 :", 250, 278-$CT2_Y_value, 53, 17)
+$lblBarrackJOE3 = GUICtrlCreateLabel("Barrack 3 :", 250, 303-$CT2_Y_value, 53, 17)
+$lblBarrackJOE4 = GUICtrlCreateLabel("Barrack 4 :", 250, 328-$CT2_Y_value, 53, 17)
+$lblBarrackBK1 = GUICtrlCreateLabel("the rest", 457, 253-$CT2_Y_value, 35, 17)
+$lblBarrackBK2 = GUICtrlCreateLabel("the rest", 457, 278-$CT2_Y_value, 35, 17)
+$lblBarrackBK3 = GUICtrlCreateLabel("the rest", 457, 303-$CT2_Y_value, 35, 17)
+$lblBarrackBK4 = GUICtrlCreateLabel("the rest", 457, 328-$CT2_Y_value, 35, 17)
+
+$txtFirstTroop1 = GUICtrlCreateInput("2", 310, 250-$CT2_Y_value, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+GUICtrlSetState(-1, $GUI_DISABLE)
+$txtFirstTroop2 = GUICtrlCreateInput("2", 310, 275-$CT2_Y_value, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+GUICtrlSetState(-1, $GUI_DISABLE)
+$txtFirstTroop3 = GUICtrlCreateInput("2", 310, 300-$CT2_Y_value, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+GUICtrlSetState(-1, $GUI_DISABLE)
+$txtFirstTroop4 = GUICtrlCreateInput("2", 310, 325-$CT2_Y_value, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+GUICtrlSetLimit(-1, 2)
+GUICtrlSetState(-1, $GUI_DISABLE)
+
+$cmbFirstTroop1 = GUICtrlCreateCombo("", 350, 250-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "Giants")
+GUICtrlSetState(-1, $GUI_DISABLE)
+$cmbFirstTroop2 = GUICtrlCreateCombo("", 350, 275-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "W.Breakers")
+GUICtrlSetState(-1, $GUI_DISABLE)
+$cmbFirstTroop3 = GUICtrlCreateCombo("", 350, 300-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "Giants")
+GUICtrlSetState(-1, $GUI_DISABLE)
+$cmbFirstTroop4 = GUICtrlCreateCombo("", 350, 325-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "W.Breakers")
+GUICtrlSetState(-1, $GUI_DISABLE)
+
+$cmbSecondTroop1 = GUICtrlCreateCombo("", 505, 250-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Barbarians")
+GUICtrlSetState(-1, $GUI_DISABLE)
+$cmbSecondTroop2 = GUICtrlCreateCombo("", 505, 275-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Archers")
+GUICtrlSetState(-1, $GUI_DISABLE)
+$cmbSecondTroop3 = GUICtrlCreateCombo("", 505, 300-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Barbarians")
+GUICtrlSetState(-1, $GUI_DISABLE)
+$cmbSecondTroop4 = GUICtrlCreateCombo("", 505, 325-$CT2_Y_value, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Archers")
+GUICtrlSetState(-1, $GUI_DISABLE)
+
+$BarrackGroup = GUICtrlCreateGroup("Barracks", 240, 195, 375, 80)
+$lblBarrack1 = GUICtrlCreateLabel("Barrack 1:", 250, 217, 53, 17)
+$lblBarrack2 = GUICtrlCreateLabel("Barrack 2:", 250, 242, 53, 17)
+$lblBarrack3 = GUICtrlCreateLabel("Barrack 3:", 435, 217, 53, 17)
+$lblBarrack4 = GUICtrlCreateLabel("Barrack 4:", 435, 242, 53, 17)
+$cmbBarrack1 = GUICtrlCreateCombo("", 305, 213, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Balloon(Training Only)|Wizard(Training Only)|Healer(Training Only)|Dragon(Training Only)|Pekka(Training Only)|Nothing", "Barbarians")
-$cmbBarrack2 = GUICtrlCreateCombo("", 275, 155, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbBarrack2 = GUICtrlCreateCombo("", 305, 238, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Balloon(Training Only)|Wizard(Training Only)|Healer(Training Only)|Dragon(Training Only)|Pekka(Training Only)|Nothing", "Archers")
-$cmbBarrack3 = GUICtrlCreateCombo("", 275, 180, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbBarrack3 = GUICtrlCreateCombo("", 490, 213, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Balloon(Training Only)|Wizard(Training Only)|Healer(Training Only)|Dragon(Training Only)|Pekka(Training Only)|Nothing", "Archers")
-$cmbBarrack4 = GUICtrlCreateCombo("", 275, 205, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbBarrack4 = GUICtrlCreateCombo("", 490, 238, 110, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Balloon(Training Only)|Wizard(Training Only)|Healer(Training Only)|Dragon(Training Only)|Pekka(Training Only)|Nothing", "Goblins")
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-$DarkBarracks = GUICtrlCreateGroup("", 210, 40, 185, 70)
-$chkDarkTroop = GUICtrlCreateCheckbox("Dark Barrack", 218, 40, 80, 15)
-$lblDarkBarrack1 = GUICtrlCreateLabel("D.Barrack 1:", 215, 60, 65, 17)
-$lblDarkBarrack2 = GUICtrlCreateLabel("D.Barrack 2:", 215, 85, 65, 17)
-$cmbDarkBarrack1 = GUICtrlCreateCombo("", 320, 56, 65, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+;83
+
+
+$DarkBarracks = GUICtrlCreateGroup("Dark Troops", 310, 285, 305, 90)
+
+$chkDarkTroop = GUICtrlCreateCheckbox("Dark Barrack", 9000, 9000, 80, 15) ;; MUST BE REMOVED AND FOLLOW SAME SETUP AS ABOVE!
+
+
+
+$lblDarkBarrack1 = GUICtrlCreateLabel("Dark Barrack 1:", 320, 315, 80, 17)
+$lblDarkBarrack2 = GUICtrlCreateLabel("Dark Barrack 2:", 320, 340, 80, 17)
+$cmbDarkBarrack1 = GUICtrlCreateCombo("", 450, 311, 150, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Minions|Hogs|Valkyries|Nothing", "Minions")
-$cmbDarkBarrack2 = GUICtrlCreateCombo("", 320, 81, 65, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+$cmbDarkBarrack2 = GUICtrlCreateCombo("", 450, 336, 150, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "Minions|Hogs|Valkyries|Nothing", "Minions")
-$txtDarkBarrack1 = GUICtrlCreateInput("5", 285, 56, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtDarkBarrack1 = GUICtrlCreateInput("5", 410, 311, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-$txtDarkBarrack2 = GUICtrlCreateInput("5", 285, 81, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+$txtDarkBarrack2 = GUICtrlCreateInput("5", 410, 336, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 GUICtrlSetLimit(-1, 2)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-
-$BarrackCTGroup = GUICtrlCreateGroup("Custom Troop 2", 20, 234, 375, 121)
-$lblBarrackJOE1 = GUICtrlCreateLabel("Barrack 1 :", 30, 253, 53, 17)
-$lblBarrackJOE2 = GUICtrlCreateLabel("Barrack 2 :", 30, 278, 53, 17)
-$lblBarrackJOE3 = GUICtrlCreateLabel("Barrack 3 :", 30, 303, 53, 17)
-$lblBarrackJOE4 = GUICtrlCreateLabel("Barrack 4 :", 30, 328, 53, 17)
-$lblBarrackBK1 = GUICtrlCreateLabel("the rest", 237, 253, 35, 17)
-$lblBarrackBK2 = GUICtrlCreateLabel("the rest", 237, 278, 35, 17)
-$lblBarrackBK3 = GUICtrlCreateLabel("the rest", 237, 303, 35, 17)
-$lblBarrackBK4 = GUICtrlCreateLabel("the rest", 237, 328, 35, 17)
-
-$txtFirstTroop1 = GUICtrlCreateInput("2", 90, 250, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 2)
-GUICtrlSetState(-1, $GUI_DISABLE)
-$txtFirstTroop2 = GUICtrlCreateInput("2", 90, 275, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 2)
-GUICtrlSetState(-1, $GUI_DISABLE)
-$txtFirstTroop3 = GUICtrlCreateInput("2", 90, 300, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 2)
-GUICtrlSetState(-1, $GUI_DISABLE)
-$txtFirstTroop4 = GUICtrlCreateInput("2", 90, 325, 31, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-GUICtrlSetLimit(-1, 2)
-GUICtrlSetState(-1, $GUI_DISABLE)
-
-$cmbFirstTroop1 = GUICtrlCreateCombo("", 130, 250, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "Giants")
-GUICtrlSetState(-1, $GUI_DISABLE)
-$cmbFirstTroop2 = GUICtrlCreateCombo("", 130, 275, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "W.Breakers")
-GUICtrlSetState(-1, $GUI_DISABLE)
-$cmbFirstTroop3 = GUICtrlCreateCombo("", 130, 300, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "Giants")
-GUICtrlSetState(-1, $GUI_DISABLE)
-$cmbFirstTroop4 = GUICtrlCreateCombo("", 130, 325, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|W.Breakers|Nothing", "W.Breakers")
-GUICtrlSetState(-1, $GUI_DISABLE)
-
-$cmbSecondTroop1 = GUICtrlCreateCombo("", 285, 250, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Barbarians")
-GUICtrlSetState(-1, $GUI_DISABLE)
-$cmbSecondTroop2 = GUICtrlCreateCombo("", 285, 275, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Archers")
-GUICtrlSetState(-1, $GUI_DISABLE)
-$cmbSecondTroop3 = GUICtrlCreateCombo("", 285, 300, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Barbarians")
-GUICtrlSetState(-1, $GUI_DISABLE)
-$cmbSecondTroop4 = GUICtrlCreateCombo("", 285, 325, 95, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Barbarians|Archers|Giants|Goblins|Nothing", "Archers")
-GUICtrlSetState(-1, $GUI_DISABLE)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 
 ; ------------------------- OTHER SECTION ENDS HERE ------------------------- ;
@@ -423,6 +421,26 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 ;Other Tab
 $pageOtherSettings = GUICtrlCreateTabItem("Other")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $Walls = GUICtrlCreateGroup("Walls", 20, 40, 375, 125)
 $chkWalls = GUICtrlCreateCheckbox("Auto Wall Upgrade", 30, 62, 110, 17)
 $UseGold = GUICtrlCreateRadio("Use Only Gold", 40, 87, 115, 17)

@@ -19,14 +19,14 @@ Func _RemoteControl()
    if $findstr = 1 Then
      for $x = 0 to UBound($title) - 1
 		 if $title <> "" or $iden <> "" Then
-			$title[$x] = StringStripWS($title[$x], $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)
+			$title[$x] = StringLower(StringStripWS($title[$x], $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES))
 			$iden[$x] = StringStripWS($iden[$x], $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)
 
-			if $title[$x] = "Bot Help" Then
+			if $title[$x] = "bot help" Then
 			   SetLog("Your request has been received. Help has been sent")
 			   _Push("Request for Help","You can remotely control your bot using the following command format\n\nBot <command> where <command> is:\n\nPause - pause the bot\nResume - resume the bot\nStats - send bot current statistics\nLogs - send the current log file\nBot Boost1 - Boost 1 barrack\nBot Boost2 - Boost 2 barracks\Bot Boost3 - Boost 3 barracks\nBot BoostAll - Boost all barracks\nHelp - send this help message\n\nEnter the command in the title of the message")
 			   _DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Pause" Then
+			Elseif $title[$x] = "bot pause" Then
 			    If $PauseBot = False Then
 				   SetLog("Your request has been received. Bot is now paused")
 				  _Push("Request to Pause","Your request has been received. Bot is now paused")
@@ -40,7 +40,7 @@ Func _RemoteControl()
 				  _Push("Request to Pause","Your bot is currently paused, no action was taken")
 			   EndIf
 			   _DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Resume" Then
+			Elseif $title[$x] = "bot resume" Then
 			   If $PauseBot = True Then
 				  SetLog("Your request has been received. Bot is now resumed")
 				  _Push("Request to Resume","Your request has been received. Bot is now resumed")
@@ -53,15 +53,15 @@ Func _RemoteControl()
 				  _Push("Request to Resume","Your bot is currently running, no action was taken")
 			   EndIf
 			   _DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Stats" Then
+			Elseif $title[$x] = "bot stats" Then
 			   SetLog("Your request has been received. Statistics sent")
 			   _Push("Request for Stats","Resources at Start\n-Gold:  " & GUICtrlRead($lblresultgoldtstart) & "\n-Elixir:  " & GUICtrlRead($lblresultelixirstart) & "\n-DE:  " & GUICtrlRead($lblresultdestart) & "\n-Trophies:  " & GUICtrlRead($lblresulttrophystart) & "\n\nCurrent Resources \n-Gold:  " & GUICtrlRead($lblresultgoldnow) & "\n-Elixir:  " & GUICtrlRead($lblresultelixirnow) & "\n-DE:  " & GUICtrlRead($lblresultdenow) & "\n-Trophies:  " & GUICtrlRead($lblresulttrophynow) & "\n\nLast Raid\n-Gold:  " & GUICtrlRead($lblresultgoldlast) & "\n-Elixir:  " & GUICtrlRead($lblresultelixirlast) & "\n-DE:  " & GUICtrlRead($lblresultdelast) & "\n-Trophies:  " & GUICtrlRead($lblresulttrophylast) & "\n\nTotal Raid\n-Gold:  " & GUICtrlRead($lblresultgoldgain) & "\n-Elixir:  " & GUICtrlRead($lblresultelixirgain) & "\n-DE:  " & GUICtrlRead($lblresultdegain) & "\n-Trophies Won:  " & GUICtrlRead($lblresulttrophiesdropped) &  "\n\nOther Stats\n-Attacked:  " & GUICtrlRead($lblresultvillagesattacked) & "\n-Skipped:  " & GUICtrlRead($lblresultvillagesskipped) & "\n-Wall Upgrade:  " & GUICtrlRead($lblwallupgradecount) & "\n-Search Cost:  " & GUICtrlRead($lblresultsearchcost) & "\n-Bot Run Time:  " & StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
 			   _DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Logs" Then
+			Elseif $title[$x] = "bot logs" Then
 			    SetLog("Your request has been received. Log is now sent")
 			   _PushFile($sLogFileName, "logs", "text/plain; charset=utf-8", "Current Logs", $sLogFileName)
 			   _DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Boost1" Then
+			Elseif $title[$x] = "bot boost1" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
 				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
@@ -73,7 +73,7 @@ Func _RemoteControl()
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")
 				EndIf
 				_DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Boost2" Then
+			Elseif $title[$x] = "bot boost2" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
 				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
@@ -85,7 +85,7 @@ Func _RemoteControl()
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")
 				EndIf
 				_DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot Boost3" Then
+			Elseif $title[$x] = "bot boost3" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
 				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
@@ -97,7 +97,7 @@ Func _RemoteControl()
 					_Push("Barrack Boost", "You have already reached maximum barracks boost setting")
 				EndIf
 				_DeleteMessage($iden[$x])
-			Elseif $title[$x] = "Bot BoostAll" Then
+			Elseif $title[$x] = "bot boostall" Then
 				if GUICtrlRead($cmbBoostBarracks) < 5 Then
 				   GUICtrlSetData($cmbBoostBarracks, GUICtrlRead($cmbBoostBarracks) + 1)
 				   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)

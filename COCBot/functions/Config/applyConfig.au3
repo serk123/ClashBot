@@ -239,10 +239,10 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtDarkBarrack2, $itxtDarkBarrack2)
 
 	;Custom Troop 2 Settings--------------------------------------------------------------------------
-	GUICtrlSetData($txtFirstTroop1, $itxtFirstTroop1)
-	GUICtrlSetData($txtFirstTroop2, $itxtFirstTroop2)
-	GUICtrlSetData($txtFirstTroop3, $itxtFirstTroop3)
-	GUICtrlSetData($txtFirstTroop4, $itxtFirstTroop4)
+	GUICtrlSetData($txtFirstTroop1, $itxtFirstTroop[0])
+	GUICtrlSetData($txtFirstTroop2, $itxtFirstTroop[1])
+	GUICtrlSetData($txtFirstTroop3, $itxtFirstTroop[2])
+	GUICtrlSetData($txtFirstTroop4, $itxtFirstTroop[3])
 	_GUICtrlComboBox_SetCurSel($cmbFirstTroop1, $CustomTroopF[0])
 	_GUICtrlComboBox_SetCurSel($cmbFirstTroop2, $CustomTroopF[1])
 	_GUICtrlComboBox_SetCurSel($cmbFirstTroop3, $CustomTroopF[2])

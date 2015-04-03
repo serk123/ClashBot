@@ -266,11 +266,11 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	SetLog("Dropping left over troops", $COLOR_BLUE)
 	For $x = 0 To 1
 		PrepareAttack(True) ;Check remaining quantities
-		For $i = $eBarbarian To $eMinion ; launch all remaining troops
+		For $i = $eBarbarian To $eMinion ; lauch all remaining troops
 			If $i = $eBarbarian Or $i = $eArcher Or $i = $eMinion Or $i = $eHog Or $i = $eValkyrie Then
 				LaunchTroop($i, $nbSides, 0, 1)
-			ElseIf $i <> $LSpell Then
-				LaunchTroop($i, $nbSides, 0, 1, 2)
+;			Else
+;				LaunchTroop($i, $nbSides, 0, 1, 2)
 			EndIf
 			If _Sleep(500) Then Return
 		Next
@@ -290,7 +290,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				_Sleep(($itxtQueenSkill - $itxtKingSkill) * 1000)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
-			ElseIf $checkQPower Then
+			 Else
 			    SetLog("Waiting " & $itxtQueenSkill & " seconds before activating Queen's abilities", $COLOR_ORANGE)
 				_Sleep($itxtQueenSkill * 1000)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
@@ -310,7 +310,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				_Sleep(($itxtKingSkill - $itxtQueenSkill) * 1000)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
-			ElseIf $checkKPower Then
+			 Else
 			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating King's abilities", $COLOR_ORANGE)
 				_Sleep($itxtKingSkill * 1000)
 				SetLog("Activate King's power", $COLOR_BLUE)

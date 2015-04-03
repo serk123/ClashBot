@@ -111,7 +111,7 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			Pause()
-			Train()
+			TrainTroop()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			Pause()
@@ -180,7 +180,7 @@ Func Idle() ;Sequence that runs until Full Army
 		If $CommandStop <> 3 Then
 			CheckArmyCamp()
 			If _Sleep(1000) Then ExitLoop
-			Train()
+			TrainTroop()
 			If _Sleep(1000) Then Return
 			TrainDark()
 			If _Sleep(1000) Then ExitLoop
@@ -234,4 +234,12 @@ Func Pause() ;Remotely allows you to pause the bot
    While $PauseBot
 	  Sleep(1000)
    Wend
+EndFunc
+
+Func TrainTroop()
+   If _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 10 Then
+	  TrainCustom()
+   Else
+	  Train()
+   EndIf
 EndFunc

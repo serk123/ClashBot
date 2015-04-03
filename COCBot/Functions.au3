@@ -83,6 +83,7 @@
 #include "functions\Village\VillageReport.au3"
 #include "functions\Village\CreateSpell.au3"
 #include "functions\Village\TrainDark.au3"
+#include "functions\Village\TrainCustom.au3"
 #include "functions\Village\CheckCostPerSearch.au3"
 
 #include "functions\Notification\PushBullet.au3"

@@ -171,9 +171,9 @@ Global $barrackTroop[4] ;Barrack troop set
 Global $DarkBarrackPos[2][2]
 Global $DarkBarrackTroop[2]
 Global $itxtDarkBarrack1, $itxtDarkBarrack2
-Global $itxtFirstTroop1, $itxtFirstTroop2, $itxtFirstTroop3, $itxtFirstTroop4
 Global $CustomTroopF[4]
 Global $CustomTroopS[4]
+Global $itxtFirstTroop[4]
 
 Global $ArmyPos[2]
 Global $KingPos[2]
@@ -229,6 +229,7 @@ Global $CurCamp, $TotalCamp = 0
 Global $NoLeague
 Global $FirstStart = True
 Global $FirstDarkTrain = True
+Global $FirstTrain = True
 Global $DCattack = 0
 Global $Checkrearm = True
 Global $lblgoldnowM, $lblresultgoldnowM, $imggoldnowM, $lblelixirnowM, $lblresultelixirnowM, $imgelixirnowM, $lbldenowM, $lblresultdenowM, $imgdenowM

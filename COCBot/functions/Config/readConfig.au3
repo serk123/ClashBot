@@ -78,11 +78,9 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtDarkBarrack1 = IniRead($config, "troop", "DarkRax1", "0")
 		$itxtDarkBarrack2 = IniRead($config, "troop", "DarkRax2", "0")
 		;Custom Troop 2 Settings--------------------------------------------------------------------------
-		$itxtFirstTroop1 = IniRead($config, "troop", "CustomRax1", "0")
-		$itxtFirstTroop2 = IniRead($config, "troop", "CustomRax2", "0")
-		$itxtFirstTroop3 = IniRead($config, "troop", "CustomRax3", "0")
-		$itxtFirstTroop4 = IniRead($config, "troop", "CustomRax4", "0")
+
 		For $i = 0 To 3 ;Covers all 4 Barracks
+			$itxtFirstTroop[$i] = IniRead($config, "troop", "CustomRax" & $i + 1, "0")
 			$CustomTroopF[$i] = IniRead($config, "troop", "CustomtroopF" & $i + 1, "0")
 			$CustomTroopS[$i] = IniRead($config, "troop", "CustomtroopS" & $i + 1, "0")
 		Next

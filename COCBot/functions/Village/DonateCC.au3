@@ -26,29 +26,12 @@ Func DonateCC()
 				$Donate = False
 				If ($ichkDonateAllBarbarians = 0 And $ichkDonateAllArchers = 0 And $ichkDonateAllGiants = 0) And ($ichkDonateBarbarians = 1 Or $ichkDonateArchers = 1 Or $ichkDonateGiants = 1) Then
 					_CaptureRegion(0, 0, 435, $DonatePixel[1] + 50)
-					;4 Lines
-						Local $String = getString($DonatePixel[1] - 56)
-						if $String <> "" Then
-							$String = $String & @CRLF & getString($DonatePixel[1] - 43)
-							$String = $String & @CRLF & getString($DonatePixel[1] - 30)
-							$String = $String & @CRLF & getString($DonatePixel[1] - 17)
-						Else
-							;3 Lines
-							$String = getString($DonatePixel[1] - 43)
-							if $String <> "" Then
-								$String = $String & @CRLF & getString($DonatePixel[1] - 30)
-								$String = $String & @CRLF & getString($DonatePixel[1] - 17)
-							Else
-								;2 Lines
-								$String = getString($DonatePixel[1] - 28)
-								if $String <> "" Then
-									$String = $String & @CRLF & getString($DonatePixel[1] - 17)
-								Else
-									;1 Line
-									$String = getString($DonatePixel[1] - 17)
-								EndIf
-							EndIf
-						EndIf
+					Local $String = getString($DonatePixel[1] - 28)
+					If $String = "" Then
+						$String = getString($DonatePixel[1] - 17)
+					Else
+						$String = $String & @CRLF & getString($DonatePixel[1] - 17)
+					EndIf
 
 					SetLog("Chat Text: " & $String, $COLOR_GREEN)
 

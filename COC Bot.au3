@@ -52,110 +52,88 @@ Func runBot() ;Bot that runs everything in order
 		SaveConfig()
 		readConfig()
 		applyConfig()
-		Pause()
 		chkNoAttack()
 		$Restart = False
 		$fullArmy = False
 		If _Sleep(1000) Then Return
 		checkMainScreen()
-		Pause()
 		If _Sleep(1000) Then Return
 		If ZoomOut() = False Then ContinueLoop
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		If $Restart = True Then ContinueLoop
 		If BotCommand() Then btnStop()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		VillageReport() ; populate resource stats and gather info required for upgrades
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		If _Sleep(1000) Then Return
 		CheckCostPerSearch()
-		Pause()
 		If _Sleep(1000) Then Return
 		If $Checkrearm = True Then
 			ReArm()
 			If _Sleep(2000) Then Return
 			checkMainScreen(False)
-			Pause()
 			$Checkrearm = False
 		EndIf
 		DonateCC()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			If ZoomOut() = False Then ContinueLoop
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 		EndIf
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
 			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 			AttackMain()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 			$fullArmy = False
 		EndIf
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 			TrainTroop()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 			TrainDark()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 			CreateSpell()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 		EndIf
 		checkMainScreen(False)
 		If ZoomOut() = False Then ContinueLoop
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		BoostAllBuilding()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		RequestCC()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		Collect()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		UpgradeWall()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
-		Pause()
 		Idle()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then
 			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 			AttackMain()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			Pause()
 		EndIf
 	WEnd
 EndFunc   ;==>runBot
@@ -204,12 +182,12 @@ EndFunc   ;==>Idle
 Func AttackMain() ;Main control for attack functions
 	$DCattack = 1
 	PrepareSearch()
-	If _Sleep(1000) Then Return
+	If _Sleep(1000, False) Then Return
 	VillageSearch()
 	If $CommandStop = 0 Then Return
-	If _Sleep(1000) Or $Restart = True Then Return
+	If _Sleep(1000, False) Or $Restart = True Then Return
 	PrepareAttack()
-	If _Sleep(1000) Then Return
+	If _Sleep(1000, False) Then Return
 	Attack()
 	$DCattack = 0
 	If _Sleep(1000) Then Return
@@ -229,12 +207,6 @@ Func Attack() ;Selects which algorithm
 	algorithm_AllTroops()
 	;	EndSwitch
 EndFunc   ;==>Attack
-
-Func Pause() ;Remotely allows you to pause the bot
-   While $PauseBot
-	  Sleep(1000)
-   Wend
-EndFunc
 
 Func TrainTroop()
    If _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 10 Then

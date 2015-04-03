@@ -21,10 +21,10 @@ EndFunc   ;==>SetSleep
 ; Old mecanism, not used anymore
 Func OldDropTroop($troup, $position, $nbperspot)
 	SelectDropTroupe($troup) ;Select Troop
-	If _Sleep(100) Then Return
+	If _Sleep(100, False) Then Return
 	For $i = 0 To 4
 		Click($position[$i][0], $position[$i][1], $nbperspot, 1)
-		If _Sleep(50) Then Return
+		If _Sleep(50, False) Then Return
 	Next
 EndFunc   ;==>OldDropTroop
 
@@ -32,28 +32,28 @@ EndFunc   ;==>OldDropTroop
 ; improved function, that avoids to only drop on 5 discret drop points :
 Func DropOnEdge($troop, $edge, $number, $slotsPerEdge = 0, $edge2 = -1, $x = -1)
 	If $number = 0 Then Return
-	If _Sleep(100) Then Return
+	If _Sleep(100, False) Then Return
 	SelectDropTroupe($troop) ;Select Troop
-	If _Sleep(300) Then Return
+	If _Sleep(300, False) Then Return
 	If $slotsPerEdge = 0 Or $number < $slotsPerEdge Then $slotsPerEdge = $number
 	If $number = 1 Or $slotsPerEdge = 1 Then ; Drop on a single point per edge => on the middle
 		Click($edge[2][0], $edge[2][1], $number)
 		If $edge2 <> -1 Then Click($edge2[2][0], $edge2[2][1], $number)
-		If _Sleep(50) Then Return
+		If _Sleep(50, False) Then Return
 	ElseIf $slotsPerEdge = 2 Then ; Drop on 2 points per edge
 		Local $half = Ceiling($number / 2)
 		Click($edge[1][0], $edge[1][1], $half)
 		If $edge2 <> -1 Then
-			If _Sleep(SetSleep(0)) Then Return
+			If _Sleep(SetSleep(0), False) Then Return
 			Click($edge2[1][0], $edge2[1][1], $half)
 		EndIf
-		If _Sleep(SetSleep(0)) Then Return
+		If _Sleep(SetSleep(0), False) Then Return
 		Click($edge[3][0], $edge[3][1], $number - $half)
 		If $edge2 <> -1 Then
-			If _Sleep(SetSleep(0)) Then Return
+			If _Sleep(SetSleep(0), False) Then Return
 			Click($edge2[3][0], $edge2[3][1], $number - $half)
 		EndIf
-		If _Sleep(SetSleep(0)) Then Return
+		If _Sleep(SetSleep(0), False) Then Return
 	Else
 		Local $minX = $edge[0][0]
 		Local $maxX = $edge[4][0]
@@ -75,14 +75,14 @@ Func DropOnEdge($troop, $edge, $number, $slotsPerEdge = 0, $edge2 = -1, $x = -1)
 				Local $posX2 = $maxX2 - (($maxX2 - $minX2) * $i) / ($slotsPerEdge - 1)
 				Local $posY2 = $maxY2 - (($maxY2 - $minY2) * $i) / ($slotsPerEdge - 1)
 				If $x = 0 Then
-					If _Sleep(SetSleep(0)) Then Return ; add delay for first wave attack to prevent skip dropping troops, must add for 4 sides attack
+					If _Sleep(SetSleep(0), False) Then Return ; add delay for first wave attack to prevent skip dropping troops, must add for 4 sides attack
 				EndIf
 				Click($posX2, $posY2, $nbtroopPerSlot)
 				$nbTroopsLeft -= $nbtroopPerSlot
 			Else
 				$nbTroopsLeft -= $nbtroopPerSlot
 			EndIf
-			If _Sleep(SetSleep(0)) Then Return
+			If _Sleep(SetSleep(0), False) Then Return
 		Next
 	EndIf
 EndFunc   ;==>DropOnEdge
@@ -167,7 +167,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		EndIf
 	Next
 
-	If _Sleep(2000) Then Return
+	If _Sleep(2000, False) Then Return
 	Local $nbSides = 0
 
 	If $searchDead Then
@@ -202,7 +202,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		EndSwitch
 	EndIf
 	If ($nbSides = 0) Then Return
-	If _Sleep(1000) Then Return
+	If _Sleep(1000, False) Then Return
 
 	; ================================================================================?
 	; ========= Here is coded the main attack strategy ===============================
@@ -210,22 +210,22 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	; ================================================================================?
 	algorithmTH()
 	If LaunchTroop($eGiant, $nbSides, 1, 1, 1) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eBarbarian, $nbSides, 1, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eWallbreaker, $nbSides, 1, 1, 1) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eArcher, $nbSides, 1, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eBarbarian, $nbSides, 2, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eGoblin, $nbSides, 1, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 
 	; Deploy CC behind troops
@@ -235,19 +235,19 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		dropCC($TopLeft[3][0], $TopLeft[3][1], $CC)
 	EndIf
 	If LaunchTroop($eHog, $nbSides, 1, 1, 1) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eValkyrie, $nbSides, 1, 1, 1) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eArcher, $nbSides, 2, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eGoblin, $nbSides, 2, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 	If LaunchTroop($eMinion, $nbSides, 2, 2) Then
-		If _Sleep(SetSleep(1)) Then Return
+		If _Sleep(SetSleep(1), False) Then Return
 	EndIf
 
 	; ================================================================================?
@@ -260,9 +260,9 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		dropHeroes($TopLeft[3][0], $TopLeft[3][1], $King, $Queen)
 	EndIf
 
-	If _Sleep(SetSleep(1)) Then Return
+	If _Sleep(SetSleep(1), False) Then Return
 
-	If _Sleep(100) Then Return
+	If _Sleep(100, False) Then Return
 	SetLog("Dropping left over troops", $COLOR_BLUE)
 	For $x = 0 To 1
 		PrepareAttack(True) ;Check remaining quantities
@@ -272,7 +272,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 ;			Else
 ;				LaunchTroop($i, $nbSides, 0, 1, 2)
 			EndIf
-			If _Sleep(500) Then Return
+			If _Sleep(500, False) Then Return
 		Next
 	Next
 
@@ -281,18 +281,18 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		If $itxtKingSkill < $itxtQueenSkill Then
 			If $checkKPower Then
 			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating King's abilities", $COLOR_ORANGE)
-				_Sleep($itxtKingSkill * 1000)
+				_Sleep($itxtKingSkill * 1000, False)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
 			EndIf
 			If $checkQPower And $checkKPower Then
 			    SetLog("Waiting " & ($itxtQueenSkill - $itxtKingSkill) & " seconds before activating Queen's abilities", $COLOR_ORANGE)
-				_Sleep(($itxtQueenSkill - $itxtKingSkill) * 1000)
+				_Sleep(($itxtQueenSkill - $itxtKingSkill) * 1000, False)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
 			 ElseIf $checkQPower Then
 			    SetLog("Waiting " & $itxtQueenSkill & " seconds before activating Queen's abilities", $COLOR_ORANGE)
-				_Sleep($itxtQueenSkill * 1000)
+				_Sleep($itxtQueenSkill * 1000, False)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
 			EndIf
@@ -301,18 +301,18 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		If $itxtQueenSkill < $itxtKingSkill Then
 			If $checkQPower Then
 			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating Queen's abilities", $COLOR_ORANGE)
-				_Sleep($itxtQueenSkill * 1000)
+				_Sleep($itxtQueenSkill * 1000, False)
 				SetLog("Activate Queen's power", $COLOR_BLUE)
 				SelectDropTroupe($Queen)
 			EndIf
 			If $checkKPower And $checkQPower Then
 			    SetLog("Waiting " & ($itxtKingSkill - $itxtQueenSkill) & " seconds before activating King's abilities", $COLOR_ORANGE)
-				_Sleep(($itxtKingSkill - $itxtQueenSkill) * 1000)
+				_Sleep(($itxtKingSkill - $itxtQueenSkill) * 1000, False)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
 			 ElseIf $checkKPower Then
 			    SetLog("Waiting " & $itxtKingSkill & " seconds before activating King's abilities", $COLOR_ORANGE)
-				_Sleep($itxtKingSkill * 1000)
+				_Sleep($itxtKingSkill * 1000, False)
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)
 			EndIf
@@ -320,7 +320,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
 		If $itxtQueenSkill = $itxtKingSkill Then
 		   	If $checkKPower Or $checkQPower Then SetLog("Waiting " & $itxtKingSkill & " seconds before activating Heroes abilities", $COLOR_ORANGE)
-			_Sleep($itxtKingSkill * 1000)
+			_Sleep($itxtKingSkill * 1000, False)
 			If $checkKPower Then
 				SetLog("Activate King's power", $COLOR_BLUE)
 				SelectDropTroupe($King)

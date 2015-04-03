@@ -5,7 +5,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $skippedVillages
 	_WinAPI_EmptyWorkingSet(WinGetProcess($Title)) ; Reduce BlueStacks Memory Usage
 	#cs ; don't need to check shield twice - uncomment if there are problems
-		If _Sleep(1000) Then Return
+		If _Sleep(1000, False) Then Return
 		_CaptureRegion() ; Check Break Shield button again
 		Local $offColors[3][3] = [[0x202C0D, 105, 0], [0x60B010, 30, 30], [0xFFFFFF, 20, 20]] ; 2nd pixel edge of button, 3rd pixel dark green of button, 4th pixel white of ok
 		Local $ShieldPixel = _MultiPixelSearch(480, 380, 586, 411, 1, 1, Hex(0xD0E878, 6), $offColors, 30) ; light green pixel of button
@@ -35,7 +35,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		_BlockInputEx(3, "", "", $HWnD)
 		GUICtrlSetData($lblresultsearchcost, GUICtrlRead($lblresultsearchcost)+ $SearchCost)
 		While 1
-			If _Sleep(1000) Then ExitLoop (2)
+			If _Sleep(1000, False) Then ExitLoop (2)
 			GUICtrlSetState($btnAtkNow, $GUI_ENABLE)
 			GetResources() ;Reads Resource Values
 
@@ -49,7 +49,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			EndIf
 
 			; read setting directly to allow speed change while searching to use attack now
-			If _Sleep(_GUICtrlComboBox_GetCurSel($cmbSearchsp) * 1500) Then ExitLoop (2)
+			If _Sleep(_GUICtrlComboBox_GetCurSel($cmbSearchsp) * 1500, False) Then ExitLoop (2)
 
 			; Attack instantly if Attack Now button pressed
 			GUICtrlSetState($btnAtkNow, $GUI_DISABLE)

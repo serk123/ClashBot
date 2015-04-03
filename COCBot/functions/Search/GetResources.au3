@@ -8,7 +8,7 @@ Func GetResources() ;Reads resources
 		Local $x = 0
 		Local $txtDead = "-"
 		While getGold(51, 66) = "" ; Loops until gold is readable
-			If _Sleep(500) Then ExitLoop (2)
+			If _Sleep(500, False) Then ExitLoop (2)
 			$i += 1
 			If $i >= 20 Then ; If gold cannot be read by 10 seconds
 				If checkNextButton() And $x <= 20 Then ;Checks for Out of Sync or Connection Error during search
@@ -26,7 +26,7 @@ Func GetResources() ;Reads resources
 				$i = 0
 			EndIf
 		WEnd
-		If _Sleep(300) Then ExitLoop (2)
+		If _Sleep(300, False) Then ExitLoop (2)
 
 		$searchDead = checkDeadBase()
 		$searchTH = checkTownhall()

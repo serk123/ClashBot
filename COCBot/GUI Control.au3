@@ -114,6 +114,7 @@ Func Initiate()
 
 		$AttackNow = False
 		$FirstStart = True
+		$PauseBot = False
 		$Checkrearm = True
 		$CreateSpell = True
 		GUICtrlSetState($cmbBoostBarracks, $GUI_DISABLE)
@@ -220,6 +221,7 @@ Func btnStop()
 	If $RunState Then
 		$RunState = False
 		$AttackNow = False
+		$PauseBot = False
 		EnableBS($HWnD, $SC_MINIMIZE)
 		EnableBS($HWnD, $SC_CLOSE)
 		GUICtrlSetState($btnLocateBarracks, $GUI_ENABLE)

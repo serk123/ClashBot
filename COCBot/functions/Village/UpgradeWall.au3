@@ -84,7 +84,7 @@ Func UpgradeWall()
 			EndIf
 		WEnd
 	ElseIf $iUseStorage <> 2 Then
-		SetLog("Gold is lower than Minimum setting for ugrade", $COLOR_RED)
+		SetLog("Gold is lower than Minimum setting for upgrade...", $COLOR_RED)
 	EndIf
 
 	If $iUseStorage <> 1 And $icmbWalls < 4 Then
@@ -130,6 +130,6 @@ Func UpgradeWall()
 			EndIf
 		WEnd
 	ElseIf $iUseStorage <> 1 Then
-		SetLog("Elixir is lower than Minimum setting for ugrade", $COLOR_RED)
+		SetLog("Elixir is lower than Minimum setting for upgrade...", $COLOR_RED)
 	EndIf
 EndFunc   ;==>UpgradeWall

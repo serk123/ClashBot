@@ -125,6 +125,9 @@ Func runBot() ;Bot that runs everything in order
 		UpgradeWall()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
+		UpgradeBuilding()
+		If _Sleep(1000) Then Return
+		checkMainScreen(False)
 		Idle()
 		If _Sleep(1000) Then Return
 		If $CommandStop <> 0 And $CommandStop <> 3 Then

@@ -80,6 +80,7 @@
 #include "functions\Village\Train.au3"
 #include "functions\Village\BotCommand.au3"
 #include "functions\Village\UpgradeWall.au3"
+#include "functions\Village\UpgradeBuilding.au3"
 #include "functions\Village\VillageReport.au3"
 #include "functions\Village\CreateSpell.au3"
 #include "functions\Village\TrainDark.au3"

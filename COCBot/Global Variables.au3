@@ -123,6 +123,7 @@ Global $SpellDarkStorage
 Global $DELocation, $DElixx = 0, $DElixy = 0
 Global $LSpell
 Global $CreateSpell = True
+Global $ichkBoostRax1, $ichkBoostRax2, $ichkBoostRax3, $ichkBoostRax4, $ichkBoostKing, $ichkBoostQueen
 
 ;Boosts Settings
 Global $BoostAll

@@ -295,6 +295,37 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 	GUICtrlSetData($txtUpgradeY2, $itxtUpgradeY2)
 	GUICtrlSetData($txtUpgradeX3, $itxtUpgradeX3)
 	GUICtrlSetData($txtUpgradeY3, $itxtUpgradeY3)
+
+    If $ichkBoostRax1 = 1 Then
+	   GUICtrlSetState($chkBoostRax1, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($chkBoostRax1, $GUI_UNCHECKED)
+	EndIf
+    If $ichkBoostRax2 = 1 Then
+	   GUICtrlSetState($chkBoostRax2, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($chkBoostRax2, $GUI_UNCHECKED)
+	EndIf
+    If $ichkBoostRax3 = 1 Then
+	   GUICtrlSetState($chkBoostRax3, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($chkBoostRax3, $GUI_UNCHECKED)
+	EndIf
+    If $ichkBoostRax4 = 1 Then
+	   GUICtrlSetState($chkBoostRax4, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($chkBoostRax4, $GUI_UNCHECKED)
+	EndIf
+    If $ichkBoostKing = 1 Then
+	   GUICtrlSetState($chkBoostKing, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($chkBoostKing, $GUI_UNCHECKED)
+	EndIf
+    If $ichkBoostQueen = 1 Then
+	   GUICtrlSetState($chkBoostQueen, $GUI_CHECKED)
+	Else
+	   GUICtrlSetState($chkBoostQueen, $GUI_UNCHECKED)
+	EndIf
 	;General Settings--------------------------------------------------------------------------
 	If $frmBotPosX <> -32000 Then WinMove($sBotTitle, "", $frmBotPosX, $frmBotPosY)
 	GUICtrlSetData($txtMinimumTrophy, $itxtMinTrophy)

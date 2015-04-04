@@ -147,26 +147,20 @@ EndFunc   ;==>LaunchTroop
 Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	$Barb = -1
 	$Arch = -1
-	$Minion = -1
 	$CC = -1
 	$King = -1
 	$Queen = -1
-	$LSpell = -1
 	For $i = 0 To 8
 		If $atkTroops[$i][0] = $eBarbarian Then
 			$Barb = $i
 		ElseIf $atkTroops[$i][0] = $eArcher Then
 			$Arch = $i
-		ElseIf $atkTroops[$i][0] = $eMinion Then
-			$Minion = $i
 		ElseIf $atkTroops[$i][0] = $eCastle Then
 			$CC = $i
 		ElseIf $atkTroops[$i][0] = $eKing Then
 			$King = $i
 		ElseIf $atkTroops[$i][0] = $eQueen Then
 			$Queen = $i
-		ElseIf $atkTroops[$i][0] = $eLSpell Then
-			$LSpell = $i
 		EndIf
 	Next
 

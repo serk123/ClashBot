@@ -134,7 +134,12 @@ Func readConfig() ;Reads config and sets it to the variables
 		$QueenPos[1] = IniRead($config, "misc", "yQueen", "0")
 		$SFactoryPos[0] = IniRead($config, "misc", "xSFactory", "0")
 		$SFactoryPos[1] = IniRead($config, "misc", "ySFactory", "0")
-
+		$ichkBoostRax1 = IniRead($config, "misc", "BoostRax1", "0")
+		$ichkBoostRax2 = IniRead($config, "misc", "BoostRax2", "0")
+		$ichkBoostRax3 = IniRead($config, "misc", "BoostRax3", "0")
+		$ichkBoostRax4 = IniRead($config, "misc", "BoostRax4", "0")
+		$ichkBoostKing = IniRead($config, "misc", "BoostKing", "0")
+		$ichkBoostQueen = IniRead($config, "misc", "BoostQueen", "0")
 		;Push Bullet--------------------------------------------------------------------------
 		$PushBulletEnabled = IniRead($config, "notification", "pushbullet", "0")
 		$PushBullettoken = IniRead($config, "notification", "accounttoken", "")

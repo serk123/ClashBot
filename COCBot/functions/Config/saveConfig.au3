@@ -404,6 +404,42 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "misc", "chkTrap", 0)
 	EndIf
 
+	If GUICtrlRead($chkBoostRax1) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "BoostRax1", 1)
+	Else
+		IniWrite($config, "misc", "BoostRax1", 0)
+	EndIf
+
+	If GUICtrlRead($chkBoostRax2) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "BoostRax2", 1)
+	Else
+		IniWrite($config, "misc", "BoostRax2", 0)
+	EndIf
+
+	If GUICtrlRead($chkBoostRax3) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "BoostRax3", 1)
+	Else
+		IniWrite($config, "misc", "BoostRax3", 0)
+	EndIf
+
+	If GUICtrlRead($chkBoostRax4) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "BoostRax4", 1)
+	Else
+		IniWrite($config, "misc", "BoostRax4", 0)
+	EndIf
+
+	If GUICtrlRead($chkBoostKing) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "BoostKing", 1)
+	Else
+		IniWrite($config, "misc", "BoostKing", 0)
+	EndIf
+
+	If GUICtrlRead($chkBoostQueen) = $GUI_CHECKED Then
+		IniWrite($config, "misc", "BoostQueen", 1)
+	Else
+		IniWrite($config, "misc", "BoostQueen", 0)
+	EndIf
+
 	If GUICtrlRead($chkBackground) = $GUI_CHECKED Then
 		IniWrite($config, "general", "Background", 1)
 	Else

@@ -1,5 +1,5 @@
 Func UpgradeBuilding()
-	If GUICtrlRead($chkUpgrade1) <> $GUI_CHECKED And GUICtrlRead($chkUpgrade2) <> $GUI_CHECKED And GUICtrlRead($chkUpgrade3) <> $GUI_CHECKED Then Return
+	If $ichkUpgrade1 = 0 And $ichkUpgrade2 = 0 And $ichkUpgrade3 = 0 Then Return
 
 	If GUICtrlRead($txtUpgradeX1) = "" And GUICtrlRead($txtUpgradeX2) = "" And GUICtrlRead($txtUpgradeX3) = "" Then
 		SetLog("Building location not set, skipping upgrade...", $COLOR_RED)
@@ -24,7 +24,7 @@ Func UpgradeBuilding()
 ;Upgrade 1
 If $iElixirStorage < $iMinElixir And $iGoldStorage < $iMinGold Then Return
 
-		If GUICtrlRead($chkUpgrade1) = $GUI_CHECKED Then
+		If $ichkUpgrade1 = 1 Then
 			SetLog("Attempting to upgrade Building 1...")
 
 			If _Sleep(500) Then Return
@@ -101,7 +101,7 @@ If $iElixirStorage < $iMinElixir And $iGoldStorage < $iMinGold Then Return
 
 ;Upgrade 2
 
-		If GUICtrlRead($chkUpgrade2) = $GUI_CHECKED Then
+		If $ichkUpgrade2 = 1 Then
 			SetLog("Attempting to upgrade Building 2...")
 
 			If _Sleep(500) Then Return
@@ -177,7 +177,7 @@ If $iElixirStorage < $iMinElixir And $iGoldStorage < $iMinGold Then Return
 If $iElixirStorage < $iMinElixir And $iGoldStorage < $iMinGold Then Return
 
 ;Upgrade 3
-		If GUICtrlRead($chkUpgrade3) = $GUI_CHECKED Then
+		If $ichkUpgrade3 = 1 Then
 			SetLog("Attempting to upgrade Building 3...")
 
 			If _Sleep(500) Then Return

@@ -93,7 +93,15 @@ Func readConfig() ;Reads config and sets it to the variables
 		$itxtWallMinGold = IniRead($config, "other", "minwallgold", "0")
 		$itxtWallMinElixir = IniRead($config, "other", "minwallelixir", "0")
 		$icmbTolerance = IniRead($config, "other", "walltolerance", "0")
-
+		$ichkUpgrade1 = IniRead($config, "other", "BuildUpgrade1", "0")
+		$ichkUpgrade2 = IniRead($config, "other", "BuildUpgrade2", "0")
+		$ichkUpgrade3 = IniRead($config, "other", "BuildUpgrade3", "0")
+		$itxtUpgradeX1 = IniRead($config, "other", "BuildUpgradeX1", "0")
+		$itxtUpgradeY1 = IniRead($config, "other", "BuildUpgradeY1", "0")
+		$itxtUpgradeX2 = IniRead($config, "other", "BuildUpgradeX2", "0")
+		$itxtUpgradeY2 = IniRead($config, "other", "BuildUpgradeY2", "0")
+		$itxtUpgradeX3 = IniRead($config, "other", "BuildUpgradeX3", "0")
+		$itxtUpgradeY3 = IniRead($config, "other", "BuildUpgradeY3", "0")
 		;General Settings--------------------------------------------------------------------------
 		$frmBotPosX = IniRead($config, "general", "frmBotPosX", "207")
 		$frmBotPosY = IniRead($config, "general", "frmBotPosY", "158")

@@ -273,6 +273,28 @@ Func applyConfig() ;Applies the data from config to the controls in GUI
 
 	GUICtrlSetData($txtWallMinGold, $itxtWallMinGold)
 	GUICtrlSetData($txtWallMinElixir, $itxtWallMinElixir)
+
+	If $ichkUpgrade1 = 1 Then
+		GUICtrlSetState($chkUpgrade1, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUpgrade1, $GUI_UNCHECKED)
+	EndIf
+	If $ichkUpgrade2 = 1 Then
+		GUICtrlSetState($chkUpgrade2, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUpgrade2, $GUI_UNCHECKED)
+	EndIf
+	If $ichkUpgrade3 = 1 Then
+		GUICtrlSetState($chkUpgrade3, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUpgrade3, $GUI_UNCHECKED)
+	EndIf
+	GUICtrlSetData($txtUpgradeX1, $itxtUpgradeX1)
+	GUICtrlSetData($txtUpgradeY1, $itxtUpgradeY1)
+	GUICtrlSetData($txtUpgradeX2, $itxtUpgradeX2)
+	GUICtrlSetData($txtUpgradeY2, $itxtUpgradeY2)
+	GUICtrlSetData($txtUpgradeX3, $itxtUpgradeX3)
+	GUICtrlSetData($txtUpgradeY3, $itxtUpgradeY3)
 	;General Settings--------------------------------------------------------------------------
 	If $frmBotPosX <> -32000 Then WinMove($sBotTitle, "", $frmBotPosX, $frmBotPosY)
 	GUICtrlSetData($txtMinimumTrophy, $itxtMinTrophy)

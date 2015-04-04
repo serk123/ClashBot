@@ -191,6 +191,8 @@ Global $itxtWallMinGold
 Global $itxtWallMinElixir
 Global $icmbTolerance
 Global $itxtReconnect
+Global $ichkUpgrade1, $ichkUpgrade2, $ichkUpgrade3
+Global $itxtUpgradeX1, $itxtUpgradeY1, $itxtUpgradeX2, $itxtUpgradeY2, $itxtUpgradeX3, $itxtUpgradeY3
 Global $iTimeTroops = 0
 Global $iTimeGiant = 120
 Global $iTimeWall = 120

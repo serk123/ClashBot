@@ -256,6 +256,27 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	IniWrite($config, "other", "minwallgold", GUICtrlRead($txtWallMinGold))
 	IniWrite($config, "other", "minwallelixir", GUICtrlRead($txtWallMinElixir))
+	If GUICtrlRead($chkUpgrade1) = $GUI_CHECKED Then
+		IniWrite($config, "other", "BuildUpgrade1", 1)
+	Else
+		IniWrite($config, "other", "BuildUpgrade1", 0)
+	EndIf
+	If GUICtrlRead($chkUpgrade2) = $GUI_CHECKED Then
+		IniWrite($config, "other", "BuildUpgrade2", 1)
+	Else
+		IniWrite($config, "other", "BuildUpgrade2", 0)
+	EndIf
+	If GUICtrlRead($chkUpgrade3) = $GUI_CHECKED Then
+		IniWrite($config, "other", "BuildUpgrade3", 1)
+	Else
+		IniWrite($config, "other", "BuildUpgrade3", 0)
+	EndIf
+	IniWrite($config, "other", "BuildUpgradeX1", GUICtrlRead($txtUpgradeX1))
+	IniWrite($config, "other", "BuildUpgradeY1", GUICtrlRead($txtUpgradeY1))
+	IniWrite($config, "other", "BuildUpgradeX2", GUICtrlRead($txtUpgradeX2))
+	IniWrite($config, "other", "BuildUpgradeY2", GUICtrlRead($txtUpgradeY2))
+	IniWrite($config, "other", "BuildUpgradeX3", GUICtrlRead($txtUpgradeX3))
+	IniWrite($config, "other", "BuildUpgradeY3", GUICtrlRead($txtUpgradeY3))
 	;General Settings--------------------------------------------------------------------------
 	Local $frmBotPos = WinGetPos($sBotTitle)
 	IniWrite($config, "general", "frmBotPosX", $frmBotPos[0])

@@ -13,7 +13,6 @@ Func btnLoadConfig($configfile)
 		readConfig()
 		applyConfig()
 		MsgBox($MB_SYSTEMMODAL, "", "Config loaded successfully!" & @CRLF & $sFileOpenDialog)
-		GUICtrlSetData($lblConfig, getfilename($config))
 	EndIf
 EndFunc   ;==>btnLoadConfig
 
@@ -36,7 +35,6 @@ Func btnSaveConfig($configfile)
 		$config = $sFileSaveDialog
 		saveConfig()
 		MsgBox($MB_SYSTEMMODAL, "", "Successfully saved the current configuration!" & @CRLF & $sFileSaveDialog)
-		GUICtrlSetData($lblConfig, getfilename($config))
 	EndIf
 EndFunc   ;==>btnSaveConfig
 

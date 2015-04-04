@@ -640,7 +640,7 @@ Func TrainCustom()
 				EndSwitch
 			EndIf
 
-		 If $Trainrax0 = False and $i = 0 Then
+		 If GUICtrlRead($txtFirstTroop1) = "0" Or $Trainrax0 = False and $i = 0 Then
 			_CaptureRegion()
 			Switch $CustomTroopS[0]
 			Case 0
@@ -665,7 +665,7 @@ Func TrainCustom()
 			EndSwitch
 		 EndIf
 
-		 If $Trainrax1 = False and $i = 1 Then
+		 If GUICtrlRead($txtFirstTroop2) = "0" Or $Trainrax1 = False and $i = 1 Then
 			_CaptureRegion()
 			Switch $CustomTroopS[1]
 			Case 0
@@ -690,7 +690,7 @@ Func TrainCustom()
 			EndSwitch
 		 EndIf
 
-		 If $Trainrax2 = False and $i = 2 Then
+		 If GUICtrlRead($txtFirstTroop3) = "0" Or $Trainrax2 = False and $i = 2 Then
 			_CaptureRegion()
 			Switch $CustomTroopS[2]
 			Case 0
@@ -715,7 +715,7 @@ Func TrainCustom()
 			EndSwitch
 		 EndIf
 
-		 If $Trainrax3 = False and $i = 3 Then
+		 If GUICtrlRead($txtFirstTroop4) = "0" Or $Trainrax3 = False and $i = 3 Then
 			_CaptureRegion()
 			Switch $CustomTroopS[3]
 			Case 0
